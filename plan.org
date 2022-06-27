@@ -1,0 +1,60 @@
+* Plan
+** Visualisation as models
+- Histograms: model a distribution
+- Scatterplots: model a relationship
+- Time-Series: model a causal effect
+** Experiment design
+- Random samples
+- A/B testing
+- The experimental pipeline
+** Bayesian modelling
+- The cards problem
+- Monty Hall Problem
+- The k-Meteorologists problem
+** Hypothesis testing
+- The garden of many paths
+- Visualising fMRI data
+- Visualising GWAS data
+** Social issues
+- Privacy: randomised response
+- Fairness: Experimental analysis
+- Safety: Robustness
+
+* Histograms
+
+** Introduction to histograms (45')
+  1. Split the students in two groups 
+  2. Have each group collect the height of every student 
+  3. How can we summarise the data of each group? Introduce the
+     concept of a historgram on the board
+  4. Now the students will individually draw a histogram 
+  5. Show two different histograms from two people in the same group. Why are they different?
+  6. Now add a histogram from a person in another group. Why are those different?
+** Pandas Histograms (45')
+  1. Introduce Pandas histograms. First with fixed binary data.
+  2. The uniform distribution
+  3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
+  4. Each one of you should predict the result of a number of coin tosses.
+  5. Let us do a histogram of the predictions. This is a binomial distribution.
+** Randomess (45')
+   1. Random algorithms using coins.
+   2. Uncertainty versus randomness.
+   3. An algorithm for generating random numbers:
+	  1. Pass out cards with numbers to students
+	  2. Randomly call out each student, have them write their number
+         and name.
+	  3. What is the distribution of numbers?
+	  
+** Uncertainty (45')
+   1. Predicting events. Who will win the race?
+   2. How many immigrants live in Switzerland? What do we mean by
+      that?  Create confidence intervals.
+   3. 
+	  
+* Scatter plots
+  1. For the original data: add weight, eye colour, gender, exercise level.
+  2. Summarise 
+
+
+
+
