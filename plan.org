@@ -1,49 +1,26 @@
-* Book plan
-1. Intro
-2. Distributions and histograms
-3. Scatterplots and bivariate distributions
-4. Least-squares regression
-5. Log transofmration
-6. Correlation
-7. Categorical data and confounders
-8. Experiments
-9. Sampling
-10. Statistical inference
-11. Probability: Introduction
-12. Probability: random variable
-13. Probability: Joint and conditional probability
-14. Probability: Binomial/Normal distributions
-15. Probability: Random sums
-16. Parameters and Estimation
-17. Significance
-18. The t-distribution
-19. Inference for proportions
-20. Statistical inference
-21. Inference for regression
-22. Multivariate regression
-23. Confounders
-24. Communication
-* Alt book plan
-1. Distributions and histograms
-2. NOrmal distribution
-3. Observational studies and experimets
-4. Scatterplots and correlation
-5. Linear regression
-6. Causation
-7. Intro to probability
-8. Joint probability
-9. CLT
-10. Sampling
-11. Confidence Intervals
-12. Hypothesis Testing
-13. Inference
-14. Communication
-
-
 * Plan
 ** Visualisation as models
 *** Histograms: model a distribution
+
 **** Introduction to histograms (45')
+	 A (counting) histogram is defined as a collection of disjoint sets called *bins*
+	 \[
+	 \{ A_i | i=1, \ldots
+	 \]
+	 with associated counts $n_i$, so that, given some data $D$,
+	 \[
+	 n_i(D) = \sum_{x \in D} \mathbf{1}\{x \in A_i\}
+	 \]
+	 $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+	 
+	 We can use the histogram as the model of a distribution. For that, we
+	 use the relative frequency of points in each bin:
+	 \[
+	 p_i(D) = n_i(D) / \sum_{j}.
+	 \]
+	 The selection of bins influences the model
+
+	 In-class activity:
     1. Split the students in two groups 
     2. Have each group collect the height of every student 
     3. How can we summarise the data of each group? Introduce the
@@ -52,8 +29,9 @@
     5. Show two different histograms from two people in the same group. Why are they different?
     6. Now add a histogram from a person in another group. Why are those different?
 **** Pandas Histograms (45')
+See src/histograms/histogram.ipynb
     1. Introduce Pandas histograms. First with fixed binary data.
-    2. The uniform distribution
+    2. The uniform distribution:
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
