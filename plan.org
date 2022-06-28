@@ -1,109 +1,108 @@
-* Plan
-** Visualisation as models
-*** Histograms: model a distribution
+* Visualisation as models
+** Histograms: model a distribution
 
-**** Introduction to histograms (45')
-	 A (counting) histogram is defined as a collection of disjoint sets called *bins*
-	 
-	 $\{ A_i | i=1, \ldots, k\}$
+*** Introduction to histograms (45')
+	A (counting) histogram is defined as a collection of disjoint sets called *bins*
+	
+	$\{ A_i | i=1, \ldots, k\}$
 
-	 with associated counts $n_i$, so that, given some data $D$,
+	with associated counts $n_i$, so that, given some data $D$,
 
-	 $n_i(D) = \sum_{x \in D} 1\{x \in A_i\}$
+	$n_i(D) = \sum_{x \in D} \\{x \in A_i\}$
 
-	 $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
-	 
-	 We can use the histogram as the model of a distribution. For that, we
-	 use the relative frequency of points in each bin:
+	$n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+	
+	We can use the histogram as the model of a distribution. For that, we
+	use the relative frequency of points in each bin:
 
-	 $p_i(D) = n_i(D) / \sum_{j} n_j(D)$.
+	$p_i(D) = n_i(D) / \sum_{j} n_j(D)$.
 
-	 The selection of bins influences the model
+	The selection of bins influences the model
 
-	 In-class activity:
-    1. Split the students in two groups 
-    2. Have each group collect the height of every student 
-    3. How can we summarise the data of each group? Introduce the
-       concept of a historgram on the board
-    4. Now the students will individually draw a histogram 
-    5. Show two different histograms from two people in the same group. Why are they different?
-    6. Now add a histogram from a person in another group. Why are those different?
-**** Pandas Histograms (45')
+	In-class activity:
+   1. Split the students in two groups 
+   2. Have each group collect the height of every student 
+   3. How can we summarise the data of each group? Introduce the
+	  concept of a historgram on the board
+   4. Now the students will individually draw a histogram 
+   5. Show two different histograms from two people in the same group. Why are they different?
+   6. Now add a histogram from a person in another group. Why are those different?
+*** Pandas Histograms (45')
 See src/histograms/histogram.ipynb
     1. Introduce Pandas histograms. First with fixed binary data.
     2. The uniform distribution:
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
-**** Randomess (45')
-  1. Random algorithms using coins.
-  2. Uncertainty versus randomness.
-  3. Coin-flipping experiment
-     1. Everybody flips a coin 10 times.
-     2. Record how many heads or tails you have.
-     3. Then record how you threw the coin.
-     4. Discuss if the coin is really random.
-**** Uncertainty (45')
-     1. Predicting events. Who will win the race?
-     2. How many immigrants live in Switzerland? What do we mean by
-	that?  Create confidence intervals.
-*** Time-Series: model a causal effect
-**** Race times
-**** Example: Crime statistics
-**** Example: 
-*** Scatterplots: model a relationship
-    1. For the original data: add weight, eye colour, gender, exercise level.
-    2. Summarise 
-*** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
-** Experiment design
+*** Randomess (45')
+ 1. Random algorithms using coins.
+ 2. Uncertainty versus randomness.
+ 3. Coin-flipping experiment
+	1. Everybody flips a coin 10 times.
+	2. Record how many heads or tails you have.
+	3. Then record how you threw the coin.
+	4. Discuss if the coin is really random.
+*** Uncertainty (45')
+	1. Predicting events. Who will win the race?
+	2. How many immigrants live in Switzerland? What do we mean by
+   that?  Create confidence intervals.
+** Time-Series: model a causal effect
+*** Race times
+*** Example: Crime statistics
+*** Example: 
+** Scatterplots: model a relationship
+   1. For the original data: add weight, eye colour, gender, exercise level.
+   2. Summarise 
+** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
+* Experiment design
 - Random samples
 - A/B testing
 - The experimental pipeline
-*** Homework Assignment: Analyse Newspaper articles
-** Bayesian modelling
-*** The cards problem
-*** The k-Meteorologists problem
-*** Hypothesis testing
-** Data analysis
-*** The garden of many paths
-*** Visualising fMRI data
-*** Visualising GWAS data
-** Social issues
-*** Privacy: randomised response
-*** Fairness: Experimental analysis
-*** Safety: Robustness
+** Homework Assignment: Analyse Newspaper articles
+* Bayesian modelling
+** The cards problem
+** The k-Meteorologists problem
+** Hypothesis testing
+* Data analysis
+** The garden of many paths
+** Visualising fMRI data
+** Visualising GWAS data
+* Social issues
+** Privacy: randomised response
+** Fairness: Experimental analysis
+** Safety: Robustness
 
 
 
-*** A/B testing
-  1. Comparing algorithms in the wild. Which is the best algorithm?
-*** The data science pipeline
-  The experimental pipipeline has a number of different components. 
-  1. Formulating the problem.
-  2. Deciding what type of data is needed.
-  3. Choosing the model and visualisation needed.
-  4. Designing the experimental protocol.
-  5. Generating data confirming to our assumptions.
-  6. Testing the protocol on synthetic data. Is it working as expected?
-  7. Now collect according to your protocol.
+** A/B testing
+ 1. Comparing algorithms in the wild. Which is the best algorithm?
+** The data science pipeline
+ The experimental pipipeline has a number of different components. 
+ 1. Formulating the problem.
+ 2. Deciding what type of data is needed.
+ 3. Choosing the model and visualisation needed.
+ 4. Designing the experimental protocol.
+ 5. Generating data confirming to our assumptions.
+ 6. Testing the protocol on synthetic data. Is it working as expected?
+ 7. Now collect according to your protocol.
 
-*** Intro to Bayesian Reasoning
-  1. The Cards Problem. 
-     1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
-     2. Get a card (say with face A), and ask what is the probability the other side is the same.
-     3. Have the students perform the experiment with:
-	1. Draw a random card.
-	2. Count the number of people with A.
-	3. Of those, count the number of people with A on the other side.
-     4. It should be clear that 1/3 of people have [A|A] and of those 
-  2. The Prisoner Problem.
-  3. The lie dector test.
-  4. Exercise: The k-Meteorologists problem
-     1. Explain what is a model from this point of view.
-     2. 
-
-
+** Intro to Bayesian Reasoning
+ 1. The Cards Problem. 
+	1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+	2. Get a card (say with face A), and ask what is the probability the other side is the same.
+	3. Have the students perform the experiment with:
+   1. Draw a random card.
+   2. Count the number of people with A.
+   3. Of those, count the number of people with A on the other side.
+	4. It should be clear that 1/3 of people have [A|A] and of those 
+ 2. The Prisoner Problem.
+ 3. The lie dector test.
+ 4. Exercise: The k-Meteorologists problem
+	1. Explain what is a model from this point of view.
+	2. 
 
 
-               
+
+
+			  
 
