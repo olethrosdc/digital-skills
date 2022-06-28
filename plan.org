@@ -51,26 +51,11 @@ See src/histograms/histogram.ipynb
    1. For the original data: add weight, eye colour, gender, exercise level.
    2. Summarise 
 ** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
-* Experiment design
-- Random samples
-- A/B testing
-- The experimental pipeline
-** Homework Assignment: Analyse Newspaper articles
-* Bayesian modelling
-** The cards problem
-** The k-Meteorologists problem
-** Hypothesis testing
-* Data analysis
-** The garden of many paths
-** Visualising fMRI data
-** Visualising GWAS data
-* Social issues
-** Privacy: randomised response
-** Fairness: Experimental analysis
-** Safety: Robustness
-
-
-
+* Experiment design   
+** Random sampling
+1. Pure random sampling.
+2. Undercounting.
+3. Give mode.
 ** A/B testing
  1. Comparing algorithms in the wild. Which is the best algorithm?
 ** The data science pipeline
@@ -81,10 +66,24 @@ See src/histograms/histogram.ipynb
  4. Designing the experimental protocol.
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
- 7. Now collect according to your protocol.
+** Homework Assignment: Analyse Newspaper articles
+* Bayesian modelling
+Conditional probability is defined as
 
-** Intro to Bayesian Reasoning
- 1. The Cards Problem. 
+$P(A | B) = P(A \cap B) / P(B)$.
+
+From this it follows that
+
+$P(B | A) = P(A \cap B) / P(A)$.
+
+Combining the two equations, we obtain:
+
+$P(A | B) = P(B | A) P (A) / P(B)$.
+
+So we can reverse the order of conditioning. 
+
+
+** The cards problem
 	1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
 	2. Get a card (say with face A), and ask what is the probability the other side is the same.
 	3. Have the students perform the experiment with:
@@ -92,6 +91,39 @@ See src/histograms/histogram.ipynb
    2. Count the number of people with A.
    3. Of those, count the number of people with A on the other side.
 	4. It should be clear that 1/3 of people have [A|A] and of those 
+** The k-Meteorologists problem
+
+Bayesian reasoning is most useful in the folliwng setting:
+
+- We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
+- We have a prior distribution $P(\theta)$ over the models.
+- We obtain data $D$ for whiche very model assigns a probabiltiy $P_\theta(D)$.
+- We calculate the posterior distribution
+$P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
+- This tells us how likely each model is given the data.
+
+In this example, we have $k$ meteorolgical stations, each one of which gives us the probability that it will rain.
+
+** Hypothesis testing
+
+
+* Data analysis in practice
+** The garden of many paths
+** Visualising fMRI data
+** Visualising GWAS data
+* Social issues
+** Privacy: randomised response
+** Fairness: Experimental analysis
+** Safety: Robustness
+
+
+
+
+ 7. Now collect according to your protocol.
+
+** Intro to Bayesian Reasoning
+ 1. The Cards Problem. 
+
  2. The Prisoner Problem.
  3. The lie dector test.
  4. Exercise: The k-Meteorologists problem
