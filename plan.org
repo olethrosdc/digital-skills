@@ -27,7 +27,7 @@
 *** Pandas Histograms (45')
 See src/histograms/histogram.ipynb
     1. Introduce Pandas histograms. First with fixed binary data.
-    2. The uniform distribution:
+    2. The uniform distribution.
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
