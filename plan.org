@@ -1,60 +1,131 @@
+* Book plan
+1. Intro
+2. Distributions and histograms
+3. Scatterplots and bivariate distributions
+4. Least-squares regression
+5. Log transofmration
+6. Correlation
+7. Categorical data and confounders
+8. Experiments
+9. Sampling
+10. Statistical inference
+11. Probability: Introduction
+12. Probability: random variable
+13. Probability: Joint and conditional probability
+14. Probability: Binomial/Normal distributions
+15. Probability: Random sums
+16. Parameters and Estimation
+17. Significance
+18. The t-distribution
+19. Inference for proportions
+20. Statistical inference
+21. Inference for regression
+22. Multivariate regression
+23. Confounders
+24. Communication
+* Alt book plan
+1. Distributions and histograms
+2. NOrmal distribution
+3. Observational studies and experimets
+4. Scatterplots and correlation
+5. Linear regression
+6. Causation
+7. Intro to probability
+8. Joint probability
+9. CLT
+10. Sampling
+11. Confidence Intervals
+12. Hypothesis Testing
+13. Inference
+14. Communication
+
+
 * Plan
 ** Visualisation as models
-- Histograms: model a distribution
-- Scatterplots: model a relationship
-- Time-Series: model a causal effect
+*** Histograms: model a distribution
+**** Introduction to histograms (45')
+    1. Split the students in two groups 
+    2. Have each group collect the height of every student 
+    3. How can we summarise the data of each group? Introduce the
+       concept of a historgram on the board
+    4. Now the students will individually draw a histogram 
+    5. Show two different histograms from two people in the same group. Why are they different?
+    6. Now add a histogram from a person in another group. Why are those different?
+**** Pandas Histograms (45')
+    1. Introduce Pandas histograms. First with fixed binary data.
+    2. The uniform distribution
+    3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
+    4. Each one of you should predict the result of a number of coin tosses.
+    5. Let us do a histogram of the predictions. This is a binomial distribution.
+**** Randomess (45')
+  1. Random algorithms using coins.
+  2. Uncertainty versus randomness.
+  3. Coin-flipping experiment
+     1. Everybody flips a coin 10 times.
+     2. Record how many heads or tails you have.
+     3. Then record how you threw the coin.
+     4. Discuss if the coin is really random.
+**** Uncertainty (45')
+     1. Predicting events. Who will win the race?
+     2. How many immigrants live in Switzerland? What do we mean by
+	that?  Create confidence intervals.
+*** Time-Series: model a causal effect
+**** Race times
+**** Example: Crime statistics
+**** Example: 
+*** Scatterplots: model a relationship
+    1. For the original data: add weight, eye colour, gender, exercise level.
+    2. Summarise 
+*** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
 ** Experiment design
 - Random samples
 - A/B testing
 - The experimental pipeline
+*** Homework Assignment: Analyse Newspaper articles
 ** Bayesian modelling
-- The cards problem
-- Monty Hall Problem
-- The k-Meteorologists problem
-** Hypothesis testing
-- The garden of many paths
-- Visualising fMRI data
-- Visualising GWAS data
+*** The cards problem
+*** The k-Meteorologists problem
+*** Hypothesis testing
+** Data analysis
+*** The garden of many paths
+*** Visualising fMRI data
+*** Visualising GWAS data
 ** Social issues
-- Privacy: randomised response
-- Fairness: Experimental analysis
-- Safety: Robustness
-
-* Histograms
-
-** Introduction to histograms (45')
-  1. Split the students in two groups 
-  2. Have each group collect the height of every student 
-  3. How can we summarise the data of each group? Introduce the
-     concept of a historgram on the board
-  4. Now the students will individually draw a histogram 
-  5. Show two different histograms from two people in the same group. Why are they different?
-  6. Now add a histogram from a person in another group. Why are those different?
-** Pandas Histograms (45')
-  1. Introduce Pandas histograms. First with fixed binary data.
-  2. The uniform distribution
-  3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
-  4. Each one of you should predict the result of a number of coin tosses.
-  5. Let us do a histogram of the predictions. This is a binomial distribution.
-** Randomess (45')
-   1. Random algorithms using coins.
-   2. Uncertainty versus randomness.
-   3. An algorithm for generating random numbers:
-	  1. Pass out cards with numbers to students
-	  2. Randomly call out each student, have them write their number
-         and name.
-	  3. What is the distribution of numbers?
-	  
-** Uncertainty (45')
-   1. Predicting events. Who will win the race?
-   2. How many immigrants live in Switzerland? What do we mean by
-      that?  Create confidence intervals.
-   3. 
-	  
-* Scatter plots
-  1. For the original data: add weight, eye colour, gender, exercise level.
-  2. Summarise 
+*** Privacy: randomised response
+*** Fairness: Experimental analysis
+*** Safety: Robustness
 
 
 
+*** A/B testing
+  1. Comparing algorithms in the wild. Which is the best algorithm?
+*** The data science pipeline
+  The experimental pipipeline has a number of different components. 
+  1. Formulating the problem.
+  2. Deciding what type of data is needed.
+  3. Choosing the model and visualisation needed.
+  4. Designing the experimental protocol.
+  5. Generating data confirming to our assumptions.
+  6. Testing the protocol on synthetic data. Is it working as expected?
+  7. Now collect according to your protocol.
+
+*** Intro to Bayesian Reasoning
+  1. The Cards Problem. 
+     1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+     2. Get a card (say with face A), and ask what is the probability the other side is the same.
+     3. Have the students perform the experiment with:
+	1. Draw a random card.
+	2. Count the number of people with A.
+	3. Of those, count the number of people with A on the other side.
+     4. It should be clear that 1/3 of people have [A|A] and of those 
+  2. The Prisoner Problem.
+  3. The lie dector test.
+  4. Exercise: The k-Meteorologists problem
+     1. Explain what is a model from this point of view.
+     2. 
+
+
+
+
+               
 
