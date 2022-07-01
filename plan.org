@@ -68,9 +68,13 @@ See src/histograms/histogram.ipynb
  6. Testing the protocol on synthetic data. Is it working as expected?
 ** Homework Assignment: Analyse Newspaper articles
 * Bayesian modelling
-Conditional probability is defined as
 
-$P(A | B) = P(A \cap B) / P(B)$.
+
+Recall the definition of Conditional probability:
+
+$P(A | B) = P(A \cap B) / P(B)$,
+
+i.e. the probability of A given B is the probability of A and B happening divided by the probability of B.
 
 From this it follows that
 
@@ -80,20 +84,21 @@ Combining the two equations, we obtain:
 
 $P(A | B) = P(B | A) P (A) / P(B)$.
 
-So we can reverse the order of conditioning. 
+So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
 
 ** The cards problem
-	1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
-	2. Get a card (say with face A), and ask what is the probability the other side is the same.
-	3. Have the students perform the experiment with:
+1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+2. Get a card (say with face A), and ask what is the probability the other side is the same.
+3. Have the students perform the experiment with:
    1. Draw a random card.
    2. Count the number of people with A.
    3. Of those, count the number of people with A on the other side.
-	4. It should be clear that 1/3 of people have [A|A] and of those 
+   4. It should be clear that 1/3 of people have [A|A] and of those 
+
 ** The k-Meteorologists problem
 
-Bayesian reasoning is most useful in the folliwng setting:
+Bayesian reasoning is most useful in the following setting:
 
 - We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
 - We have a prior distribution $P(\theta)$ over the models.
@@ -105,7 +110,6 @@ $P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
 In this example, we have $k$ meteorolgical stations, each one of which gives us the probability that it will rain.
 
 ** Hypothesis testing
-
 
 * Data analysis in practice
 ** The garden of many paths
