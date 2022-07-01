@@ -41,15 +41,21 @@ See src/histograms/histogram.ipynb
 	4. Discuss if the coin is really random.
 *** Uncertainty (45')
 	1. Predicting events. Who will win the race?
-	2. How many immigrants live in Switzerland? What do we mean by
-   that?  Create confidence intervals.
+	2. How many immigrants live in Switzerland? The students should
+       first discuss what we mean by that? Now let us create some confidence
+       intervals:
+	   1. The simplest method is to create a histogram with everybody's choices.
+   
+
 ** Time-Series: model a causal effect
 *** Race times
-*** Example: Crime statistics
+*** Example: Stock market prices
 *** Example: 
-** Scatterplots: model a relationship
+** Model a relationship betweem varoab;es
    1. For the original data: add weight, eye colour, gender, exercise level.
-   2. Summarise 
+   2. Summarise
+*** Example: Stock market, Unemployment, GDP
+	
 ** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
 * Experiment design   
 ** Random sampling
