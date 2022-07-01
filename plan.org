@@ -45,8 +45,17 @@ See src/histograms/histogram.ipynb
    that?  Create confidence intervals.
 ** Time-Series: model a causal effect
 *** Race times
+From the data:
+
+https://en.wikipedia.org/wiki/1500_metres_world_record_progression
+
+Scrape the data, using ..
+
+
 *** Example: Crime statistics
-*** Example: 
+
+*** Example: S&P index
+
 ** Scatterplots: model a relationship
    1. For the original data: add weight, eye colour, gender, exercise level.
    2. Summarise 
