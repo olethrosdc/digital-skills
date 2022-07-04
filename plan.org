@@ -23,14 +23,16 @@
 - $\partial/\partial x f(x,y)$: partial derivative of $f$
 - $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
 ** Probability
-- $\Pr_\theta$: Probability (generally)
+- $\Pr$: Probability (generally)
 - $\E$: Probability
 - $P$: A probability measure
 - $p$: A probability density
+- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
 - $\param$: Parameter
 - $\Param$: Parameter set
-- $\{P_\param | \param \in \Param}$: A family of parametrised models
-  
+- $\{P_\param | \param \in \Param\}$: A family of parametrised models
+- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
+
 * Visualisation as models
 ** Histograms: model a distribution
 
@@ -169,9 +171,38 @@ Bayesian reasoning is most useful in the following setting:
 $P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
 - This tells us how likely each model is given the data.
 
-In this example, we have $k$ meteorolgical stations, each one of which gives us the probability that it will rain.
+In this example, we have $k$ meteorological stations, each one of
+which gives us the probability that it will rain. 
+
+The table below gives the probability of rain according to each
+station.
+
+#+NAME: Rain probabilities and events
+| Station       | Day 1 | Day 2 | Day 3 |
+|---------------+-------+-------+-------|
+| MeteoSuisse   |   70% |       |       |
+| Chris's Model |   50% |       |       |
+|---------------+-------+-------+-------|
+| Actual rain   |       |       |       |
+|---------------+-------+-------+-------|
+
+The table below is our belief at the beginning of each day, about
+which station is overall best in predicting rain. What should our
+initial belief be?
+
+#+Name: Belief at start of day
+| Belief        | Day 1 | Day 2 | Day 3 | Day 4 |
+|---------------+-------+-------+-------+-------|
+| MeteoSuisse   |   90% |       |       |       |
+| Chris's Model |   10% |       |       |       |
+|---------------+-------+-------+-------+-------|
+
+Write a program that updates the beliefs sequentially given
+observations and station predictions.
+
 
 ** Hypothesis testing
+
 
 * Data analysis in practice
 ** The garden of many paths
