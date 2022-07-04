@@ -2,10 +2,35 @@
 #+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LaTeX_HEADER: \newcommand \Param {\Theta}
+#+LaTeX_HEADER: \newcommand \param {\theta}
 
-* Index
-  $\Reals$: Real numbers
-  $P$: Probability measure
+* Notation
+** Sets
+- $\Reals$: Real numbers
+- $\Reals^d$: d-dimensional Euclidean space
+- $\emptyset$: The empty set
+- $A \subset B$: A is a subset of B.
+- $A \cap B$: The intersection of A and B
+- $A \cup B$: The union of A and B
+- $A \setminus B$: Removing B from A
+- $\Omega$: The "universe"
+- $A^c = \Omega \setminus A$: The complement of a set.
+- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+** Calculus
+- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
+- $d/dx f(x)$: derivative of $f$
+- $\partial/\partial x f(x,y)$: partial derivative of $f$
+- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
+** Probability
+- $\Pr_\theta$: Probability (generally)
+- $\E$: Probability
+- $P$: A probability measure
+- $p$: A probability density
+- $\param$: Parameter
+- $\Param$: Parameter set
+- $\{P_\param | \param \in \Param}$: A family of parametrised models
+  
 * Visualisation as models
 ** Histograms: model a distribution
 
@@ -36,7 +61,6 @@
 *** Pandas Histograms (45')
 See src/histograms/histogram.ipynb
     1. Introduce Pandas histograms. First with fixed binary data.
-	   
     2. The uniform distribution.
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
