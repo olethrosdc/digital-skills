@@ -4,7 +4,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 
 * Index
-  $\Real$: Real numbers
+  $\Reals$: Real numbers
   $P$: Probability measure
 * Visualisation as models
 ** Histograms: model a distribution
