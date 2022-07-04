@@ -8,7 +8,7 @@
 
 	with associated counts $n_i$, so that, given some data $D$,
 
-	$n_i(D) = \sum_{x \in D} 1\{x \in A_i\}$,
+	$n_i(D)$ = $\sum_{x \in D}$ $1\{x \in A_i\}$,
 	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
 	
 	We can use the histogram as the model of a distribution. For that, we
@@ -27,6 +27,7 @@
 *** Pandas Histograms (45')
 See src/histograms/histogram.ipynb
     1. Introduce Pandas histograms. First with fixed binary data.
+	   
     2. The uniform distribution.
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
@@ -46,7 +47,6 @@ See src/histograms/histogram.ipynb
        intervals:
 	   1. The simplest method is to create a histogram with everybody's choices.
    
-
 ** Time-Series: model a causal effect
 *** Race times
 https://en.wikipedia.org/wiki/1500_metres_world_record_progression
