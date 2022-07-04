@@ -8,7 +8,7 @@
 
 	with associated counts $n_i$, so that, given some data $D$,
 
-	$n_i(D)$ = $\sum_{x \in D}$ $1\{x \in A_i\}$,
+	$n_i(D)$ = $sum_{x \in D}$ $1\{x \in A_i\}$,
 	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
 	
 	We can use the histogram as the model of a distribution. For that, we
