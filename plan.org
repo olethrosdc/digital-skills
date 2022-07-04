@@ -129,9 +129,7 @@ To scrape tables
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
 ** Homework Assignment: Analyse Newspaper articles
-* Bayesian modelling
-
-
+* Inference
 Recall the definition of Conditional probability:
 
 $P(A | B) = P(A \cap B) / P(B)$,
@@ -173,11 +171,13 @@ In this example, we have $k$ meteorolgical stations, each one of which gives us 
 
 ** Hypothesis testing
 
+*** Homework assignment: Define a data collection and analysis problem
 * Data analysis in practice
 ** The garden of many paths
 ** Visualising fMRI data
 ** Visualising GWAS data
-* Social issues
+*** Homework assignment: Visualisation of a project
+* Social issues (if there is time)
 ** Privacy: randomised response
 ** Fairness: Experimental analysis
 ** Safety: Robustness
@@ -187,14 +187,7 @@ In this example, we have $k$ meteorolgical stations, each one of which gives us 
 
  7. Now collect according to your protocol.
 
-** Intro to Bayesian Reasoning
- 1. The Cards Problem. 
 
- 2. The Prisoner Problem.
- 3. The lie dector test.
- 4. Exercise: The k-Meteorologists problem
-	1. Explain what is a model from this point of view.
-	2. 
 
 
 
