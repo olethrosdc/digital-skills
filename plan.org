@@ -1,44 +1,3 @@
-* Book plan
-1. Intro
-2. Distributions and histograms
-3. Scatterplots and bivariate distributions
-4. Least-squares regression
-5. Log transofmration
-6. Correlation
-7. Categorical data and confounders
-8. Experiments
-9. Sampling
-10. Statistical inference
-11. Probability: Introduction
-12. Probability: random variable
-13. Probability: Joint and conditional probability
-14. Probability: Binomial/Normal distributions
-15. Probability: Random sums
-16. Parameters and Estimation
-17. Significance
-18. The t-distribution
-19. Inference for proportions
-20. Statistical inference
-21. Inference for regression
-22. Multivariate regression
-23. Confounders
-24. Communication
-* Alt book plan
-1. Distributions and histograms
-2. NOrmal distribution
-3. Observational studies and experimets
-4. Scatterplots and correlation
-5. Linear regression
-6. Causation
-7. Intro to probability
-8. Joint probability
-9. CLT
-10. Sampling
-11. Confidence Intervals
-12. Hypothesis Testing
-13. Inference
-14. Communication
-
 * Learning goals
 1. Be able to perform a basic experiment design.
 2. Quantify uncertainty---and knowledge---visually.
@@ -46,39 +5,66 @@
 4. Identify sources of bias in data collection and analysis.
 5. Understand privacy protections measure.
 6. Be able to write simple python programs for data science workflows.
-* Plan
-- Course learning outcomes
 
-** Visualisation as models
-- Course learning outcomes
-1. Python: statements, variables, arrays, for loops, functions
-- Module learning outcomes
-1. Undertand
-- Activities and assignments
-- Other resources
-*** Histograms: model a distribution
-If we assume a set of data of size $n$ $x_1, \ldots, x_n$, with $x_t
-\in X$, and a collection of sets $\{A_1, \ldots, A_k\}$ covering $X$,
-(i.e. so that $A_i \cap A_j = \emptyset$ and $\bigcup A_j \superset
-X$) then a histogram is a vector $h = (h_1, \ldots, h_j)$ counting the
-number of datapoints in each subset, i.e.
-\[
-h_i = \sum_{t=1}^n 1\{x_t \in A_i\}.
-\]
+* Notation
+** Sets
+- $\Reals$: Real numbers
+- $\Reals^d$: d-dimensional Euclidean space
+- $\emptyset$: The empty set
+- $A \subset B$: A is a subset of B.
+- $A \cap B$: The intersection of A and B
+- $A \cup B$: The union of A and B
+- $A \setminus B$: Removing B from A
+- $\Omega$: The "universe"
+- $A^c = \Omega \setminus A$: The complement of a set.
+- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+** Calculus
+- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
+- $d/dx f(x)$: derivative of $f$
+- $\partial/\partial x f(x,y)$: partial derivative of $f$
+- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
+** Probability
+- $\Pr$: Probability (generally)
+- $\E$: Probability
+- $P$: A probability measure
+- $p$: A probability density
+- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
+- $\param$: Parameter
+- $\Param$: Parameter set
+- $\{P_\param | \param \in \Param\}$: A family of parametrised models
+- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
-**** Introduction to histograms (45')
+* Visualisation as models
+** Histograms: model a distribution
 
+*** Introduction to histograms (45')
+	A (counting) histogram is defined as a collection of disjoint sets called *bins*
+	
+	$\{ A_i | i=1, \ldots, k\}$
 
-    1. Split the students in two groups.
-    2. Have each group collect the height of every student 
-    3. How can we summarise the data of each group? Introduce the
-       concept of a historgram on the board
-    4. Now the students will individually draw a histogram 
-    5. Show two different histograms from two people in the same group. Why are they different?
-    6. Now add a histogram from a person in another group. Why are those different?
-**** Pandas Histograms (45')
-    1. A sequence of coin tosses and their empirical distribution. 
-    2. The uniform distribution
+	with associated counts $n_i$, so that, given some data $D$,
+
+	$n_i(D) = \sum_{x \in D} 1\{x \in A_i\}$,
+	
+	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+	
+	We can use the histogram as the model of a distribution. For that, we
+	use the relative frequency of points in each bin:
+	$p_i(D) = n_i(D) / \sum_{j} n_j(D)$.
+	The selection of bins influences the model
+
+	In-class activity:
+   1. Split the students in two groups 
+   2. Have each group collect the height of every student 
+   3. How can we summarise the data of each group? Introduce the
+	  concept of a historgram on the board
+   4. Now the students will individually draw a histogram 
+   5. Show two different histograms from two people in the same group. Why are they different?
+   6. Now add a histogram from a person in another group. Why are those different?
+*** Pandas Histograms (45')
+See src/histograms/histogram.ipynb
+    1. Introduce Pandas histograms. First with fixed binary data.
+    2. The uniform distribution.
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
@@ -88,76 +74,161 @@ import matplotlib.pyplot as plt # python has no default plot function, we must I
 plt.hist(X) # this function plots the histogram
 #+END_SRC
 
+*** Randomess (45')
+ 1. Random algorithms using coins.
+ 2. Uncertainty versus randomness.
+ 3. Coin-flipping experiment
+	1. Everybody flips a coin 10 times.
+	2. Record how many heads or tails you have.
+	3. Then record how you threw the coin.
+	4. Discuss if the coin is really random.
+*** Uncertainty (45')
+	1. Predicting events. Who will win the race?
+	2. How many immigrants live in Switzerland? The students should
+       first discuss what we mean by that? Now let us create some confidence
+       intervals:
+	   1. The simplest method is to create a histogram with everybody's choices.
+   
+** Time-Series: model a causal effect
+*** Race times
+https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
-**** Randomess (45')
-  1. Random algorithms using coins.
-  2. Uncertainty versus randomness.
-  3. Coin-flipping experiment
-     1. Everybody flips a coin 10 times.
-     2. Record how many heads or tails you have.
-     3. Then record how you threw the coin.
-     4. Discuss if the coin is really random.
-**** Uncertainty (45')
-     1. Predicting events. Who will win the race?
-     2. How many immigrants live in Switzerland? What do we mean by
-	that?  Create confidence intervals.
-*** Time-Series: model a causal effect
-**** Race times
-**** Example: Crime statistics
-**** Example: 
-*** Scatterplots: model a relationship
-    1. For the original data: add weight, eye colour, gender, exercise level.
-    2. Summarise 
-*** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
-** Experiment design
-- Random samples
-- A/B testing
-- The experimental pipeline
-*** Homework Assignment: Analyse Newspaper articles
-** Bayesian modelling
-*** The cards problem
-*** The k-Meteorologists problem
-*** Hypothesis testing
-** Data analysis
-*** The garden of many paths
-*** Visualising fMRI data
-*** Visualising GWAS data
-** Social issues
-*** Privacy: randomised response
-*** Fairness: Experimental analysis
-*** Safety: Robustness
+To scrape tables
+#+BEGIN_SRC python
+  import pandas
+  tables=pandas.read_html("URL") # read a table
+  # convert date-string:
+  dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
+  # string manipulation
+  string.replace("+", "0") # replaces a + with a 0
+  string.split(":") # splits a string into multiple strings
+  # data formats
+  float("12.2"); # converts a number into a float
 
+#+END_SRC
 
-
-*** A/B testing
-  1. Comparing algorithms in the wild. Which is the best algorithm?
-*** The data science pipeline
-  The experimental pipipeline has a number of different components. 
-  1. Formulating the problem.
-  2. Deciding what type of data is needed.
-  3. Choosing the model and visualisation needed.
-  4. Designing the experimental protocol.
-  5. Generating data confirming to our assumptions.
-  6. Testing the protocol on synthetic data. Is it working as expected?
-  7. Now collect according to your protocol.
-
-*** Intro to Bayesian Reasoning
-  1. The Cards Problem. 
-     1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
-     2. Get a card (say with face A), and ask what is the probability the other side is the same.
-     3. Have the students perform the experiment with:
-	1. Draw a random card.
-	2. Count the number of people with A.
-	3. Of those, count the number of people with A on the other side.
-     4. It should be clear that 1/3 of people have [A|A] and of those 
-  2. The Prisoner Problem.
-  3. The lie dector test.
-  4. Exercise: The k-Meteorologists problem
-     1. Explain what is a model from this point of view.
-     2. 
+*** Example: Stock market prices
 
 
 
 
-               
+*** Example: Crime statistics
+
+*** Example: S&P index
+
+** Scatterplots: model a relationship
+   1. For the original data: add weight, eye colour, gender, exercise level.
+   2. Summarise
+*** Example: Stock market, Unemployment, GDP
+	
+** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
+* Experiment design   
+** Random sampling
+1. Pure random sampling.
+2. Undercounting.
+3. Give mode.
+** A/B testing
+ 1. Comparing algorithms in the wild. Which is the best algorithm?
+** The data science pipeline
+ The experimental pipipeline has a number of different components. 
+ 1. Formulating the problem.
+ 2. Deciding what type of data is needed.
+ 3. Choosing the model and visualisation needed.
+ 4. Designing the experimental protocol.
+ 5. Generating data confirming to our assumptions.
+ 6. Testing the protocol on synthetic data. Is it working as expected?
+** Homework Assignment: Analyse Newspaper articles
+* Inference
+Recall the definition of Conditional probability:
+
+$P(A | B) = P(A \cap B) / P(B)$,
+
+i.e. the probability of A given B is the probability of A and B happening divided by the probability of B.
+
+From this it follows that
+
+$P(B | A) = P(A \cap B) / P(A)$.
+
+Combining the two equations, we obtain:
+
+$P(A | B) = P(B | A) P (A) / P(B)$.
+
+So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
+
+
+** The cards problem
+1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+2. Get a card (say with face A), and ask what is the probability the other side is the same.
+3. Have the students perform the experiment with:
+   1. Draw a random card.
+   2. Count the number of people with A.
+   3. Of those, count the number of people with A on the other side.
+   4. It should be clear that 1/3 of people have [A|A] and of those 
+
+** The k-Meteorologists problem
+
+Bayesian reasoning is most useful in the following setting:
+
+- We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
+- We have a prior distribution $P(\theta)$ over the models.
+- We obtain data $D$ for whiche very model assigns a probabiltiy $P_\theta(D)$.
+- We calculate the posterior distribution
+$P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
+- This tells us how likely each model is given the data.
+
+In this example, we have $k$ meteorological stations, each one of
+which gives us the probability that it will rain. 
+
+The table below gives the probability of rain according to each
+station.
+
+#+NAME: Rain probabilities and events
+| Station       | Day 1 | Day 2 | Day 3 |
+|---------------+-------+-------+-------|
+| MeteoSuisse   |   70% |       |       |
+| Chris's Model |   50% |       |       |
+|---------------+-------+-------+-------|
+| Actual rain   |       |       |       |
+|---------------+-------+-------+-------|
+
+The table below is our belief at the beginning of each day, about
+which station is overall best in predicting rain. What should our
+initial belief be?
+
+#+Name: Belief at start of day
+| Belief        | Day 1 | Day 2 | Day 3 | Day 4 |
+|---------------+-------+-------+-------+-------|
+| MeteoSuisse   |   90% |       |       |       |
+| Chris's Model |   10% |       |       |       |
+|---------------+-------+-------+-------+-------|
+
+Write a program that updates the beliefs sequentially given
+observations and station predictions.
+
+
+** Hypothesis testing
+
+*** Homework assignment: Define a data collection and analysis problem
+* Data analysis in practice
+** The garden of many paths
+** Visualising fMRI data
+** Visualising GWAS data
+*** Homework assignment: Visualisation of a project
+* Social issues (if there is time)
+** Privacy: randomised response
+** Fairness: Experimental analysis
+** Safety: Robustness
+
+
+
+
+ 7. Now collect according to your protocol.
+
+
+
+
+
+
+			  
+>>>>>>> 91fb83d62803b6946075fec622e3fa6e482aadd1
 
