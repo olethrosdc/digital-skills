@@ -1,3 +1,9 @@
+#+LATEX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LATEX_HEADER: \newcommand \param {\theta}
+#+LATEX_HEADER: \newcommand \Param {\Theta}
+#+LATEX_HEADER: \renewcommand \Pr {\mathbb{P}}
+#+LATEX_HEADER: \newcommand \E {\mathbb{E}}
+
 * Learning goals
 1. Be able to perform a basic experiment design.
 2. Quantify uncertainty---and knowledge---visually.
@@ -17,7 +23,7 @@
 - $A \setminus B$: Removing B from A
 - $\Omega$: The "universe"
 - $A^c = \Omega \setminus A$: The complement of a set.
-- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+- $\{x | f(x) = 0\}$: The set of x so that f(x) = 0.
 ** Calculus
 - $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
 - $d/dx f(x)$: derivative of $f$
@@ -48,31 +54,34 @@
 	
 	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
 	
-	We can use the histogram as the model of a distribution. For that, we
-	use the relative frequency of points in each bin:
-	$p_i(D) = n_i(D) / \sum_{j} n_j(D)$.
-	The selection of bins influences the model
+	We can use the histogram as the model of a distribution. For that,
+	we use the relative frequency of points in each bin: $p_i(D) =
+	n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+	model.
 
 	In-class activity:
-   1. Split the students in two groups 
-   2. Have each group collect the height of every student 
+   1. Split the students in two groups.
+   2. Have each group collect the height of every student.
    3. How can we summarise the data of each group? Introduce the
-	  concept of a historgram on the board
-   4. Now the students will individually draw a histogram 
+	  concept of a historgram on the board.
+   4. Now the students will individually draw a histogram.
    5. Show two different histograms from two people in the same group. Why are they different?
    6. Now add a histogram from a person in another group. Why are those different?
 *** Pandas Histograms (45')
-See src/histograms/histogram.ipynb
-    1. Introduce Pandas histograms. First with fixed binary data.
-    2. The uniform distribution.
-    3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
-    4. Each one of you should predict the result of a number of coin tosses.
-    5. Let us do a histogram of the predictions. This is a binomial distribution.
+For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+
+Introduce Pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
 import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
 plt.hist(X) # this function plots the histogram
 #+END_SRC
+
+Let us now repeat the experiment with random coin tosses.
+
+    3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
+    4. Each one of you should predict the result of a number of coin tosses.
+    5. Let us do a histogram of the predictions. This is a binomial distribution.
 
 *** Randomess (45')
  1. Random algorithms using coins.
