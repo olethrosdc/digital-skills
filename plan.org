@@ -42,10 +42,16 @@
 * Learning goals
 1. Be able to perform a basic experiment design.
 2. Quantify uncertainty---and knowledge---visually.
-3. Identify sources of bias in data collection and analysis.
-4. Understand privacy protections measure.
+3. Realise that all visualisations are models.
+4. Identify sources of bias in data collection and analysis.
+5. Understand privacy protections measure.
+
 * Plan
 ** Visualisation as models
+- Course learning outcomes
+- Module learning outcomes
+- Activities and assignments
+- Other resources
 *** Histograms: model a distribution
 **** Introduction to histograms (45')
     1. Split the students in two groups 
