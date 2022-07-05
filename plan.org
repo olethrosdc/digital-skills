@@ -39,7 +39,11 @@
 13. Inference
 14. Communication
 
-
+* Learning goals
+1. Be able to perform a basic experiment design.
+2. Quantify uncertainty---and knowledge---visually.
+3. Identify sources of bias in data collection and analysis.
+4. Understand privacy protections measure.
 * Plan
 ** Visualisation as models
 *** Histograms: model a distribution
