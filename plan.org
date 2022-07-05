@@ -45,16 +45,31 @@
 3. Realise that all visualisations are models.
 4. Identify sources of bias in data collection and analysis.
 5. Understand privacy protections measure.
-
+6. Be able to write simple python programs for data science workflows.
 * Plan
+- Course learning outcomes
+
 ** Visualisation as models
 - Course learning outcomes
+1. Python: statements, variables, arrays, for loops, functions
 - Module learning outcomes
+1. Undertand
 - Activities and assignments
 - Other resources
 *** Histograms: model a distribution
+If we assume a set of data of size $n$ $x_1, \ldots, x_n$, with $x_t
+\in X$, and a collection of sets $\{A_1, \ldots, A_k\}$ covering $X$,
+(i.e. so that $A_i \cap A_j = \emptyset$ and $\bigcup A_j \superset
+X$) then a histogram is a vector $h = (h_1, \ldots, h_j)$ counting the
+number of datapoints in each subset, i.e.
+\[
+h_i = \sum_{t=1}^n 1\{x_t \in A_i\}.
+\]
+
 **** Introduction to histograms (45')
-    1. Split the students in two groups 
+
+
+    1. Split the students in two groups.
     2. Have each group collect the height of every student 
     3. How can we summarise the data of each group? Introduce the
        concept of a historgram on the board
@@ -62,11 +77,18 @@
     5. Show two different histograms from two people in the same group. Why are they different?
     6. Now add a histogram from a person in another group. Why are those different?
 **** Pandas Histograms (45')
-    1. Introduce Pandas histograms. First with fixed binary data.
+    1. A sequence of coin tosses and their empirical distribution. 
     2. The uniform distribution
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
+#+BEGIN_SRC python
+X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
+import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
+plt.hist(X) # this function plots the histogram
+#+END_SRC
+
+
 **** Randomess (45')
   1. Random algorithms using coins.
   2. Uncertainty versus randomness.
