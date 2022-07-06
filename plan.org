@@ -1,37 +1,14 @@
+#+TITLE: Digital Skills
+#+AUTHOR: Christos Dimitrakakis
+#+EMAIL:christos.dimitrakakis@unine.ch
 #+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
 #+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
 
-* Notation
-** Sets
-- $\Reals$: Real numbers
-- $\Reals^d$: d-dimensional Euclidean space
-- $\emptyset$: The empty set
-- $A \subset B$: A is a subset of B.
-- $A \cap B$: The intersection of A and B
-- $A \cup B$: The union of A and B
-- $A \setminus B$: Removing B from A
-- $\Omega$: The "universe"
-- $A^c = \Omega \setminus A$: The complement of a set.
-- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
-** Calculus
-- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
-- $d/dx f(x)$: derivative of $f$
-- $\partial/\partial x f(x,y)$: partial derivative of $f$
-- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
-** Probability
-- $\Pr$: Probability (generally)
-- $\E$: Probability
-- $P$: A probability measure
-- $p$: A probability density
-- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
-- $\param$: Parameter
-- $\Param$: Parameter set
-- $\{P_\param | \param \in \Param\}$: A family of parametrised models
-- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
 * Visualisation as models
 ** Histograms: model a distribution
@@ -43,7 +20,7 @@
 
 	with associated counts $n_i$, so that, given some data $D$,
 
-	$n_i(D) = \sum_{x \in D} 1\{x \in A_i\}$,
+	$n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
 	
 	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
 	
@@ -224,3 +201,31 @@ observations and station predictions.
 
 			  
 
+* Notation
+** Sets
+- $\Reals$: Real numbers
+- $\Reals^d$: d-dimensional Euclidean space
+- $\emptyset$: The empty set
+- $A \subset B$: A is a subset of B.
+- $A \cap B$: The intersection of A and B
+- $A \cup B$: The union of A and B
+- $A \setminus B$: Removing B from A
+- $\Omega$: The "universe"
+- $A^c = \Omega \setminus A$: The complement of a set.
+- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+** Analysis
+- $\ind{x \in A}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
+- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
+- $d/dx f(x)$: derivative of $f$
+- $\partial/\partial x f(x,y)$: partial derivative of $f$
+- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
+** Probability
+- $\Pr$: Probability (generally)
+- $\E$: Probability
+- $P$: A probability measure
+- $p$: A probability density
+- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
+- $\param$: Parameter
+- $\Param$: Parameter set
+- $\{P_\param | \param \in \Param\}$: A family of parametrised models
+- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
