@@ -10,21 +10,25 @@
 #+LaTeX_HEADER: \newcommand \param {\theta}
 
 
-* Learning goals
+Learning goals:
+#+BEGIN_CENTER
 1. Be able to perform a basic experiment design.
 2. Quantify uncertainty---and knowledge---visually.
 3. Realise that all visualisations are models.
 4. Identify sources of bias in data collection and analysis.
 5. Understand privacy protections measure.
 6. Be able to write simple python programs for data science workflows.
-
+#+END_CENTER
 
 
 * Visualisation as models
 ** Histograms: model a distribution
-
+Histograms are a simple tool for modelling distributions. In their simlest application, they are used to simply count the number of items in distinct bins of a dataset. While typically employed to represent the empirical distribution of one-dimensional variables, they can be generalised to multiple dimensions
+.
 *** Introduction to histograms (45')
-	A (counting) histogram is defined as a collection of disjoint sets called *bins*
+	Assume data is in $\Reals$. Then split the real line into intervals $[a_i, b_i]$. For a given dataset $D$, for each interval $i$, count the amount of data $n_i(D)$ in the interval. We can also normalise to obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
+
+	More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
 	
 	$\{ A_i | i=1, \ldots, k\}$
 
@@ -40,13 +44,13 @@
 	model.
 
 	In-class activity:
-   1. Split the students in two groups.
-   2. Have each group collect the height of every student.
-   3. How can we summarise the data of each group? Introduce the
-	  concept of a historgram on the board.
-   4. Now the students will individually draw a histogram.
-   5. Show two different histograms from two people in the same group. Why are they different?
-   6. Now add a histogram from a person in another group. Why are those different?
+	1. Introduce the concept of a historgram on the board.
+	2. Split the students in two groups.
+	3. Have each group collect the height of every student.
+	4. How can we summarise the data of each group? 
+	5. Now the students will individually draw a histogram from the data of their group.
+	6. Show two different histograms from two people in the same group. Why are they different?
+	7. Now add a histogram from a person in another group. Why are those different?
 *** Pandas Histograms (45')
 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
@@ -65,12 +69,23 @@ Let us now repeat the experiment with random coin tosses.
 
 *** Randomess (45')
  1. Random algorithms using coins.
+#+BEGIN_SRC python
+y = 0 # y is a variable, with the value zero currently
+
+import numpy as np # this library has many useful functions
+x = np.random.choice(2) # x takes values 'randomly'. It is a 'random variable'.
+print(x) # let's see what value it takes
+#+END_SRC
  2. Uncertainty versus randomness.
+
+What do se 
  3. Coin-flipping experiment
 	1. Everybody flips a coin 10 times.
 	2. Record how many heads or tails you have.
 	3. Then record how you threw the coin.
 	4. Discuss if the coin is really random.
+
+
 *** Uncertainty (45')
 	1. Predicting events. Who will win the race?
 	2. How many immigrants live in Switzerland? The students should
