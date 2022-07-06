@@ -22,6 +22,14 @@ Learning goals:
 
 
 * Visualisation as models
+What is visualisation? It is a way to summarise data. It is also a way
+to view relationships between variables. Visualisation helps us to
+find patterns and understand the underlying laws behind how the data
+was generated. This is, in fact, the essence of modelling. 
+
+Every data visualisation implicitly assumes a model of the data generating process. This is true for even the simplest visualisations, like histograms. There is no escape from the fact that any visualisation makes a lot of assumptions. We must emphasize what those assumptions are. What happens if they are not true?
+
+
 ** Histograms: model a distribution
 Histograms are a simple tool for modelling distributions. In their simlest application, they are used to simply count the number of items in distinct bins of a dataset. While typically employed to represent the empirical distribution of one-dimensional variables, they can be generalised to multiple dimensions
 .
