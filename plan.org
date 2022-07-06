@@ -57,11 +57,12 @@ Histograms are a simple tool for modelling distributions. In their simlest appli
 	3. Have each group collect the height of every student.
 	4. How can we summarise the data of each group? 
 	5. Now the students will individually draw a histogram from the data of their group.
-	6. Show two different histograms from two people in the same group. Why are they different?
-	7. Now add a histogram from a person in another group. Why are those different?
+	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 *** Pandas Histograms (45')
 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
+**** Coin example
 Introduce Pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
@@ -74,6 +75,9 @@ Let us now repeat the experiment with random coin tosses.
     3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
     4. Each one of you should predict the result of a number of coin tosses.
     5. Let us do a histogram of the predictions. This is a binomial distribution.
+**** Heights example
+First we collect all the student data again.
+
 
 *** Randomess (45')
  1. Random algorithms using coins.
@@ -116,7 +120,6 @@ To scrape tables
   string.split(":") # splits a string into multiple strings
   # data formats
   float("12.2"); # converts a number into a float
-
 #+END_SRC
 
 *** Example: Stock market prices
