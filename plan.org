@@ -10,11 +10,13 @@
 #+LaTeX_HEADER: \newcommand \param {\theta}
 
 
+* Introduction
+
 Learning goals:
 #+BEGIN_CENTER
-1. Be able to perform a basic experiment design.
-2. Quantify uncertainty---and knowledge---visually.
-3. Realise that all visualisations are models.
+1. Quantify uncertainty---and knowledge---visually.
+2. Realise that all visualisations are models.
+3. Be able to perform a basic experiment design.
 4. Identify sources of bias in data collection and analysis.
 5. Understand privacy protections measure.
 6. Be able to write simple python programs for data science workflows.
