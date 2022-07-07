@@ -1,73 +1,9 @@
 * Learning goals
-1. Be able to perform a basic experiment design.
-2. Quantify uncertainty---and knowledge---visually.
-3. Realise that all visualisations are models.
-4. Identify sources of bias in data collection and analysis.
-5. Understand privacy protections measure.
-6. Be able to write simple python programs for data science workflows.
-
-* Notation
-** Sets
-- $\Reals$: Real numbers
-- $\Reals^d$: d-dimensional Euclidean space
-- $\emptyset$: The empty set
-- $A \subset B$: A is a subset of B.
-- $A \cap B$: The intersection of A and B
-- $A \cup B$: The union of A and B
-- $A \setminus B$: Removing B from A
-- $\Omega$: The "universe"
-- $A^c = \Omega \setminus A$: The complement of a set.
-- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
-** Calculus
-- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
-- $d/dx f(x)$: derivative of $f$
-- $\partial/\partial x f(x,y)$: partial derivative of $f$
-- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
-** Probability
-- $\Pr$: Probability (generally)
-- $\E$: Probability
-- $P$: A probability measure
-- $p$: A probability density
-- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
-- $\param$: Parameter
-- $\Param$: Parameter set
-- $\{P_\param | \param \in \Param\}$: A family of parametrised models
-- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
-
-* Visualisation as models
-** Histograms: model a distribution
-
-*** Introduction to histograms (45')
-	A (counting) histogram is defined as a collection of disjoint sets called *bins*
-	
-	$\{ A_i | i=1, \ldots, k\}$
-
-	with associated counts $n_i$, so that, given some data $D$,
-
-	$n_i(D) = \sum_{x \in D} 1\{x \in A_i\}$,
-	
-	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
-	
-	We can use the histogram as the model of a distribution. For that, we
-	use the relative frequency of points in each bin:
-	$p_i(D) = n_i(D) / \sum_{j} n_j(D)$.
-	The selection of bins influences the model
-
-	In-class activity:
-   1. Split the students in two groups 
-   2. Have each group collect the height of every student 
-   3. How can we summarise the data of each group? Introduce the
-	  concept of a historgram on the board
-   4. Now the students will individually draw a histogram 
-   5. Show two different histograms from two people in the same group. Why are they different?
-   6. Now add a histogram from a person in another group. Why are those different?
-*** Pandas Histograms (45')
-See src/histograms/histogram.ipynb
-    1. Introduce Pandas histograms. First with fixed binary data.
-    2. The uniform distribution.
-    3. Uncertainty of the coin toss, versus uncertainty about the coin bias.
-    4. Each one of you should predict the result of a number of coin tosses.
-    5. Let us do a histogram of the predictions. This is a binomial distribution.
+1. Understanding the randomness, variability and uncertainty inherent in a problem.
+2. Developing clear statements of the problem/scientific research question; understanding the purpose of the answer
+3. Ensuring acquisition of high-quality data and not just a lot of numbers
+4. Understanding the process that produced the data, to provide proper context for analysis
+5. Allowing domain knowledge to guide both data collection and analysis
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
 import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
