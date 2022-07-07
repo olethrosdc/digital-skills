@@ -1,0 +1,3 @@
+This directory contains datasets that can be used in the course.
+- census-simple: simplified data from the 1994 US census
+- 
