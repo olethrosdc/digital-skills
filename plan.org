@@ -1,11 +1,9 @@
-<<<<<<< HEAD
 * Learning goals
 1. Understanding the randomness, variability and uncertainty inherent in a problem.
 2. Developing clear statements of the problem/scientific research question; understanding the purpose of the answer
 3. Ensuring acquisition of high-quality data and not just a lot of numbers
 4. Understanding the process that produced the data, to provide proper context for analysis
 5. Allowing domain knowledge to guide both data collection and analysis
-=======
 #+TITLE: Digital Skills
 #+AUTHOR: Christos Dimitrakakis
 #+EMAIL:christos.dimitrakakis@unine.ch
@@ -16,7 +14,6 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-
 
 * Introduction
 
@@ -41,7 +38,6 @@ Learning goals:
 The assessment is purely through in-class quizzes and homework
 assignments. There will be a small homework assignment every week, and
 3 larger assignments spread over the semester. 
-
 
 * Visualisation as models
 
@@ -98,7 +94,6 @@ For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram exampl
 
 **** Coin example
 Introduce Pandas histograms. First with fixed binary data.
->>>>>>> dfc34a31f6dcdc0f39e9d63582f4e6c2cee3825f
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
 import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
