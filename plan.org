@@ -21,22 +21,28 @@ will be introduced through class activities and examples.
 
 Learning goals:
 #+BEGIN_CENTER
-1. Understanding the randomness, variability and uncertainty inherent in a problem.
-2. Developing clear statements of the problem/scientific research question; understanding the purpose of the answer
-3. Ensuring acquisition of high-quality data and not just a lot of numbers
-4. Understanding the process that produced the data, to provide proper context for analysis
-5. Allowing domain knowledge to guide both data collection and analysis
+1. Understanding the randomness, variability and uncertainty inherent
+   in a problem.
+2. Developing clear statements of the problem/scientific research
+   question; understanding the purpose of the answer.
+3. Ensuring acquisition of high-quality data and not just a lot of
+   numbers.
+4. Understanding the process that produced the data, to provide proper
+   context for analysis.
+5. Allowing domain knowledge to guide both data collection and
+   analysis.
 6. Quantify uncertainty---and knowledge---visually.
 7. Realise that all visualisations are models.
 8. Be able to perform a basic experiment design.
 9. Identify sources of bias in data collection and analysis.
 10. Understand privacy problems and measure.
-11. Be able to write simple python programs for data science workflows.
+11. Be able to write simple python programs for data science
+    workflows.
 #+END_CENTER
 
 The assessment is purely through in-class quizzes and homework
 assignments. There will be a small homework assignment every week, and
-3 larger assignments spread over the semester. 
+3 larger assignments spread over the semester.
 
 * Visualisation as models
 
