@@ -9,7 +9,6 @@
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
 
-
 * Introduction
 
 This is a hands-on course that integrates introductory programming,
@@ -22,18 +21,28 @@ will be introduced through class activities and examples.
 
 Learning goals:
 #+BEGIN_CENTER
-1. Quantify uncertainty---and knowledge---visually.
-2. Realise that all visualisations are models.
-3. Be able to perform a basic experiment design.
-4. Identify sources of bias in data collection and analysis.
-5. Understand privacy problems and measure.
-6. Be able to write simple python programs for data science workflows.
+1. Understanding the randomness, variability and uncertainty inherent
+   in a problem.
+2. Developing clear statements of the problem/scientific research
+   question; understanding the purpose of the answer.
+3. Ensuring acquisition of high-quality data and not just a lot of
+   numbers.
+4. Understanding the process that produced the data, to provide proper
+   context for analysis.
+5. Allowing domain knowledge to guide both data collection and
+   analysis.
+6. Quantify uncertainty---and knowledge---visually.
+7. Realise that all visualisations are models.
+8. Be able to perform a basic experiment design.
+9. Identify sources of bias in data collection and analysis.
+10. Understand privacy problems and measure.
+11. Be able to write simple python programs for data science
+    workflows.
 #+END_CENTER
 
 The assessment is purely through in-class quizzes and homework
 assignments. There will be a small homework assignment every week, and
-3 larger assignments spread over the semester. 
-
+3 larger assignments spread over the semester.
 
 * Visualisation as models
 
@@ -85,9 +94,15 @@ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 	5. Now the students will individually draw a histogram from the data of their group.
 	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
-*** Pandas Histograms (45')
+*** Pandas and Histograms (45')
 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
+#+BEGIN_SRC python
+  import pandas as pd # we need to load a library first
+  # loading data into pandas creates a data frame df
+  df['column-name'] # selects a column
+  df.hist() # creates a plot with many histograms
+#+END_SRC
 **** Coin example
 Introduce Pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
@@ -120,7 +135,7 @@ First we collect all the student data again.
 2. Uncertainty versus randomness.
 
 
- 3. Coin-flipping experiment
+3. Coin-flipping experiment
 	1. Everybody flips a coin 10 times.
 	2. Record how many heads or tails you have.
 	3. Then record how you threw the coin.
@@ -136,7 +151,9 @@ plt.hist(X) # everytime we run these commands, we get a different proportion
 
 #+RESULTS:
 
-This python code is completely deterministic. A complicated calculation is used to generate the next 'random' number from the previous one. Consider this example:
+This python code is completely deterministic. A complicated
+calculation is used to generate the next 'random' number from the
+previous one. Consider this example:
 #+BEGIN_SRC python
 import random
 seed(5) #this sets the 'state' of the random number generating machine
