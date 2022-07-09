@@ -196,14 +196,20 @@ To scrape tables
 #+END_SRC
 
 *** Example: Stock market prices
-
-*** Example: Crime statistics
-
-*** Example: S&P index
+See: Trading Economics
 
 ** Scatterplots: model a relationship
    1. For the original data: add weight, eye colour, gender, exercise level.
    2. Make a scatterplot of the height and weight
+#+BEGIN_SRC python
+  X=[1, 2, 3, 4, 10, 6]
+  Y=[5, 2, 5, 3, 1, 2]
+  Z=[0, 1, 0, 1, 0, 1]
+  import matplotlib.pyplot as plt
+  plt.scatter(X,Y)
+#+END_SRC
+#+RESULTS:
+
 *** Example: Stock market, Unemployment, GDP
 	
 ** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
