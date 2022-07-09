@@ -94,9 +94,15 @@ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 	5. Now the students will individually draw a histogram from the data of their group.
 	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
-*** Pandas Histograms (45')
+*** Pandas and Histograms (45')
 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
+#+BEGIN_SRC python
+  import pandas as pd # we need to load a library first
+  # loading data into pandas creates a data frame df
+  df['column-name'] # selects a column
+  df.hist() # creates a plot with many histograms
+#+END_SRC
 **** Coin example
 Introduce Pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
