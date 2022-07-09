@@ -59,11 +59,13 @@ assumptions are. What happens if they are not true?
 
 
 ** Histograms: model a distribution
-Histograms are a simple tool for modelling distributions. In their
+
+   Histograms are a simple tool for modelling distributions. In their
 simplest application, they are used to simply count the number of items
 in distinct bins of a dataset. While typically employed to represent
 the empirical distribution of one-dimensional variables, they can be
 generalised to multiple dimensions .
+
 *** Introduction to histograms (45')
 	
 Assume data is in $\Reals$. Then split the real line into intervals
@@ -95,7 +97,7 @@ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 *** Pandas and Histograms (45')
-For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
 #+BEGIN_SRC python
   import pandas as pd # we need to load a library first
@@ -104,13 +106,12 @@ For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram exampl
   df.hist() # creates a plot with many histograms
 #+END_SRC
 **** Coin example
-Introduce Pandas histograms. First with fixed binary data.
+Introduce pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
 import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
 plt.hist(X) # this function plots the histogram
 #+END_SRC
-
 
 Each one of you should predict the result of a number of coin tosses.
 Let us do a histogram of the predictions. This is a binomial
@@ -118,7 +119,8 @@ distribution.
 
 
 **** Heights example
-First we collect all the student data again. 
+Let us look at the student data: see src/histograms/heights.ipynb
+
 
 
 *** Randomess (45')
@@ -196,6 +198,9 @@ Are you willing to take an even bet that the true number is between 5-10%?
 
    
 ** Time-Series: model a causal effect
+
+*** Pandas introduction
+	
 *** Race times
 https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
