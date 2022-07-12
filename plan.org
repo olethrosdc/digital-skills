@@ -50,13 +50,17 @@ assignments and project will be performed in pairs.
 For the project, the following rubrik is used.
 
 #+ATTR_LATEX: :align |p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
-| Skill                | Needs Improvement    | Basic Level          | Advanced Level       |
-| <20>                 | <20>                 | <20>                 | <20>                 |
-|----------------------+----------------------+----------------------+----------------------|
+| Skill                     | Needs Improvement         | Basic Level               | Advanced Level            |
+| <25>                      | <25>                      | <25>                      | <25>                      |
+|---------------------------+---------------------------+---------------------------+---------------------------|
 | Computation: Perform computations | Computations contain errors and extraneous code | Computations are correct but contain extraneous/unnecessary code | Computations are correct and properly |
-|----------------------+----------------------+----------------------+----------------------|
-| Analysis: Choose and carry out analysis appropriate for data and content. | Too simplistic, irrelevant or missing key component | Appropriate, but incopmlete and important features or assumptions not made explicit | Appropriate, complete, advanced, relevant and informative |
-|                      |                      |                      |                      |
+| Experiment design: Data collection and pipeline | Inappropriate sampling, non-reproducible pipeline | Either the data collection strategy or the experimental pipeline is biased | Unbiased sampling and experiment desgin |
+| Synthesis: Identify key features of the analysis and interpret results (in context) | Conclusions are missing, incorrect, or not made based on analysis | Conclsions reasonable, but partially correct or complete | Relevant conclusions explicitly connected to analysis and context |
+| Visual presentation: Communicate findings graphically clearly, precisely and concisely | Inappropriate chocie of plots: poorly laelled plots: plots missing | Plots convey information correctly but lack contexst for interpretation | Plots convey information correctly with adequate and appropriate reference information |
+| Written presentation: Communicate findings clearly, precisely and concisely | Explanation is illogical, incorrect or incoherent | Explanation is partially correct but incomplete or unconvincing | Explanation is correct, complete and convcing |
+|---------------------------+---------------------------+---------------------------+---------------------------|
+
+The 'default' grade is 75%.;
 
 #+TBLFM: 
 
