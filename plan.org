@@ -19,7 +19,7 @@ course with readings from other courses in descriptive statistics and
 python programming, but no prior knowledge is assumed. Formal concepts
 will be introduced through class activities and examples.
 
-Learning goals:
+** Learning goals:
 #+BEGIN_CENTER
 1. Understanding the randomness, variability and uncertainty inherent
    in a problem.
@@ -40,9 +40,27 @@ Learning goals:
     workflows.
 #+END_CENTER
 
-The assessment is purely through in-class quizzes and homework
-assignments. There will be a small homework assignment every week, and
-3 larger assignments spread over the semester.
+** Assessment
+
+The assessment is purely through in-class exercises, quizzes and
+homework assignments. There will be three larger assignments spread
+over the semester, as well as a group project. All exercises,
+assignments and project will be performed in pairs.
+
+For the project, the following rubrik is used.
+
+#+ATTR_LATEX: :align |p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
+| Skill                | Needs Improvement    | Basic Level          | Advanced Level       |
+| <20>                 | <20>                 | <20>                 | <20>                 |
+|----------------------+----------------------+----------------------+----------------------|
+| Computation: Perform computations | Computations contain errors and extraneous code | Computations are correct but contain extraneous/unnecessary code | Computations are correct and properly |
+|----------------------+----------------------+----------------------+----------------------|
+| Analysis: Choose and carry out analysis appropriate for data and content. | Too simplistic, irrelevant or missing key component | Appropriate, but incopmlete and important features or assumptions not made explicit | Appropriate, complete, advanced, relevant and informative |
+|                      |                      |                      |                      |
+
+#+TBLFM: 
+
+
 
 * Visualisation as models
 
