@@ -438,7 +438,7 @@ In this assignment, you will take a plot from an online source and figure out
 |        | Density function          |              |                             |
 |        | Histograms                |              |                             |
 |        | Skewness                  |              |                             |
-|        | Quantiles                 |              | [Project Porposal]          |
+|        | Quantiles                 |              | [Project Proposal]          |
 |--------+---------------------------+--------------+-----------------------------|
 | 4      | Qualitative vars in R     | Structures   | Random Sampling             |
 | 14 Oct | Discrete vars in R        |              | Undercounting               |
@@ -447,13 +447,14 @@ In this assignment, you will take a plot from an online source and figure out
 |--------+---------------------------+--------------+-----------------------------|
 | 5      | Continous RV              | Functions    | A/B Testing                 |
 | 21 Oct |                           |              | Comparing two algorithms    |
+|        |                           |              | [Deconstruction Assignment] |
 |--------+---------------------------+--------------+-----------------------------|
 | 6      | Continuous RV             | Complements  | Pipelines                   |
 | 28 Oct |                           |              | Simulation studies          |
 |        |                           |              | [Project Highlihgt]         |
 |--------+---------------------------+--------------+-----------------------------|
 | 7      | Continuous RV             | Classes      | Expectations                |
-| 4 Nov  |                           |              |                             |
+| 4 Nov  |                           |              | [Copy The Master]           |
 |--------+---------------------------+--------------+-----------------------------|
 | 8      | Dependencies.             | Objects      | Bayesian inference          |
 | 11 Nov | Joint distribution.       |              |                             |
@@ -464,15 +465,15 @@ In this assignment, you will take a plot from an online source and figure out
 |--------+---------------------------+--------------+-----------------------------|
 | 10     | Covariance                | Iterators    | The Garden of Many Paths    |
 | 25 Nov | Correlation               |              |                             |
-|        | Scatterplots              |              |                             |
+|        | Scatterplots              |              | [Newspaper article]         |
 |--------+---------------------------+--------------+-----------------------------|
 | 11     | Prices, returns           | FP           | Visualising fMRI data       |
-| 2 Dec  |                           |              |                             |
+| 2 Dec  |                           |              | [Newspaaper article]        |
 |--------+---------------------------+--------------+-----------------------------|
 | 12     | Conditional expectations  |              | Visualising GWAS data       |
 | 9 Dec  |                           |              |                             |
 |--------+---------------------------+--------------+-----------------------------|
-| 13     |                           |              | Project presentations       |
+| 13     |                           |              | [Project presentations]     |
 | 16 Dec |                           |              |                             |
 |--------+---------------------------+--------------+-----------------------------|
 
