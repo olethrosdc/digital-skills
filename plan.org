@@ -37,24 +37,23 @@ Graphical comprehension:
 5. Express creative thinking via the production of an innovactive
    graphical presentation.
 
-Statistics:
+Statistics, analysis and experiment design:
 
-2. Understanding the randomness, variability and uncertainty inherent
+1. Understanding the randomness, variability and uncertainty inherent
    in a problem.
-3. Developing clear statements of the problem/scientific research
+2. Developing clear statements of the problem/scientific research
    question; understanding the purpose of the answer.
-4. Ensuring acquisition of high-quality data and not just a lot of
+3. Be able to perform a basic experiment design.
+4. Identify sources of bias in data collection and analysis.
+5. Ensuring acquisition of high-quality data and not just a lot of
    numbers.
-5. Understanding the process that produced the data, to provide proper
+6. Understanding the process that produced the data, to provide proper
    context for analysis.
-6. Allowing domain knowledge to guide both data collection and
+7. Allowing domain knowledge to guide both data collection and
    analysis.
-7. Quantify uncertainty---and knowledge---visually.
-8. Realise that all visualisations are models.
-9. Be able to perform a basic experiment design.
-10. Identify sources of bias in data collection and analysis.
-11. Understand privacy problems and measure.
-12. Be able to write simple python programs for data science
+8. Quantify uncertainty---and knowledge---visually.
+9. Realise that all visualisations are models.
+10. Be able to write simple python programs for data science
     workflows.
 #+END_CENTER
 
