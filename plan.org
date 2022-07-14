@@ -101,30 +101,28 @@ biased sampling, improper modelling or p-value hacking. Be sure to
 quantify uncertainty.
 
 #+ATTR_LATEX: :align |p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Skill                    | Needs Improvement         | Basic Level            | Advanced Level           |
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Experiment design: Data  | Inappropriate sampling,   | Data collection biased | Unbiased sampling and    |
-| collection and analysis  | non-reproducible analysis | or analysis not        | reproducibile experiment |
-| pipeline                 |                           | reproducibile.         | desgin and analysis.     |
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Computation: Perform     | Computations contain      | Computations are       | Computations are correct |
-| computations             | errors and extraneous     | correct but contain    | and properly             |
-|                          | code                      | extraneous/unnecessary |                          |
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Graphics: Communicate    | Inappropriate choice of   | Plots convey           | Plots convey information |
-| findings graphically     | plots; poorly labelled    | information correctly  | correctly with adequate  |
-| clearly, precisely and   | plots; plots missing.     | but lack context for   | and appropriate          |
-| concisely                |                           | interpretation         | information              |
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Text: Communicate        | Explanation is illogical, | Explanation is         | Explanation is correct,  |
-| findings clearly,        | incorrect or incoherent   | partially correct but  | complete and convcing    |
-| precisely and concisely  |                           | incomplete or          |                          |
-|--------------------------+---------------------------+------------------------+--------------------------|
-| Synthesis: Identify key  | Conclusions are missing,  | Conclsions reasonable, | Relevant conclusions     |
-| features of the analysis | incorrect, or not made    | but partially correct  | explicitly connected to  |
-| and interpret results    | based on analysis         | or incomplete.         | analysis and context     |
-|--------------------------+---------------------------+------------------------+--------------------------|
+
+| Skill                     | Needs Improvement         | Basic Level               | Advanced Level            |
+| <25>                      | <25>                      | <25>                      | <25>                      |
+| Experiment design: Data collection and analysis pipeline | Inappropriate sampling, non-reproducible analysis | Data collection biased or analysis not reproducibile. | Unbiased sampling and reproducibile experiment desgin and analysis. |
+| Computation: Perform computations | Computations contain errors and extraneous code | Computations are correct but contain extraneous/unnecessary code. | Computations are correct and properly justified and explained. |
+| Graphics: Communicate findings graphically clearly, precisely and concisely | Inappropriate choice of plots; poorly labelled plots; plots missing. | Plots convey information correctly but lack context for interpretation. | Plots convey information correctly with adequate and appropriate information |
+| Text: Communicate findings clearly, precisely and concisely | Explanation is illogical, incorrect or incoherent. | Explanation is partially correct but incomplete or unconvincing | Explanation is correct, complete and convincing. |
+| Synthesis: Identify key features of the analysiand interpret results | Conclusions are missing, incorrect, or not made based on analysis | Conclsions reasonable, but partially correct or incomplete. | Relevant conclusions explicitly connected to analysis and context. |
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
 
 
 *Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
