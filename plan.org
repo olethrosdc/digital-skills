@@ -73,11 +73,17 @@ For the project, the following rubrik is used.
 | Computation: Perform computations | Computations contain errors and extraneous code | Computations are correct but contain extraneous/unnecessary code | Computations are correct and properly |
 | Experiment design: Data collection and pipeline | Inappropriate sampling, non-reproducible pipeline | Either the data collection strategy or the experimental pipeline is biased | Unbiased sampling and experiment desgin |
 | Synthesis: Identify key features of the analysis and interpret results (in context) | Conclusions are missing, incorrect, or not made based on analysis | Conclsions reasonable, but partially correct or complete | Relevant conclusions explicitly connected to analysis and context |
-| Visual presentation: Communicate findings graphically clearly, precisely and concisely | Inappropriate chocie of plots: poorly laelled plots: plots missing | Plots convey information correctly but lack contexst for interpretation | Plots convey information correctly with adequate and appropriate reference information |
-| Written presentation: Communicate findings clearly, precisely and concisely | Explanation is illogical, incorrect or incoherent | Explanation is partially correct but incomplete or unconvincing | Explanation is correct, complete and convcing |
+| Graphics: Communicate findings graphically clearly, precisely and concisely | Inappropriate chocie of plots: poorly laelled plots: plots missing | Plots convey information correctly but lack contexst for interpretation | Plots convey information correctly with adequate and appropriate reference information |
+| Text: Communicate findings clearly, precisely and concisely | Explanation is illogical, incorrect or incoherent | Explanation is partially correct but incomplete or unconvincing | Explanation is correct, complete and convcing |
 |---------------------------+---------------------------+---------------------------+---------------------------|
 
-The 'default' grade is 75%.;
+*Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
+added for every 'advanced' skill and reemoved for every 'needs
+improvement skill'. Thus the passing grades are 50-100%.
+
+If not all parts are explicitly addresed, the assignment is failed.
+
+
 
 #+TBLFM: 
 
@@ -105,7 +111,7 @@ in distinct bins of a dataset. While typically employed to represent
 the empirical distribution of one-dimensional variables, they can be
 generalised to multiple dimensions .
 
-*** Introduction to histograms (45')
+*** Introduction to histograms
 	
 Assume data is in $\Reals$. Then split the real line into intervals
 $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
@@ -135,7 +141,7 @@ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 	5. Now the students will individually draw a histogram from the data of their group.
 	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
-*** Pandas and Histograms (45')
+*** Pandas and Histograms 
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
 #+BEGIN_SRC python
@@ -162,7 +168,7 @@ Let us look at the student data: see src/histograms/heights.ipynb
 
 
 
-*** Randomess (45')
+*** Randomess
  1. Random algorithms using coins.
 #+BEGIN_SRC python
   y = 0 # y is a variable, with the value zero currently
@@ -221,7 +227,7 @@ coin bias: is the probability of landing heads exactly 50%? How can we
 quantify this? What does it depend on? Discuss in class.
 
 
-*** Uncertainty (45')
+*** Uncertainty
 Consider the following question: how many immigrants live in
 Switzerland?  
 
