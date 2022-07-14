@@ -94,11 +94,11 @@ explain it. Do not be overconfident, but quantify uncertainty
 properly.
 
 
-*Synthesis* Here you should summarise the most important findings from your analysis. Be
-careful to not over-interpret your results. A lot of results can be
-imaginary and can be attributed to insufficient data, biased sampling,
-improper modelling or p-value hacking. Be sure to quantify
-uncertainty.
+*Synthesis* Here you should summarise the most important findings from
+your analysis. Be careful to not over-interpret your results. A lot of
+results can be imaginary and can be attributed to insufficient data,
+biased sampling, improper modelling or p-value hacking. Be sure to
+quantify uncertainty.
 
 #+ATTR_LATEX: :align |p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
   +-------------------------+-------------------------+----------------------+-------------------------+
