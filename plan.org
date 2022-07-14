@@ -112,44 +112,14 @@ quantify uncertainty.
 
 
 
-
-
-            
-
-
-
-
-
-
-
-
-
-
 *Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
 added for every 'advanced' skill and reemoved for every 'needs
 improvement skill'. Thus the passing grades are 50-100%.
 
 *Fail*: If not all parts are explicitly addresed, the assignment is failed.
  
-  +---------+------+
-  | Table   | Test |
-  +---------+------+
-  |  This is|      |
-  |      a a|      |
-  |   simple|      |
-  |    table|      |
-  | that you|      |
-  |  want to|      |
-  |    do do|      |
-  |something|      |
-  |      for|      |
-  +---------+------+
 
-#+TBLFM: 
-
-
-
-* Visualisation as models an data summary
+* Visualisation as models and data summary
 
 What is visualisation? It is a way to /summarise data/. It is also a way
 to view relationships between variables. Visualisation helps us to
@@ -330,8 +300,19 @@ Are you willing to take an even bet that the true number is between 5-10%?
    
 ** Time-Series: model a causal effect
 
+A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
+typically assume that this is random. How can we capture this
+dependency between variables? Does the value of $x_t$ depend only on
+the value of $x_{t-1}$? On all the previous values? Only on the time
+index $t$?
+
 *** Pandas introduction
-	
+#+BEGIN_SRC python
+import pandas as pd
+# Read the tables
+tables = pd.read_html("https://en.wikipedia.org/wiki/1500_metres_world_record_progression")
+records = tables[1]
+#+END_SRC
 *** Race times
 https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
