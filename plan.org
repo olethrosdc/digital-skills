@@ -133,8 +133,8 @@ uncertainty.
 added for every 'advanced' skill and reemoved for every 'needs
 improvement skill'. Thus the passing grades are 50-100%.
 
-If not all parts are explicitly addresed, the assignment is failed.
-
+*Fail*: If not all parts are explicitly addresed, the assignment is failed.
+ 
   +---------+------+
   | Table   | Test |
   +---------+------+
@@ -153,12 +153,16 @@ If not all parts are explicitly addresed, the assignment is failed.
 
 
 
-* Visualisation as models
+* Visualisation as models an data summary
 
-What is visualisation? It is a way to summarise data. It is also a way
+What is visualisation? It is a way to /summarise data/. It is also a way
 to view relationships between variables. Visualisation helps us to
 find patterns and understand the underlying laws behind how the data
 was generated. This is, in fact, the essence of modelling.
+
+A model is /also/ a way of summarising the essential features of the
+data. A visualisation differs from a model only in one sense: It easy
+to interpret visually. 
 
 Every data visualisation implicitly assumes a model of the data
 generating process. This is true for even the simplest visualisations,
@@ -166,6 +170,16 @@ like histograms. There is no escape from the fact that any
 visualisation makes a lot of assumptions. We must emphasize what those
 assumptions are. What happens if they are not true?
 
+Every data visusalisation, then, proceeds in three steps:
+
+1. Data transformation
+2. Model creation
+3. Model visualisation
+
+Every model is defined by a number of variables. This is what is
+displayed when we visualise data. You can think of the model as the
+underlying theory, and the visualisation as a way to explain the
+theory visually.
 
 ** Histograms: model a distribution
 
@@ -182,30 +196,31 @@ $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
 amount of data $n_i(D)$ in the interval. We can also normalise to
 obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 
-	More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
+More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
 	
-	$\{ A_i | i=1, \ldots, k\}$
+$\{ A_i | i=1, \ldots, k\}$
 
-	with associated counts $n_i$, so that, given some data $D$,
+with associated counts $n_i$, so that, given some data $D$,
 
-	$n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
-	
-	where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
-	
-	We can use the histogram as the model of a distribution. For that,
-	we use the relative frequency of points in each bin: $p_i(D) =
-	n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
-	model.
+$n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
 
-	In-class activity:
-	1. Introduce the concept of a historgram on the board.
-	2. Split the students in two groups.
-	3. Have each group collect the height of every student.
-	4. How can we summarise the data of each group? 
-	5. Now the students will individually draw a histogram from the data of their group.
-	6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
-	7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
-*** Pandas and Histograms 
+where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+
+We can use the histogram as the model of a distribution. For that,
+we use the relative frequency of points in each bin: $p_i(D) =
+n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+model.
+
+**** Histogram activity :activity:
+1. Introduce the concept of a historgram on the board.
+2. Split the students in two groups.
+3. Have each group collect the height of every student.
+4. How can we summarise the data of each group? 
+5. Now the students will individually draw a histogram from the data of their group.
+6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+
+*** Pandas and Histograms
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
 #+BEGIN_SRC python
@@ -214,7 +229,9 @@ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
   df['column-name'] # selects a column
   df.hist() # creates a plot with many histograms
 #+END_SRC
-**** Coin example
+
+**** Coin example :activity:
+
 Introduce pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
 X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
@@ -227,7 +244,17 @@ Let us do a histogram of the predictions. This is a binomial
 distribution.
 
 
-**** Heights example
+**** Heights example :activity:
+ 
+#+BEGIN_SRC python
+import pandas as pd
+X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+X['Height (cm)'].hist()
+#+END_SRC
+
+1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
+2. Firstly, plot the histogram of the data with default settings.
+3. What is the eff
 Let us look at the student data: see src/histograms/heights.ipynb
 
 
