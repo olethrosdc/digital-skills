@@ -8,7 +8,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-#+TAGS: activity exercise homework project dataset example theory statistics graphics
+#+TAGS: activity exercise homework project dataset example theory statistics plot
 
 * Introduction
 
@@ -138,7 +138,15 @@ and are a good starting point for you to look at real data. All the
 data is formatted in an easy-to-use some format, but some
 pre-processing may still be necessary.
 
-*** 
+*** Wikipedia and newspaper articles
+
+Wikipedia has many interesting articles, from which you can extra
+tabular data, as well as more contextual information. It is possible
+to also discuss newspaper articles. Wikipedia and newspaper articles
+can be used in the context of some assignments.
+
+
+
 
 * Visualisation as models and data summary
 
@@ -208,7 +216,7 @@ model.
 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 
-*** Pandas and Histograms
+*** Pandas and Histograms :plot:
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
 #+BEGIN_SRC python
@@ -218,7 +226,7 @@ model.
   df.hist() # creates a plot with many histograms
 #+END_SRC
 
-**** Coin example :activity:
+**** Coin example :activity:plot:
 
 Introduce pandas histograms. First with fixed binary data.
 #+BEGIN_SRC python
@@ -232,18 +240,21 @@ Let us do a histogram of the predictions. This is a binomial
 distribution.
 
 
-**** Heights example :activity:
- 
-#+BEGIN_SRC python
-import pandas as pd
-X = pd.read_csv("class-data.csv") # read the data into a DataFrame
-X['Height (cm)'].hist()
-#+END_SRC
 
 1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
 2. Firstly, plot the histogram of the data with default settings.
 3. What is the eff
 Let us look at the student data: see src/histograms/heights.ipynb
+
+**** Heights example :activity:
+ 
+#+BEGIN_SRC python
+import pandas as pd
+X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+X['Height (cm)'].hist() #directly plot the histogram
+#+END_SRC
+
+
 
 
 
@@ -570,16 +581,17 @@ Summarise your findings graphically.
 - $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
 * Graphics types
-** Histogram
-** Density curve
-** Scatterplot
-** Smooth scatterplot
-** Network
-** Word cloud
-** Violin plot
-** Line Plot
-** Confidence Intervals
-** Geographical 
+1. Histogram
+2. Density curve
+3. Scatterplot
+4. Smooth scatterplot
+5. Violin plot
+6. Line Plot
+7. Confidence Intervals
+8. Geographical/topological maps
+9. Network graphs
+10. Word cloud
+
 * Schedule and links to other courses
 |--------+---------------------------+--------------+--------------------------+----------------|
 | Week   | Statistics                | Programming  | Coursework               | Assignment     |
