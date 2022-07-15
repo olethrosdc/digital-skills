@@ -240,6 +240,9 @@ x = [1, 2, 3, 4]
 return x[3] # returns the last element of the list
 #+END_SRC python
 
+#+RESULTS:
+: 4
+
 #+BEGIN_SRC python
 x = [1, 2, 3, 4]
 y = [-1, -2]
@@ -253,7 +256,7 @@ return x # what would the value of x be?
 
 Lists are different in one respect: when we assign one list name to
 another, this does not copy any data. Both names refer to the same
-data. Consequently, if we change the data, if changes for both
+data. Consequently, if we change the data, it changes for both
 variable names.
 
 #+BEGIN_SRC python
@@ -293,7 +296,8 @@ return x
 
 *** Pandas and Histograms :plot:code:
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
-
+	
+	Pandas is a module for 
 #+BEGIN_SRC python
   import pandas as pd # we need to load a library first
   # loading data into pandas creates a data frame df
