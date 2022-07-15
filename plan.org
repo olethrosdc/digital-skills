@@ -8,7 +8,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-#+TAGS: activity exercise homework project dataset example theory statistics plot
+#+TAGS: activity exercise homework project dataset example theory statistics plot code
 
 * Introduction
 
@@ -216,7 +216,82 @@ model.
 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 
-*** Pandas and Histograms :plot:
+*** Python variables 												   :code:
+
+Numerical Python variables are very simple entities. Let us go through
+this is easy program for a warm-up.
+#+BEGIN_SRC python
+x = 1 # a variable
+y = 2 # another variable
+print(x+y) # return the value of this variable sum
+x = y # assignment operation: now x has the same value as y
+print(x) #what would this value be?
+y = 3
+print(x) #is x changed?
+#+END_SRC
+#+RESULTS:
+: 1
+
+*** Python lists :code:
+
+A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+#+BEGIN_SRC python
+x = [1, 2, 3, 4]
+return x[3] # returns the last element of the list
+#+END_SRC python
+
+#+BEGIN_SRC python
+x = [1, 2, 3, 4]
+y = [-1, -2]
+x = y # assignment operation: now x is just a different name for y
+y[0] = 1 # modify the 0th element of y
+return x # what would the value of x be?
+#+END_SRC
+
+#+RESULTS:
+| 1 | -2 |
+
+Lists are different in one respect: when we assign one list name to
+another, this does not copy any data. Both names refer to the same
+data. Consequently, if we change the data, if changes for both
+variable names.
+
+#+BEGIN_SRC python
+x = [1, 2, 3, 4]
+y = [-1, -2]
+x = y.copy() # copy operation: now x has a copy of y's data
+y[0] = 1 # modify the 0th element of y
+return x # what would the value of x be?
+#+END_SRC
+
+#+RESULTS:
+| -1 | -2 |
+
+
+*** Numpy arrays 													   :code:
+
+Because lists are very flexible, they are a bit slow. A special type
+of object, an array, is used to handle lists of numbers. This is not
+defined in basic python, but only in one module called /numpy/. Even
+though basic Python has only a few commands, it has many modules that
+extend the language to perform complex tasks without having to code
+everything from scratch.
+
+#+BEGIN_SRC python
+import numpy as np
+x = np.array([1, 2, 3, 4])
+y = np.array([-1, -2])
+x = y # assignment operation: 
+y[0] = 1
+return x
+#+END_SRC
+
+#+RESULTS:
+| 1 | -2 |
+
+
+
+*** Pandas and Histograms :plot:code:
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 
 #+BEGIN_SRC python
