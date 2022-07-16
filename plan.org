@@ -732,8 +732,11 @@ Summarise your findings graphically.
 | 16 Dec |                           |              |                          | Project        |
 |--------+---------------------------+--------------+--------------------------+----------------|
 
-* External links
+* References and External links
 https://www.dagstuhl.de/program/calendar/partlist/?semnr=22261&SUOG
 https://vishub.net/bach
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
+
+The Truthful Art, Cairo, Alberto
+
