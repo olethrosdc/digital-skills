@@ -436,6 +436,14 @@ What are such plots useful for?
 *** Race times :activity:
 https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
+Wikipedia has a table that shows the progression of 1500m world records.
+1. Let us first [[src/time-series/WorldRecords.py][show the records up to 1950]] .  
+2. Try and predict the progrssion of world records on the board.
+3. Let us now look at the actual graph. Is it what you expected?
+4. How do you expect the progression to continue after 2020?
+5. How do you explain this progression? Can you find data to validate or refute your explanation?
+
+
 **** Scraping tables example :example:data-collection:
 #+BEGIN_SRC python
   import pandas
@@ -448,6 +456,8 @@ https://en.wikipedia.org/wiki/1500_metres_world_record_progression
   # data formats
   float("12.2"); # converts a number into a float
 #+END_SRC
+
+
 
 *** Example: Stock market prices
 See: Trading Economics
@@ -677,14 +687,16 @@ Summarise your findings graphically.
 |--------+---------------------------+--------------+--------------------------+----------------|
 | 1      | Course intro              | Python intro | Histograms               |                |
 | 23 Sep |                           |              | Randomness               |                |
-|        |                           |              | Uncertainty              |                |
+|        |                           |              | Uncertainty              | Math score     |
+|        |                           |              | Discrete Variables       |                |
+|        |                           |              | Continuous Variables     |                |
 |--------+---------------------------+--------------+--------------------------+----------------|
 | 2      | R Intro                   | Data types   | Time-Series              |                |
 | 30 Sep | Data manipulation         |              | Linear functions         |                |
 |        | Histograms                |              | Stock market prices      |                |
 |        | Scatterplots              |              | Crime statistics         |                |
 |        | Boxplots                  |              | S&P index                |                |
-|        | Variable types            |              |                          |                |
+|        | Variable types            |              | World Records            |                |
 |        | Mosaic plots              |              |                          |                |
 |        | Functions                 |              |                          |                |
 |--------+---------------------------+--------------+--------------------------+----------------|
@@ -738,5 +750,5 @@ https://vishub.net/bach
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 
-The Truthful Art, Cairo, Alberto
+The Truthful Art, Cairo, Alberto :book:
 
