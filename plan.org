@@ -147,7 +147,6 @@ can be used in the context of some assignments.
 
 
 
-
 * Visualisation as models and data summary
 
 What is visualisation? It is a way to /summarise data/. It is also a way

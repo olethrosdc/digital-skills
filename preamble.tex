@@ -1,0 +1,551 @@
+%% Pre-amble - commonly defined macros.
+
+%% Packages
+\usepackage{fixltx2e}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{isomath}
+\usepackage{amsthm}
+\usepackage{dsfont}
+%%\usepackage{theorem}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{mathrsfs}
+\usepackage{epsfig}
+\usepackage{subcaption}
+\usepackage{makeidx} 
+\usepackage{colortbl}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{fontawesome}
+\newlength\fheight
+\newlength\fwidth
+\only<presentation>{
+\setlength\fheight{\columnheight}
+\setlength\fwidth{\columnwidth}
+}
+\only<article>{
+\setlength\fheight{0.25\textheight}
+\setlength\fwidth{0.5\textwidth}
+}
+\usepackage[sort&compress,comma,super]{natbib}
+\def\newblock{} % To avoid a compilation error about a function \newblock undefined
+\usepackage{hyperref}
+
+\setbeamertemplate{theorems}[numbered] 
+\mode<presentation>{
+\theoremstyle{plain}
+\newtheorem{assumption}{Assumption}
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}
+}
+
+\numberwithin{equation}{section} 
+\mode<article>{
+  \theoremstyle{plain}
+  % \newtheorem{assumption}{Assumption}[section]
+  \newtheorem{lemma}{Lemma}[section]
+  \newtheorem{theorem}{Theorem}[section]
+  \newtheorem{corollary}{Corollary}[section]
+  \theoremstyle{definition}
+  \newtheorem{definition}{Definition}[section]
+  \theoremstyle{remark}
+  \newtheorem{remark}{Remark}[section]
+
+  % \theoremstyle{plain} \newtheorem{remark}{Remark}[section]
+  % \theoremstyle{plain} \newtheorem{definition}{Definition}[section]
+  \theoremstyle{plain} \newtheorem{assumption}{Assumption}[section]
+  
+  %%% Examples %%%%
+  \newtheoremstyle{example}  % Name
+  {1em}       % Space above 
+  {1em}       % Space below
+  {\small}      % Body font
+  {}          % Indent amount 
+  {\scshape}  % Theorem head font
+  {.}         % Punctuation after theorem head
+  {.5em}      % Space after theorem head
+  {}          % Theorem head spec
+  \theoremstyle{example}
+  \newtheorem{example}{Example}
+  \newtheorem{exercise}{Exercise}
+
+  \usepackage{framed}
+  \usepackage[framemethod=tikz]{mdframed}
+  \mdfsetup{%
+    roundcorner=10pt}
+  \renewenvironment{block}[1]
+  {\begin{mdframed}[backgroundcolor=black!10,frametitle={#1}]}
+    {\end{mdframed}}
+
+  \renewenvironment{exampleblock}[1]
+  {\begin{mdframed}[frametitle={\faGears{} #1}]}
+    {\end{mdframed}}
+
+
+  \renewenvironment{alertblock}[1]
+  {\begin{mdframed}[backgroundcolor=red!20,frametitle={{\fontencoding{U}\fontfamily{futs}\selectfont\char 66\relax} #1}]}
+    {\end{mdframed}}
+
+
+  \newenvironment{theoryblock}[1]
+  {\begin{mdframed}[backgroundcolor=yellow!20,frametitle={\Coffeecup #1}]}
+    {\end{mdframed}}
+
+  \newenvironment{exerciseblock}[1]
+  {\begin{mdframed}[backgroundcolor=blue!10,frametitle={\faPencilSquareO{} #1}]}
+    {\end{mdframed}}
+
+  \newenvironment{groupactivity}[1]
+  {\begin{mdframed}[backgroundcolor=cyan!20,frametitle={\faGroup{} #1}]}
+    {\end{mdframed}}
+
+  
+}
+%\theoremstyle{plain} \newtheorem{conjecture}{Conjecture}[section]
+%\theoremstyle{plain} \newtheorem{theorem}{Theorem}[section]
+%\theoremstyle{plain} \newtheorem{proposition}{Proposition}[section]
+%\theoremstyle{plain} \newtheorem{lemma}{Lemma}[section]
+%\theoremstyle{plain} \newtheorem{corollary}{Corollary}[section]
+
+
+%\newenvironment{proof}[1][Proof]{\begin{trivlist}
+%\item[\hskip \labelsep {\bfseries #1}]}{\end{trivlist}}
+%\newcommand{\qed}{\nobreak \ifvmode \relax \else
+%      \ifdim\lastskip<1.5em \hskip-\lastskip
+%      \hskip1.5em plus0em minus0.5em \fi \nobreak
+%      \vrule height0.5em width0.5em depth0.25em\fi}
+
+\newcommand \indexmargin[1] {\marginpar{\emph{#1}}\index{#1}}
+\newcommand \marginref[2] {\marginpar{\emph{#1}}\emph{#1}\index{#2}}
+\newcommand \emindex[1] {\emph{#1}\marginpar{\emph{#1}}\index{#1}}
+
+
+\newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+\newcommand \hE {\hat{\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}}
+\renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+\newcommand \given {\mathrel{|}}
+\newcommand \gvn {|}
+\newcommand \eq {{=}}
+
+
+%% Special characters
+\newcommand\Reals {{\mathbb{R}}}
+\newcommand\Naturals {{\mathbb{N}}} 
+\newcommand\Simplex {\mathbold{\Delta}}
+
+\newcommand \FB {{\mathfrak{B}}}
+\newcommand \FD {{\mathfrak{D}}}
+\newcommand \FF {{\mathfrak{F}}}
+\newcommand \FM {{\mathfrak{M}}}
+\newcommand \FK {{\mathfrak{K}}}
+\newcommand \FJ {{\mathfrak{J}}}
+\newcommand \FL {{\mathfrak{L}}}
+\newcommand \FO {{\mathfrak{O}}}
+\newcommand \FS {{\mathfrak{S}}}
+\newcommand \FT {{\mathfrak{T}}}
+\newcommand \FP {{\mathfrak{P}}}
+\newcommand \FR {{\mathfrak{R}}}
+
+
+\newcommand \CA {{\mathcal{A}}}
+\newcommand \CB {{\mathcal{B}}}
+\newcommand \CC {{\mathcal{C}}}
+\newcommand \CD {{\mathcal{D}}}
+\newcommand \CE {{\mathcal{E}}}
+\newcommand \CF {{\mathcal{F}}}
+\newcommand \CG {{\mathcal{G}}}
+\newcommand \CH {{\mathcal{H}}}
+\newcommand \CJ {{\mathcal{J}}}
+\newcommand \CL {{\mathcal{L}}}
+\newcommand \CM {{\mathcal{M}}}
+\newcommand \CN {{\mathcal{N}}}
+\newcommand \CO {{\mathcal{O}}}
+\newcommand \CP {{\mathcal{P}}}
+\newcommand \CQ {{\mathcal{Q}}}
+\newcommand \CR {{\mathcal{R}}}
+\newcommand \CS {{\mathcal{S}}}
+\newcommand \CT {{\mathcal{T}}}
+\newcommand \CU {{\mathcal{U}}}
+\newcommand \CV {{\mathcal{V}}}
+\newcommand \CW {{\mathcal{W}}}
+\newcommand \CX {{\mathcal{X}}}
+\newcommand \CY {{\mathcal{Y}}}
+\newcommand \CZ {{\mathcal{Z}}}
+
+\newcommand \BA {{\mathbb{A}}}
+\newcommand \BI {{\mathbb{I}}}
+\newcommand \BS {{\mathbb{S}}}
+
+\newcommand \bx {{\vectorsym{x}}}
+\newcommand \by {{\vectorsym{y}}}
+\newcommand \bu {{\vectorsym{u}}}
+\newcommand \bw {{\vectorsym{w}}}
+\newcommand \ba {{\vectorsym{a}}}
+\newcommand \bc {{\vectorsym{c}}}
+\newcommand \bz {{\vectorsym{z}}}
+\newcommand \bq {{\vectorsym{q}}}
+\newcommand \bat {{\vectorsym{a}_t}}
+\newcommand \bh {{\vectorsym{h}}}
+\newcommand \bo {{\vectorsym{o}}}
+\newcommand \bp {{\vectorsym{p}}}
+\newcommand \bs {{\vectorsym{s}}}
+\newcommand \br {{\vectorsym{r}}}
+
+\newcommand \SA {\mathscr{A}}
+\newcommand \SB {\mathscr{B}}
+\newcommand \SC {\mathscr{C}}
+\newcommand \SF {\mathscr{F}}
+\newcommand \SG {\mathscr{G}}
+\newcommand \SH {\mathscr{H}}
+\newcommand \SJ {\mathscr{J}}
+\newcommand \SL {\mathscr{L}}
+\newcommand \SP {\mathscr{P}}
+\newcommand \SR {\mathscr{R}}
+%%\newcommand \SS {\mathscr{S}}
+\newcommand \ST {\mathscr{T}}
+\newcommand \SU {\mathscr{U}}
+\newcommand \SV {\mathscr{V}}
+\newcommand \SW {\mathscr{W}}
+
+\newcommand \hM {\widehat{M}}
+
+\newcommand \KL[2] {\mathbb{D}\left( #1 \| #2 \right)}
+
+
+%\newcommand \p {\partial}
+
+\newcommand \then{\Rightarrow}
+\newcommand \defn {\mathrel{\triangleq}}
+%\newcommand \StateSet {{\CQ}}
+
+
+%% Commands
+
+\newcommand \argmax{\mathop{\rm arg\,max}}
+\newcommand \argmin{\mathop{\rm arg\,min}}
+\newcommand \dtan{\mathop{\rm dtan}}
+\newcommand \sgn{\mathop{\rm sgn}}
+\newcommand \trace{\mathop{\rm tr}}
+
+\newcommand \onenorm[1]{\left\|#1\right\|_1}
+\newcommand \pnorm[2]{\left\|#1\right\|_{#2}}
+\newcommand \inftynorm[1]{\left\right\|#1\|_\infty}
+\newcommand \norm[1]{\left\|#1\right\|}
+
+%%\newcommand \defn {\triangleq}
+%%\newcommand \defn {\equiv}
+%%\newcommand \defn {\coloneq}
+%%\newcommand \defn {\stackrel{\text{\tiny def}}{=}}
+%%\newcommand \defn {\stackrel{\text{def}}{\hbox{\equalsfill}}}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\newcommand \Normal {\mathop{\mathpzc{N}}\nolimits}
+\newcommand \Poisson {\mathop{\mathpzc{Poisson}}\nolimits}
+\newcommand \Multinomial {\mathop{\mathpzc{Multinomial}}\nolimits}
+\newcommand \Dirichlet {\mathop{\mathpzc{Dirichlet}}\nolimits}
+\newcommand \Student {\mathop{\mathpzc{Student}}\nolimits}
+\newcommand \Bernoulli {\mathop{\mathpzc{Bernoulli}}\nolimits}
+\newcommand \BetaDist   {\mathop{\mathpzc{Beta}}\nolimits}
+\newcommand \Singular   {\mathop{\mathpzc{D}}\nolimits}
+\newcommand \GammaDist {\mathop{\mathpzc{Gamma}}\nolimits}
+\newcommand \Softmax{\mathop{\mathpzc{Softmax}}\nolimits}
+\newcommand \Exp{\mathop{\mathpzc{Exp}}\nolimits}
+\newcommand \Uniform{\mathop{\mathpzc{Unif}}\nolimits}
+\newcommand \Laplace {\mathop{\mathpzc{Laplace}}\nolimits}
+
+\newcommand \Param {\Theta}
+\newcommand \param {\theta}
+\newcommand \vparam {\vectorsym{\theta}}
+\newcommand \mparam {\matrixsym{\Theta}}
+\newcommand \Hyperparam {\Phi}
+\newcommand \hyperparam {\phi}
+\newcommand \family {\mathcal{F}}
+\newcommand{\ie}{\emph{i.e.}~}
+\newcommand{\eg}{\emph{e.g.}~}
+\newcommand{\etal}{\emph{et al.}~}
+\newcommand{\constg}{}
+\newcommand{\Bel}{\mathcal{B}}
+\newcommand \Bay {\ensuremath{\mathscr{B}}}
+\newcommand \Adv {\ensuremath{\mathscr{A}}}
+
+\newcommand \step {\eta}
+
+\newcommand \Borel[1] {\FF(#1)}
+\newcommand \Probs[1] {\FM(#1)}
+
+
+\newcommand \pol {\pi}
+\newcommand \Pol {\Pi}
+\newcommand \mdp {\mu}
+\newcommand \MDP {\CM}
+\newcommand \meanMDP {{\bar{\mdp}_\xi}}
+
+\newcommand {\msqr} {\vrule height0.33cm width0.44cm}
+\newcommand {\bsqr} {\vrule height0.55cm width0.66cm}
+
+\newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+\newcommand\Ind{\mbox{\bf{I}}}
+
+\newcommand\dd{\,\mathrm{d}}
+
+\newcommand \seq[2]{#1^{#2}}
+\newcommand \pseq[3]{#1_{#2}^{#3}}
+\newcommand \sam[2]{#1^{(#2)}}
+\newcommand \transpose[1] {#1^\top}
+\newcommand\set[1] {\left\{#1\right\}}
+\newcommand\tuple[1] {\left\langle #1\right\rangle}
+\newcommand\cset[2] {\left\{#1 ~\middle|~ #2\right\}}
+\newcommand \ceil[1]{\left\lceil #1 \right\rceil}
+
+
+
+
+
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+
+\newcommand \eqlike {\eqsim}
+\newcommand \gtlike {\succ}
+\newcommand \ltlike {\prec}
+\newcommand \gelike {\succsim}
+\newcommand \lelike {\precsim}
+
+\newcommand \eqpref {\eqsim^*}
+\newcommand \gtpref {\succ^*}
+\newcommand \ltpref {\prec^*}
+\newcommand \gepref {\succsim^*}
+\newcommand \lepref {\precsim^*}
+
+\newcommand \util {U}
+\newcommand \BUtil {U^*}
+\newcommand \MUtil {\matrixsym{U}}
+\newcommand \risk {\sigma}
+\newcommand \Brisk {\sigma^*}
+\newcommand \Loss {\ell}
+\newcommand \Regret {L}
+\newcommand \regret {\ell}
+\newcommand \Reward {\SR}
+\newcommand \reward {r}
+\newcommand \vreward {\vectorsym{r}}
+\newcommand \Rew {\rho}
+\newcommand \boutcome {\vectorsym{\omega}}
+\newcommand \outcome {\omega}
+\newcommand \Outcome {\Omega}
+\newcommand \act {a}
+\newcommand \Act {\CA}
+\newcommand \decision {a}
+\newcommand \Decision {\mathcal{A}}
+\newcommand \dec {\delta}
+\newcommand \Dec {\mathscr{D}}
+
+
+\newcommand {\MH} {\matrixsym{H}}
+
+\newcommand \alg {\lambda}
+\newcommand \Alg {\Lambda}
+\newcommand \KNN {\textsc{k-NN}}
+
+\newcommand \model {\mu}
+\newcommand \MAP {\model_{\textrm{MAP}}}
+\newcommand \Model {\CM}
+\newcommand \Datasets {\CD}
+\newcommand \Data {D}
+\newcommand \Training {D_T}
+\newcommand \Holdout {D_H}
+\newcommand \Testing {D^*}
+\newcommand \error {\epsilon}
+\newcommand \obs {x}
+\newcommand \Obs {\CX}
+\newcommand \Att {\CA}
+\newcommand \att {a}
+\newcommand \attv {v}
+\newcommand \Attv {\CV}
+\newcommand \cls {y}
+\newcommand \Cls {\CY}
+\newcommand \Entropy {\mathbb{H}}
+\newcommand \Gain {\mathbb{G}}
+
+
+\newcommand \IDThree {\texttt{ID3}}
+
+\newcommand \nactions {A}
+\newcommand \nclasses {C}
+\newcommand \nstates{S}
+\newcommand \nobservations {N}
+\newcommand \ndata{T}
+
+\newcommand \figwidth {0.6\textwidth}
+\newcommand \figheight {0.4\textwidth}
+
+\newcommand \eye {\matrixsym{I}}
+\newcommand \MA {\matrixsym{A}}
+\newcommand \MC {\matrixsym{C}}
+\newcommand \MX {\matrixsym{X}}
+\newcommand \MR {\matrixsym{R}}
+\newcommand \MY {\matrixsym{Y}}
+\newcommand \MB {\matrixsym{B}}
+\newcommand \MV {\matrixsym{V}}
+\newcommand \MW {\matrixsym{W}}
+\newcommand \MP {\matrixsym{P}}
+\newcommand \MZ {\matrixsym{Z}}
+
+\newcommand \vg {\vectorsym{\gamma}}
+\newcommand \vp {\vectorsym{p}}
+\newcommand \vs {\vectorsym{s}}
+\newcommand \vx {\vectorsym{x}}
+\newcommand \vr {\vectorsym{r}}
+\newcommand \vm {\vectorsym{m}}
+\newcommand \vb {\vectorsym{b}}
+\newcommand \vt {\vectorsym{\theta}}
+
+\newcommand \pn[1] {\vx_{[#1]}}
+
+\newcommand \basis {f}
+\newcommand \bel {\beta}
+\newcommand \hyper {\omega}
+\newcommand \mbel {\bel^D}
+\newcommand \pbel {\bel^C}
+
+\newcommand \pmean {\matrixsym{M}}
+\newcommand \pcov {\matrixsym{C}}
+\newcommand \pwish {\matrixsym{W}}
+\newcommand \porder {n}
+
+\newcommand \Syx {\matrixsym{\Sigma}_{yx}}
+\newcommand \Sxx {\matrixsym{\Sigma}_{xx}}
+\newcommand \Syy {\matrixsym{\Sigma}_{yy}}
+\newcommand \Symx {\matrixsym{\Sigma}_{y\mid x}}
+
+\newcommand \trans {\matrixsym{P}}
+\newcommand \ident {\matrixsym{I}}
+
+\newcommand \noise {\vectorsym{\varepsilon}}
+
+\newcommand \pt {p_t}
+
+
+\newcommand \CSet {G}
+\newcommand \Parent[1] {\mathfrak{P}(#1)}
+\newcommand \Children[1] {\mathfrak{C}(#1)}
+\newcommand \Ancestors[1] {\mathfrak{A}(#1)}
+\newcommand \Descendants[1] {\mathfrak{D}(#1)}
+\newcommand \metric[2] {\nu(#1, #2)}
+\newcommand \zooming {\zeta}
+\newcommand \depth[1] {d(#1)}
+
+\newcommand \sensitivity[1] {\mathbb{L}\left(#1\right)}
+\newcommand \disc {\gamma}
+\newcommand \Value {V}
+\newcommand \val {\vectorsym{v}}
+\newcommand \Vals {\mathcal{V}}
+\newcommand \qval {\vectorsym{q}}
+\newcommand \Qvals {\mathcal{Q}}
+\newcommand \blm {\mathscr{L}}
+\newcommand \tdm {\mathscr{D}}
+\newcommand \pim {\mathscr{B}}
+
+
+
+\newcommand \dist[2]{D\left(#1 ~\middle\|~ #2\right)}
+
+\newcommand \Ae {A_\epsilon^\hist}
+
+\newcommand \lrdist[2]{d_{lr}(#1, #2)}
+\newcommand \xdistChar{\rho}
+\newcommand \xdist[2]{\xdistChar(#1, #2)}
+\newcommand \pdist[2]{\kappa(#1, #2)}
+\newcommand{\constScale}{\omega}
+\newcommand{\constScaleB}{\kappa}
+
+\newcommand \fields[1]{\sigma(#1)}
+
+\newcommand \hist {h}
+
+\newcommand \abs[1] {\left|#1\right|}
+
+\newcommand{\errorband}[5][]{ % x column, y column, error column, optional argument for setting style of the area plot
+\pgfplotstableread[col sep=comma, skip first n=2]{#2}\datatable
+% Lower bound (invisible plot)
+\addplot [draw=none, stack plots=y, forget plot] table [
+x={#3},
+y expr=\thisrow{#4}-\thisrow{#5}
+] {\datatable};
+
+% Stack twice the error, draw as area plot
+\addplot [draw=none, fill=gray!40, stack plots=y, area legend, #1] table [
+x={#3},
+y expr=2*\thisrow{#5}
+] {\datatable} \closedcycle;
+
+% Reset stack using invisible plot
+\addplot [forget plot, stack plots=y,draw=none] table [x={#3}, y expr=-(\thisrow{#4}+\thisrow{#5})] {\datatable};
+}
+
+
+%%% macros to make things smalller
+% For comparison, the existing overlap macros:
+% \def\llap#1{\hbox to 0pt{\hss#1}}
+% \def\rlap#1{\hbox to 0pt{#1\hss}}
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathllap{\mathpalette\mathllapinternal}
+\def\mathrlap{\mathpalette\mathrlapinternal}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathllapinternal#1#2{%
+\llap{$\mathsurround=0pt#1{#2}$}}
+\def\mathrlapinternal#1#2{%
+\rlap{$\mathsurround=0pt#1{#2}$}}
+\def\mathclapinternal#1#2{%
+\clap{$\mathsurround=0pt#1{#2}$}}
+
+
+\usepackage{tikz}
+\usepackage{tikzsymbols}
+%\usetikzlibrary{external}
+%\tikzexternalize[prefix=tikz/]
+\usepackage{gnuplot-lua-tikz}
+
+
+\usetikzlibrary{automata}
+\usetikzlibrary{topaths}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{intersections}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{positioning}
+
+
+\tikzstyle{utility}=[diamond,draw=black,draw=blue!50,fill=blue!10,inner sep=0mm, minimum size=8mm]
+\tikzstyle{select}=[rectangle,draw=black,draw=blue!50,fill=blue!10,inner sep=0mm, minimum size=6mm]
+\tikzstyle{hidden}=[dashed,draw=black,fill=red!10]
+\tikzstyle{RV}=[circle,draw=black,draw=blue!50,fill=blue!10,inner sep=0mm, minimum size=6mm]
+\tikzstyle{place}=[circle,draw=black,draw=blue!50,fill=blue!20,inner sep=0mm, minimum size=9mm]
+\tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
+\tikzstyle{observed}=[circle,draw=black,draw=blue!50,fill=blue!10,inner sep=0mm, minimum size=6mm]
+\tikzstyle{someset}=[circle,draw=black,minimum size=8mm]
+
+\tikzstyle{known}=[rectangle,draw=green!50,fill=green!20,thick]
+\tikzstyle{queried}=[rectangle,draw=blue!50,fill=blue!20,thick]
+%\tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
+
+\tikzstyle{thickarrow}=[->, >=latex, line width=15pt, green!50]
+\tikzstyle{medarrow}=[->, >=latex,  line width=5pt]
+\tikzstyle{arrow}=[->,>=triangle 60]
+
+\tikzset{every picture/.style={
+    line width=1
+  }
+}
+
+\definecolor{dark-green}{rgb}{0,0.5,0}
+
+
