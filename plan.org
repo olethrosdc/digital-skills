@@ -20,6 +20,16 @@ course with readings from other courses in descriptive statistics and
 python programming, but no prior knowledge is assumed. Formal concepts
 will be introduced through class activities and examples.
 
+The course will focus neither on statistical theory nor on
+programming. We will only lightly build those skills within the
+course. Our main aim will be to build scientific and statistical
+intuition through practical work. However, to achieve this you need to
+be able to independently pick up theoretical and programming
+skills. For that reason, it is necessary for you to do outside reading
+either (ideally) by taking statistics and programming courses in
+parallel, or through self-study.
+
+
 ** Learning goals:
 #+BEGIN_CENTER
 
@@ -38,7 +48,7 @@ Graphical comprehension:
 5. Express creative thinking via the production of an innovactive
    graphical presentation.
 
-Statistics, analysis and experiment design:
+Scentific goals: Statistics, analysis and experiment design
 
 1. Understanding the randomness, variability and uncertainty inherent
    in a problem.
@@ -409,7 +419,6 @@ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
 (a) Are you willing to take an even bet that the true number is between [5-10%]?
 
    
-
 ** Time-Series: model the evolution of a system
 
 A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
@@ -458,7 +467,6 @@ Wikipedia has a table that shows the progression of 1500m world records.
 
 *** Example: Stock market prices
 See: Trading Economics
-
 
 ** Scatterplots: model a relationship
    1. For the original data: add weight, eye colour, gender, exercise level.
@@ -670,6 +678,13 @@ Summarise your findings graphically.
 10. Word cloud
 
 * Schedule and links to other courses
+
+The schedule of this and the other courses is in flux, but I do not
+expect it to change very much.  In any case, the course will operate
+independently of the other courses. You should expect to cover the
+same topic more than once. However, this course will not focus on
+either statistical theory or programming.
+
 |--------+---------------------------+--------------+--------------------------+----------------|
 | Week   | Statistics                | Programming  | Coursework               | Assignment     |
 |--------+---------------------------+--------------+--------------------------+----------------|
@@ -733,10 +748,23 @@ Summarise your findings graphically.
 |--------+---------------------------+--------------+--------------------------+----------------|
 
 * References and External links
+
+** Data sources
+
+- UCI [[https://archive.ics.uci.edu/ml/index.php][Machine Learning Repository]]
+- [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
+- [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
+- [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
+
+
+
+** Visualisation wokshops and books
 https://www.dagstuhl.de/program/calendar/partlist/?semnr=22261&SUOG
 https://vishub.net/bach
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 
 The Truthful Art, Cairo, Alberto :book:
+
+
 
