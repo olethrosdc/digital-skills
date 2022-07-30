@@ -8,7 +8,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-#+TAGS: activity exercise homework project dataset example theory statistics plot code
+#+TAGS: activity advanced exercise homework project dataset example theory statistics plot code
 
 * Introduction
 
@@ -231,9 +231,10 @@ print(x) #is x changed?
 #+RESULTS:
 : 1
 
-*** Python lists :code:
+*** Python lists 													   :code:
 
 A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+
 #+BEGIN_SRC python
 x = [1, 2, 3, 4]
 return x[3] # returns the last element of the list
@@ -269,8 +270,7 @@ return x # what would the value of x be?
 #+RESULTS:
 | -1 | -2 |
 
-
-*** Numpy arrays 													   :code:
+*** Numpy arrays 													   :advanced:code:
 
 Because lists are very flexible, they are a bit slow. A special type
 of object, an array, is used to handle lists of numbers. This is not
@@ -292,8 +292,7 @@ return x
 | 1 | -2 |
 
 
-
-*** Pandas and Histograms :plot:code:
+*** Pandas and Histograms 										  :plot:code:
 	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 	
 	Pandas is a module for 
@@ -335,8 +334,7 @@ X['Height (cm)'].hist() #directly plot the histogram
 
 
 
-
-*** Randomess
+*** Randomness 												  :code:activity:
  1. Random algorithms using coins.
 #+BEGIN_SRC python
   y = 0 # y is a variable, with the value zero currently
@@ -394,21 +392,21 @@ will land on. Why is that? The second is versus uncertainty about the
 coin bias: is the probability of landing heads exactly 50%? How can we
 quantify this? What does it depend on? Discuss in class.
 
-
-*** Uncertainty
+*** Uncertainty 												   :activity:
 
 **** The number of immigrants :
 Consider the following question: how many immigrants live in
 Switzerland?  
 
-In-class discussion: what do we mean by that?
+1. In-class discussion: what do we mean by that?
 
-Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
 
-Now let us create some confidence intervals. The procedure is as
+What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+3. Now let us create some confidence intervals. The procedure is as
 follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
-
-Are you willing to take an even bet that the true number is between 5-10%?
+(a) Are you willing to take an even bet that the true number is between [5-10%]?
 
    
 
@@ -519,7 +517,6 @@ A jar with coins is passed around the class.
 (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
 
-
 ** Bayesian analysis
 Recall the definition of Conditional probability:
 
@@ -599,28 +596,20 @@ initial belief be?
 Write a program that updates the beliefs sequentially given
 observations and station predictions.
 
-
 ** Hypothesis testing
 
 *** Homework assignment: Define a data collection and analysis problem
+* Advanced visualisation
+** Geographical data
+https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
+** Text data
+** 
 * Data analysis in practice
-** The garden of many paths
+** Survey data: The garden of many paths
+
 ** Visualising fMRI data
 ** Visualising GWAS data
 *** Homework assignment: Visualisation of a project
-* Social issues (if there is time)
-** Privacy: randomised response
-** Fairness: Experimental analysis
-** Safety: Robustness
-
-
-
-
- 7. Now collect according to your protocol.
-
-
-
-
 
 
 * Assignments
