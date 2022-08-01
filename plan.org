@@ -430,11 +430,13 @@ index $t$?
 *** Plotting lines
 
 Here is a simple example of line plotting. 
-#+BEGIN_SRC python
+#+BEGIN_SRC python :results file :var f="example.png"
 import numpy as np
 X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
 import matplotlib.pyplot as plt # import the plotting library
 plt.plot(x) # perform a standard, simple plot
+plt.savefig(f)
+return f
 #+END_SRC
 
 What are such plots useful for?
@@ -465,9 +467,15 @@ Wikipedia has a table that shows the progression of 1500m world records.
 
 
 
+*** Example: The inclination of Mars 								:example:
+
 *** Example: Stock market prices
 See: Trading Economics
 
+
+
+**** Exponential growth 										  :plot:code:
++
 ** Scatterplots: model a relationship
    1. For the original data: add weight, eye colour, gender, exercise level.
    2. Make a scatterplot of the height and weight
