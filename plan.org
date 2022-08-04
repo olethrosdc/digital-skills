@@ -343,6 +343,26 @@ X['Height (cm)'].hist() #directly plot the histogram
 
 
 
+*** Histograms vs Pie Charts
+
+While histograms are good visualisations of distributions on the real
+line, distributions over a discrete set of possible values are
+best-represented by a pie-chart. This especially if there is no relation between 
+
+Where the advantages and disadvantages of pie charts and histograms?
+
+|--------------------------+-----------+-----------|
+|                          | Histogram | Pie Chart |
+|--------------------------+-----------+-----------|
+| To show proportions      |           |           |
+| For more categories      |           |           |
+| To compare relative size |           |           |
+| For real-value data      |           |           |
+|--------------------------+-----------+-----------|
+
+#+BEGIN_SRC: python
+plt.pie(counts) # plot counts
+#+END_SRC
 
 *** Randomness 												  :code:activity:
  1. Random algorithms using coins.
