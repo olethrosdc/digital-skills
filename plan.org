@@ -342,7 +342,6 @@ X['Height (cm)'].hist() #directly plot the histogram
 #+END_SRC
 
 
-
 *** Histograms vs Pie Charts
 
 While histograms are good visualisations of distributions on the real
@@ -357,7 +356,7 @@ Where the advantages and disadvantages of pie charts and histograms?
 | To show proportions      |           |           |
 | For more categories      |           |           |
 | To compare relative size |           |           |
-| For real-value data      |           |           |
+| For real-valued data     |           |           |
 |--------------------------+-----------+-----------|
 
 #+BEGIN_SRC: python
@@ -510,7 +509,22 @@ See: Trading Economics
 
 *** Example: Stock market, Unemployment, GDP
 	
-** Homework Assignment: Take an existing plot from the web, re-create it, and try to improve it.
+** Homework Assignment: Fix a bad plot
+
+TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+
+Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
+
+- Is the plot type appropriate?
+- Is the data correct?
+- Does the plot convey an appropriate message?
+- Is thee more data somewhere that you could combine with the original to obtain a better picture?
+
+After you have identified problems with the plot, data sources, or
+missing data, create a new plot, along with an explanation of how you
+addressed the original plot's deficiencies.
+
+
 * Experiment design   
 ** Random sampling
 1. Pure random sampling.
