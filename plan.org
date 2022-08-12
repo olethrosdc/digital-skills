@@ -157,514 +157,510 @@ can be used in the context of some assignments.
 
 
 
-* Visualisation as models and data summary
+* Modules
+** Visualisation as models and data summary
 
-What is visualisation? It is a way to /summarise data/. It is also a way
-to view relationships between variables. Visualisation helps us to
-find patterns and understand the underlying laws behind how the data
-was generated. This is, in fact, the essence of modelling.
+ What is visualisation? It is a way to /summarise data/. It is also a way
+ to view relationships between variables. Visualisation helps us to
+ find patterns and understand the underlying laws behind how the data
+ was generated. This is, in fact, the essence of modelling.
 
-A model is /also/ a way of summarising the essential features of the
-data. A visualisation differs from a model only in one sense: It easy
-to interpret visually. 
+ A model is /also/ a way of summarising the essential features of the
+ data. A visualisation differs from a model only in one sense: It easy
+ to interpret visually. 
 
-Every data visualisation implicitly assumes a model of the data
-generating process. This is true for even the simplest visualisations,
-like histograms. There is no escape from the fact that any
-visualisation makes a lot of assumptions. We must emphasize what those
-assumptions are. What happens if they are not true?
+ Every data visualisation implicitly assumes a model of the data
+ generating process. This is true for even the simplest visualisations,
+ like histograms. There is no escape from the fact that any
+ visualisation makes a lot of assumptions. We must emphasize what those
+ assumptions are. What happens if they are not true?
 
-Every data visusalisation, then, proceeds in three steps:
+ Every data visusalisation, then, proceeds in three steps:
 
-1. Data transformation
-2. Model creation
-3. Model visualisation
+ 1. Data transformation
+ 2. Model creation
+ 3. Model visualisation
 
-Every model is defined by a number of variables. This is what is
-displayed when we visualise data. You can think of the model as the
-underlying theory, and the visualisation as a way to explain the
-theory visually.
+ Every model is defined by a number of variables. This is what is
+ displayed when we visualise data. You can think of the model as the
+ underlying theory, and the visualisation as a way to explain the
+ theory visually.
 
 
-** Histograms: model a distribution
+*** Histograms: model a distribution
 
-   Histograms are a simple tool for modelling distributions. In their
-simplest application, they are used to simply count the number of items
-in distinct bins of a dataset. While typically employed to represent
-the empirical distribution of one-dimensional variables, they can be
-generalised to multiple dimensions .
+    Histograms are a simple tool for modelling distributions. In their
+ simplest application, they are used to simply count the number of items
+ in distinct bins of a dataset. While typically employed to represent
+ the empirical distribution of one-dimensional variables, they can be
+ generalised to multiple dimensions .
 
-*** Introduction to histograms :theory:statistics:
+**** Introduction to histograms                           :theory:statistics:
 	
-Assume data is in $\Reals$. Then split the real line into intervals
-$[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
-amount of data $n_i(D)$ in the interval. We can also normalise to
-obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
+ Assume data is in $\Reals$. Then split the real line into intervals
+ $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
+ amount of data $n_i(D)$ in the interval. We can also normalise to
+ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
 
-More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
+ More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
 	
-$\{ A_i | i=1, \ldots, k\}$
+ $\{ A_i | i=1, \ldots, k\}$
 
-with associated counts $n_i$, so that, given some data $D$,
+ with associated counts $n_i$, so that, given some data $D$,
 
-$n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
+ $n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
 
-where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+ where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
 
-We can use the histogram as the model of a distribution. For that,
-we use the relative frequency of points in each bin: $p_i(D) =
-n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
-model.
+ We can use the histogram as the model of a distribution. For that,
+ we use the relative frequency of points in each bin: $p_i(D) =
+ n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+ model.
 
-**** Histogram activity :activity:
-1. Introduce the concept of a historgram on the board.
-2. Split the students in two groups.
-3. Have each group collect the height of every student.
-4. How can we summarise the data of each group? 
-5. Now the students will individually draw a histogram from the data of their group.
-6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
-7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+***** Histogram activity                                           :activity:
+ 1. Introduce the concept of a historgram on the board.
+ 2. Split the students in two groups.
+ 3. Have each group collect the height of every student.
+ 4. How can we summarise the data of each group? 
+ 5. Now the students will individually draw a histogram from the data of their group.
+ 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+ 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 
-*** Python variables 												   :code:
+**** Python variables                                                  :code:
 
-Numerical Python variables are very simple entities. Let us go through
-this is easy program for a warm-up.
-#+BEGIN_SRC python
-x = 1 # a variable
-y = 2 # another variable
-print(x+y) # return the value of this variable sum
-x = y # assignment operation: now x has the same value as y
-print(x) #what would this value be?
-y = 3
-print(x) #is x changed?
-#+END_SRC
-#+RESULTS:
-: 1
+ Numerical Python variables are very simple entities. Let us go through
+ this is easy program for a warm-up.
+ #+BEGIN_SRC python
+ x = 1 # a variable
+ y = 2 # another variable
+ print(x+y) # return the value of this variable sum
+ x = y # assignment operation: now x has the same value as y
+ print(x) #what would this value be?
+ y = 3
+ print(x) #is x changed?
+ #+END_SRC
+ #+RESULTS:
+ : 1
 
-*** Python lists 													   :code:
+**** Python lists                                                      :code:
 
-A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+ A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
 
-#+BEGIN_SRC python
-x = [1, 2, 3, 4]
-return x[3] # returns the last element of the list
-#+END_SRC python
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ return x[3] # returns the last element of the list
+ #+END_SRC python
 
-#+RESULTS:
-: 4
+ #+RESULTS:
+ : 4
 
-#+BEGIN_SRC python
-x = [1, 2, 3, 4]
-y = [-1, -2]
-x = y # assignment operation: now x is just a different name for y
-y[0] = 1 # modify the 0th element of y
-return x # what would the value of x be?
-#+END_SRC
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y # assignment operation: now x is just a different name for y
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
 
-#+RESULTS:
-| 1 | -2 |
+ #+RESULTS:
+ | 1 | -2 |
 
-Lists are different in one respect: when we assign one list name to
-another, this does not copy any data. Both names refer to the same
-data. Consequently, if we change the data, it changes for both
-variable names.
+ Lists are different in one respect: when we assign one list name to
+ another, this does not copy any data. Both names refer to the same
+ data. Consequently, if we change the data, it changes for both
+ variable names.
 
-#+BEGIN_SRC python
-x = [1, 2, 3, 4]
-y = [-1, -2]
-x = y.copy() # copy operation: now x has a copy of y's data
-y[0] = 1 # modify the 0th element of y
-return x # what would the value of x be?
-#+END_SRC
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y.copy() # copy operation: now x has a copy of y's data
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
 
-#+RESULTS:
-| -1 | -2 |
+ #+RESULTS:
+ | -1 | -2 |
 
-*** Numpy arrays 													   :advanced:code:
+**** Numpy arrays                                             :advanced:code:
 
-Because lists are very flexible, they are a bit slow. A special type
-of object, an array, is used to handle lists of numbers. This is not
-defined in basic python, but only in one module called /numpy/. Even
-though basic Python has only a few commands, it has many modules that
-extend the language to perform complex tasks without having to code
-everything from scratch.
+ Because lists are very flexible, they are a bit slow. A special type
+ of object, an array, is used to handle lists of numbers. This is not
+ defined in basic python, but only in one module called /numpy/. Even
+ though basic Python has only a few commands, it has many modules that
+ extend the language to perform complex tasks without having to code
+ everything from scratch.
 
-#+BEGIN_SRC python
-import numpy as np
-x = np.array([1, 2, 3, 4])
-y = np.array([-1, -2])
-x = y # assignment operation: 
-y[0] = 1
-return x
-#+END_SRC
+ #+BEGIN_SRC python
+ import numpy as np
+ x = np.array([1, 2, 3, 4])
+ y = np.array([-1, -2])
+ x = y # assignment operation: 
+ y[0] = 1
+ return x
+ #+END_SRC
 
-#+RESULTS:
-| 1 | -2 |
+ #+RESULTS:
+ | 1 | -2 |
 
 
-*** Pandas and Histograms 										  :plot:code:
-	For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+**** Pandas and Histograms                                        :plot:code:
+	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 	
-	Pandas is a module for 
-#+BEGIN_SRC python
-  import pandas as pd # we need to load a library first
-  # loading data into pandas creates a data frame df
-  df['column-name'] # selects a column
-  df.hist() # creates a plot with many histograms
-#+END_SRC
+	 Pandas is a module for 
+ #+BEGIN_SRC python
+   import pandas as pd # we need to load a library first
+   # loading data into pandas creates a data frame df
+   df['column-name'] # selects a column
+   df.hist() # creates a plot with many histograms
+ #+END_SRC
 
-**** Coin example :activity:plot:
+***** Coin example                                            :activity:plot:
 
-Introduce pandas histograms. First with fixed binary data.
-#+BEGIN_SRC python
-X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
-import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
-plt.hist(X) # this function plots the histogram
-#+END_SRC
+ Introduce pandas histograms. First with fixed binary data.
+ #+BEGIN_SRC python
+ X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
+ import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
+ plt.hist(X) # this function plots the histogram
+ #+END_SRC
 
-Each one of you should predict the result of a number of coin tosses.
-Let us do a histogram of the predictions. This is a binomial
-distribution.
+ Each one of you should predict the result of a number of coin tosses.
+ Let us do a histogram of the predictions. This is a binomial
+ distribution.
 
 
 
-1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
-2. Firstly, plot the histogram of the data with default settings.
-3. What is the eff
-Let us look at the student data: see src/histograms/heights.ipynb
+ 1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
+ 2. Firstly, plot the histogram of the data with default settings.
+ 3. What is the eff
+ Let us look at the student data: see src/histograms/heights.ipynb
 
-**** Heights example :activity:
+***** Heights example                                              :activity:
  
-#+BEGIN_SRC python
-import pandas as pd
-X = pd.read_csv("class-data.csv") # read the data into a DataFrame
-X['Height (cm)'].hist() #directly plot the histogram
-#+END_SRC
+ #+BEGIN_SRC python
+ import pandas as pd
+ X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+ X['Height (cm)'].hist() #directly plot the histogram
+ #+END_SRC
 
 
-*** Histograms vs Pie Charts
+**** Histograms vs Pie Charts
 
-While histograms are good visualisations of distributions on the real
-line, distributions over a discrete set of possible values are
-best-represented by a pie-chart. This especially if there is no relation between 
+ While histograms are good visualisations of distributions on the real
+ line, distributions over a discrete set of possible values are
+ best-represented by a pie-chart. This especially if there is no relation between 
 
-Where the advantages and disadvantages of pie charts and histograms?
+ Where the advantages and disadvantages of pie charts and histograms?
 
-|--------------------------+-----------+-----------|
-|                          | Histogram | Pie Chart |
-|--------------------------+-----------+-----------|
-| To show proportions      |           |           |
-| For more categories      |           |           |
-| To compare relative size |           |           |
-| For real-valued data     |           |           |
-|--------------------------+-----------+-----------|
+ |--------------------------+-----------+-----------|
+ |                          | Histogram | Pie Chart |
+ |--------------------------+-----------+-----------|
+ | To show proportions      |           |           |
+ | For more categories      |           |           |
+ | To compare relative size |           |           |
+ | For real-valued data     |           |           |
+ |--------------------------+-----------+-----------|
 
-#+BEGIN_SRC: python
-plt.pie(counts) # plot counts
-#+END_SRC
+ #+BEGIN_SRC: python
+ plt.pie(counts) # plot counts
+ #+END_SRC
 
-*** Randomness 												  :code:activity:
- 1. Random algorithms using coins.
-#+BEGIN_SRC python
-  y = 0 # y is a variable, with the value zero currently
-  import numpy as np # this library has many useful functions
-  x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
-  return x # let's see what value it takes
-#+END_SRC
-#+RESULTS:
-: 33
+**** Randomness                                               :code:activity:
+  1. Random algorithms using coins.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 33
 
-2. Uncertainty versus randomness.
-
-
-3. Coin-flipping experiment
-	1. Everybody flips a coin 10 times.
-	2. Record how many heads or tails you have.
-	3. Then record how you threw the coin.
-	4. Discuss if the coin is really random.
-
-Let us now repeat the experiment with data generated via a computer.
-#+BEGIN_SRC python
-# here is a default way to generate 'random' numbers
-import random
-X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
-plt.hist(X) # everytime we run these commands, we get a different proportion
-#+END_SRC
-
-#+RESULTS:
-
-This python code is completely deterministic. A complicated
-calculation is used to generate the next 'random' number from the
-previous one. Consider this example:
-#+BEGIN_SRC python
-import random
-seed(5) #this sets the 'state' of the random number generating machine
-print(random.uniform(0,1)) # the random number is a function of the state
-print(random.uniform(0,1)) # the state changes after we generate a new number
-print(random.uniform(0,1))
-seed(5) # when we reset the state, we get the same sequence of numbers
-print(random.uniform(0,1)) #
-print(random.uniform(0,1))
-print(random.uniform(0,1))
-#+END_SRC python
-
-For cryptographically strong random numbers you need to use the secrets module:
-#+BEGIN_SRC python
-import secrets
-secrets.choice(range(100))
-#+END_SRC
-
-Let's go back to throwing coins now. Coins are completely
-deterministic.  Whenever we have a specific coin to throw in the air,
-there are two things we do not know. The first is which side the coin
-will land on. Why is that? The second is versus uncertainty about the
-coin bias: is the probability of landing heads exactly 50%? How can we
-quantify this? What does it depend on? Discuss in class.
-
-*** Uncertainty 												   :activity:
-
-**** The number of immigrants :
-Consider the following question: how many immigrants live in
-Switzerland?  
-
-1. In-class discussion: what do we mean by that?
-
-2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
-
-What does this distribution mean? Can we use it as an estimate of uncertainty?
-
-3. Now let us create some confidence intervals. The procedure is as
-follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
-(a) Are you willing to take an even bet that the true number is between [5-10%]?
-
-   
-** Time-Series: model the evolution of a system
-
-A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
-typically assume that this is random. How can we capture this
-dependency between variables? Does the value of $x_t$ depend only on
-the value of $x_{t-1}$? On all the previous values? Only on the time
-index $t$?
-
-*** Plotting lines
-
-Here is a simple example of line plotting. 
-#+BEGIN_SRC python :results file :var f="example.png"
-import numpy as np
-X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
-import matplotlib.pyplot as plt # import the plotting library
-plt.plot(x) # perform a standard, simple plot
-plt.savefig(f)
-return f
-#+END_SRC
-
-What are such plots useful for?
-
-*** Race times :activity:
-https://en.wikipedia.org/wiki/1500_metres_world_record_progression
-
-Wikipedia has a table that shows the progression of 1500m world records.
-1. Let us first [[src/time-series/WorldRecords.py][show the records up to 1950]] .  
-2. Try and predict the progrssion of world records on the board.
-3. Let us now look at the actual graph. Is it what you expected?
-4. How do you expect the progression to continue after 2020?
-5. How do you explain this progression? Can you find data to validate or refute your explanation?
+ 2. Uncertainty versus randomness.
 
 
-**** Scraping tables example :example:data-collection:
-#+BEGIN_SRC python
-  import pandas
-  tables=pandas.read_html("URL") # read a table
-  # convert date-string:
-  dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
-  # string manipulation
-  string.replace("+", "0") # replaces a + with a 0
-  string.split(":") # splits a string into multiple strings
-  # data formats
-  float("12.2"); # converts a number into a float
-#+END_SRC
+ 3. Coin-flipping experiment
+	 1. Everybody flips a coin 10 times.
+	 2. Record how many heads or tails you have.
+	 3. Then record how you threw the coin.
+	 4. Discuss if the coin is really random.
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC python
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is versus uncertainty about the
+ coin bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+**** Uncertainty                                                   :activity:
+
+***** The number of immigrants :
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+
+  
+*** Time-Series: model the evolution of a system
+
+ A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
+ typically assume that this is random. How can we capture this
+ dependency between variables? Does the value of $x_t$ depend only on
+ the value of $x_{t-1}$? On all the previous values? Only on the time
+ index $t$?
+
+**** Plotting lines
+
+ Here is a simple example of line plotting. 
+ #+BEGIN_SRC python :results file :var f="example.png"
+ import numpy as np
+ X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
+ import matplotlib.pyplot as plt # import the plotting library
+ plt.plot(x) # perform a standard, simple plot
+ plt.savefig(f)
+ return f
+ #+END_SRC
+
+ What are such plots useful for?
+
+**** Race times                                                    :activity:
+ https://en.wikipedia.org/wiki/1500_metres_world_record_progression
+
+ Wikipedia has a table that shows the progression of 1500m world records.
+ 1. Let us first [[src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 2. Try and predict the progrssion of world records on the board.
+ 3. Let us now look at the actual graph. Is it what you expected?
+ 4. How do you expect the progression to continue after 2020?
+ 5. How do you explain this progression? Can you find data to validate or refute your explanation?
 
 
-
-*** Example: The inclination of Mars 								:example:
-
-*** Example: Stock market prices
-See: Trading Economics
+***** Scraping tables example :example:data-collection:
+ #+BEGIN_SRC python
+   import pandas
+   tables=pandas.read_html("URL") # read a table
+   # convert date-string:
+   dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
+   # string manipulation
+   string.replace("+", "0") # replaces a + with a 0
+   string.split(":") # splits a string into multiple strings
+   # data formats
+   float("12.2"); # converts a number into a float
+ #+END_SRC
 
 
 
-**** Exponential growth 										  :plot:code:
-+
-** Scatterplots: model a relationship
-   1. For the original data: add weight, eye colour, gender, exercise level.
-   2. Make a scatterplot of the height and weight
-#+BEGIN_SRC python
-  X=[1, 2, 3, 4, 10, 6]
-  Y=[5, 2, 5, 3, 1, 2]
-  Z=[0, 1, 0, 1, 0, 1]
-  import matplotlib.pyplot as plt
-  plt.scatter(X,Y)
-#+END_SRC
-#+RESULTS:
+**** Example: The inclination of Mars                               :example:
+**** Example: Covid                                                 :example:
+**** Example: Stock market prices
+ See: Trading Economics
 
-*** Example: Stock market, Unemployment, GDP
+
+
+***** Exponential growth                                          :plot:code:
+ +
+*** Scatterplots: model a relationship
+    1. For the original data: add weight, eye colour, gender, exercise level.
+    2. Make a scatterplot of the height and weight
+ #+BEGIN_SRC python
+   X=[1, 2, 3, 4, 10, 6]
+   Y=[5, 2, 5, 3, 1, 2]
+   Z=[0, 1, 0, 1, 0, 1]
+   import matplotlib.pyplot as plt
+   plt.scatter(X,Y)
+ #+END_SRC
+ #+RESULTS:
+
+**** Example: Stock market, Unemployment, GDP
 	
-** Homework Assignment: Fix a bad plot
+*** Homework Assignment: Fix a bad plot
 
-TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+ TLDR: Take an existing plot from the web, re-create it, and try to improve it.
 
-Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
+ Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
 
-- Is the plot type appropriate?
-- Is the data correct?
-- Does the plot convey an appropriate message?
-- Is thee more data somewhere that you could combine with the original to obtain a better picture?
+ - Is the plot type appropriate?
+ - Is the data correct?
+ - Does the plot convey an appropriate message?
+ - Is thee more data somewhere that you could combine with the original to obtain a better picture?
 
-After you have identified problems with the plot, data sources, or
-missing data, create a new plot, along with an explanation of how you
-addressed the original plot's deficiencies.
+ After you have identified problems with the plot, data sources, or
+ missing data, create a new plot, along with an explanation of how you
+ addressed the original plot's deficiencies.
 
+** Experiment design   
+*** Random sampling
+ 1. Pure random sampling.
+ 2. Undercounting.
+ 3. Give mode.
+*** A/B testing
+  1. Comparing algorithms in the wild. Which is the best algorithm?
+*** The data science pipeline
+  The experimental pipipeline has a number of different components. 
+  1. Formulating the problem.
+  2. Deciding what type of data is needed.
+  3. Choosing the model and visualisation needed.
+  4. Designing the experimental protocol.
+  5. Generating data confirming to our assumptions.
+  6. Testing the protocol on synthetic data. Is it working as expected?
+*** Homework Assignment: Analyse Newspaper articles
+** Inference
+*** Expectation
+ Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
+ The expectation of a random variable with underlying distribution $P(\omega)$ is simply
+ \[
+ \E_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
+ \]
+ There is nothing random about the variable itself, it is only the random input that makes its value random.
 
-* Experiment design   
-** Random sampling
-1. Pure random sampling.
-2. Undercounting.
-3. Give mode.
-** A/B testing
- 1. Comparing algorithms in the wild. Which is the best algorithm?
-** The data science pipeline
- The experimental pipipeline has a number of different components. 
- 1. Formulating the problem.
- 2. Deciding what type of data is needed.
- 3. Choosing the model and visualisation needed.
- 4. Designing the experimental protocol.
- 5. Generating data confirming to our assumptions.
- 6. Testing the protocol on synthetic data. Is it working as expected?
-** Homework Assignment: Analyse Newspaper articles
-* Inference
-** Expectation
-Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
-The expectation of a random variable with underlying distribution $P(\omega)$ is simply
-\[
-\E_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
-\]
-There is nothing random about the variable itself, it is only the random input that makes its value random.
+ #+BEGIN_SRC python
+   def random_variable(omega):
+       return omega * omega
+ #+END_SRC
 
-#+BEGIN_SRC python
-  def random_variable(omega):
-      return omega * omega
-#+END_SRC
+**** Centime exercise
 
-*** Centime exercise
+ A jar with coins is passed around the class. 
+ 1. The students are asked to guess how many coins it contains.
+ 2. The students agree on a 50% confidence interval.
+ 3. The students fit a [[https://en.wikipedia.org/wiki/Normal_distribution][normal distribution]] on this interval $[\mu - \frac{2}{3}\sigma, \mu + \frac{2}{3}\sigma]$.
+ 4. Is this normal distribution a good choice? Are you 90\% sure the number of coins is less than $x$?
+ 5. Is a normal distribution generally appropriate?
+ 6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
+ (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
-A jar with coins is passed around the class. 
-1. The students are asked to guess how many coins it contains.
-2. The students agree on a 50% confidence interval.
-3. The students fit a [[https://en.wikipedia.org/wiki/Normal_distribution][normal distribution]] on this interval $[\mu - \frac{2}{3}\sigma, \mu + \frac{2}{3}\sigma]$.
-4. Is this normal distribution a good choice? Are you 90\% sure the number of coins is less than $x$?
-5. Is a normal distribution generally appropriate?
-6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
-(If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
+*** Bayesian analysis
+ Recall the definition of Conditional probability:
 
+ $P(A | B) = P(A \cap B) / P(B)$,
 
-** Bayesian analysis
-Recall the definition of Conditional probability:
+ i.e. the probability of A given B is the probability of A and B happening divided by the probability of B.
 
-$P(A | B) = P(A \cap B) / P(B)$,
+ From this it follows that
 
-i.e. the probability of A given B is the probability of A and B happening divided by the probability of B.
+ $P(B | A) = P(A \cap B) / P(A)$.
 
-From this it follows that
+ Combining the two equations, we obtain:
 
-$P(B | A) = P(A \cap B) / P(A)$.
+ $P(A | B) = P(B | A) P (A) / P(B)$.
 
-Combining the two equations, we obtain:
+ So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
-$P(A | B) = P(B | A) P (A) / P(B)$.
+**** The covid test problem
+ 10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
+ you have covid, the test is correct 80% of the time, i.e. P(positive |
+ covid) = 0.8. Conversely, if you do not have covid, there is still a
+ 10% chance of a positive test, with P(positive | not-covid) = 0.1
 
-So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
+ How likely is it that you have covid if your test is positive or negative, i.e.
+ P(covid | positive), vs. P(covid | negative)?
 
-*** The covid test problem
-10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
-you have covid, the test is correct 80% of the time, i.e. P(positive |
-covid) = 0.8. Conversely, if you do not have covid, there is still a
-10% chance of a positive test, with P(positive | not-covid) = 0.1
+ First of all, each one of you should independently generate a uniform random
+ number between 1 and 10. For that, you can pass along a 10-sided die.
 
-How likely is it that you have covid if your test is positive or negative, i.e.
-P(covid | positive), vs. P(covid | negative)?
+**** The cards problem
+ 1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+ 2. Get a card (say with face A), and ask what is the probability the other side is the same.
+ 3. Have the students perform the experiment with:
+    1. Draw a random card.
+    2. Count the number of people with A.
+    3. Of those, count the number of people with A on the other side.
+    4. It should be clear that 1/3 of people have [A|A] and of those 
 
-First of all, each one of you should independently generate a uniform random
-number between 1 and 10. For that, you can pass along a 10-sided die.
+**** The k-Meteorologists problem
 
-*** The cards problem
-1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
-2. Get a card (say with face A), and ask what is the probability the other side is the same.
-3. Have the students perform the experiment with:
-   1. Draw a random card.
-   2. Count the number of people with A.
-   3. Of those, count the number of people with A on the other side.
-   4. It should be clear that 1/3 of people have [A|A] and of those 
+ Bayesian reasoning is most useful in the following setting:
 
-*** The k-Meteorologists problem
+ - We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
+ - We have a prior distribution $P(\theta)$ over the models.
+ - We obtain data $D$ for whiche very model assigns a probabiltiy $P_\theta(D)$.
+ - We calculate the posterior distribution
+ $P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
+ - This tells us how likely each model is given the data.
 
-Bayesian reasoning is most useful in the following setting:
+ In this example, we have $k$ meteorological stations, each one of
+ which gives us the probability that it will rain. 
 
-- We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
-- We have a prior distribution $P(\theta)$ over the models.
-- We obtain data $D$ for whiche very model assigns a probabiltiy $P_\theta(D)$.
-- We calculate the posterior distribution
-$P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
-- This tells us how likely each model is given the data.
-
-In this example, we have $k$ meteorological stations, each one of
-which gives us the probability that it will rain. 
-
-The table below gives the probability of rain according to each
-station.
+ The table below gives the probability of rain according to each
+ station.
 
 
-#+CAPTION: Rain probabilities and events
-| Station       | Day 1 | Day 2 | Day 3 |
-|---------------+-------+-------+-------|
-| MeteoSuisse   |   70% |       |       |
-| Chris's Model |   50% |       |       |
-|---------------+-------+-------+-------|
-| Actual rain   |       |       |       |
-|---------------+-------+-------+-------|
+ #+CAPTION: Rain probabilities and events
+ | Station       | Day 1 | Day 2 | Day 3 |
+ |---------------+-------+-------+-------|
+ | MeteoSuisse   |   70% |       |       |
+ | Chris's Model |   50% |       |       |
+ |---------------+-------+-------+-------|
+ | Actual rain   |       |       |       |
+ |---------------+-------+-------+-------|
 
-The table below is our belief at the beginning of each day, about
-which station is overall best in predicting rain. What should our
-initial belief be?
+ The table below is our belief at the beginning of each day, about
+ which station is overall best in predicting rain. What should our
+ initial belief be?
 
-#+CAPTION: Belief at start of day
-| Belief        | Day 1 | Day 2 | Day 3 | Day 4 |
-|---------------+-------+-------+-------+-------|
-| MeteoSuisse   |   90% |       |       |       |
-| Chris's Model |   10% |       |       |       |
-|---------------+-------+-------+-------+-------|
+ #+CAPTION: Belief at start of day
+ | Belief        | Day 1 | Day 2 | Day 3 | Day 4 |
+ |---------------+-------+-------+-------+-------|
+ | MeteoSuisse   |   90% |       |       |       |
+ | Chris's Model |   10% |       |       |       |
+ |---------------+-------+-------+-------+-------|
 
-Write a program that updates the beliefs sequentially given
-observations and station predictions.
+ Write a program that updates the beliefs sequentially given
+ observations and station predictions.
 
-** Hypothesis testing
+*** Hypothesis testing
 
-*** Homework assignment: Define a data collection and analysis problem
-* Advanced visualisation
-** Geographical data
-https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
-** Text data
-** 
-* Data analysis in practice
-** Survey data: The garden of many paths
+**** Homework assignment: Define a data collection and analysis problem
+** Advanced visualisation
+*** Geographical data
+ https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
+*** Text data
+** Data analysis in practice
+*** Survey data: The garden of many paths
 
-** Visualising fMRI data
-** Visualising GWAS data
-*** Homework assignment: Visualisation of a project
-
+*** Visualising fMRI data
+*** Visualising GWAS data
+**** Homework assignment: Visualisation of a project
 
 * Assignments
 The course contains four assignments. The instructions for each assignment are given below.
-
 ** Table To Picture
 Fina  table in wikipedia on a topic of interest, and convert the table into a graph.
 ** Project Highlight
@@ -727,69 +723,71 @@ independently of the other courses. You should expect to cover the
 same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
-|--------+---------------------------+--------------+--------------------------+----------------|
-| Week   | Statistics                | Programming  | Coursework               | Assignment     |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 1      | Course intro              | Python intro | Histograms               |                |
-| 23 Sep |                           |              | Randomness               |                |
-|        |                           |              | Uncertainty              | Math score     |
-|        |                           |              | Discrete Variables       |                |
-|        |                           |              | Continuous Variables     |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 2      | R Intro                   | Data types   | Time-Series              |                |
-| 30 Sep | Data manipulation         |              | Linear functions         |                |
-|        | Histograms                |              | Stock market prices      |                |
-|        | Scatterplots              |              | Crime statistics         |                |
-|        | Boxplots                  |              | S&P index                |                |
-|        | Variable types            |              | World Records            |                |
-|        | Mosaic plots              |              |                          |                |
-|        | Functions                 |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 3      | Quantifying Variability   | Control      | Scatterplots             |                |
-| 7 Oct  | Distribution              |              | Unemployment             | Form Project   |
-|        | Density function          |              |                          | Groups         |
-|        | Histograms                |              |                          |                |
-|        | Skewness                  |              |                          |                |
-|        | Quantiles                 |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 4      | Qualitative vars in R     | Structures   | Random Sampling          |                |
-| 14 Oct | Discrete vars in R        |              | Undercounting            | Table2Picture  |
-|        |                           |              | Representative samples   |                |
-|        |                           |              | [Project Proposal]       |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 5      | Continous RV              | Functions    | A/B Testing              |                |
-| 21 Oct |                           |              | Comparing two algorithms | Highlight      |
-|        |                           |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 6      | Continuous RV             | Complements  | Pipelines                |                |
-| 28 Oct |                           |              | Simulation studies       | Deconstruction |
-|        |                           |              | [Project Highlihgt]      |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 7      | Continuous RV             | Classes      | Expectations             | Newspaper      |
-| 4 Nov  |                           |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 8      | Dependencies.             | Objects      | Bayesian inference       |                |
-| 11 Nov | Joint distribution.       |              |                          | CopyMaster     |
-|        | Conditional distribution. |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 9      | Moments                   | Errors       | Hypothesis tesing        | Simulation     |
-| e      |                           |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 10     | Covariance                | Iterators    | The Garden of Many Paths |                |
-| 25 Nov | Correlation               |              |                          |                |
-|        | Scatterplots              |              | [Newspaper article]      |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 11     | Prices, returns           | FP           | Visualising fMRI data    |                |
-| 2 Dec  |                           |              | [Newspaaper article]     |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 12     | Conditional expectations  |              | Visualising GWAS data    |                |
-| 9 Dec  |                           |              |                          |                |
-|--------+---------------------------+--------------+--------------------------+----------------|
-| 13     |                           |              | [Project presentations]  |                |
-| 16 Dec |                           |              |                          | Project        |
-|--------+---------------------------+--------------+--------------------------+----------------|
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| Week   | Statistics                | Programming  | Coursework               | Assignment      |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 1      | Course intro              | Python intro | Histograms               |                 |
+| 23 Sep |                           |              | Randomness               |                 |
+|        |                           |              | Uncertainty              | Math score      |
+|        |                           |              | Discrete Variables       |                 |
+|        |                           |              | Continuous Variables     |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 2      | R Intro                   | Data types   | Time-Series              | Form groups     |
+| 30 Sep | Data manipulation         |              | Linear functions         |                 |
+|        | Histograms                |              | Stock market prices      |                 |
+|        | Scatterplots              |              | Crime statistics         |                 |
+|        | Boxplots                  |              | S&P index                |                 |
+|        | Variable types            |              | World Records            |                 |
+|        | Mosaic plots              |              |                          |                 |
+|        | Functions                 |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 3      | Quantifying Variability   | Control      | Scatterplots             |                 |
+| 7 Oct  | Distribution              |              | Unemployment             | Table2picture   |
+|        | Density function          |              |                          |                 |
+|        | Histograms                |              |                          |                 |
+|        | Skewness                  |              |                          |                 |
+|        | Quantiles                 |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 4      | Qualitative vars in R     | Structures   | Random Sampling          |                 |
+| 14 Oct | Discrete vars in R        |              | Undercounting            | Deconstruction  |
+|        |                           |              | Representative samples   |                 |
+|        |                           |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 5      | Continous RV              | Functions    | A/B Testing              |                 |
+| 21 Oct |                           |              | Comparing two algorithms | Proposal        |
+|        |                           |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 6      | Continuous RV             | Complements  | Pipelines                |                 |
+| 28 Oct |                           |              | Simulation studies       | Newspaper       |
+|        |                           |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 7      | Continuous RV             | Classes      | Expectations             |                 |
+| 4 Nov  |                           |              |                          | Proj. Highlight |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 8      | Dependencies.             | Objects      | Bayesian inference       |                 |
+| 11 Nov | Joint distribution.       |              |                          | CopyMaster      |
+|        | Conditional distribution. |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 9      | Moments                   | Errors       | Hypothesis tesing        |                 |
+| e      |                           |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 10     | Covariance                | Iterators    | The Garden of Many Paths |                 |
+| 25 Nov | Correlation               |              |                          | Simulation      |
+|        | Scatterplots              |              | [Newspaper article]      |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 11     | Prices, returns           | FP           | Visualising fMRI data    |                 |
+| 2 Dec  |                           |              | [Newspaaper article]     |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 12     | Conditional expectations  |              | Visualising GWAS data    |                 |
+| 9 Dec  |                           |              |                          |                 |
+|--------+---------------------------+--------------+--------------------------+-----------------|
+| 13     |                           |              | [Project presentations]  |                 |
+| 16 Dec |                           |              |                          | Project         |
+|--------+---------------------------+--------------+--------------------------+-----------------|
 
 * References and External links
+
+- Data Science Par La Pratique
 
 ** Data sources
 
