@@ -122,7 +122,6 @@ quantify uncertainty.
 | Synthesis: Identify key features of the analysiand interpret results | Conclusions are missing, incorrect, or not made based on analysis | Conclsions reasonable, but partially correct or incomplete. | Relevant conclusions explicitly connected to analysis and context. |
 
 
-
 *Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
 added for every 'advanced' skill and reemoved for every 'needs
 improvement skill'. Thus the passing grades are 50-100%.
@@ -155,10 +154,15 @@ tabular data, as well as more contextual information. It is possible
 to also discuss newspaper articles. Wikipedia and newspaper articles
 can be used in the context of some assignments.
 
+*** Economics data
+
+- [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
+- [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
+
 
 
 * Modules
-** Visualisation as models and data summary
+** Visualisation as models and data summary (3 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -525,7 +529,7 @@ can be used in the context of some assignments.
  missing data, create a new plot, along with an explanation of how you
  addressed the original plot's deficiencies.
 
-** Experiment design   
+** Experiment design  (3 weeks)
 *** Random sampling
  1. Pure random sampling.
  2. Undercounting.
@@ -541,7 +545,7 @@ can be used in the context of some assignments.
   5. Generating data confirming to our assumptions.
   6. Testing the protocol on synthetic data. Is it working as expected?
 *** Homework Assignment: Analyse Newspaper articles
-** Inference
+** Inference (2 weeks)
 *** Expectation
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
@@ -648,11 +652,11 @@ can be used in the context of some assignments.
 *** Hypothesis testing
 
 **** Homework assignment: Define a data collection and analysis problem
-** Advanced visualisation
+** Advanced visualisation (2 weeks)
 *** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
 *** Text data
-** Data analysis in practice
+** Data analysis in practice (2 weeks)
 *** Survey data: The garden of many paths
 
 *** Visualising fMRI data
@@ -660,21 +664,47 @@ can be used in the context of some assignments.
 **** Homework assignment: Visualisation of a project
 
 * Assignments
-The course contains four assignments. The instructions for each assignment are given below.
+
+The course contains assignments and a project. The instructions for
+each assignment are given below. The assignments are largely done in
+class, but completed at home.
+
 ** Table To Picture
-Fina  table in wikipedia on a topic of interest, and convert the table into a graph.
-** Project Highlight
+Find a table in wikipedia on a topic of interest, and convert the table into a graph.
 ** Plot deconstruction
-In this assignment, you will take a plot from an online source and figure out
+In this assignment, you will take a plot from an online source or newspape article, explain it and improve it.
+
+
 ** Newspaper article analysis
+In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.
 
 ** Simulation study
-Vay parameter values and simulate thousands of teimes under each set of conditions. 
-Summarise your findings graphically. 
+
+For a simple visualisation problem, vary parameter values and simulate
+thousands of times under each set of conditions. Summarise your
+findings graphically.
+
 ** Copy the master
+
+You are given a visualisation constructed from a given dataset. You must create a similar visualisation from another dataset.
+
 ** Open project
+*** Project proposal
+Propose a problem to solve, including:
+- Hypotheses to test
+- How to collect data
+- How to analyse the collected data
+*** Project Highlight
+After you have started your project, each one of the project members presents a preliminary plot and explains it (5 minutes).
+*** Project report
+
+The completed project should include a report written by both students
+in the team. This should should address the points in the [[*Assessment][Assessment]]
+description.
 
 * Notation
+For convenience, I include necessary mathematical notation
+
 ** Sets
 - $\Reals$: Real numbers
 - $\Reals^d$: d-dimensional Euclidean space
@@ -714,6 +744,9 @@ Summarise your findings graphically.
 8. Geographical/topological maps
 9. Network graphs
 10. Word cloud
+
+See also: [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
+
 
 * Schedule and links to other courses
 
@@ -785,26 +818,12 @@ either statistical theory or programming.
 | 16 Dec |                           |              |                          | Project         |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 
-* References and External links
-
-- Data Science Par La Pratique
-
-** Data sources
-
-- UCI [[https://archive.ics.uci.edu/ml/index.php][Machine Learning Repository]]
-- [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
-- [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
-- [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
 
 
-
-** Visualisation wokshops and books
-https://www.dagstuhl.de/program/calendar/partlist/?semnr=22261&SUOG
+* References
 https://vishub.net/bach
-https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
-https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 
 The Truthful Art, Cairo, Alberto :book:
-
+Data Science Par La Pratique
 
 
