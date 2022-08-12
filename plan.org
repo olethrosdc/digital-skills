@@ -751,9 +751,9 @@ For convenience, I include necessary mathematical notation
 - $A \setminus B$: Removing B from A
 - $\Omega$: The "universe"
 - $A^c = \Omega \setminus A$: The complement of a set.
-- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+- $\{x | f(x) = 0\}$: The set of x so that $f(x) = 0$.
 ** Analysis
-- $\ind{x \in A}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
+- $\mathbb{I}\{x \in A\}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
 - $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
 - $d/dx f(x)$: derivative of $f$
 - $\partial/\partial x f(x,y)$: partial derivative of $f$
@@ -793,7 +793,7 @@ same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| Week   | Statistics                | Programming  | Coursework               | Assignment      |
+| Week   | Statistics                | Programming  | Coursework               | Homework        |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 1      | Course intro              | Python intro | Histograms               |                 |
 | 23 Sep |                           |              | Randomness               |                 |
@@ -818,12 +818,12 @@ either statistical theory or programming.
 |        | Quantiles                 |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 4      | Qualitative vars in R     | Structures   | Random Sampling          |                 |
-| 14 Oct | Discrete vars in R        |              | Undercounting            | Deconstruction  |
+| 14 Oct | Discrete vars in R        |              | Undercounting            | Proposal        |
 |        |                           |              | Representative samples   |                 |
 |        |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 5      | Continous RV              | Functions    | A/B Testing              |                 |
-| 21 Oct |                           |              | Comparing two algorithms | Proposal        |
+| 21 Oct |                           |              | Comparing two algorithms | Deconstruction  |
 |        |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 6      | Continuous RV             | Complements  | Pipelines                |                 |
