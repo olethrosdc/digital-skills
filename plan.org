@@ -834,20 +834,20 @@ either statistical theory or programming.
 | 4 Nov  |                           |              |                          | Proj. Highlight |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 8      | Dependencies.             | Objects      | Bayesian inference       |                 |
-| 11 Nov | Joint distribution.       |              |                          | CopyMaster      |
+| 11 Nov | Joint distribution.       |              |                          | Project         |
 |        | Conditional distribution. |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| 9      | Moments                   | Errors       | Hypothesis tesing        |                 |
+| 9      | Moments                   | Errors       | Hypothesis tesing        | Project         |
 | e      |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 10     | Covariance                | Iterators    | The Garden of Many Paths |                 |
 | 25 Nov | Correlation               |              |                          | Simulation      |
-|        | Scatterplots              |              | [Newspaper article]      |                 |
+|        | Scatterplots              |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 11     | Prices, returns           | FP           | Visualising fMRI data    |                 |
-| 2 Dec  |                           |              | [Newspaaper article]     |                 |
+| 2 Dec  |                           |              |                          | Project         |
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| 12     | Conditional expectations  |              | Visualising GWAS data    |                 |
+| 12     | Conditional expectations  |              | Visualising GWAS data    | Project         |
 | 9 Dec  |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 13     |                           |              | [Project presentations]  |                 |
