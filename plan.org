@@ -221,6 +221,8 @@ can be used in the context of some assignments.
  n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
  model.
 
+See also: https://en.wikipedia.org/wiki/Histogram
+
 ***** Histogram activity                                           :activity:
  1. Introduce the concept of a historgram on the board.
  2. Split the students in two groups.
@@ -426,6 +428,41 @@ can be used in the context of some assignments.
  coin bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
 
+**** Probability 													 :theory:
+
+***** Probability measure :theory:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A "universe" $\Omega$ of outcomes
+- The algebra $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+A probability measure $P: \Sigma \to [0,1]$ on $\Omega$ satisfies the following axioms
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+***** Random variable :theory:
+
+A real-valued random variable $f : \Omega \to \Reals$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omsga$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+
 **** Uncertainty                                                   :activity:
 
 ***** The number of immigrants :
@@ -441,7 +478,6 @@ can be used in the context of some assignments.
  3. Now let us create some confidence intervals. The procedure is as
  follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
  (a) Are you willing to take an even bet that the true number is between [5-10%]?
-
   
 *** Time-Series: model the evolution of a system
 
@@ -514,20 +550,7 @@ can be used in the context of some assignments.
 
 **** Example: Stock market, Unemployment, GDP
 	
-*** Homework Assignment: Fix a bad plot
 
- TLDR: Take an existing plot from the web, re-create it, and try to improve it.
-
- Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
-
- - Is the plot type appropriate?
- - Is the data correct?
- - Does the plot convey an appropriate message?
- - Is thee more data somewhere that you could combine with the original to obtain a better picture?
-
- After you have identified problems with the plot, data sources, or
- missing data, create a new plot, along with an explanation of how you
- addressed the original plot's deficiencies.
 
 ** Experiment design  (3 weeks)
 *** Random sampling
@@ -672,7 +695,20 @@ class, but completed at home.
 ** Table To Picture
 Find a table in wikipedia on a topic of interest, and convert the table into a graph.
 ** Plot deconstruction
-In this assignment, you will take a plot from an online source or newspape article, explain it and improve it.
+
+ TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+
+ Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
+
+ - Is the plot type appropriate?
+ - Is the data correct?
+ - Does the plot convey an appropriate message?
+ - Is thee more data somewhere that you could combine with the original to obtain a better picture?
+
+ After you have identified problems with the plot, data sources, or
+ missing data, create a new plot, along with an explanation of how you
+ addressed the original plot's deficiencies.
+
 
 
 ** Newspaper article analysis
@@ -821,8 +857,13 @@ either statistical theory or programming.
 
 
 * References
-https://vishub.net/bach
 
+Python help: Use python's !help! function whenever you can. 
+#+BEGIN_SRC python
+help(print)
+#+END_SRC
+
+https://vishub.net/bach
 The Truthful Art, Cairo, Alberto :book:
 Data Science Par La Pratique
 

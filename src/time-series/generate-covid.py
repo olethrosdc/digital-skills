@@ -9,16 +9,17 @@ R_reinfect = 1.2 # reinfection rate
 R_cure = 0.1 # cure rate
 R_death = 0.001 # death rate
 P_sym_if_inf = 0.5 #probability of symptoms if infected
-P_test_if_sym = 0.1 # probability of getting tested if symptomatic (daily)
-P_test_if_not_sym = 0.01 # probability of getting tested if non-symptomatic (but maybe with other symptoms)
+P_test_if_sym = 0.01 # probability of getting tested if symptomatic (daily)
+P_test_if_not_sym = 0.01 # probability of getting tested if non-symptomatic (regardless of being infected)
 P_positive_if_inf = 0.5 # probability of a positive test if infected
 P_positive_if_not_inf = 0.001 # probability of a positive test if not infected
 
-T = 320
+T = 180
 n_infections = np.zeros(T)
 n_deaths = np.zeros(T)
 n_tests = np.zeros(T)
 n_positive_tests = np.zeros(T)
+print("deaths,positive,tests")
 for t in range(T):
     n_infections[t] = n_inf # record the (unknown) number of infections
     n_sym = np.random.binomial(n_inf, P_sym_if_inf) # the number of symtomatic people is random
@@ -52,5 +53,5 @@ for t in range(T):
     R_tr = R_zero * (1 - R_immune) + R_reinfect * R_immune
     n_inf = round(n_inf * R_tr) - n_cured# multiply the infected people
 
-    print(n_death, n_pos, n_tests)
+    print("%d,%d,%d" % (n_death, n_pos, n_tests))
 
