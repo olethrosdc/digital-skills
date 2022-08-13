@@ -528,6 +528,11 @@ See also: https://en.wikipedia.org/wiki/Random_variable
 
 
 **** Example: The inclination of Mars                               :example:
+
+1. Plot Mars data
+2. Show orbits
+3. 3-body system, chaos and randomness
+   
 **** Example: Covid                                                 :example:
 **** Example: Stock market prices
  See: Trading Economics
