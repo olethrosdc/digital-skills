@@ -684,7 +684,9 @@ See also: https://en.wikipedia.org/wiki/Random_variable
 2. Colour as a discrete variable.
 3. Colour perception and interpretation.
 **** Contour maps
-	 
+1. Geographical contour
+2. Density plots
+   	 
 *** Text data
 ** Data analysis in practice (2 weeks)
 *** Survey data: The garden of many paths
