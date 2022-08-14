@@ -13,12 +13,13 @@
 * Introduction
 
 This is a hands-on course that integrates introductory programming,
-statistics and data science. Through out this course, we wil formulate
-scientific hypotheses, design experiments, and collect and analyse
-data visually and formal models. You are expected to supplement this
-course with readings from other courses in descriptive statistics and
-python programming, but no prior knowledge is assumed. Formal concepts
-will be introduced through class activities and examples.
+statistics and data science. Through out this course, we will
+formulate scientific hypotheses, design experiments, and collect and
+analyse data visually and through formal models. You are expected to
+supplement this course with homework, self-study and other courses in
+descriptive statistics and python programming, but no prior knowledge
+is assumed. Formal concepts will be introduced through class
+activities and examples.
 
 The course will focus neither on statistical theory nor on
 programming. We will only lightly build those skills within the
@@ -71,9 +72,9 @@ Scentific goals: Statistics, analysis and experiment design
 ** Assessment
 
 The assessment is purely through in-class exercises, quizzes and
-homework assignments. There will be three larger assignments spread
-over the semester, as well as a group project. All exercises,
-assignments and project will be performed in pairs.
+homework assignments. There will be assignments spread over the
+semester, as well as a group project. The project will be performed in
+pairs.
 
 For all assignment and the project, the following rubrik is used. Some
 of the assignments may not involve all parts.
