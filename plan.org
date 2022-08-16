@@ -725,10 +725,10 @@ Find a table in wikipedia on a topic of interest, and convert the table into a g
  missing data, create a new plot, along with an explanation of how you
  addressed the original plot's deficiencies.
 
-
-
 ** Newspaper article analysis
-In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.
+In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says. The following articles
+https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
+
 
 ** Simulation study
 
