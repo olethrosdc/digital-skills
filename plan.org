@@ -726,8 +726,9 @@ Find a table in wikipedia on a topic of interest, and convert the table into a g
  addressed the original plot's deficiencies.
 
 ** Newspaper article analysis
-In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says. The following articles
-https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
+In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.  You must study the article criticially. Are the conclusions supported by the data? Does the methodology make sens? Find primary sources that confirm or challenge the article to obtain a more rounded picture.
+ https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
+- https://neurosciencenews.com/chickenpox-virus-alzheimers-21145/
 
 
 ** Simulation study
