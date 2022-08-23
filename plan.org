@@ -535,6 +535,10 @@ See also: https://en.wikipedia.org/wiki/Random_variable
 3. 3-body system, chaos and randomness
    
 **** Example: Covid                                                 :example:
+
+1. Plot covid data.
+2. Smooth the data: moving average plots
+
 **** Example: Stock market prices
  See: Trading Economics
 
