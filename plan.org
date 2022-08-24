@@ -488,6 +488,40 @@ See also: https://en.wikipedia.org/wiki/Random_variable
  the value of $x_{t-1}$? On all the previous values? Only on the time
  index $t$?
 
+ Typicallyy, sequential observations of a variable $x_t$ are in fact
+ noisy measurements of the true variable of interest, $y_t$, which we
+ never observe. As an example, consider covid infections. There is a
+ true, underlying, number of infections, but we only ever measure the
+ number of positive cases detected in a day. 
+
+ Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+
+ 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
+
+
+These problems are all related and can be formalised in a statistical
+manner, and there are multiple algorithms that can be used to solve
+each problem. We focus here on a simple moving average for each problem.
+
+*Smoothing* For smoothing, a moving average filter is typically
+sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+noisy measurement of $y$. Then we can construct the estimator
+\[
+\hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
+\]
+
+*Filtering* When we wish to filter, at best we can take the moving
+average from the past $n$ observations. If $n$ is very large, then
+there is a a corresponding delay between our filtering and the final
+prediction.
+\[
+\hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+
+
+
 **** Plotting lines
 
  Here is a simple example of line plotting. 
