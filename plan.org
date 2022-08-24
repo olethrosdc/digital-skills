@@ -503,7 +503,9 @@ See also: https://en.wikipedia.org/wiki/Random_variable
 
 These problems are all related and can be formalised in a statistical
 manner, and there are multiple algorithms that can be used to solve
-each problem. We focus here on a simple moving average for each problem.
+each problem.  When $x_t = y_t$, then smoothing and filtering are
+trivial, but prediction is still an important problem.  We focus here
+on a simple linear transformation such as the moving average as a basic solution method.
 
 *Smoothing* For smoothing, a moving average filter is typically
 sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
@@ -518,6 +520,20 @@ there is a a corresponding delay between our filtering and the final
 prediction.
 \[
 \hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+The only way to remove the lag is to perform a more complex
+transformation of the original data. To see this, consider the problem
+of prediction.
+
+
+*Prediction* Prediction means estimating something in the future. This
+task is never trivial, even with perfect observations, i.e. when $x_t
+= y_t$. In this setting moving averages do not make sense. A simple
+idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
+y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
+This gives us the estimator:
+\[
+\hat{y}_{t+1} = 2x_t - x_{t-1}$
 \]
 
 
@@ -572,6 +588,9 @@ prediction.
 
 1. Plot covid data.
 2. Smooth the data: moving average plots
+3. Try and estimate past, current and future infections with simple tools.
+4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
+
 
 **** Example: Stock market prices
  See: Trading Economics
@@ -594,7 +613,6 @@ prediction.
 
 **** Example: Stock market, Unemployment, GDP
 	
-
 
 ** Experiment design  (3 weeks)
 *** Random sampling
