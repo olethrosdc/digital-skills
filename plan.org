@@ -630,6 +630,8 @@ This gives us the estimator:
   5. Generating data confirming to our assumptions.
   6. Testing the protocol on synthetic data. Is it working as expected?
 *** Homework Assignment: Analyse Newspaper articles
+
+	
 ** Inference (2 weeks)
 *** Expectation
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
@@ -783,9 +785,9 @@ Find a table in wikipedia on a topic of interest, and convert the table into a g
 
 ** Newspaper article analysis
 In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.  You must study the article criticially. Are the conclusions supported by the data? Does the methodology make sens? Find primary sources that confirm or challenge the article to obtain a more rounded picture.
- https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
+- https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
 - https://neurosciencenews.com/chickenpox-virus-alzheimers-21145/
-
+- https://www.theguardian.com/society/2022/aug/25/oh-well-wine-oclock-what-midlife-women-say-about-drinking-and-why-its-hard-to-stop
 
 ** Simulation study
 
