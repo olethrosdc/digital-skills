@@ -200,6 +200,42 @@ can be used in the context of some assignments.
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
 
+**** Disrete Distributions 								  :theory:statistics:
+
+
+***** The Bernoulli distribution.
+Let us start with a simple example, the Bernoulli distribution with parameter $\theta$. This is the distribution over two outcomes $\{0,1\}$, so that
+\[
+\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
+\]
+It is typical to think the distribution of heads and tails of a coin as being Bernoulli, with parameter $\theta = 1/2$.
+
+Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
+\[
+\Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
+\]
+****** Example probability space:
+Take a 10-sided die. The outcomes of the die represent the space $\Omega$. We can now create a Bernoulli variable from the die. For example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega) = 0$ when $\omega \in \{6, 10\}$.
+
+****** Binomial distribution
+If we repeat a Bernouli trial, we can also count the number of times
+the coin comes heads, so to speak. The distribution of the counts is
+called the Binomial distribution.
+
+***** The Multinomial distribution
+A random variable $x : \Omega \to \{1,\ldots, n\}$ is called multinomial. If the underlying probability space is $(\Omega, \Sigma, P)$, then
+\[
+\Pr(x = k) = P(\{\omega : x(\omega) = k\})
+\]
+
+
+***** Measuring a discrete distribution.
+
+Each one of you can toss a coin 20 times, and count the number of times it comes up as heads or tails.
+Let us denote this byy $N(x = k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is proportional to $N(x=k)$.
+
 **** Introduction to histograms                           :theory:statistics:
 	
  Assume data is in $\Reals$. Then split the real line into intervals
@@ -225,7 +261,7 @@ can be used in the context of some assignments.
 See also: https://en.wikipedia.org/wiki/Histogram
 
 ***** Histogram activity                                           :activity:
- 1. Introduce the concept of a historgram on the board.
+ 1. Introduce the concept of a histogram on the board.
  2. Split the students in two groups.
  3. Have each group collect the height of every student.
  4. How can we summarise the data of each group? 
@@ -629,9 +665,6 @@ This gives us the estimator:
   4. Designing the experimental protocol.
   5. Generating data confirming to our assumptions.
   6. Testing the protocol on synthetic data. Is it working as expected?
-*** Homework Assignment: Analyse Newspaper articles
-
-	
 ** Inference (2 weeks)
 *** Expectation
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
