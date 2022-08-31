@@ -161,9 +161,7 @@ can be used in the context of some assignments.
 - [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
 
 
-
-* Modules
-** Visualisation as models and data summary (3 weeks)
+* Module 1: Visualisation as models and data summary (3 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -192,7 +190,7 @@ can be used in the context of some assignments.
  theory visually.
 
 
-*** Histograms: model a distribution
+** Histograms: model a distribution
 
     Histograms are a simple tool for modelling distributions. In their
  simplest application, they are used to simply count the number of items
@@ -200,10 +198,10 @@ can be used in the context of some assignments.
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
 
-**** Disrete Distributions 								  :theory:statistics:
+*** Disrete Distributions								 :theory:probability:
 
 
-***** The Bernoulli distribution.
+**** The Bernoulli distribution.
 Let us start with a simple example, the Bernoulli distribution with parameter $\theta$. This is the distribution over two outcomes $\{0,1\}$, so that
 \[
 \Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
@@ -214,29 +212,29 @@ Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
 \[
 \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
 \]
-****** Example probability space:
+***** Example probability space:
 Take a 10-sided die. The outcomes of the die represent the space $\Omega$. We can now create a Bernoulli variable from the die. For example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega) = 0$ when $\omega \in \{6, 10\}$.
 
-****** Binomial distribution
+***** Binomial distribution
 If we repeat a Bernouli trial, we can also count the number of times
 the coin comes heads, so to speak. The distribution of the counts is
 called the Binomial distribution.
 
-***** The Multinomial distribution
+**** The Multinomial distribution
 A random variable $x : \Omega \to \{1,\ldots, n\}$ is called multinomial. If the underlying probability space is $(\Omega, \Sigma, P)$, then
 \[
 \Pr(x = k) = P(\{\omega : x(\omega) = k\})
 \]
 
 
-***** Measuring a discrete distribution.
+**** Measuring a discrete distribution.
 
 Each one of you can toss a coin 20 times, and count the number of times it comes up as heads or tails.
 Let us denote this byy $N(x = k)$. It should be approximately true that $N(x = k) \approx 5$.
 
 We can visualise this by plotting bars or lines, whose height is proportional to $N(x=k)$.
 
-**** Introduction to histograms                           :theory:statistics:
+*** Introduction to histograms							  :theory:statistics:
 	
  Assume data is in $\Reals$. Then split the real line into intervals
  $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
@@ -260,7 +258,7 @@ We can visualise this by plotting bars or lines, whose height is proportional to
 
 See also: https://en.wikipedia.org/wiki/Histogram
 
-***** Histogram activity                                           :activity:
+**** Histogram activity											   :activity:
  1. Introduce the concept of a histogram on the board.
  2. Split the students in two groups.
  3. Have each group collect the height of every student.
@@ -269,7 +267,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
  7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 
-**** Python variables                                                  :code:
+*** Python variables												   :code:
 
  Numerical Python variables are very simple entities. Let us go through
  this is easy program for a warm-up.
@@ -285,7 +283,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  #+RESULTS:
  : 1
 
-**** Python lists                                                      :code:
+*** Python lists													   :code:
 
  A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
 
@@ -324,7 +322,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  #+RESULTS:
  | -1 | -2 |
 
-**** Numpy arrays                                             :advanced:code:
+*** Numpy arrays											  :advanced:code:
 
  Because lists are very flexible, they are a bit slow. A special type
  of object, an array, is used to handle lists of numbers. This is not
@@ -345,8 +343,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  #+RESULTS:
  | 1 | -2 |
 
-
-**** Pandas and Histograms                                        :plot:code:
+*** Pandas and Histograms										  :plot:code:
 	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 	
 	 Pandas is a module for 
@@ -357,7 +354,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
    df.hist() # creates a plot with many histograms
  #+END_SRC
 
-***** Coin example                                            :activity:plot:
+**** Coin example											  :activity:plot:
 
  Introduce pandas histograms. First with fixed binary data.
  #+BEGIN_SRC python
@@ -377,7 +374,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  3. What is the eff
  Let us look at the student data: see src/histograms/heights.ipynb
 
-***** Heights example                                              :activity:
+**** Heights example											   :activity:
  
  #+BEGIN_SRC python
  import pandas as pd
@@ -386,7 +383,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  #+END_SRC
 
 
-**** Histograms vs Pie Charts
+*** Histograms vs Pie Charts
 
  While histograms are good visualisations of distributions on the real
  line, distributions over a discrete set of possible values are
@@ -407,7 +404,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  plt.pie(counts) # plot counts
  #+END_SRC
 
-**** Randomness                                               :code:activity:
+*** Randomness												  :code:activity:
   1. Random algorithms using coins.
  #+BEGIN_SRC python
    y = 0 # y is a variable, with the value zero currently
@@ -465,9 +462,9 @@ See also: https://en.wikipedia.org/wiki/Histogram
  coin bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
 
-**** Probability 													 :theory:
+*** Probability														 :theory:
 
-***** Probability measure :theory:
+**** Probability measures								 :theory:probability:
 A probability measure $P$ is a function from sets to the interval
 $[0,1]$. Measuring the probability of a set is technically the same as
 measuring the area of a region, or the number of items in a given
@@ -488,21 +485,21 @@ From these, it also follows that $P(\emptyset) = 0$.
 
 See also: https://en.wikipedia.org/wiki/Probability_measure
 
-***** Random variable :theory:
+**** Random variables									 :theory:probability:
 
 A real-valued random variable $f : \Omega \to \Reals$ is simply a
 function from the outcomes to the real numbers. Even though it is a
 fixed function, its values are random, because the actual value
-$\omega \in \Omsga$ that will be used to calculate its value
+$\omega \in \Omega$ that will be used to calculate its value
 $f(\omega)$ is random.
 
 Random variables can be easily generalised to other domains than the real numbers.
 
 See also: https://en.wikipedia.org/wiki/Random_variable
 
-**** Uncertainty                                                   :activity:
+*** Uncertainty													   :activity:
 
-***** The number of immigrants :
+**** The number of immigrants :
  Consider the following question: how many immigrants live in
  Switzerland?  
 
@@ -516,7 +513,7 @@ See also: https://en.wikipedia.org/wiki/Random_variable
  follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
  (a) Are you willing to take an even bet that the true number is between [5-10%]?
   
-*** Time-Series: model the evolution of a system
+** Time-Series: model the evolution of a system
 
  A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
  typically assume that this is random. How can we capture this
@@ -569,12 +566,12 @@ idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
 y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
 This gives us the estimator:
 \[
-\hat{y}_{t+1} = 2x_t - x_{t-1}$
+\hat{y}_{t+1} = 2x_t - x_{t-1}
 \]
 
 
 
-**** Plotting lines
+*** Plotting lines
 
  Here is a simple example of line plotting. 
  #+BEGIN_SRC python :results file :var f="example.png"
@@ -588,7 +585,7 @@ This gives us the estimator:
 
  What are such plots useful for?
 
-**** Race times                                                    :activity:
+*** Race times													   :activity:
  https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
  Wikipedia has a table that shows the progression of 1500m world records.
@@ -599,7 +596,7 @@ This gives us the estimator:
  5. How do you explain this progression? Can you find data to validate or refute your explanation?
 
 
-***** Scraping tables example :example:data-collection:
+**** Scraping tables example :example:data-collection:
  #+BEGIN_SRC python
    import pandas
    tables=pandas.read_html("URL") # read a table
@@ -614,13 +611,13 @@ This gives us the estimator:
 
 
 
-**** Example: The inclination of Mars                               :example:
+*** Example: The inclination of Mars								:example:
 
 1. Plot Mars data
 2. Show orbits
 3. 3-body system, chaos and randomness
    
-**** Example: Covid                                                 :example:
+*** Example: Covid													:example:
 
 1. Plot covid data.
 2. Smooth the data: moving average plots
@@ -628,14 +625,14 @@ This gives us the estimator:
 4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
 
 
-**** Example: Stock market prices
+*** Example: Stock market prices
  See: Trading Economics
 
 
 
-***** Exponential growth                                          :plot:code:
+**** Exponential growth											  :plot:code:
  +
-*** Scatterplots: model a relationship
+** Scatterplots: model a relationship
     1. For the original data: add weight, eye colour, gender, exercise level.
     2. Make a scatterplot of the height and weight
  #+BEGIN_SRC python
@@ -647,26 +644,25 @@ This gives us the estimator:
  #+END_SRC
  #+RESULTS:
 
-**** Example: Stock market, Unemployment, GDP
-	
-
-** Experiment design  (3 weeks)
-*** Random sampling
+*** Example: Stock market, Unemployment, GDP
+   
+* Module 2: Experiment design  (3 weeks)
+** Random sampling
  1. Pure random sampling.
  2. Undercounting.
  3. Give mode.
-*** A/B testing
-  1. Comparing algorithms in the wild. Which is the best algorithm?
-*** The data science pipeline
-  The experimental pipipeline has a number of different components. 
-  1. Formulating the problem.
-  2. Deciding what type of data is needed.
-  3. Choosing the model and visualisation needed.
-  4. Designing the experimental protocol.
-  5. Generating data confirming to our assumptions.
-  6. Testing the protocol on synthetic data. Is it working as expected?
-** Inference (2 weeks)
-*** Expectation
+** A/B testing
+ 1. Comparing algorithms in the wild. Which is the best algorithm?
+** The data science pipeline
+ The experimental pipipeline has a number of different components. 
+ 1. Formulating the problem.
+ 2. Deciding what type of data is needed.
+ 3. Choosing the model and visualisation needed.
+ 4. Designing the experimental protocol.
+ 5. Generating data confirming to our assumptions.
+ 6. Testing the protocol on synthetic data. Is it working as expected?
+* Module 3: Inference (2 weeks)
+** Expectation
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
  \[
@@ -679,7 +675,7 @@ This gives us the estimator:
        return omega * omega
  #+END_SRC
 
-**** Centime exercise
+*** Centime exercise
 
  A jar with coins is passed around the class. 
  1. The students are asked to guess how many coins it contains.
@@ -690,7 +686,7 @@ This gives us the estimator:
  6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
  (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
-*** Bayesian analysis
+** Bayesian analysis
  Recall the definition of Conditional probability:
 
  $P(A | B) = P(A \cap B) / P(B)$,
@@ -707,7 +703,7 @@ This gives us the estimator:
 
  So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
-**** The covid test problem
+*** The covid test problem
  10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
  you have covid, the test is correct 80% of the time, i.e. P(positive |
  covid) = 0.8. Conversely, if you do not have covid, there is still a
@@ -719,7 +715,7 @@ This gives us the estimator:
  First of all, each one of you should independently generate a uniform random
  number between 1 and 10. For that, you can pass along a 10-sided die.
 
-**** The cards problem
+*** The cards problem
  1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
  2. Get a card (say with face A), and ask what is the probability the other side is the same.
  3. Have the students perform the experiment with:
@@ -728,7 +724,7 @@ This gives us the estimator:
     3. Of those, count the number of people with A on the other side.
     4. It should be clear that 1/3 of people have [A|A] and of those 
 
-**** The k-Meteorologists problem
+*** The k-Meteorologists problem
 
  Bayesian reasoning is most useful in the following setting:
 
@@ -769,30 +765,31 @@ This gives us the estimator:
  Write a program that updates the beliefs sequentially given
  observations and station predictions.
 
-*** Hypothesis testing
+** Hypothesis testing
 
-**** Homework assignment: Define a data collection and analysis problem
-** Advanced visualisation (2 weeks)
-*** Geographical data
+*** Homework assignment: Define a data collection and analysis problem
+* Module 4: Advanced visualisation (2 weeks)
+** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
 
-**** Colour maps
+*** Colour maps
 1. Colour as a continuous variable.
 2. Colour as a discrete variable.
 3. Colour perception and interpretation.
-**** Contour maps
+*** Contour maps
 1. Geographical contour
 2. Density plots
    	 
-*** Text data
-** Data analysis in practice (2 weeks)
-*** Survey data: The garden of many paths
+** Text data
+* Module 5: Data analysis in practice (2 weeks)
+** Survey data: The garden of many paths
 
-*** Visualising fMRI data
-*** Visualising GWAS data
-**** Homework assignment: Visualisation of a project
+** Visualising fMRI data
+** Visualising GWAS data
+*** Homework assignment: Visualisation of a project
 
-** Project work and presentations (2 weeks)
+* Module 6: Project work and presentations (2 weeks)
+
 * Assignments
 
 The course contains assignments and a project. The instructions for
