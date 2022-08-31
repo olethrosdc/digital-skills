@@ -818,10 +818,10 @@ Find a table in wikipedia on a topic of interest, and convert the table into a g
 
 ** Newspaper article analysis
 In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.  You must study the article criticially. Are the conclusions supported by the data? Does the methodology make sens? Find primary sources that confirm or challenge the article to obtain a more rounded picture.
-- https://www.theguardian.com/world/2022/aug/15/italy-big-increase-in-femicides-over-past-year-women-murdered
-- https://neurosciencenews.com/chickenpox-virus-alzheimers-21145/
-- https://www.theguardian.com/society/2022/aug/25/oh-well-wine-oclock-what-midlife-women-say-about-drinking-and-why-its-hard-to-stop
-- https://www.theguardian.com/society/2021/nov/16/tea-coffee-may-be-linked-lower-risk-stroke-dementia-study
+
+https://docs.google.com/spreadsheets/d/1QKj_L9f0UIH80qgs2kcjc8AU1eKZzsTOcYFSU06HJBY/edit#gid=0
+
+
 
 ** Simulation study
 
