@@ -198,22 +198,62 @@ can be used in the context of some assignments.
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
 
-*** Disrete Distributions								 :theory:probability:
+*** Distributions                                        :theory:probability:
 
+The set of all possible outcomes is denoted as $\Omega$. For example,
+if we throw a die, the set of all possible ways, locations etc that
+the die can fall and land is a possible outcome.  An event $A$ is a
+subset of $\Omega$. For exaple $A$ can be the set of all ways in which
+the die can land so that its top shows "6".
+
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is
+- If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+- If $A \in \Sigma$ then $\neg A \equiv \Omega \setminus A \in \Sigma$.
+
+For a given probability space $(\Omega, \Sigma, P)$, the probability
+measure $P : \Sigma \to [0,1]$ assigns a probability $P(A)$ to every
+event.
+
+It is easier to think of events as sets because you can then think of
+the probability of an event as the area of the set it corresponds to.
+
+Informally, without referring to a specific probability space, we
+write the probability of an event $A$ as $\Pr(A)$.
+
+
+**** Readings:
+
+- Introduction: https://en.wikipedia.org/wiki/Probability
+- Probability space: https://en.wikipedia.org/wiki/Probability_space
+
+
+*** Discrete Distributions
 
 **** The Bernoulli distribution.
-Let us start with a simple example, the Bernoulli distribution with parameter $\theta$. This is the distribution over two outcomes $\{0,1\}$, so that
+Let us start with a simple example, the Bernoulli distribution with
+parameter $\theta$. This is the distribution over two outcomes
+$\{0,1\}$, so that
 \[
 \Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
 \]
-It is typical to think the distribution of heads and tails of a coin as being Bernoulli, with parameter $\theta = 1/2$.
+It is typical to think the distribution of heads and tails of a coin
+as being Bernoulli, with parameter $\theta = 1/2$.
 
 Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
 \[
 \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
 \]
 ***** Example probability space:
-Take a 10-sided die. The outcomes of the die represent the space $\Omega$. We can now create a Bernoulli variable from the die. For example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega) = 0$ when $\omega \in \{6, 10\}$.
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
 
 ***** Binomial distribution
 If we repeat a Bernouli trial, we can also count the number of times
