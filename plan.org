@@ -203,40 +203,29 @@ can be used in the context of some assignments.
 The set of all possible outcomes is denoted as $\Omega$. For example,
 if we throw a die, the set of all possible ways, locations etc that
 the die can fall and land is a possible outcome.  An event $A$ is a
-subset of $\Omega$. For exaple $A$ can be the set of all ways in which
-the die can land so that its top shows "6".
+subset of $\Omega$. For example $A$ can be the set of all ways in
+which the die can land so that its top shows "6". A probability
+measure $P$ simply assigns a number between 0 and 1 to every subset
+$A$ we might be interested in. 
 
+We begin with some example distributions, before we formalise what we
+mean by the term. For technical details see [[*Probability space][Probability space]].
 
-In probability theory, we typically define the set of all possible
-events that we care about as the algebra $\Sigma$, so that any
-possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
-algebra has the property that it is closed under union and complement,
-that is
-- If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
-- If $A \in \Sigma$ then $\neg A \equiv \Omega \setminus A \in \Sigma$.
-
-For a given probability space $(\Omega, \Sigma, P)$, the probability
-measure $P : \Sigma \to [0,1]$ assigns a probability $P(A)$ to every
-event.
-
-It is easier to think of events as sets because you can then think of
-the probability of an event as the area of the set it corresponds to.
-
-Informally, without referring to a specific probability space, we
-write the probability of an event $A$ as $\Pr(A)$.
-
-
-**** Readings:
-
-- Introduction: https://en.wikipedia.org/wiki/Probability
-- Probability space: https://en.wikipedia.org/wiki/Probability_space
+See also:
+- https://en.wikipedia.org/wiki/Probability
 
 
 *** Discrete Distributions
 
+We begin with distributions where there is a finite number of possible
+outcomes, and hence a finite number of possible events that we might
+care about. All such distributions are characterised by one or more
+/parameters/. The simplest such distribution is a distribution on only
+two outcomes, the Bernoulli distribution.
+
 **** The Bernoulli distribution.
 Let us start with a simple example, the Bernoulli distribution with
-parameter $\theta$. This is the distribution over two outcomes
+parameter $\theta \in [0,1]$. This is the distribution over two outcomes
 $\{0,1\}$, so that
 \[
 \Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
@@ -248,12 +237,6 @@ Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
 \[
 \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
 \]
-***** Example probability space:
-
-Take a 10-sided die. The outcomes of the die represent the space
-$\Omega$. We can now create a Bernoulli variable from the die. For
-example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
-= 0$ when $\omega \in \{6, 10\}$.
 
 ***** Binomial distribution
 If we repeat a Bernouli trial, we can also count the number of times
@@ -265,6 +248,18 @@ A random variable $x : \Omega \to \{1,\ldots, n\}$ is called multinomial. If the
 \[
 \Pr(x = k) = P(\{\omega : x(\omega) = k\})
 \]
+
+**** Uniform distributions
+
+A special case of binomial and multinomial distributions is the
+uniform distribution. This is defined as follows.
+
+Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
+\[
+P(A) = \frac{|A|}{|\Omega|}.
+\]
+
+
 
 
 **** Measuring a discrete distribution.
@@ -503,6 +498,23 @@ See also: https://en.wikipedia.org/wiki/Histogram
  quantify this? What does it depend on? Discuss in class.
 
 *** Probability														 :theory:
+**** Probability space
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
 
 **** Probability measures								 :theory:probability:
 A probability measure $P$ is a function from sets to the interval
@@ -523,6 +535,7 @@ A probability measure $P: \Sigma \to [0,1]$ on $\Omega$ satisfies the following 
 
 From these, it also follows that $P(\emptyset) = 0$.
 
+
 See also: https://en.wikipedia.org/wiki/Probability_measure
 
 **** Random variables									 :theory:probability:
@@ -535,7 +548,29 @@ $f(\omega)$ is random.
 
 Random variables can be easily generalised to other domains than the real numbers.
 
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
 See also: https://en.wikipedia.org/wiki/Random_variable
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+
+
+
 
 *** Uncertainty													   :activity:
 
