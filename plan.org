@@ -8,7 +8,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-#+TAGS: activity advanced exercise homework project dataset example theory statistics plot code
+#+TAGS: activity advanced definition exercise homework project dataset example theory statistics plot code
 
 * Introduction
 
@@ -198,15 +198,18 @@ can be used in the context of some assignments.
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
 
-*** Distributions                                        :theory:probability:
+*** Probabilities and Distributions                      :theory:probability:
 
 The set of all possible outcomes is denoted as $\Omega$. For example,
-if we throw a die, the set of all possible ways, locations etc that
-the die can fall and land is a possible outcome.  An event $A$ is a
-subset of $\Omega$. For example $A$ can be the set of all ways in
-which the die can land so that its top shows "6". A probability
-measure $P$ simply assigns a number between 0 and 1 to every subset
-$A$ we might be interested in. 
+if we throw a die, this is the set of all possible ways, locations etc
+that the die can fall and land.  However, we may only be interested in
+two events: whether the die lands showing a '6' or not.  Formally, an
+event $A$ is a subset of $\Omega$. In our example, $A$ can be the set
+of all ways in which the die can land so that its top shows "6". A
+probability measure $P$ simply assigns a number between 0 and 1 to
+every subset $A$ we might be interested in. This can be thought of as
+the area of $A$. Different probability measures $P$ assign different
+areas to different sets.
 
 We begin with some example distributions, before we formalise what we
 mean by the term. For technical details see [[*Probability space][Probability space]].
@@ -214,16 +217,16 @@ mean by the term. For technical details see [[*Probability space][Probability sp
 See also:
 - https://en.wikipedia.org/wiki/Probability
 
-
-*** Discrete Distributions
+ 
+*** Example Distributions
 
 We begin with distributions where there is a finite number of possible
 outcomes, and hence a finite number of possible events that we might
 care about. All such distributions are characterised by one or more
 /parameters/. The simplest such distribution is a distribution on only
-two outcomes, the Bernoulli distribution.
+two outcomes, the family of Bernoulli distributions.
 
-**** The Bernoulli distribution.
+**** The Bernoulli distribution.                     :definition:probability:
 Let us start with a simple example, the Bernoulli distribution with
 parameter $\theta \in [0,1]$. This is the distribution over two outcomes
 $\{0,1\}$, so that
@@ -233,21 +236,38 @@ $\{0,1\}$, so that
 It is typical to think the distribution of heads and tails of a coin
 as being Bernoulli, with parameter $\theta = 1/2$.
 
-Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
+*Probability space* Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
 \[
 \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
 \]
 
-***** Binomial distribution
+See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+**** Binomial distribution                           :definition:probability:
 If we repeat a Bernouli trial, we can also count the number of times
 the coin comes heads, so to speak. The distribution of the counts is
 called the Binomial distribution.
 
-**** The Multinomial distribution
-A random variable $x : \Omega \to \{1,\ldots, n\}$ is called multinomial. If the underlying probability space is $(\Omega, \Sigma, P)$, then
-\[
-\Pr(x = k) = P(\{\omega : x(\omega) = k\})
-\]
+See also: https://en.wikipedia.org/wiki/Binomial_distribution
+
+**** The Categorical/Multinomial distribution
+
+A multinomial distribution is an extension of the Bernoulli and
+binomial distributions to $n \geq 2$ outcomes. 
+
+*Categorial distributions* Let us start with
+one trial, e.g. a single throw of a die. We can model this dice throw
+as the distribution where the probability
+that the die lands with its $k$-th face on top is $\theta_k$,
+\[ \Pr(x = k) = \theta_k.\]
+Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_n)$.
+
+A random variable $x : \Omega \to \{1,\ldots, n\}$ is called
+multinomial. If the underlying probability space is $(\Omega, \Sigma,
+P)$, then
+\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
+
+See also: https://en.wikipedia.org/wiki/Multinomial_distribution
 
 **** Uniform distributions
 
@@ -259,15 +279,524 @@ Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obe
 P(A) = \frac{|A|}{|\Omega|}.
 \]
 
+This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
+the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
+\[
+P([0,p)) = \Pr(\omega \in [0,p)) = p.
+\]
 
 
 
+**** Measuring a discrete distribution                             :activity:
+
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this byy $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$.
+
+
+
+*** Introduction to histograms							  :theory:statistics:
+	
+ Assume data is in $\Reals$. Then split the real line into intervals
+ $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
+ amount of data $n_i(D)$ in the interval. We can also normalise to
+ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
+
+ More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
+	
+ $\{ A_i | i=1, \ldots, k\}$
+
+ with associated counts $n_i$, so that, given some data $D$,
+
+ $n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
+
+ where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+
+ We can use the histogram as the model of a distribution. For that,
+ we use the relative frequency of points in each bin: $p_i(D) =
+ n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+ model.
+
+See also: https://en.wikipedia.org/wiki/Histogram
+
+**** Histogram activity											   :activity:
+ 1. Introduce the concept of a histogram on the board.
+ 2. Split the students in two groups.
+ 3. Have each group collect the height of every student.
+ 4. How can we summarise the data of each group? 
+ 5. Now the students will individually draw a histogram from the data of their group.
+ 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+ 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+
+*** Python variables												   :code:
+
+ Numerical Python variables are very simple entities. Let us go through
+ this is easy program for a warm-up.
+ #+BEGIN_SRC python
+ x = 1 # a variable
+ y = 2 # another variable
+ print(x+y) # return the value of this variable sum
+ x = y # assignment operation: now x has the same value as y
+ print(x) #what would this value be?
+ y = 3
+ print(x) #is x changed?
+ #+END_SRC
+ #+RESULTS:
+ : 1
+
+*** Python lists													   :code:
+
+ A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ return x[3] # returns the last element of the list
+ #+END_SRC python
+
+ #+RESULTS:
+ : 4
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y # assignment operation: now x is just a different name for y
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+ Lists are different in one respect: when we assign one list name to
+ another, this does not copy any data. Both names refer to the same
+ data. Consequently, if we change the data, it changes for both
+ variable names.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y.copy() # copy operation: now x has a copy of y's data
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | -1 | -2 |
+
+*** Numpy arrays											  :advanced:code:
+
+ Because lists are very flexible, they are a bit slow. A special type
+ of object, an array, is used to handle lists of numbers. This is not
+ defined in basic python, but only in one module called /numpy/. Even
+ though basic Python has only a few commands, it has many modules that
+ extend the language to perform complex tasks without having to code
+ everything from scratch.
+
+ #+BEGIN_SRC python
+ import numpy as np
+ x = np.array([1, 2, 3, 4])
+ y = np.array([-1, -2])
+ x = y # assignment operation: 
+ y[0] = 1
+ return x
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+*** Pandas and Histograms										  :plot:code:
+	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+	
+	 Pandas is a module for 
+ #+BEGIN_SRC python
+   import pandas as pd # we need to load a library first
+   # loading data into pandas creates a data frame df
+   df['column-name'] # selects a column
+   df.hist() # creates a plot with many histograms
+ #+END_SRC
+
+**** Coin example											  :activity:plot:
+
+ Introduce pandas histograms. First with fixed binary data.
+ #+BEGIN_SRC python
+ X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
+ import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
+ plt.hist(X) # this function plots the histogram
+ #+END_SRC
+
+ Each one of you should predict the result of a number of coin tosses.
+ Let us do a histogram of the predictions. This is a binomial
+ distribution.
+
+
+
+ 1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
+ 2. Firstly, plot the histogram of the data with default settings.
+ 3. What is the eff
+ Let us look at the student data: see src/histograms/heights.ipynb
+
+**** Heights example											   :activity:
+ 
+ #+BEGIN_SRC python
+ import pandas as pd
+ X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+ X['Height (cm)'].hist() #directly plot the histogram
+ #+END_SRC
+
+
+*** Histograms vs Pie Charts
+
+ While histograms are good visualisations of distributions on the real
+ line, distributions over a discrete set of possible values are
+ best-represented by a pie-chart. This especially if there is no relation between 
+
+ Where the advantages and disadvantages of pie charts and histograms?
+
+ |--------------------------+-----------+-----------|
+ |                          | Histogram | Pie Chart |
+ |--------------------------+-----------+-----------|
+ | To show proportions      |           |           |
+ | For more categories      |           |           |
+ | To compare relative size |           |           |
+ | For real-valued data     |           |           |
+ |--------------------------+-----------+-----------|
+
+ #+BEGIN_SRC: python
+ plt.pie(counts) # plot counts
+ #+END_SRC
+
+*** Randomness												  :code:activity:
+  1. Random algorithms using coins.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 33
+
+ 2. Uncertainty versus randomness.
+
+
+ 3. Coin-flipping experiment
+	 1. Everybody flips a coin 10 times.
+	 2. Record how many heads or tails you have.
+	 3. Then record how you threw the coin.
+	 4. Discuss if the coin is really random.
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC python
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is versus uncertainty about the
+ coin bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+*** Probability														 :theory:
+**** Probability space
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
+
+**** Probability measures								 :theory:probability:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A *universe* $\Omega$ of outcomes
+- The *algebra* $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+*The axioms of probability* A probability measure $P: \Sigma \to
+ [0,1]$ on $\Omega$ satisfies the following axioms:
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+**** Random variables									 :theory:probability:
+
+A real-valued random variable $f : \Omega \to \Reals$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omega$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+1. Let us start by throwing a 10-sided die. How do you generate a
+   Bernoulli random variable with $\theta = 0.6$ from the outcomes of
+   the dice throw?
+
+2. Now let us consider the following python code, which generates
+   values from a Bernoulli random variable.
+#+BEGIN_SRC python
+import numpy as np
+return np.random.choice(2,p=[0.6, 0.4])
+#+END_SRC
+
+#+RESULTS:
+: 0
+
+   Let us replicate it through a distribution of uniform randomv variables in $[0,1]$.
+#+BEGIN_SRC python
+import numpy as np
+x = np.random.uniform() # returns a uniformly generated number in [0,1). 
+if x < 0.6:
+  return 1
+else:
+  return 0
+#+END_SRC
+
+#+RESULTS:
+: 1
+
+
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants :
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+  
+** Time-Series: model the evolution of a system
+
+ A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
+ typically assume that this is random. How can we capture this
+ dependency between variables? Does the value of $x_t$ depend only on
+ the value of $x_{t-1}$? On all the previous values? Only on the time
+ index $t$?
+
+ Typicallyy, sequential observations of a variable $x_t$ are in fact
+ noisy measurements of the true variable of interest, $y_t$, which we
+ never observe. As an example, consider covid infections. There is a
+ true, underlying, number of infections, but we only ever measure the
+ number of positive cases detected in a day. 
+
+ Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+
+ 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
+
+
+These problems are all related and can be formalised in a statistical
+manner, and there are multiple algorithms that can be used to solve
+each problem.  When $x_t = y_t$, then smoothing and filtering are
+trivial, but prediction is still an important problem.  We focus here
+on a simple linear transformation such as the moving average as a basic solution method.
+
+*Smoothing* For smoothing, a moving average filter is typically
+sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+noisy measurement of $y$. Then we can construct the estimator
+\[
+\hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
+\]
+
+*Filtering* When we wish to filter, at best we can take the moving
+average from the past $n$ observations. If $n$ is very large, then
+there is a a corresponding delay between our filtering and the final
+prediction.
+\[
+\hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+The only way to remove the lag is to perform a more complex
+transformation of the original data. To see this, consider the problem
+of prediction.
+
+
+*Prediction* Prediction means estimating something in the future. This
+task is never trivial, even with perfect observations, i.e. when $x_t
+= y_t$. In this setting moving averages do not make sense. A simple
+idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
+y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
+This gives us the estimator:
+\[
+\hat{y}_{t+1} = 2x_t - x_{t-1}
+\]
+
+
+
+*** Plotting lines
+
+ Here is a simple example of line plotting. 
+ #+BEGIN_SRC python :results file :var f="example.png"
+ import numpy as np
+ X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
+ import matplotlib.pyplot as plt # import the plotting library
+ plt.plot(x) # perform a standard, simple plot
+ plt.savefig(f)
+ return f
+ #+END_SRC
+
+ What are such plots useful for?
+
+*** Race times													   :activity:
+ https://en.wikipedia.org/wiki/1500_metres_world_record_progression
+
+ Wikipedia has a table that shows the progression of 1500m world records.
+ 1. Let us first [[file:src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 2. Try and predict the progrssion of world records on the board.
+ 3. Let us now look at the actual graph. Is it what you expected?
+ 4. How do you expect the progression to continue after 2020?
+ 5. How do you explain this progression? Can you find data to validate or refute your explanation?
+
+
+**** Scraping tables example :example:data-collection:
+ #+BEGIN_SRC python
+   import pandas
+   tables=pandas.read_html("URL") # read a table
+   # convert date-string:
+   dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
+   # string manipulation
+   string.replace("+", "0") # replaces a + with a 0
+   string.split(":") # splits a string into multiple strings
+   # data formats
+   float("12.2"); # converts a number into a float
+ #+END_SRC
+
+
+
+*** Example: The inclination of Mars								:example:
+
+1. Plot Mars data
+2. Show orbits
+3. 3-body system, chaos and randomness
+   
+*** Example: Covid													:example:
+
+1. Plot covid data.
+2. Smooth the data: moving average plots
+3. Try and estimate past, current and future infections with simple tools.
+4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
+
+
+*** Example: Stock market prices
+ See: Trading Economics
+
+
+
+**** Exponential growth											  :plot:code:
+ +
+** Scatterplots: model a relationship
+    1. For the original data: add weight, eye colour, gender, exercise level.
+    2. Make a scatterplot of the height and weight
+ #+BEGIN_SRC python
+   X=[1, 2, 3, 4, 10, 6]
+   Y=[5, 2, 5, 3, 1, 2]
+   Z=[0, 1, 0, 1, 0, 1]
+   import matplotlib.pyplot as plt
+   plt.scatter(X,Y)
+ #+END_SRC
+ #+RESULTS:
+
+*** Example: Stock market, Unemployment, GDP
+    
 **** Measuring a discrete distribution.
 
-Each one of you can toss a coin 20 times, and count the number of times it comes up as heads or tails.
-Let us denote this byy $N(x = k)$. It should be approximately true that $N(x = k) \approx 5$.
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this byy $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
 
-We can visualise this by plotting bars or lines, whose height is proportional to $N(x=k)$.
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$.
 
 *** Introduction to histograms							  :theory:statistics:
 	
@@ -664,7 +1193,7 @@ This gives us the estimator:
  https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
  Wikipedia has a table that shows the progression of 1500m world records.
- 1. Let us first [[src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 1. Let us first [[file:src/time-series/WorldRecords.py][show the records up to 1950]] .  
  2. Try and predict the progrssion of world records on the board.
  3. Let us now look at the actual graph. Is it what you expected?
  4. How do you expect the progression to continue after 2020?
@@ -720,7 +1249,930 @@ This gives us the estimator:
  #+RESULTS:
 
 *** Example: Stock market, Unemployment, GDP
+    
+**** Measuring a discrete distribution.
+
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this byy $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$.
+
+*** Introduction to histograms							  :theory:statistics:
+	
+ Assume data is in $\Reals$. Then split the real line into intervals
+ $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
+ amount of data $n_i(D)$ in the interval. We can also normalise to
+ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
+
+ More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
+	
+ $\{ A_i | i=1, \ldots, k\}$
+
+ with associated counts $n_i$, so that, given some data $D$,
+
+ $n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
+
+ where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+
+ We can use the histogram as the model of a distribution. For that,
+ we use the relative frequency of points in each bin: $p_i(D) =
+ n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+ model.
+
+See also: https://en.wikipedia.org/wiki/Histogram
+
+**** Histogram activity											   :activity:
+ 1. Introduce the concept of a histogram on the board.
+ 2. Split the students in two groups.
+ 3. Have each group collect the height of every student.
+ 4. How can we summarise the data of each group? 
+ 5. Now the students will individually draw a histogram from the data of their group.
+ 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+ 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+
+*** Python variables												   :code:
+
+ Numerical Python variables are very simple entities. Let us go through
+ this is easy program for a warm-up.
+ #+BEGIN_SRC python
+ x = 1 # a variable
+ y = 2 # another variable
+ print(x+y) # return the value of this variable sum
+ x = y # assignment operation: now x has the same value as y
+ print(x) #what would this value be?
+ y = 3
+ print(x) #is x changed?
+ #+END_SRC
+ #+RESULTS:
+ : 1
+
+*** Python lists													   :code:
+
+ A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ return x[3] # returns the last element of the list
+ #+END_SRC python
+
+ #+RESULTS:
+ : 4
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y # assignment operation: now x is just a different name for y
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+ Lists are different in one respect: when we assign one list name to
+ another, this does not copy any data. Both names refer to the same
+ data. Consequently, if we change the data, it changes for both
+ variable names.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y.copy() # copy operation: now x has a copy of y's data
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | -1 | -2 |
+
+*** Numpy arrays											  :advanced:code:
+
+ Because lists are very flexible, they are a bit slow. A special type
+ of object, an array, is used to handle lists of numbers. This is not
+ defined in basic python, but only in one module called /numpy/. Even
+ though basic Python has only a few commands, it has many modules that
+ extend the language to perform complex tasks without having to code
+ everything from scratch.
+
+ #+BEGIN_SRC python
+ import numpy as np
+ x = np.array([1, 2, 3, 4])
+ y = np.array([-1, -2])
+ x = y # assignment operation: 
+ y[0] = 1
+ return x
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+*** Pandas and Histograms										  :plot:code:
+	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+	
+	 Pandas is a module for 
+ #+BEGIN_SRC python
+   import pandas as pd # we need to load a library first
+   # loading data into pandas creates a data frame df
+   df['column-name'] # selects a column
+   df.hist() # creates a plot with many histograms
+ #+END_SRC
+
+**** Coin example											  :activity:plot:
+
+ Introduce pandas histograms. First with fixed binary data.
+ #+BEGIN_SRC python
+ X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
+ import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
+ plt.hist(X) # this function plots the histogram
+ #+END_SRC
+
+ Each one of you should predict the result of a number of coin tosses.
+ Let us do a histogram of the predictions. This is a binomial
+ distribution.
+
+
+
+ 1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
+ 2. Firstly, plot the histogram of the data with default settings.
+ 3. What is the eff
+ Let us look at the student data: see src/histograms/heights.ipynb
+
+**** Heights example											   :activity:
+ 
+ #+BEGIN_SRC python
+ import pandas as pd
+ X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+ X['Height (cm)'].hist() #directly plot the histogram
+ #+END_SRC
+
+
+*** Histograms vs Pie Charts
+
+ While histograms are good visualisations of distributions on the real
+ line, distributions over a discrete set of possible values are
+ best-represented by a pie-chart. This especially if there is no relation between 
+
+ Where the advantages and disadvantages of pie charts and histograms?
+
+ |--------------------------+-----------+-----------|
+ |                          | Histogram | Pie Chart |
+ |--------------------------+-----------+-----------|
+ | To show proportions      |           |           |
+ | For more categories      |           |           |
+ | To compare relative size |           |           |
+ | For real-valued data     |           |           |
+ |--------------------------+-----------+-----------|
+
+ #+BEGIN_SRC: python
+ plt.pie(counts) # plot counts
+ #+END_SRC
+
+*** Randomness												  :code:activity:
+  1. Random algorithms using coins.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 33
+
+ 2. Uncertainty versus randomness.
+
+
+ 3. Coin-flipping experiment
+	 1. Everybody flips a coin 10 times.
+	 2. Record how many heads or tails you have.
+	 3. Then record how you threw the coin.
+	 4. Discuss if the coin is really random.
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC python
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is versus uncertainty about the
+ coin bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+*** Probability														 :theory:
+**** Probability space
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
+
+**** Probability measures								 :theory:probability:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A "universe" $\Omega$ of outcomes
+- The algebra $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+A probability measure $P: \Sigma \to [0,1]$ on $\Omega$ satisfies the following axioms
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+**** Random variables									 :theory:probability:
+
+A real-valued random variable $f : \Omega \to \Reals$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omega$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+
+
+
+
+*** Uncertainty													   :activity:
+
+**** The number of immigrants :
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+  
+** Time-Series: model the evolution of a system
+
+ A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
+ typically assume that this is random. How can we capture this
+ dependency between variables? Does the value of $x_t$ depend only on
+ the value of $x_{t-1}$? On all the previous values? Only on the time
+ index $t$?
+
+ Typicallyy, sequential observations of a variable $x_t$ are in fact
+ noisy measurements of the true variable of interest, $y_t$, which we
+ never observe. As an example, consider covid infections. There is a
+ true, underlying, number of infections, but we only ever measure the
+ number of positive cases detected in a day. 
+
+ Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+
+ 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
+
+
+These problems are all related and can be formalised in a statistical
+manner, and there are multiple algorithms that can be used to solve
+each problem.  When $x_t = y_t$, then smoothing and filtering are
+trivial, but prediction is still an important problem.  We focus here
+on a simple linear transformation such as the moving average as a basic solution method.
+
+*Smoothing* For smoothing, a moving average filter is typically
+sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+noisy measurement of $y$. Then we can construct the estimator
+\[
+\hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
+\]
+
+*Filtering* When we wish to filter, at best we can take the moving
+average from the past $n$ observations. If $n$ is very large, then
+there is a a corresponding delay between our filtering and the final
+prediction.
+\[
+\hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+The only way to remove the lag is to perform a more complex
+transformation of the original data. To see this, consider the problem
+of prediction.
+
+
+*Prediction* Prediction means estimating something in the future. This
+task is never trivial, even with perfect observations, i.e. when $x_t
+= y_t$. In this setting moving averages do not make sense. A simple
+idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
+y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
+This gives us the estimator:
+\[
+\hat{y}_{t+1} = 2x_t - x_{t-1}
+\]
+
+
+
+*** Plotting lines
+
+ Here is a simple example of line plotting. 
+ #+BEGIN_SRC python :results file :var f="example.png"
+ import numpy as np
+ X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
+ import matplotlib.pyplot as plt # import the plotting library
+ plt.plot(x) # perform a standard, simple plot
+ plt.savefig(f)
+ return f
+ #+END_SRC
+
+ What are such plots useful for?
+
+*** Race times													   :activity:
+ https://en.wikipedia.org/wiki/1500_metres_world_record_progression
+
+ Wikipedia has a table that shows the progression of 1500m world records.
+ 1. Let us first [[file:src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 2. Try and predict the progrssion of world records on the board.
+ 3. Let us now look at the actual graph. Is it what you expected?
+ 4. How do you expect the progression to continue after 2020?
+ 5. How do you explain this progression? Can you find data to validate or refute your explanation?
+
+
+**** Scraping tables example :example:data-collection:
+ #+BEGIN_SRC python
+   import pandas
+   tables=pandas.read_html("URL") # read a table
+   # convert date-string:
+   dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
+   # string manipulation
+   string.replace("+", "0") # replaces a + with a 0
+   string.split(":") # splits a string into multiple strings
+   # data formats
+   float("12.2"); # converts a number into a float
+ #+END_SRC
+
+
+
+*** Example: The inclination of Mars								:example:
+
+1. Plot Mars data
+2. Show orbits
+3. 3-body system, chaos and randomness
    
+*** Example: Covid													:example:
+
+1. Plot covid data.
+2. Smooth the data: moving average plots
+3. Try and estimate past, current and future infections with simple tools.
+4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
+
+
+*** Example: Stock market prices
+ See: Trading Economics
+
+
+
+**** Exponential growth											  :plot:code:
+ +
+** Scatterplots: model a relationship
+    1. For the original data: add weight, eye colour, gender, exercise level.
+    2. Make a scatterplot of the height and weight
+ #+BEGIN_SRC python
+   X=[1, 2, 3, 4, 10, 6]
+   Y=[5, 2, 5, 3, 1, 2]
+   Z=[0, 1, 0, 1, 0, 1]
+   import matplotlib.pyplot as plt
+   plt.scatter(X,Y)
+ #+END_SRC
+ #+RESULTS:
+
+*** Example: Stock market, Unemployment, GDP
+    
+**** Measuring a discrete distribution.
+
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this byy $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$.
+
+*** Introduction to histograms							  :theory:statistics:
+	
+ Assume data is in $\Reals$. Then split the real line into intervals
+ $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
+ amount of data $n_i(D)$ in the interval. We can also normalise to
+ obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
+
+ More generlaly, a (counting) histogram is defined as a collection of disjoint sets called *bins*
+	
+ $\{ A_i | i=1, \ldots, k\}$
+
+ with associated counts $n_i$, so that, given some data $D$,
+
+ $n_i(D) = \sum_{x \in D} \ind{x \in A_i}$,
+
+ where $n_i$ is the number of datapoints in $A_i$. Typically $A_i \subset R$.
+
+ We can use the histogram as the model of a distribution. For that,
+ we use the relative frequency of points in each bin: $p_i(D) =
+ n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
+ model.
+
+See also: https://en.wikipedia.org/wiki/Histogram
+
+**** Histogram activity											   :activity:
+ 1. Introduce the concept of a histogram on the board.
+ 2. Split the students in two groups.
+ 3. Have each group collect the height of every student.
+ 4. How can we summarise the data of each group? 
+ 5. Now the students will individually draw a histogram from the data of their group.
+ 6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
+ 7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+
+*** Python variables												   :code:
+
+ Numerical Python variables are very simple entities. Let us go through
+ this is easy program for a warm-up.
+ #+BEGIN_SRC python
+ x = 1 # a variable
+ y = 2 # another variable
+ print(x+y) # return the value of this variable sum
+ x = y # assignment operation: now x has the same value as y
+ print(x) #what would this value be?
+ y = 3
+ print(x) #is x changed?
+ #+END_SRC
+ #+RESULTS:
+ : 1
+
+*** Python lists													   :code:
+
+ A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ return x[3] # returns the last element of the list
+ #+END_SRC python
+
+ #+RESULTS:
+ : 4
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y # assignment operation: now x is just a different name for y
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+ Lists are different in one respect: when we assign one list name to
+ another, this does not copy any data. Both names refer to the same
+ data. Consequently, if we change the data, it changes for both
+ variable names.
+
+ #+BEGIN_SRC python
+ x = [1, 2, 3, 4]
+ y = [-1, -2]
+ x = y.copy() # copy operation: now x has a copy of y's data
+ y[0] = 1 # modify the 0th element of y
+ return x # what would the value of x be?
+ #+END_SRC
+
+ #+RESULTS:
+ | -1 | -2 |
+
+*** Numpy arrays											  :advanced:code:
+
+ Because lists are very flexible, they are a bit slow. A special type
+ of object, an array, is used to handle lists of numbers. This is not
+ defined in basic python, but only in one module called /numpy/. Even
+ though basic Python has only a few commands, it has many modules that
+ extend the language to perform complex tasks without having to code
+ everything from scratch.
+
+ #+BEGIN_SRC python
+ import numpy as np
+ x = np.array([1, 2, 3, 4])
+ y = np.array([-1, -2])
+ x = y # assignment operation: 
+ y[0] = 1
+ return x
+ #+END_SRC
+
+ #+RESULTS:
+ | 1 | -2 |
+
+*** Pandas and Histograms										  :plot:code:
+	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+	
+	 Pandas is a module for 
+ #+BEGIN_SRC python
+   import pandas as pd # we need to load a library first
+   # loading data into pandas creates a data frame df
+   df['column-name'] # selects a column
+   df.hist() # creates a plot with many histograms
+ #+END_SRC
+
+**** Coin example											  :activity:plot:
+
+ Introduce pandas histograms. First with fixed binary data.
+ #+BEGIN_SRC python
+ X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
+ import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
+ plt.hist(X) # this function plots the histogram
+ #+END_SRC
+
+ Each one of you should predict the result of a number of coin tosses.
+ Let us do a histogram of the predictions. This is a binomial
+ distribution.
+
+
+
+ 1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
+ 2. Firstly, plot the histogram of the data with default settings.
+ 3. What is the eff
+ Let us look at the student data: see src/histograms/heights.ipynb
+
+**** Heights example											   :activity:
+ 
+ #+BEGIN_SRC python
+ import pandas as pd
+ X = pd.read_csv("class-data.csv") # read the data into a DataFrame
+ X['Height (cm)'].hist() #directly plot the histogram
+ #+END_SRC
+
+
+*** Histograms vs Pie Charts
+
+ While histograms are good visualisations of distributions on the real
+ line, distributions over a discrete set of possible values are
+ best-represented by a pie-chart. This especially if there is no relation between 
+
+ Where the advantages and disadvantages of pie charts and histograms?
+
+ |--------------------------+-----------+-----------|
+ |                          | Histogram | Pie Chart |
+ |--------------------------+-----------+-----------|
+ | To show proportions      |           |           |
+ | For more categories      |           |           |
+ | To compare relative size |           |           |
+ | For real-valued data     |           |           |
+ |--------------------------+-----------+-----------|
+
+ #+BEGIN_SRC: python
+ plt.pie(counts) # plot counts
+ #+END_SRC
+
+*** Randomness												  :code:activity:
+  1. Random algorithms using coins.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 33
+
+ 2. Uncertainty versus randomness.
+
+
+ 3. Coin-flipping experiment
+	 1. Everybody flips a coin 10 times.
+	 2. Record how many heads or tails you have.
+	 3. Then record how you threw the coin.
+	 4. Discuss if the coin is really random.
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC python
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is versus uncertainty about the
+ coin bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+*** Probability														 :theory:
+**** Probability space
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
+
+**** Probability measures								 :theory:probability:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A "universe" $\Omega$ of outcomes
+- The algebra $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+A probability measure $P: \Sigma \to [0,1]$ on $\Omega$ satisfies the following axioms
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+**** Random variables									 :theory:probability:
+
+A real-valued random variable $f : \Omega \to \Reals$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omega$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+
+
+
+
+*** Uncertainty													   :activity:
+
+**** The number of immigrants :
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+  
+** Time-Series: model the evolution of a system
+
+ A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
+ typically assume that this is random. How can we capture this
+ dependency between variables? Does the value of $x_t$ depend only on
+ the value of $x_{t-1}$? On all the previous values? Only on the time
+ index $t$?
+
+ Typicallyy, sequential observations of a variable $x_t$ are in fact
+ noisy measurements of the true variable of interest, $y_t$, which we
+ never observe. As an example, consider covid infections. There is a
+ true, underlying, number of infections, but we only ever measure the
+ number of positive cases detected in a day. 
+
+ Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+
+ 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
+
+
+These problems are all related and can be formalised in a statistical
+manner, and there are multiple algorithms that can be used to solve
+each problem.  When $x_t = y_t$, then smoothing and filtering are
+trivial, but prediction is still an important problem.  We focus here
+on a simple linear transformation such as the moving average as a basic solution method.
+
+*Smoothing* For smoothing, a moving average filter is typically
+sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+noisy measurement of $y$. Then we can construct the estimator
+\[
+\hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
+\]
+
+*Filtering* When we wish to filter, at best we can take the moving
+average from the past $n$ observations. If $n$ is very large, then
+there is a a corresponding delay between our filtering and the final
+prediction.
+\[
+\hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+The only way to remove the lag is to perform a more complex
+transformation of the original data. To see this, consider the problem
+of prediction.
+
+
+*Prediction* Prediction means estimating something in the future. This
+task is never trivial, even with perfect observations, i.e. when $x_t
+= y_t$. In this setting moving averages do not make sense. A simple
+idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
+y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
+This gives us the estimator:
+\[
+\hat{y}_{t+1} = 2x_t - x_{t-1}
+\]
+
+
+
+*** Plotting lines
+
+ Here is a simple example of line plotting. 
+ #+BEGIN_SRC python :results file :var f="example.png"
+ import numpy as np
+ X = [1, 2, 3, 4, 5, 4, 3, 2, 1] # define a small number of points
+ import matplotlib.pyplot as plt # import the plotting library
+ plt.plot(x) # perform a standard, simple plot
+ plt.savefig(f)
+ return f
+ #+END_SRC
+
+ What are such plots useful for?
+
+*** Race times													   :activity:
+ https://en.wikipedia.org/wiki/1500_metres_world_record_progression
+
+ Wikipedia has a table that shows the progression of 1500m world records.
+ 1. Let us first [[file:src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 2. Try and predict the progrssion of world records on the board.
+ 3. Let us now look at the actual graph. Is it what you expected?
+ 4. How do you expect the progression to continue after 2020?
+ 5. How do you explain this progression? Can you find data to validate or refute your explanation?
+
+
+**** Scraping tables example :example:data-collection:
+ #+BEGIN_SRC python
+   import pandas
+   tables=pandas.read_html("URL") # read a table
+   # convert date-string:
+   dt = datetime.datetime.strptime(string, '%Y-%m-%d').year
+   # string manipulation
+   string.replace("+", "0") # replaces a + with a 0
+   string.split(":") # splits a string into multiple strings
+   # data formats
+   float("12.2"); # converts a number into a float
+ #+END_SRC
+
+
+
+*** Example: The inclination of Mars								:example:
+
+1. Plot Mars data
+2. Show orbits
+3. 3-body system, chaos and randomness
+   
+*** Example: Covid													:example:
+
+1. Plot covid data.
+2. Smooth the data: moving average plots
+3. Try and estimate past, current and future infections with simple tools.
+4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
+
+
+*** Example: Stock market prices
+ See: Trading Economics
+
+
+
+**** Exponential growth											  :plot:code:
+ +
+** Scatterplots: model a relationship
+    1. For the original data: add weight, eye colour, gender, exercise level.
+    2. Make a scatterplot of the height and weight
+ #+BEGIN_SRC python
+   X=[1, 2, 3, 4, 10, 6]
+   Y=[5, 2, 5, 3, 1, 2]
+   Z=[0, 1, 0, 1, 0, 1]
+   import matplotlib.pyplot as plt
+   plt.scatter(X,Y)
+ #+END_SRC
+ #+RESULTS:
+
+*** Example: Stock market, Unemployment, GDP
+    
+
 * Module 2: Experiment design  (3 weeks)
 ** Random sampling
  1. Pure random sampling.
