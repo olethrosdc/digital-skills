@@ -8,17 +8,18 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
-#+TAGS: activity advanced exercise homework project dataset example theory statistics plot code
+#+TAGS: activity advanced definition exercise homework project dataset example theory statistics plot code
 
 * Introduction
 
 This is a hands-on course that integrates introductory programming,
-statistics and data science. Through out this course, we wil formulate
-scientific hypotheses, design experiments, and collect and analyse
-data visually and formal models. You are expected to supplement this
-course with readings from other courses in descriptive statistics and
-python programming, but no prior knowledge is assumed. Formal concepts
-will be introduced through class activities and examples.
+statistics and data science. Through out this course, we will
+formulate scientific hypotheses, design experiments, and collect and
+analyse data visually and through formal models. You are expected to
+supplement this course with homework, self-study and other courses in
+descriptive statistics and python programming, but no prior knowledge
+is assumed. Formal concepts will be introduced through class
+activities and examples.
 
 The course will focus neither on statistical theory nor on
 programming. We will only lightly build those skills within the
@@ -71,9 +72,9 @@ Scentific goals: Statistics, analysis and experiment design
 ** Assessment
 
 The assessment is purely through in-class exercises, quizzes and
-homework assignments. There will be three larger assignments spread
-over the semester, as well as a group project. All exercises,
-assignments and project will be performed in pairs.
+homework assignments. There will be assignments spread over the
+semester, as well as a group project. The project will be performed in
+pairs.
 
 For all assignment and the project, the following rubrik is used. Some
 of the assignments may not involve all parts.
@@ -112,15 +113,14 @@ biased sampling, improper modelling or p-value hacking. Be sure to
 quantify uncertainty.
 
 #+ATTR_LATEX: :align p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
-| Skill                     | Needs Improvement         | Basic Level               | Advanced Level            |
-| <25>                      | <25>                      | <25>                      | <25>                      |
-|---------------------------+---------------------------+---------------------------+---------------------------|
-| Experiment design: Data collection and analysis pipeline | Inappropriate sampling, non-reproducible analysis | Data collection biased or analysis not reproducibile. | Unbiased sampling and reproducibile experiment desgin and analysis. |
-| Computation: Perform computations | Computations contain errors and extraneous code | Computations are correct but contain extraneous/unnecessary code. | Computations are correct and properly justified and explained. |
+| Skill                                                                       | Needs Improvement                                                    | Basic Level                                                             | Advanced Level                                                               |
+| <25>                                                                        | <25>                                                                 | <25>                                                                    | <25>                                                                         |
+|-----------------------------------------------------------------------------+----------------------------------------------------------------------+-------------------------------------------------------------------------+------------------------------------------------------------------------------|
+| Experiment design: Data collection and analysis pipeline                    | Inappropriate sampling, non-reproducible analysis                    | Data collection biased or analysis not reproducibile.                   | Unbiased sampling and reproducibile experiment desgin and analysis.          |
+| Computation: Perform computations                                           | Computations contain errors and extraneous code                      | Computations are correct but contain extraneous/unnecessary code.       | Computations are correct and properly justified and explained.               |
 | Graphics: Communicate findings graphically clearly, precisely and concisely | Inappropriate choice of plots; poorly labelled plots; plots missing. | Plots convey information correctly but lack context for interpretation. | Plots convey information correctly with adequate and appropriate information |
-| Text: Communicate findings clearly, precisely and concisely | Explanation is illogical, incorrect or incoherent. | Explanation is partially correct but incomplete or unconvincing | Explanation is correct, complete and convincing. |
-| Synthesis: Identify key features of the analysiand interpret results | Conclusions are missing, incorrect, or not made based on analysis | Conclsions reasonable, but partially correct or incomplete. | Relevant conclusions explicitly connected to analysis and context. |
-
+| Text: Communicate findings clearly, precisely and concisely                 | Explanation is illogical, incorrect or incoherent.                   | Explanation is partially correct but incomplete or unconvincing         | Explanation is correct, complete and convincing.                             |
+| Synthesis: Identify key features of the analysiand interpret results        | Conclusions are missing, incorrect, or not made based on analysis    | Conclsions reasonable, but partially correct or incomplete.             | Relevant conclusions explicitly connected to analysis and context.           |
 
 
 *Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
@@ -155,10 +155,13 @@ tabular data, as well as more contextual information. It is possible
 to also discuss newspaper articles. Wikipedia and newspaper articles
 can be used in the context of some assignments.
 
+*** Economics data
+
+- [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
+- [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
 
 
-* Modules
-** Visualisation as models and data summary
+* Module 1: Visualisation as models and data summary (3 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -187,7 +190,7 @@ can be used in the context of some assignments.
  theory visually.
 
 
-*** Histograms: model a distribution
+** Histograms: model a distribution
 
     Histograms are a simple tool for modelling distributions. In their
  simplest application, they are used to simply count the number of items
@@ -195,7 +198,107 @@ can be used in the context of some assignments.
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
 
-**** Introduction to histograms                           :theory:statistics:
+*** Probabilities and Distributions                      :theory:probability:
+
+The set of all possible outcomes is denoted as $\Omega$. For example,
+if we throw a die, this is the set of all possible ways, locations etc
+that the die can fall and land.  However, we may only be interested in
+two events: whether the die lands showing a '6' or not.  Formally, an
+event $A$ is a subset of $\Omega$. In our example, $A$ can be the set
+of all ways in which the die can land so that its top shows "6". A
+probability measure $P$ simply assigns a number between 0 and 1 to
+every subset $A$ we might be interested in. This can be thought of as
+the area of $A$. Different probability measures $P$ assign different
+areas to different sets.
+
+We begin with some example distributions, before we formalise what we
+mean by the term. For technical details see [[*Probability space][Probability space]].
+
+See also:
+- https://en.wikipedia.org/wiki/Probability
+
+ 
+*** Example Distributions
+
+We begin with distributions where there is a finite number of possible
+outcomes, and hence a finite number of possible events that we might
+care about. All such distributions are characterised by one or more
+/parameters/. The simplest such distribution is a distribution on only
+two outcomes, the family of Bernoulli distributions.
+
+**** The Bernoulli distribution.                     :definition:probability:
+Let us start with a simple example, the Bernoulli distribution with
+parameter $\theta \in [0,1]$. This is the distribution over two outcomes
+$\{0,1\}$, so that
+\[
+\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
+\]
+It is typical to think the distribution of heads and tails of a coin
+as being Bernoulli, with parameter $\theta = 1/2$.
+
+*Probability space* Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
+\[
+\Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
+\]
+
+See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+**** Binomial distribution                           :definition:probability:
+If we repeat a Bernouli trial, we can also count the number of times
+the coin comes heads, so to speak. The distribution of the counts is
+called the Binomial distribution.
+
+See also: https://en.wikipedia.org/wiki/Binomial_distribution
+
+**** The Categorical/Multinomial distribution
+
+A multinomial distribution is an extension of the Bernoulli and
+binomial distributions to $n \geq 2$ outcomes. 
+
+*Categorial distributions* Let us start with
+one trial, e.g. a single throw of a die. We can model this dice throw
+as the distribution where the probability
+that the die lands with its $k$-th face on top is $\theta_k$,
+\[ \Pr(x = k) = \theta_k.\]
+Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_n)$.
+
+A random variable $x : \Omega \to \{1,\ldots, n\}$ is called
+multinomial. If the underlying probability space is $(\Omega, \Sigma,
+P)$, then
+\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
+
+See also: https://en.wikipedia.org/wiki/Multinomial_distribution
+
+**** Uniform distributions
+
+A special case of binomial and multinomial distributions is the
+uniform distribution. This is defined as follows.
+
+Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
+\[
+P(A) = \frac{|A|}{|\Omega|}.
+\]
+
+This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
+the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
+\[
+P([0,p)) = \Pr(\omega \in [0,p)) = p.
+\]
+
+
+
+**** Measuring a discrete distribution                             :activity:
+
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this byy $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$.
+
+
+
+*** Introduction to histograms							  :theory:statistics:
 	
  Assume data is in $\Reals$. Then split the real line into intervals
  $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
@@ -217,8 +320,10 @@ can be used in the context of some assignments.
  n_i(D) / \sum_{j} n_j(D)$.  The selection of bins influences the
  model.
 
-***** Histogram activity                                           :activity:
- 1. Introduce the concept of a historgram on the board.
+See also: https://en.wikipedia.org/wiki/Histogram
+
+**** Histogram activity											   :activity:
+ 1. Introduce the concept of a histogram on the board.
  2. Split the students in two groups.
  3. Have each group collect the height of every student.
  4. How can we summarise the data of each group? 
@@ -226,7 +331,7 @@ can be used in the context of some assignments.
  6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
  7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
 
-**** Python variables                                                  :code:
+*** Python variables												   :code:
 
  Numerical Python variables are very simple entities. Let us go through
  this is easy program for a warm-up.
@@ -242,7 +347,7 @@ can be used in the context of some assignments.
  #+RESULTS:
  : 1
 
-**** Python lists                                                      :code:
+*** Python lists													   :code:
 
  A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
 
@@ -281,7 +386,7 @@ can be used in the context of some assignments.
  #+RESULTS:
  | -1 | -2 |
 
-**** Numpy arrays                                             :advanced:code:
+*** Numpy arrays											  :advanced:code:
 
  Because lists are very flexible, they are a bit slow. A special type
  of object, an array, is used to handle lists of numbers. This is not
@@ -302,8 +407,7 @@ can be used in the context of some assignments.
  #+RESULTS:
  | 1 | -2 |
 
-
-**** Pandas and Histograms                                        :plot:code:
+*** Pandas and Histograms										  :plot:code:
 	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
 	
 	 Pandas is a module for 
@@ -314,7 +418,7 @@ can be used in the context of some assignments.
    df.hist() # creates a plot with many histograms
  #+END_SRC
 
-***** Coin example                                            :activity:plot:
+**** Coin example											  :activity:plot:
 
  Introduce pandas histograms. First with fixed binary data.
  #+BEGIN_SRC python
@@ -334,7 +438,7 @@ can be used in the context of some assignments.
  3. What is the eff
  Let us look at the student data: see src/histograms/heights.ipynb
 
-***** Heights example                                              :activity:
+**** Heights example											   :activity:
  
  #+BEGIN_SRC python
  import pandas as pd
@@ -343,7 +447,7 @@ can be used in the context of some assignments.
  #+END_SRC
 
 
-**** Histograms vs Pie Charts
+*** Histograms vs Pie Charts
 
  While histograms are good visualisations of distributions on the real
  line, distributions over a discrete set of possible values are
@@ -364,7 +468,7 @@ can be used in the context of some assignments.
  plt.pie(counts) # plot counts
  #+END_SRC
 
-**** Randomness                                               :code:activity:
+*** Randomness												  :code:activity:
   1. Random algorithms using coins.
  #+BEGIN_SRC python
    y = 0 # y is a variable, with the value zero currently
@@ -422,9 +526,123 @@ can be used in the context of some assignments.
  coin bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
 
-**** Uncertainty                                                   :activity:
+*** Probability														 :theory:
+**** Probability space
 
-***** The number of immigrants :
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
+
+**** Probability measures								 :theory:probability:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A *universe* $\Omega$ of outcomes
+- The *algebra* $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+*The axioms of probability* A probability measure $P: \Sigma \to
+ [0,1]$ on $\Omega$ satisfies the following axioms:
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+**** Random variables									 :theory:probability:
+
+A real-valued random variable $f : \Omega \to \Reals$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omega$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+1. Let us start by throwing a 10-sided die. How do you generate a
+   Bernoulli random variable with $\theta = 0.6$ from the outcomes of
+   the dice throw?
+
+2. Now let us consider the following python code, which generates
+   values from a Bernoulli random variable.
+#+BEGIN_SRC python
+import numpy as np
+return np.random.choice(2,p=[0.6, 0.4])
+#+END_SRC
+
+#+RESULTS:
+: 0
+
+   Let us replicate it through a distribution of uniform randomv variables in $[0,1]$.
+#+BEGIN_SRC python
+import numpy as np
+x = np.random.uniform() # returns a uniformly generated number in [0,1). 
+if x < 0.6:
+  return 1
+else:
+  return 0
+#+END_SRC
+
+#+RESULTS:
+: 1
+
+
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants :
  Consider the following question: how many immigrants live in
  Switzerland?  
 
@@ -437,9 +655,8 @@ can be used in the context of some assignments.
  3. Now let us create some confidence intervals. The procedure is as
  follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
  (a) Are you willing to take an even bet that the true number is between [5-10%]?
-
   
-*** Time-Series: model the evolution of a system
+** Time-Series: model the evolution of a system
 
  A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
  typically assume that this is random. How can we capture this
@@ -447,7 +664,57 @@ can be used in the context of some assignments.
  the value of $x_{t-1}$? On all the previous values? Only on the time
  index $t$?
 
-**** Plotting lines
+ Typicallyy, sequential observations of a variable $x_t$ are in fact
+ noisy measurements of the true variable of interest, $y_t$, which we
+ never observe. As an example, consider covid infections. There is a
+ true, underlying, number of infections, but we only ever measure the
+ number of positive cases detected in a day. 
+
+ Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+
+ 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
+
+
+These problems are all related and can be formalised in a statistical
+manner, and there are multiple algorithms that can be used to solve
+each problem.  When $x_t = y_t$, then smoothing and filtering are
+trivial, but prediction is still an important problem.  We focus here
+on a simple linear transformation such as the moving average as a basic solution method.
+
+*Smoothing* For smoothing, a moving average filter is typically
+sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+noisy measurement of $y$. Then we can construct the estimator
+\[
+\hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
+\]
+
+*Filtering* When we wish to filter, at best we can take the moving
+average from the past $n$ observations. If $n$ is very large, then
+there is a a corresponding delay between our filtering and the final
+prediction.
+\[
+\hat{y}_t = \frac{1}{n+1} \sum_{k = t-n}^{t} x_k.
+\]
+The only way to remove the lag is to perform a more complex
+transformation of the original data. To see this, consider the problem
+of prediction.
+
+
+*Prediction* Prediction means estimating something in the future. This
+task is never trivial, even with perfect observations, i.e. when $x_t
+= y_t$. In this setting moving averages do not make sense. A simple
+idea is to /assume a linear trend/, e.g. that $y_{t+1} - y_t = y_t -
+y_{t-1}$. By re-arranging terms, we have that $y_{t+1} = 2y_t - y_{t-1}$.
+This gives us the estimator:
+\[
+\hat{y}_{t+1} = 2x_t - x_{t-1}
+\]
+
+
+
+*** Plotting lines
 
  Here is a simple example of line plotting. 
  #+BEGIN_SRC python :results file :var f="example.png"
@@ -461,18 +728,18 @@ can be used in the context of some assignments.
 
  What are such plots useful for?
 
-**** Race times                                                    :activity:
+*** Race times													   :activity:
  https://en.wikipedia.org/wiki/1500_metres_world_record_progression
 
  Wikipedia has a table that shows the progression of 1500m world records.
- 1. Let us first [[src/time-series/WorldRecords.py][show the records up to 1950]] .  
+ 1. Let us first [[file:src/time-series/WorldRecords.py][show the records up to 1950]] .  
  2. Try and predict the progrssion of world records on the board.
  3. Let us now look at the actual graph. Is it what you expected?
  4. How do you expect the progression to continue after 2020?
  5. How do you explain this progression? Can you find data to validate or refute your explanation?
 
 
-***** Scraping tables example :example:data-collection:
+**** Scraping tables example :example:data-collection:
  #+BEGIN_SRC python
    import pandas
    tables=pandas.read_html("URL") # read a table
@@ -487,16 +754,28 @@ can be used in the context of some assignments.
 
 
 
-**** Example: The inclination of Mars                               :example:
-**** Example: Covid                                                 :example:
-**** Example: Stock market prices
+*** Example: The inclination of Mars								:example:
+
+1. Plot Mars data
+2. Show orbits
+3. 3-body system, chaos and randomness
+   
+*** Example: Covid													:example:
+
+1. Plot covid data.
+2. Smooth the data: moving average plots
+3. Try and estimate past, current and future infections with simple tools.
+4. Discuss: Are those simple tools sufficient? Is our visualisation consistent? Do we need something further?
+
+
+*** Example: Stock market prices
  See: Trading Economics
 
 
 
-***** Exponential growth                                          :plot:code:
+**** Exponential growth											  :plot:code:
  +
-*** Scatterplots: model a relationship
+** Scatterplots: model a relationship
     1. For the original data: add weight, eye colour, gender, exercise level.
     2. Make a scatterplot of the height and weight
  #+BEGIN_SRC python
@@ -508,41 +787,55 @@ can be used in the context of some assignments.
  #+END_SRC
  #+RESULTS:
 
-**** Example: Stock market, Unemployment, GDP
-	
-*** Homework Assignment: Fix a bad plot
+*** Relationships as functions
 
- TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+A lot of relationships between two variables $x \in X$, $y \in Y$, can
+be described through some deterministic function $f : X \to Y$, i.e.
+\[ y = f(x).\]
 
- Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
+If the relationship is one-to-one, then there exists an
+inverse function $f^{-1} : Y \to X$, so that
+\[
+x = f^{-1}(y),
+\]
+with
+\[
+x = f^{-1}[f(x)].
+\]
 
- - Is the plot type appropriate?
- - Is the data correct?
- - Does the plot convey an appropriate message?
- - Is thee more data somewhere that you could combine with the original to obtain a better picture?
+Sometimes, however, the relationship betwen the two variables is not
+deterministic, that is the value of $x$ does not uniquely determine
+the value of $y$, or the converse may occur... or both.
 
- After you have identified problems with the plot, data sources, or
- missing data, create a new plot, along with an explanation of how you
- addressed the original plot's deficiencies.
+**** Physics: 
+*** Relationships as joint distributions
 
-** Experiment design   
-*** Random sampling
+The simplest way to model a stochastic relationship between two
+variables is to model the joint distribution $P(X,Y)$.
+
+*** Relationships as conditional distributions
+
+    
+*** Example: Stock market, Unemployment, GDP
+    
+
+* Module 2: Experiment design  (3 weeks)
+** Random sampling
  1. Pure random sampling.
  2. Undercounting.
  3. Give mode.
-*** A/B testing
-  1. Comparing algorithms in the wild. Which is the best algorithm?
-*** The data science pipeline
-  The experimental pipipeline has a number of different components. 
-  1. Formulating the problem.
-  2. Deciding what type of data is needed.
-  3. Choosing the model and visualisation needed.
-  4. Designing the experimental protocol.
-  5. Generating data confirming to our assumptions.
-  6. Testing the protocol on synthetic data. Is it working as expected?
-*** Homework Assignment: Analyse Newspaper articles
-** Inference
-*** Expectation
+** A/B testing
+ 1. Comparing algorithms in the wild. Which is the best algorithm?
+** The data science pipeline
+ The experimental pipipeline has a number of different components. 
+ 1. Formulating the problem.
+ 2. Deciding what type of data is needed.
+ 3. Choosing the model and visualisation needed.
+ 4. Designing the experimental protocol.
+ 5. Generating data confirming to our assumptions.
+ 6. Testing the protocol on synthetic data. Is it working as expected?
+* Module 3: Inference (2 weeks)
+** Expectation
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
  \[
@@ -555,7 +848,7 @@ can be used in the context of some assignments.
        return omega * omega
  #+END_SRC
 
-**** Centime exercise
+*** Centime exercise
 
  A jar with coins is passed around the class. 
  1. The students are asked to guess how many coins it contains.
@@ -566,7 +859,7 @@ can be used in the context of some assignments.
  6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
  (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
-*** Bayesian analysis
+** Bayesian analysis
  Recall the definition of Conditional probability:
 
  $P(A | B) = P(A \cap B) / P(B)$,
@@ -583,7 +876,7 @@ can be used in the context of some assignments.
 
  So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
-**** The covid test problem
+*** The covid test problem
  10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
  you have covid, the test is correct 80% of the time, i.e. P(positive |
  covid) = 0.8. Conversely, if you do not have covid, there is still a
@@ -595,7 +888,7 @@ can be used in the context of some assignments.
  First of all, each one of you should independently generate a uniform random
  number between 1 and 10. For that, you can pass along a 10-sided die.
 
-**** The cards problem
+*** The cards problem
  1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
  2. Get a card (say with face A), and ask what is the probability the other side is the same.
  3. Have the students perform the experiment with:
@@ -604,7 +897,7 @@ can be used in the context of some assignments.
     3. Of those, count the number of people with A on the other side.
     4. It should be clear that 1/3 of people have [A|A] and of those 
 
-**** The k-Meteorologists problem
+*** The k-Meteorologists problem
 
  Bayesian reasoning is most useful in the following setting:
 
@@ -645,36 +938,88 @@ can be used in the context of some assignments.
  Write a program that updates the beliefs sequentially given
  observations and station predictions.
 
-*** Hypothesis testing
+** Hypothesis testing
 
-**** Homework assignment: Define a data collection and analysis problem
-** Advanced visualisation
-*** Geographical data
+*** Homework assignment: Define a data collection and analysis problem
+* Module 4: Advanced visualisation (2 weeks)
+** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
-*** Text data
-** Data analysis in practice
-*** Survey data: The garden of many paths
 
-*** Visualising fMRI data
-*** Visualising GWAS data
-**** Homework assignment: Visualisation of a project
+*** Colour maps
+1. Colour as a continuous variable.
+2. Colour as a discrete variable.
+3. Colour perception and interpretation.
+*** Contour maps
+1. Geographical contour
+2. Density plots
+   	 
+** Text data
+* Module 5: Data analysis in practice (2 weeks)
+** Survey data: The garden of many paths
+
+** Visualising fMRI data
+** Visualising GWAS data
+*** Homework assignment: Visualisation of a project
+
+* Module 6: Project work and presentations (2 weeks)
 
 * Assignments
-The course contains four assignments. The instructions for each assignment are given below.
+
+The course contains assignments and a project. The instructions for
+each assignment are given below. The assignments are largely done in
+class, but completed at home.
+
 ** Table To Picture
-Fina  table in wikipedia on a topic of interest, and convert the table into a graph.
-** Project Highlight
+Find a table in wikipedia on a topic of interest, and convert the table into a graph.
 ** Plot deconstruction
-In this assignment, you will take a plot from an online source and figure out
+
+ TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+
+ Find an inteesting plot from a web page on e.g. wikipedia. Try to identify some problem with the plot. To help you, ask yourself the following questions:
+
+ - Is the plot type appropriate?
+ - Is the data correct?
+ - Does the plot convey an appropriate message?
+ - Is thee more data somewhere that you could combine with the original to obtain a better picture?
+
+ After you have identified problems with the plot, data sources, or
+ missing data, create a new plot, along with an explanation of how you
+ addressed the original plot's deficiencies.
+
 ** Newspaper article analysis
+In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.  You must study the article criticially. Are the conclusions supported by the data? Does the methodology make sens? Find primary sources that confirm or challenge the article to obtain a more rounded picture.
+
+https://docs.google.com/spreadsheets/d/1QKj_L9f0UIH80qgs2kcjc8AU1eKZzsTOcYFSU06HJBY/edit#gid=0
+
+
 
 ** Simulation study
-Vay parameter values and simulate thousands of teimes under each set of conditions. 
-Summarise your findings graphically. 
+
+For a simple visualisation problem, vary parameter values and simulate
+thousands of times under each set of conditions. Summarise your
+findings graphically.
+
 ** Copy the master
+
+You are given a visualisation constructed from a given dataset. You must create a similar visualisation from another dataset.
+
 ** Open project
+*** Project proposal
+Propose a problem to solve, including:
+- Hypotheses to test
+- How to collect data
+- How to analyse the collected data
+*** Project Highlight
+After you have started your project, each one of the project members presents a preliminary plot and explains it (5 minutes).
+*** Project report
+
+The completed project should include a report written by both students
+in the team. This should should address the points in the [[*Assessment][Assessment]]
+description.
 
 * Notation
+For convenience, I include necessary mathematical notation
+
 ** Sets
 - $\Reals$: Real numbers
 - $\Reals^d$: d-dimensional Euclidean space
@@ -685,9 +1030,9 @@ Summarise your findings graphically.
 - $A \setminus B$: Removing B from A
 - $\Omega$: The "universe"
 - $A^c = \Omega \setminus A$: The complement of a set.
-- \{x | f(x) = 0\}: The set of x so that f(x) = 0.
+- $\{x | f(x) = 0\}$: The set of x so that $f(x) = 0$.
 ** Analysis
-- $\ind{x \in A}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
+- $\mathbb{I}\{x \in A\}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
 - $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
 - $d/dx f(x)$: derivative of $f$
 - $\partial/\partial x f(x,y)$: partial derivative of $f$
@@ -715,6 +1060,9 @@ Summarise your findings graphically.
 9. Network graphs
 10. Word cloud
 
+See also: [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
+
+
 * Schedule and links to other courses
 
 The schedule of this and the other courses is in flux, but I do not
@@ -724,7 +1072,7 @@ same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| Week   | Statistics                | Programming  | Coursework               | Assignment      |
+| Week   | Statistics                | Programming  | Coursework               | Homework        |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 1      | Course intro              | Python intro | Histograms               |                 |
 | 23 Sep |                           |              | Randomness               |                 |
@@ -749,12 +1097,12 @@ either statistical theory or programming.
 |        | Quantiles                 |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 4      | Qualitative vars in R     | Structures   | Random Sampling          |                 |
-| 14 Oct | Discrete vars in R        |              | Undercounting            | Deconstruction  |
+| 14 Oct | Discrete vars in R        |              | Undercounting            | Proposal        |
 |        |                           |              | Representative samples   |                 |
 |        |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 5      | Continous RV              | Functions    | A/B Testing              |                 |
-| 21 Oct |                           |              | Comparing two algorithms | Proposal        |
+| 21 Oct |                           |              | Comparing two algorithms | Deconstruction  |
 |        |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 6      | Continuous RV             | Complements  | Pipelines                |                 |
@@ -765,41 +1113,36 @@ either statistical theory or programming.
 | 4 Nov  |                           |              |                          | Proj. Highlight |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 8      | Dependencies.             | Objects      | Bayesian inference       |                 |
-| 11 Nov | Joint distribution.       |              |                          | CopyMaster      |
+| 11 Nov | Joint distribution.       |              |                          | Project         |
 |        | Conditional distribution. |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| 9      | Moments                   | Errors       | Hypothesis tesing        |                 |
+| 9      | Moments                   | Errors       | Hypothesis tesing        | Project         |
 | e      |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 10     | Covariance                | Iterators    | The Garden of Many Paths |                 |
 | 25 Nov | Correlation               |              |                          | Simulation      |
-|        | Scatterplots              |              | [Newspaper article]      |                 |
+|        | Scatterplots              |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 11     | Prices, returns           | FP           | Visualising fMRI data    |                 |
-| 2 Dec  |                           |              | [Newspaaper article]     |                 |
+| 2 Dec  |                           |              |                          | Project         |
 |--------+---------------------------+--------------+--------------------------+-----------------|
-| 12     | Conditional expectations  |              | Visualising GWAS data    |                 |
+| 12     | Conditional expectations  |              | Visualising GWAS data    | Project         |
 | 9 Dec  |                           |              |                          |                 |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 | 13     |                           |              | [Project presentations]  |                 |
 | 16 Dec |                           |              |                          | Project         |
 |--------+---------------------------+--------------+--------------------------+-----------------|
 
-* References and External links
 
 
 
-** Data sources
+* References
 
-- UCI [[https://archive.ics.uci.edu/ml/index.php][Machine Learning Repository]]
-- [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
-- [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
-- [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
+Python help: Use python's !help! function whenever you can. 
+#+BEGIN_SRC python
+help(print)
+#+END_SRC
 
-
-
-** Visualisation wokshops and books
-https://www.dagstuhl.de/program/calendar/partlist/?semnr=22261&SUOG
 https://vishub.net/bach
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
@@ -807,6 +1150,9 @@ https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 [CA] The Truthful Art. Cairo, Alberto :book:
 [GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel :book:
 (Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)
+
+The Truthful Art, Cairo, Alberto :book:
+Data Science Par La Pratique
 
 
 
