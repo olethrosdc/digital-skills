@@ -787,7 +787,7 @@ either statistical theory or programming.
 
 * References and External links
 
-- Data Science Par La Pratique
+
 
 ** Data sources
 
@@ -804,7 +804,9 @@ https://vishub.net/bach
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
 https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 
-The Truthful Art, Cairo, Alberto :book:
+[CA] The Truthful Art. Cairo, Alberto :book:
+[GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel :book:
+(Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)
 
 
 
