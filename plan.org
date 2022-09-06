@@ -34,22 +34,22 @@ parallel, or through self-study.
 ** Learning goals:
 #+BEGIN_CENTER
 
-Graphical comprehension:
+*Graphical comprehension*
 
-1. Recognise structural eelemtns in a statistical graph (e.g. axis,
+1. Recognise structural elements in a statistical graph (e.g. axis,
    symbols, labels) and evaluate the effectiveness (for perception and
    judgment) and appropriateness (for the type of data) of structural
-   element
+   element.
 2. Translate relationships reflected in a graph to the data
    represented.
 3. Recognise when one graph is more useful than another and
    organise/reorganise data to make an alternative representation.
-4. Use context to make sense fo what is presented in a graph and avoid
+4. Use context to make sense of what is presented in a graph and avoid
    reading too much into any relationships observed.
-5. Express creative thinking via the production of an innovactive
+5. Express creative thinking via the production of an innovative
    graphical presentation.
 
-Scentific goals: Statistics, analysis and experiment design
+*Scientific process*
 
 1. Understanding the randomness, variability and uncertainty inherent
    in a problem.
@@ -64,9 +64,10 @@ Scentific goals: Statistics, analysis and experiment design
 7. Allowing domain knowledge to guide both data collection and
    analysis.
 8. Quantify uncertainty---and knowledge---visually.
-9. Realise that all visualisations are models.
+9. Realise that all visualisations are model summaries.
 10. Be able to write simple python programs for data science
     workflows.
+
 #+END_CENTER
 
 ** Assessment
@@ -79,38 +80,37 @@ pairs.
 For all assignment and the project, the following rubrik is used. Some
 of the assignments may not involve all parts.
 
-*Experiment design* The first stage any project, no matter how small,
+*Experiment design.* The first stage any project, no matter how small,
 is the experiment design and analysis. This includes a plan for how to
-collect data, one or two methodologies for analysing the data, and the
+collect data, methodologies for analysing the data, and the
 development of a pipeline, preferrably in the form of a program, for
 collecting data and analysing it. In additional, the experiment design
 must be reproducible: This can be ensured by running the data
 collection and analysis pipeline on simulated data, and seeing if the
 results are as expected.
 
-*Computation* Here you must instantiate the experiment design and
+*Computation.* Here you must instantiate the experiment design and
 analysis with concrete computations. For reproducibility, the
 computations you perform should be independent of the data you
 actually have. Correctness of the computations is the most important
 aspect, here. However, you should also take care to document why and
 how how you are doing the computations.
 
-*Graphics* This addresses the creation of visualisations of your
+*Graphics.* This addresses the creation of visualisations of your
 analysis. It is recommended to do this fully automatically, so that
 you can simply run your pipeline and get all the results you need.
 Be sure to quantify uncertainty.
 
-*Text* Here you should explain in text what the graphics mean.  Point
+*Text.* Here you should explain in text what the graphics mean.  Point
 out any interesting things you can see in the visualisation and try to
 explain it. Do not be overconfident, but quantify uncertainty
 properly.
 
-
-*Synthesis* Here you should summarise the most important findings from
-your analysis. Be careful to not over-interpret your results. A lot of
-results can be imaginary and can be attributed to insufficient data,
-biased sampling, improper modelling or p-value hacking. Be sure to
-quantify uncertainty.
+*Synthesis.* Here you should summarise the most important findings
+from your analysis. Be careful to not over-interpret your results. A
+lot of results can be imaginary and can be attributed to insufficient
+data, biased sampling, improper modelling or $p$-value hacking. Again,
+be sure to quantify uncertainty.
 
 #+ATTR_LATEX: :align p{3cm}|p{3cm}|p{3cm}|p{3cm} :font \scriptsize
 | Skill                                                                       | Needs Improvement                                                    | Basic Level                                                             | Advanced Level                                                               |
@@ -124,7 +124,7 @@ quantify uncertainty.
 
 
 *Pass*: All parts must be addressed, the 'default' grade is 75%. 5% is
-added for every 'advanced' skill and reemoved for every 'needs
+added for every 'advanced' skill and removed for every 'needs
 improvement skill'. Thus the passing grades are 50-100%.
 
 *Fail*: If not all parts are explicitly addresed, the assignment is failed.
@@ -184,7 +184,7 @@ can be used in the context of some assignments.
  2. Model creation
  3. Model visualisation
 
- Every model is defined by a number of variables. This is what is
+*Parameters.* Every model is defined by a number of parameters. This is what is
  displayed when we visualise data. You can think of the model as the
  underlying theory, and the visualisation as a way to explain the
  theory visually.
@@ -197,105 +197,6 @@ can be used in the context of some assignments.
  in distinct bins of a dataset. While typically employed to represent
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
-
-*** Probabilities and Distributions                      :theory:probability:
-
-The set of all possible outcomes is denoted as $\Omega$. For example,
-if we throw a die, this is the set of all possible ways, locations etc
-that the die can fall and land.  However, we may only be interested in
-two events: whether the die lands showing a '6' or not.  Formally, an
-event $A$ is a subset of $\Omega$. In our example, $A$ can be the set
-of all ways in which the die can land so that its top shows "6". A
-probability measure $P$ simply assigns a number between 0 and 1 to
-every subset $A$ we might be interested in. This can be thought of as
-the area of $A$. Different probability measures $P$ assign different
-areas to different sets.
-
-We begin with some example distributions, before we formalise what we
-mean by the term. For technical details see [[*Probability space][Probability space]].
-
-See also:
-- https://en.wikipedia.org/wiki/Probability
-
- 
-*** Example Distributions
-
-We begin with distributions where there is a finite number of possible
-outcomes, and hence a finite number of possible events that we might
-care about. All such distributions are characterised by one or more
-/parameters/. The simplest such distribution is a distribution on only
-two outcomes, the family of Bernoulli distributions.
-
-**** The Bernoulli distribution.                     :definition:probability:
-Let us start with a simple example, the Bernoulli distribution with
-parameter $\theta \in [0,1]$. This is the distribution over two outcomes
-$\{0,1\}$, so that
-\[
-\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
-\]
-It is typical to think the distribution of heads and tails of a coin
-as being Bernoulli, with parameter $\theta = 1/2$.
-
-*Probability space* Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
-\[
-\Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
-\]
-
-See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
-
-**** Binomial distribution                           :definition:probability:
-If we repeat a Bernouli trial, we can also count the number of times
-the coin comes heads, so to speak. The distribution of the counts is
-called the Binomial distribution.
-
-See also: https://en.wikipedia.org/wiki/Binomial_distribution
-
-**** The Categorical/Multinomial distribution
-
-A multinomial distribution is an extension of the Bernoulli and
-binomial distributions to $n \geq 2$ outcomes. 
-
-*Categorial distributions* Let us start with
-one trial, e.g. a single throw of a die. We can model this dice throw
-as the distribution where the probability
-that the die lands with its $k$-th face on top is $\theta_k$,
-\[ \Pr(x = k) = \theta_k.\]
-Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_n)$.
-
-A random variable $x : \Omega \to \{1,\ldots, n\}$ is called
-multinomial. If the underlying probability space is $(\Omega, \Sigma,
-P)$, then
-\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
-
-See also: https://en.wikipedia.org/wiki/Multinomial_distribution
-
-**** Uniform distributions
-
-A special case of binomial and multinomial distributions is the
-uniform distribution. This is defined as follows.
-
-Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
-\[
-P(A) = \frac{|A|}{|\Omega|}.
-\]
-
-This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
-the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
-\[
-P([0,p)) = \Pr(\omega \in [0,p)) = p.
-\]
-
-
-
-**** Measuring a discrete distribution                             :activity:
-
-Each one of you can toss a coin 20 times, and count the number of
-times it comes up as heads or tails.  Let us denote this byy $N(x =
-k)$. It should be approximately true that $N(x = k) \approx 5$.
-
-We can visualise this by plotting bars or lines, whose height is
-proportional to $N(x=k)$.
-
 
 
 *** Introduction to histograms							  :theory:statistics:
@@ -330,6 +231,33 @@ See also: https://en.wikipedia.org/wiki/Histogram
  5. Now the students will individually draw a histogram from the data of their group.
  6. Show two different histograms from two people in the same group. Why are they different? Discuss in pairs and then in class.
  7. Now show a histogram from a person in another group. Why are the histograms in the two groups different? Discuss.
+ 8. Collect the data of all students in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp=sharing][online excel file]].
+ 9. Now we shall plot a histogram of the students using the sheet. How does that differ?
+
+[If there are not enough students, the exercise can be performed by adding random numbers using dice]
+
+**** Measuring a discrete distribution                             :activity:
+
+1. Toss a coin 20 times and record the result.
+2. Count the number of times it comes heads or tails.
+3. We then summarise the result.
+
+Each one of you can toss a coin 20 times, and count the number of
+times it comes up as heads or tails.  Let us denote this by $N(x =
+k)$. It should be approximately true that $N(x = k) \approx 5$.
+
+We can visualise this by plotting bars or lines, whose height is
+proportional to $N(x=k)$. 
+
+We typically assume that individual coin tosses are generated from [[*The Bernoulli distribution.][The
+Bernoulli distribution.]] This means that the probability of heads or
+tails is fixed, and does not depend on the result of the previous
+tosses.  Why might not that be the case?
+
+If individual tosses are Bernoulli, then the distribution of the
+number of heads (or tails) is a [[*Binomial distributionfile:~/teaching/digital-skills/plan.org::*Random variables][binomial]] distribution.
+
+We will now show how to achieve the same results programmatically.
 
 *** Python variables												   :code:
 
@@ -408,9 +336,11 @@ See also: https://en.wikipedia.org/wiki/Histogram
  | 1 | -2 |
 
 *** Pandas and Histograms										  :plot:code:
-	 For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]]
+    For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]].
 	
-	 Pandas is a module for 
+    Pandas is a module for simple and efficient data I/O processing
+    and visualisation. The following code snippet demonstrates a
+    couple of features.
  #+BEGIN_SRC python
    import pandas as pd # we need to load a library first
    # loading data into pandas creates a data frame df
@@ -420,7 +350,11 @@ See also: https://en.wikipedia.org/wiki/Histogram
 
 **** Coin example											  :activity:plot:
 
- Introduce pandas histograms. First with fixed binary data.
+Plotting is also possible through the matplotlib. This is the module
+that pandas uses to plot stuff. It just has a simpler interface for
+doing so. But if you want to create custom plots, matplotlib is what
+you need to use.
+
  #+BEGIN_SRC python
  X = [1, 0, 1, 0, 1, 1, 0, 1, 0] # a sequence of coin tosses.
  import matplotlib.pyplot as plt # python has no default plot function, we must IMPORT it
@@ -428,10 +362,7 @@ See also: https://en.wikipedia.org/wiki/Histogram
  #+END_SRC
 
  Each one of you should predict the result of a number of coin tosses.
- Let us do a histogram of the predictions. This is a binomial
- distribution.
-
-
+ Let us do a histogram of the predictions. This is a binomial distribution.
 
  1. The students record their data in the [[https://docs.google.com/spreadsheets/d/1iMTe4UvVBIS7UZgjYh5Vx7RfgecjFovx5iR4v9TYLJE/edit?usp%3Dsharing][shared spreadsheet]]
  2. Firstly, plot the histogram of the data with default settings.
@@ -445,7 +376,6 @@ See also: https://en.wikipedia.org/wiki/Histogram
  X = pd.read_csv("class-data.csv") # read the data into a DataFrame
  X['Height (cm)'].hist() #directly plot the histogram
  #+END_SRC
-
 
 *** Histograms vs Pie Charts
 
@@ -526,7 +456,57 @@ See also: https://en.wikipedia.org/wiki/Histogram
  coin bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
 
-*** Probability														 :theory:
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants :
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+  
+*** Probability background                                           :theory:
+
+The theory of probability is used to mathematically define processes
+with uncertain outcomes. The set of all possible outcomes depends on
+the process.  For example, if we throw a die, this is the set of all
+possible ways, locations etc that the die can fall and land.  However,
+we may only be interested in two events: whether the die lands showing
+a '6' or not.  Formally, an event $A$ is a subset of all the possible
+outcomes $\Omega$. In our example, $A$ can be the set of all ways in
+which the die can land so that its top shows "6". A probability
+measure $P$ simply assigns a number between 0 and 1 to every subset
+$A$ we might be interested in. This can be thought of as the area of
+$A$. Different probability measures $P$ assign different areas to
+different sets.
+
+For some more technical details, see [[*Probability space][Probability space]].
+
+See also:
+- https://en.wikipedia.org/wiki/Probability
+
 **** Probability space
 
 In probability theory, we typically define the set of all possible
@@ -567,6 +547,75 @@ From these, it also follows that $P(\emptyset) = 0$.
 
 See also: https://en.wikipedia.org/wiki/Probability_measure
 
+*** Example Distributions
+
+We focus on distributions where there is a finite number of possible
+outcomes, and hence a finite number of possible events that we might
+care about. All such distributions are characterised by one or more
+/parameters/. The simplest such distribution is a distribution on only
+two outcomes, the family of Bernoulli distributions.
+
+**** The Bernoulli distribution.                     :definition:probability:
+Let us start with a simple example, the Bernoulli distribution with
+parameter $\theta \in [0,1]$. This is the distribution over two outcomes
+$\{0,1\}$, so that
+\[
+\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
+\]
+It is typical to think the distribution of heads and tails of a coin
+as being Bernoulli, with parameter $\theta = 1/2$.
+
+*Probability space* Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
+\[
+\Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
+\]
+
+See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+**** Binomial distribution                           :definition:probability:
+If we repeat a Bernouli trial, we can also count the number of times
+the coin comes heads, so to speak. The distribution of the counts is
+called the Binomial distribution.
+
+See also: https://en.wikipedia.org/wiki/Binomial_distribution
+
+**** The Categorical/Multinomial distribution
+
+A multinomial distribution is an extension of the Bernoulli and
+binomial distributions to $n \geq 2$ outcomes. 
+
+*Categorial distributions* Let us start with
+one trial, e.g. a single throw of a die. We can model this dice throw
+as the distribution where the probability
+that the die lands with its $k$-th face on top is $\theta_k$,
+\[ \Pr(x = k) = \theta_k.\]
+Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_n)$.
+
+A random variable $x : \Omega \to \{1,\ldots, n\}$ is called
+multinomial. If the underlying probability space is $(\Omega, \Sigma,
+P)$, then
+\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
+
+See also: https://en.wikipedia.org/wiki/Multinomial_distribution
+
+**** Uniform distributions
+
+A special case of binomial and multinomial distributions is the
+uniform distribution. This is defined as follows.
+
+Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
+\[
+P(A) = \frac{|A|}{|\Omega|}.
+\]
+
+This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
+the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
+\[
+P([0,p)) = \Pr(\omega \in [0,p)) = p.
+\]
+
+
+
 **** Random variables									 :theory:probability:
 
 A real-valued random variable $f : \Omega \to \Reals$ is simply a
@@ -577,6 +626,8 @@ $f(\omega)$ is random.
 
 Random variables can be easily generalised to other domains than the real numbers.
 
+See also: https://en.wikipedia.org/wiki/Random_variable
+
 ***** Example random variable                                       :example:
 
 Take a 10-sided die. The outcomes of the die represent the space
@@ -586,7 +637,6 @@ example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
 
 What is the distribution of $x$? Have you seen it before?
 
-See also: https://en.wikipedia.org/wiki/Random_variable
 
 ***** Generating a Bernoulli random variable.                 :activity:code:
 
@@ -625,37 +675,6 @@ else:
 : 1
 
 
-*** Uncertainty													   :activity:
-
-Probability is not only used to model random events. In fact, almost
-nothing can be said to be really random, unless we go into quantum
-physics. Even a die thrown in the air follows precise mechanical
-laws. Given enough information, it is possible to accurately predict
-the outcome of a throw.
-
-For that reason, probability is best thought of as a way to model any
-residual uncertainty we have about an event. Then the probability of
-an event is simply a subjective measure of the likelihood. 
-
-While probability offers a nice mathematical formulation of
-uncertainty, when this uncertainty is subjective, the question arises:
-how can we elicit precise probabilities about uncertain events from
-individuals?  Here is an example.
-
-**** The number of immigrants :
- Consider the following question: how many immigrants live in
- Switzerland?  
-
- 1. In-class discussion: what do we mean by that?
-
- 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
-
- What does this distribution mean? Can we use it as an estimate of uncertainty?
-
- 3. Now let us create some confidence intervals. The procedure is as
- follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
- (a) Are you willing to take an even bet that the true number is between [5-10%]?
-  
 ** Time-Series: model the evolution of a system
 
  A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
@@ -842,7 +861,6 @@ intake.
     
 *** Example: Stock market, Unemployment, GDP
     
-
 * Module 2: Experiment design  (3 weeks)
 ** Random sampling
  1. Pure random sampling.
