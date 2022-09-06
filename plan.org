@@ -807,11 +807,35 @@ Sometimes, however, the relationship betwen the two variables is not
 deterministic, that is the value of $x$ does not uniquely determine
 the value of $y$, or the converse may occur... or both.
 
-**** Physics: 
+**** Physical relations                                             :example:
+
+Many equations in physics relate two quantities.  For example, there
+is the equation relating current $I$, voltage $V$ and resistance $R$:
+\[
+V = IR.
+\]
+This relation can be inverted to obtain
+\[
+R = V/I, /qquad I = V / R.
+\]
+Let us say that the resistance $R$ is fixed. By altering the voltage
+(e.g. by adding more batteries to a circuit) we can see that the
+current increases.
+
+
 *** Relationships as joint distributions
 
 The simplest way to model a stochastic relationship between two
-variables is to model the joint distribution $P(X,Y)$.
+variables is to model the joint distribution $P(X,Y)$. Consider the
+example of heights versus weights. We can expect that the taller a
+person is, the heavier they will be. However, their weight will depend
+on the mass of their muscle and adipose tissue. These in turn depend
+on their age, sex, genetics and lifetime calorie expenditure and
+intake.
+
+**** Weight and height distribution :example:
+
+
 
 *** Relationships as conditional distributions
 
