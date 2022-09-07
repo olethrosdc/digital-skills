@@ -383,7 +383,7 @@ you need to use.
  line, distributions over a discrete set of possible values are
  best-represented by a pie-chart. This especially if there is no relation between 
 
- Where the advantages and disadvantages of pie charts and histograms?
+- What are the advantages and disadvantages of pie charts and histograms?
 
  |--------------------------+-----------+-----------|
  |                          | Histogram | Pie Chart |
@@ -393,6 +393,8 @@ you need to use.
  | To compare relative size |           |           |
  | For real-valued data     |           |           |
  |--------------------------+-----------+-----------|
+
+- Why is a 3D pie chart never a good idea?
 
  #+BEGIN_SRC: python
  plt.pie(counts) # plot counts
@@ -627,7 +629,7 @@ $f(\omega)$ is random.
 Random variables can be easily generalised to other domains than the real numbers.
 
 See also: https://en.wikipedia.org/wiki/Random_variable
-
+En francais: https://fr.wikipedia.org/wiki/Variable_al%C3%A9atoire
 ***** Example random variable                                       :example:
 
 Take a 10-sided die. The outcomes of the die represent the space
@@ -1177,6 +1179,22 @@ either statistical theory or programming.
 
 
 
+
+* Glossary
+
+Expectation: Espérance
+Randomness: Hasard
+Uncertainty: Incertitude
+Probability: Probabilité
+Stochastic: stochastique
+Random Variable: Variable aléatoire
+Sample: Échantillon
+Sampling: Échantillonnage
+Set: Ensemble
+Subset: Sous-ensemble
+Superset: Sur-ensemble
+Survey: Sondage
+$\sigma$-algebra: tribu, $\sigma$-algèbre
 
 * References
 
