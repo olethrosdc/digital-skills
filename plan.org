@@ -70,6 +70,12 @@ parallel, or through self-study.
 
 #+END_CENTER
 
+** Administration
+
+1. Make sure you are registered on IS-Academia
+2. Also register on Moodle: this is where the assignments will be
+3. Clone this git repository
+   
 ** Assessment
 
 The assessment is purely through in-class exercises, quizzes and
