@@ -1033,6 +1033,8 @@ Find a table in wikipedia on a topic of interest, and convert the table into a g
 ** Newspaper article analysis
 In this assignment you will read a newspaper article with some statistics and visualisations, and try to interpret what it says.  You must study the article criticially. Are the conclusions supported by the data? Does the methodology make sens? Find primary sources that confirm or challenge the article to obtain a more rounded picture.
 
+Here is a list of possible articles you can use. Feel free to suggest your own article and add it to the list.
+
 https://docs.google.com/spreadsheets/d/1QKj_L9f0UIH80qgs2kcjc8AU1eKZzsTOcYFSU06HJBY/edit#gid=0
 
 
