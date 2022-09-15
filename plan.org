@@ -387,7 +387,10 @@ you need to use.
 
  While histograms are good visualisations of distributions on the real
  line, distributions over a discrete set of possible values are
- best-represented by a pie-chart. This especially if there is no relation between 
+ best-represented by a pie-chart. This especially if there is no
+ relation between the different values. As an example, if the values
+ are distinct categories, there is no particular reason to order them
+ on an axis.
 
 - What are the advantages and disadvantages of pie charts and histograms?
 
@@ -470,8 +473,8 @@ it never is repeated. There is always some varying factor.
  Let's go back to throwing coins now. Coins are completely
  deterministic.  Whenever we have a specific coin to throw in the air,
  there are two things we do not know. The first is which side the coin
- will land on. Why is that? The second is versus uncertainty about the
- coin bias: is the probability of landing heads exactly 50%? How can we
+ will land on. Why is that? The second is uncertainty about the coin
+ bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
 
  What physical source of randomness can we use instead of coins?
