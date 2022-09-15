@@ -423,8 +423,11 @@ you need to use.
  3. Coin-flipping experiment
 	 1. Everybody flips a coin 10 times.
 	 2. Record how many heads or tails you have.
-	 3. Then record how you threw the coin.
+	 3. Then record how you threw the coin and what coin it was.
 	 4. Discuss if the coin is really random.
+	 5. What is the distribution of coin throws for the first throw?
+	 6. What is the distribution of recorded coin biases?
+	 7. Does it make sense to aggregate all the results? What does that assume?
 
  Let us now repeat the experiment with data generated via a computer.
  #+BEGIN_SRC python
@@ -481,7 +484,7 @@ uncertainty, when this uncertainty is subjective, the question arises:
 how can we elicit precise probabilities about uncertain events from
 individuals?  Here is an example.
 
-**** The number of immigrants :
+**** The number of immigrants                                      :activity:
  Consider the following question: how many immigrants live in
  Switzerland?  
 
@@ -494,6 +497,8 @@ individuals?  Here is an example.
  3. Now let us create some confidence intervals. The procedure is as
  follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
  (a) Are you willing to take an even bet that the true number is between [5-10%]?
+
+
   
 *** Probability background                                           :theory:
 
