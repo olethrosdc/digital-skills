@@ -566,41 +566,50 @@ two outcomes, the family of Bernoulli distributions.
 **** The Bernoulli distribution.                     :definition:probability:
 Let us start with a simple example, the Bernoulli distribution with
 parameter $\theta \in [0,1]$. This is the distribution over two outcomes
-$\{0,1\}$, so that
+$\{0,1\}$, so that if $x$ is a Bernoulli random variable, then:
 \[
 \Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
 \]
 It is typical to think the distribution of heads and tails of a coin
 as being Bernoulli, with parameter $\theta = 1/2$.
 
-*Probability space* Formally, if the underlying probability space is $(\Omega, \Sigma, P)$, then
-\[
-\Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).
-\]
+*Probability space* Formally, if the underlying probability space is
+$(\Omega, \Sigma, P)$, with random outcomes $\omega \in \Omega$ and random variable $x : \Omega \to \{0,1\}$ then
+ \[ \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).  \]
 
 See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
 
 **** Binomial distribution                           :definition:probability:
 If we repeat a Bernouli trial, we can also count the number of times
-the coin comes heads, so to speak. The distribution of the counts is
-called the Binomial distribution.
+the coin comes heads. The distribution of the counts is
+called the Binomial distribution. If $y$ is a binomial random variable for $n$ throws with parameter $\theta$,
+then we can write it as the sum of $n$ Bernoulli random variables $x_1, \ldots, x_n$, i.e.:
+\[
+y = \sum_{t=1}^n x_t.
+\]
+The probability of $k$ heads after $n$ throws is given by the formula:
+\[
+\Pr(y = k) = \binom{n}{k} \theta^{k} (1 - \theta)^{n - k}
+\],
+where $\binom{n}{k}$ is the bimomial coefficient.
 
 See also: https://en.wikipedia.org/wiki/Binomial_distribution
 
 **** The Categorical/Multinomial distribution
 
 A multinomial distribution is an extension of the Bernoulli and
-binomial distributions to $n \geq 2$ outcomes. 
+binomial distributions to $m \geq 2$ outcomes. 
 
 *Categorial distributions* Let us start with
 one trial, e.g. a single throw of a die. We can model this dice throw
 as the distribution where the probability
 that the die lands with its $k$-th face on top is $\theta_k$,
 \[ \Pr(x = k) = \theta_k.\]
-Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_n)$.
+Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_m)$.
+A random variable $x : \Omega \to \{1,\ldots, m\}$ obeying this distribution is called
+multinomial. 
 
-A random variable $x : \Omega \to \{1,\ldots, n\}$ is called
-multinomial. If the underlying probability space is $(\Omega, \Sigma,
+If the underlying probability space is $(\Omega, \Sigma,
 P)$, then
 \[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
 
@@ -885,7 +894,7 @@ intake.
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
 * Module 3: Inference (2 weeks)
-** Expectation
+** Expectation                                           :theory:probability:
  Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
  \[
@@ -909,7 +918,7 @@ intake.
  6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
  (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
-** Bayesian analysis
+** Bayesian analysis                                     :theory:probability:
  Recall the definition of Conditional probability:
 
  $P(A | B) = P(A \cap B) / P(B)$,
@@ -926,7 +935,7 @@ intake.
 
  So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
-*** The covid test problem
+*** The covid test problem                                         :activity:
  10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
  you have covid, the test is correct 80% of the time, i.e. P(positive |
  covid) = 0.8. Conversely, if you do not have covid, there is still a
@@ -936,7 +945,14 @@ intake.
  P(covid | positive), vs. P(covid | negative)?
 
  First of all, each one of you should independently generate a uniform random
- number between 1 and 10. For that, you can pass along a 10-sided die.
+ number between 1 and 10. For that, you can each throw a die, and record the outcome.
+
+ Then you throw a second die, and record that as well.
+
+ I will now pass over the tables and tell each one of you if they have a positive test.
+
+ Now, everybody with a positive test raises their hand. I expect it to
+ be slightly more than 10% (but it depends).
 
 *** The cards problem
  1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
