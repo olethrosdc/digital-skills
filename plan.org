@@ -407,7 +407,7 @@ you need to use.
  #+END_SRC
 
 *** Randomness												  :code:activity:
-  1. Random algorithms using coins.
+*Random algorithms using coins*.
  #+BEGIN_SRC python
    y = 0 # y is a variable, with the value zero currently
    import numpy as np # this library has many useful functions
@@ -415,19 +415,24 @@ you need to use.
    return x # let's see what value it takes
  #+END_SRC
  #+RESULTS:
- : 33
+ : 31
 
- 2. Uncertainty versus randomness.
-
-
- 3. Coin-flipping experiment
+*Uncertainty vs randomness: coin-flipping experiment*
 	 1. Everybody flips a coin 10 times.
 	 2. Record how many heads or tails you have.
 	 3. Then record how you threw the coin and what coin it was.
 	 4. Discuss if the coin is really random.
 	 5. What is the distribution of coin throws for the first throw?
-	 6. What is the distribution of recorded coin biases?
+	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
 	 7. Does it make sense to aggregate all the results? What does that assume?
+
+In the context of experiment design and data analysis, it is very
+common to have conditions like those in this example.  Even though we
+wish there was such a thing as the 'repeated experiment', in practice
+it never is repeated. There is always some varying factor.
+
+
+*Pseudo-random numbers*
 
  Let us now repeat the experiment with data generated via a computer.
  #+BEGIN_SRC python
@@ -460,12 +465,16 @@ you need to use.
  secrets.choice(range(100))
  #+END_SRC
 
+*Physical sources of randomness*
+
  Let's go back to throwing coins now. Coins are completely
  deterministic.  Whenever we have a specific coin to throw in the air,
  there are two things we do not know. The first is which side the coin
  will land on. Why is that? The second is versus uncertainty about the
  coin bias: is the probability of landing heads exactly 50%? How can we
  quantify this? What does it depend on? Discuss in class.
+
+ What physical source of randomness can we use instead of coins?
 
 *** Uncertainty													   :activity:
 
