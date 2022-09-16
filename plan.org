@@ -265,6 +265,14 @@ number of heads (or tails) is a [[*Binomial distributionfile:~/teaching/digital-
 
 We will now show how to achieve the same results programmatically.
 
+*** General python help :code:python:
+To help yourself understand python, you can always take a look at the
+documentation in [[https://docs.python.org/3/][English]] or [[https://docs.python.org/fr/3/][French]]. To start with, check out the
+Tutorial. Then use the library reference for advanced usage.
+
+Sometimes it is quicker to just use the *help* command in the python
+console or the *?* command in the jupyter notebook.
+
 *** Python variables												   :code:
 
  Numerical Python variables are very simple entities. Let us go through
@@ -291,6 +299,23 @@ We will now show how to achieve the same results programmatically.
  anything, and is so very flexible. It can contain numbers, strings,
  or arbitrary 'objects'.
 
+Now check out the first part of the [[file:src/histograms/histogram.ipynb][Histogram example]].
+For that we need one line of setup so we can plot stuff.
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt # this is used for plotting
+X=[0,1,0,0,0,0,1];  # list of coin tosses
+plt.hist(X) # plot a histogram - this automatically splits everything into bins
+#+END_SRC
+
+In reality, the histogram function creates a so-called bar plot
+#+BEGIN_SRC python
+import matplotlib.pyplot as plt # this is used for plotting
+X=[0,1,0,0,0,0,1];  # list of coin tosses
+plt.bar(["heads","tails"], [sum(X), len(X) - sum(X)]) # do a bar plot!
+#+END_SRC
+
+#+RESULTS:
+
 The following source creates a list of four numbers and returns one element.  Things to unpack here:
 - *x[i]* returns the *(i+1)-th* element: we start counting *from 0*
 - the *return* statement sends a value back to the whatever started
@@ -302,6 +327,9 @@ return x[3] # returns the last element of the list
 
 #+RESULTS:
 : 4
+
+
+
 
 The following program assigns arrays-values to variables. Now x, y are both lists.
  #+BEGIN_SRC python
@@ -319,7 +347,7 @@ The following program assigns arrays-values to variables. Now x, y are both list
  another, this does not copy any data. Both names refer to the same
  data. Consequently, if we change the data, it changes for both
  variable names.
-
+ The way to avoid that is to use the *copy()* function.
  #+BEGIN_SRC python
  x = [1, 2, 3, 4]
  y = [-1, -2]
