@@ -244,13 +244,13 @@ See also: https://en.wikipedia.org/wiki/Histogram
 
 **** Measuring a discrete distribution                             :activity:
 
-1. Toss a coin 20 times and record the result.
+1. Toss a coin 10 times and record each one of the results, e.g. {0,1,1,0,0,0,0,1,1,1}.
 2. Count the number of times it comes heads or tails.
 3. We then summarise the result.
 
-Each one of you can toss a coin 20 times, and count the number of
-times it comes up as heads or tails.  Let us denote this by $N(x =
-k)$. It should be approximately true that $N(x = k) \approx 5$.
+Let us denote the number of times you have heads by $N(x = k)$. It
+should be approximately true that $N(x = k) \approx 5$, however, this
+may not be true for everybody.
 
 We can visualise this by plotting bars or lines, whose height is
 proportional to $N(x=k)$. 
@@ -269,30 +269,41 @@ We will now show how to achieve the same results programmatically.
 
  Numerical Python variables are very simple entities. Let us go through
  this is easy program for a warm-up.
- #+BEGIN_SRC python
+ - x=value; assigns a value to a variable named x
+ - print(); displays something in the terminal
+ #+BEGIN_SRC python :results output
  x = 1 # a variable
  y = 2 # another variable
- print(x+y) # return the value of this variable sum
+ print(x+y) # print the value of this variable sum
  x = y # assignment operation: now x has the same value as y
  print(x) #what would this value be?
  y = 3
  print(x) #is x changed?
  #+END_SRC
  #+RESULTS:
- : 1
+ : 3
+ : 2
+ : 2
 
 *** Python lists													   :code:
 
- A slightly more compex object are python lists. A list can contain anything, and is so very flexible. It can contain numbers, strings, or arbitrary 'objects'.
+ A slightly more compex object are python lists. A list can contain
+ anything, and is so very flexible. It can contain numbers, strings,
+ or arbitrary 'objects'.
 
- #+BEGIN_SRC python
- x = [1, 2, 3, 4]
- return x[3] # returns the last element of the list
- #+END_SRC python
+The following source creates a list of four numbers and returns one element.  Things to unpack here:
+- *x[i]* returns the *(i+1)-th* element: we start counting *from 0*
+- the *return* statement sends a value back to the whatever started
+  the python program: in this case this .org file.
+#+BEGIN_SRC python :results value
+x = [1, 2, 3, 4]
+return x[3] # returns the last element of the list
+#+END_SRC
 
- #+RESULTS:
- : 4
+#+RESULTS:
+: 4
 
+The following program assigns arrays-values to variables. Now x, y are both lists.
  #+BEGIN_SRC python
  x = [1, 2, 3, 4]
  y = [-1, -2]
