@@ -166,7 +166,11 @@ can be used in the context of some assignments.
 - [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
 - [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
 
+*** NASA Mars Challenge
 
+	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
+
+	
 * Module 1: Visualisation as models and data summary (3 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
