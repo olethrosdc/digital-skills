@@ -763,6 +763,40 @@ else:
 #+RESULTS:
 : 1
 
+*** Group comparison                                               :activity:
+
+Let us say we wish to compare the distribution among multiple
+groups. Perhaps we wish to compare the number of students who achieve
+a certain test like the table below.
+
+|---------+---------+---------|
+|         | Success | Success |
+|---------+---------+---------|
+| School  |    Male |  Female |
+|---------+---------+---------|
+| A       |     62% |     82% |
+| B       |     63% |     68% |
+| C       |     37% |     34% |
+| D       |     33% |     35% |
+| E       |     28% |     24% |
+| F       |      6% |      7% |
+|---------+---------+---------|
+| Average |     45% |     38% |
+|---------+---------+---------|
+
+1. Let us plot the success rate for females and males over different schools.
+2. Does this show a bias? What information is missing?
+3. Let us combine these two plots into one plot now for this we need
+   to use the following code:
+#+BEGIN_SRC: python
+w=0.5
+X = np.linspace(1,6*w,6)
+M = ...
+F = ...
+plt.bar(X, M, align=edge, width=w/2)
+plt.bar(X + w, F, align=edge, width=w/2)
+#+END_SRC
+
 
 ** Time-Series: model the evolution of a system
 
@@ -772,18 +806,22 @@ else:
  the value of $x_{t-1}$? On all the previous values? Only on the time
  index $t$?
 
- Typicallyy, sequential observations of a variable $x_t$ are in fact
+ Frequently, sequential observations of a variable $x_t$ are in fact
  noisy measurements of the true variable of interest, $y_t$, which we
  never observe. As an example, consider covid infections. There is a
  true, underlying, number of infections, but we only ever measure the
  number of positive cases detected in a day. 
 
- Generally, there are three tasks associate with time series modelling, always given data up to this point, i.e. $x_1, \ldots, x_t$.
+ Generally, there are three tasks associate with time series
+ modelling, always given data up to this point, i.e. $x_1, \ldots,
+ x_t$.
 
- 1. Smoothing: What has happened in the past? Here we estimate $y_{t-k}$ for $k > 0$.
- 2. Filtering: What is the current situation?  To solve this problem we must estimate $y_t$.
- 3. Prediction: What will happen in the future? This involves predicting $y_{t+k}$ for some $k > 0$.
-
+ 1. Smoothing: What has happened in the past? Here we estimate
+    $y_{t-k}$ for $k > 0$.
+ 2. Filtering: What is the current situation?  To solve this problem
+    we must estimate $y_t$.
+ 3. Prediction: What will happen in the future? This involves
+    predicting $y_{t+k}$ for some $k > 0$.
 
 These problems are all related and can be formalised in a statistical
 manner, and there are multiple algorithms that can be used to solve
@@ -881,8 +919,6 @@ This gives us the estimator:
 
 
 
-**** Exponential growth											  :plot:code:
- +
 ** Scatterplots: model a relationship
     1. For the original data: add weight, eye colour, gender, exercise level.
     2. Make a scatterplot of the height and weight
@@ -943,7 +979,8 @@ intake.
 
 **** Weight and height distribution :example:
 
-
+Here we can plot the number of people having a certain height and weight combination.
+This can be done with a colourmpa.
 
 *** Relationships as conditional distributions
 
@@ -1278,19 +1315,23 @@ either statistical theory or programming.
 
 * Glossary
 
-Expectation: Espérance
-Randomness: Hasard
-Uncertainty: Incertitude
-Probability: Probabilité
-Stochastic: stochastique
-Random Variable: Variable aléatoire
-Sample: Échantillon
-Sampling: Échantillonnage
-Set: Ensemble
-Subset: Sous-ensemble
-Superset: Sur-ensemble
-Survey: Sondage
-$\sigma$-algebra: tribu, $\sigma$-algèbre
+- Expectation: Espérance
+- Histogram: Histogramme?
+- Pie plot: ?
+- Bar plot: ?
+- Scatterplot: ?
+- Randomness: Hasard
+- Uncertainty: Incertitude
+- Probability: Probabilité
+- Stochastic: stochastique
+- Random Variable: Variable aléatoire
+- Sample: Échantillon
+- Sampling: Échantillonnage
+- Set: Ensemble
+- Subset: Sous-ensemble
+- Superset: Sur-ensemble
+- Survey: Sondage
+- $\sigma$-algebra: tribu, $\sigma$-algèbre
 
 * References
 
@@ -1299,16 +1340,16 @@ Python help: Use python's !help! function whenever you can.
 help(print)
 #+END_SRC
 
-https://vishub.net/bach
-https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
-https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
+** Some workshops
+- https://vishub.net/bach
+- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
+- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
 
-[CA] The Truthful Art. Cairo, Alberto :book:
-[GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel :book:
-(Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)
+** Books
+- [CA] The Truthful Art. Cairo, Alberto :book:
+- [GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel 
+ (Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)
 
-The Truthful Art, Cairo, Alberto :book:
-Data Science Par La Pratique
 
 
 
