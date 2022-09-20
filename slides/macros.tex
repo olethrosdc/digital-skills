@@ -1,0 +1,201 @@
+\newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+\newcommand \hE {\hat{\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}}
+\renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+
+\newcommand{\tuple}[1]{\left\langle #1\right\rangle }
+\newcommand{\set}[1]{\left\{\, #1 \,\right\} }
+\newcommand{\cset}[2]{\left\{\, #1 ~\middle|~ #2 \,\right\} }
+\newcommand{\meas}[1]{\mu\left(#1\right)}
+\newcommand{\indep}{\mathrel{\text{\scalebox{1.07}{$\perp\mkern-10mu\perp$}}}}
+
+%% Special characters
+%\newcommand\Simplex {{\mathbbold{\Delta}}}
+\newcommand\Simplex {{\mathcal P}}
+\newcommand\Reals {{\mathds{R}}}
+\newcommand\Naturals {{\mathds{N}}} 
+
+
+\newcommand \then{\Rightarrow}
+\newcommand \defn {\mathrel{\triangleq}}
+
+\newcommand \sDP {\stackrel{\text{\tiny{*}}}{\approx}}
+
+%%\newcommand \defn {\triangleq}
+%%\newcommand \defn {\equiv}
+%%\newcommand \defn {\coloneq}
+%%\newcommand \defn {\stackrel{\text{\tiny def}}{=}}
+%%\newcommand \defn {\stackrel{\text{def}}{\hbox{\equalsfill}}}
+
+
+\newcommand \argmax{\mathop{\rm arg\,max}}
+\newcommand \argmin{\mathop{\rm arg\,min}}
+\newcommand \dtan{\mathop{\rm dtan}}
+\newcommand \sgn{\mathop{\rm sgn}}
+\newcommand \trace{\mathop{\rm trace}}
+\newcommand \conv{\mathop{\rm conv}}
+
+\newcommand \onenorm[1]{\left\|#1\right\|_1}
+\newcommand \pnorm[2]{\left\|#1\right\|_{#2}}
+\newcommand \inftynorm[1]{\left\right\|#1\|_\infty}
+\newcommand \norm[1]{\left\|#1\right\|}
+\newcommand \trans[1]{#1^{\top}}
+
+\newcommand \grad {\nabla}
+\newcommand \dgrad {\vec{\nabla}}
+\newcommand \dd{\,\mathrm{d}}
+
+\DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it}
+
+\newcommand \Gaussian {\mathop{\mathpzc{N}}\nolimits}
+\newcommand \Poisson {\mathop{\mathpzc{Poisson}}\nolimits}
+\newcommand \Multinomial {\mathop{\mathpzc{Multinomial}}\nolimits}
+\newcommand \Dirichlet {\mathop{\mathpzc{Dirichlet}}\nolimits}
+\newcommand \Bernoulli {\mathop{\mathpzc{Bernoulli}}\nolimits}
+\newcommand \Beta {\mathop{\mathpzc{Beta}}\nolimits}
+\newcommand \Laplace {\mathop{\mathpzc{Lap}}\nolimits}
+\newcommand \GammaDist {\mathop{\mathpzc{Gamma}}\nolimits}
+\newcommand \Softmax{\mathop{\mathpzc{Softmax}}\nolimits}
+\newcommand \Exp{\mathop{\mathpzc{Exp}}\nolimits}
+\newcommand \Wishart{\mathop{\mathpzc{W}}\nolimits}
+\newcommand \Uniform{\mathop{\mathpzc{Unif}}\nolimits}
+
+
+
+%\newcommand \note[1] {{\color{red} \texttt{[#1]}}}
+%\newcommand \note[2][red] {{\color{#1} \texttt{[#2]}}}
+
+\renewcommand{\O}[1]{\mathcal{O}(#1)}
+\newcommand{\aO}[1]{\tilde{\mathcal{O}}(#1)}
+
+\DeclarePairedDelimiter{\abs}{\lvert}{\rvert}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+
+
+%%% macros to make things smalller
+% For comparison, the existing overlap macros:
+% \def\llap#1{\hbox to 0pt{\hss#1}}
+% \def\rlap#1{\hbox to 0pt{#1\hss}}
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathllap{\mathpalette\mathllapinternal}
+\def\mathrlap{\mathpalette\mathrlapinternal}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathllapinternal#1#2{%
+           \llap{$\mathsurround=0pt#1{#2}$}}
+\def\mathrlapinternal#1#2{%
+           \rlap{$\mathsurround=0pt#1{#2}$}}
+\def\mathclapinternal#1#2{%
+           \clap{$\mathsurround=0pt#1{#2}$}}
+           
+ 
+%\newcommand \xdist[2] {\rho(#1, #2)}
+\newcommand \xdist[2] {d(#1, #2)}
+%\newcommand \xdist[2] {\rho\left(#1, #2\right)}
+%\newcommand \pdist[2] {\Delta\left(#1, #2\right)}
+\newcommand \pdist[2]{D\left(#1, #2\right)}
+\newcommand \KL[2] {d\left(#1 \middle\| #2\right)}
+\newcommand \beg {\beta}
+\newcommand \family {\mathscr{P}}
+
+\newcommand {\CS} {\mathcal{S}}
+\newcommand {\CX} {\mathcal{X}}
+\newcommand {\CY} {\mathcal{Y}}
+\newcommand {\CZ} {\mathcal{Z}}
+\newcommand {\CA} {\mathcal{A}}
+\newcommand {\CB} {\mathcal{B}}
+
+\newcommand{\narms}{K}
+
+
+\newcommand {\sucht} {\mathop{\rm s.t.}}
+\newcommand \fair {f}
+\newcommand \util {u}
+\newcommand \val {V}
+\newcommand \rew {\rho}
+
+\newcommand \Param {\Theta}
+\newcommand \param {\theta}
+\newcommand \vparam {\vectorsym{\theta}}
+\newcommand \bel {\beta}
+\newcommand \Bel {\CB}
+
+\newcommand \MDPs {\ensuremath{\Theta}}
+\newcommand \mdp {\ensuremath{\theta}}
+\newcommand \Pols {\ensuremath{\mathcal{P}}}
+\newcommand \pbs {{\pol_\bel^*}}
+\newcommand \belt {\bel_t{\xi_t}}
+\newcommand \beltn {\bel_{t+1}}
+\newcommand \beltp {\bel_{t-1}}
+\newcommand \hyper {h}
+
+\newcommand \act {a}
+\newcommand \Act {\mathcal{A}}
+\newcommand \out {y}
+\newcommand \Out {\mathcal{Y}}
+\newcommand \obs {x}
+\newcommand \sns {z}
+\newcommand \Obs {\mathcal{X}}
+\newcommand \Sns {\mathcal{Z}}
+\newcommand \alg {\lambda}
+\newcommand \pol {\pi}
+\newcommand \pthom {\pol^{\textrm{Th}}}
+\newcommand \pkthom {\pol_k^{\textrm{Th}}}
+\newcommand \psd {\pol^{\textrm{SD}}}
+
+\newcommand \Pbx[1] {\Pr_{\bel}{(#1 \mid x)}}
+\newcommand \Pbxx[1] {\Pr_{\bel}{(#1 \mid x')}}
+\newcommand \powerset[1]{2^{#1}}
+
+\newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+\newcommand\Ind{\mbox{\bf{I}}}
+
+\newcommand \gr[1] {\todo{GR: #1}}
+\newcommand \cd[1] {\todo{CD: #1}}
+\newcommand \yl[1] {\todo{YL: #1}}
+%\newcommand \dp[1] {\todo{DP: #1}}
+
+
+\pgfplotsset{
+  marginal/.style={
+    red,
+    mark=o,
+    line width=2pt
+  },
+  sample/.style={
+    blue,
+    mark=square,
+    line width=2pt
+  },
+  bayes/.style={
+    black,
+    line width=2pt,
+    dashed
+  },
+}
+
+\newlength \fwidth
+
+%%% macros to make things smalller
+% For comparison, the existing overlap macros:
+% \def\llap#1{\hbox to 0pt{\hss#1}}
+% \def\rlap#1{\hbox to 0pt{#1\hss}}
+\def\clap#1{\hbox to 0pt{\hss#1\hss}}
+\def\mathllap{\mathpalette\mathllapinternal}
+\def\mathrlap{\mathpalette\mathrlapinternal}
+\def\mathclap{\mathpalette\mathclapinternal}
+\def\mathllapinternal#1#2{%
+           \llap{$\mathsurround=0pt#1{#2}$}}
+\def\mathrlapinternal#1#2{%
+           \rlap{$\mathsurround=0pt#1{#2}$}}
+\def\mathclapinternal#1#2{%
+           \clap{$\mathsurround=0pt#1{#2}$}}
+
+
+         
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% End:
