@@ -169,15 +169,8 @@ learning.}
 \begin{frame}
   \frametitle{Can machines learn from their mistakes?}
   \begin{center}
-    \movie{\includegraphics[width=0.5\textwidth]{figures/rl_interaction}}{figures/Pancakes.mp4}
+    \movie{\includegraphics[width=0.75\textwidth]{figures/rl_interaction}}{figures/Pancakes.mp4}
   \end{center}
-  \begin{block}{Reinforcement learning}
-    Take actions $a_1, \ldots, a_t$, so as to maximise utility
-    \[
-    U = \sum_{t=1}^T r_t
-    \]
-  \end{block}
-
 \end{frame}
 \pnote{So, what happens when we make a mistake? Can we somehow recognise
 it? Humans and other animals can actually learn from their
@@ -288,11 +281,15 @@ more drugs to screen. This cycle, consequently has two parts:
 \begin{frame}
   \frametitle{Tycho Brahe's minute eye measurements}
   \begin{columns}
-    \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth]{figures/circular-orbits}
+    \begin{column}{0.4\textwidth}
+      \uncover<4->{
+        \includegraphics[width=\columnwidth]{figures/circular-orbits}
+      }
     \end{column}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth]{figures/tycho-observations}
+      \uncover<2->{
+        \includegraphics[width=\columnwidth]{figures/tycho-observations}
+      }
     \end{column}
   \end{columns}
   \begin{columns}
@@ -301,8 +298,8 @@ more drugs to screen. This cycle, consequently has two parts:
     \end{column}
     \begin{column}{0.9\textwidth}
       \begin{itemize}
-      \item Hypothesis: \alert{Circular} orbits around the \alert{earth}
-      \item Conclusion: \alert{Specific} circular orbits around the earth
+      \item<3-> Hypothesis: \alert{Circular} orbits around the \alert{earth}
+      \item<4-> Conclusion: \alert{Specific} circular orbits around the earth
       \end{itemize}
     \end{column}
   \end{columns}
@@ -316,10 +313,14 @@ more drugs to screen. This cycle, consequently has two parts:
   \frametitle{Johannes Kepler's alternative hypothesis}
   \begin{columns}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth]{figures/orbits}
+      \uncover<4->{
+        \includegraphics[width=\columnwidth]{figures/orbits}
+      }
     \end{column}
     \begin{column}{0.5\textwidth}
-      \includegraphics[width=\columnwidth]{figures/tycho-observations}
+      \uncover<2->{
+        \includegraphics[width=\columnwidth]{figures/tycho-observations}
+      }
     \end{column}
   \end{columns}
   \begin{columns}
@@ -328,8 +329,8 @@ more drugs to screen. This cycle, consequently has two parts:
     \end{column}
     \begin{column}{0.9\textwidth}
       \begin{itemize}
-      \item Hypothesis: Circular \alert{or} elliptic orbits around the \alert{sun}
-      \item Conclusion: Specific \alert{elliptic} orbits
+      \item<3-> Hypothesis: Circular \alert{or} elliptic orbits around the \alert{sun}
+      \item<4-> Conclusion: Specific \alert{elliptic} orbits
       \end{itemize}
     \end{column}
   \end{columns}
@@ -353,6 +354,12 @@ sun. However, the actual verification that all things do not revolve around eart
   \end{columns}
 \end{frame}
 %%% Later on, Gauss collected even more experimental data to calculate the orbit of Ceres. He did this using one of the first formal statistical methods; this allowed him to avoid cheating (like Kepler did, to accentuate his finding that orbits were elliptical).
+
+\begin{frame}
+  \frametitle{Statistical visualisation: fMRI}
+  \centering
+  \includegraphics[width=0.5\textwidth]{figures/brain-fmri}
+\end{frame}
 
 \begin{frame}
   \frametitle{A warning: The dead salmon mirage}
