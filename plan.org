@@ -222,7 +222,7 @@ can be used in the context of some assignments.
 
 *** Introduction to histograms							  :theory:statistics:
 	
- Assume data is in $\mathbb{R}. Then split the real line into intervals
+ Assume data is in $\mathbb{R}$. Then split the real line into intervals
  $[a_i, b_i)$. For a given dataset $D$, for each interval $i$, count the
  amount of data $n_i(D)$ in the interval. We can also normalise to
  obtain $p_i(D) = n_i(D) / \sum_j n_i(D)$
