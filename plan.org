@@ -199,7 +199,7 @@ can be used in the context of some assignments.
  underlying theory, and the visualisation as a way to explain the
  theory visually.
 
-
+ 
 ** Histograms: model a distribution
 
     Histograms are a simple tool for modelling distributions. In their
@@ -207,6 +207,17 @@ can be used in the context of some assignments.
  in distinct bins of a dataset. While typically employed to represent
  the empirical distribution of one-dimensional variables, they can be
  generalised to multiple dimensions .
+
+*** Bar graph activity
+ 1. All students who are male raise their hand
+ 2. All students whoare female raise their hand.
+ 3. We count, and draw a bar graph: the number of male and female students.
+ 4. What does the graph tell us about:
+    1. Computer Science students
+    2. Students at Neuchatel
+    3. Residents of Neuchatel
+    4. Other subsets of the population
+ 5. Can we make a similar graph when measuring a continuous variable?
 
 
 *** Introduction to histograms							  :theory:statistics:
@@ -232,6 +243,7 @@ can be used in the context of some assignments.
  model.
 
 See also: https://en.wikipedia.org/wiki/Histogram
+
 
 **** Histogram activity											   :activity:
  1. Introduce the concept of a histogram on the board.
@@ -265,7 +277,7 @@ tails is fixed, and does not depend on the result of the previous
 tosses.  Why might not that be the case?
 
 If individual tosses are Bernoulli, then the distribution of the
-number of heads (or tails) is a [[*Binomial distributionfile:~/teaching/digital-skills/plan.org::*Random variables][binomial]] distribution.
+number of heads (or tails) is a [[*Binomial distribution][binomial distribution]].
 
 We will now show how to achieve the same results programmatically.
 
