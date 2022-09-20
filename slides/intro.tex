@@ -1,0 +1,594 @@
+\documentclass{beamer}
+% \usepackage{etex}
+\mode<presentation>{
+  %\useinnertheme{rectangles}
+  \useoutertheme{infolines}
+  % \usecolortheme{crane}
+  %\usecolortheme{rose}
+}
+%\usepackage{pdfpcnotes}
+\newcommand{\pnote}[1] {}
+\usepackage{multimedia}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{automata}
+\usetikzlibrary{topaths}
+\usetikzlibrary{shapes}
+\usetikzlibrary{arrows}
+\usetikzlibrary{decorations.markings}
+
+\tikzstyle{place}=[circle,draw=black,inner sep=0mm, minimum size=6mm]
+\tikzstyle{utility}=[diamond,draw=black,draw=blue!50,fill=blue!20,inner sep=0mm, minimum size=8mm]
+\tikzstyle{select}=[rectangle,draw=black,draw=blue!50,fill=blue!20,inner sep=0mm, minimum size=6mm]
+\tikzstyle{hidden}=[circle,draw=black,draw=green,fill=green!20,inner sep=0mm, minimum size=6mm]
+\tikzstyle{transition}=[rectangle,draw=black!50,fill=black!20,thick]
+\tikzstyle{observed}=[circle,draw=black,draw=blue!50,fill=blue!20,inner sep=0mm, minimum size=6mm]
+\tikzstyle{someset}=[circle,draw=black,minimum size=8mm]
+\tikzstyle{point}=[circle,draw=black,fill=black]
+
+%% Use this for notes
+%\usepackage{pgfpages}
+%\setbeameroption{show notes on second screen}
+
+
+% \usepackage[orientation=portrait, size=a4, scale=1.8,20pt]{beamerposter}
+%\includeonly{rl_overview}
+\input{preamble}
+
+\definecolor{mycolor1}{rgb}{0.00000,0,1}%
+\definecolor{mycolor2}{rgb}{1,0,0}%
+\setlength \fwidth {0.75\textwidth}
+
+\title{Digital Skills}
+\subtitle{Data Collection, Visualisation and Modelling}
+\author[C. Dimitrakakis]{Christos Dimitrakakis}
+\institute{University of Neuchatel}
+\date{27 September 2022}
+\begin{document}
+
+\usebackgroundtemplate{
+  \tikz[overlay,remember picture] \node[opacity=0.3, at=(current page.center)] {\includegraphics{figures/IoT.png}};
+}
+\begin{frame}
+  \titlepage
+\end{frame}
+\usebackgroundtemplate{}
+
+
+% data analysis is just a minor part of machine learning
+\section{Introduction}
+\include{ml_science}
+
+\section{Data science overview}
+
+
+\begin{frame}
+  \centering
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.8\columnwidth]{figures/gfdl_2050.png}
+      \\
+      \textbf{Climatology}
+      \includegraphics[width=0.8\columnwidth]{figures/networks-2.jpg}
+      \\
+      \textbf{Humanities}
+      \includegraphics[width=0.8\columnwidth]{figures/protein.jpg}\\
+      \textbf{Biology}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \centering
+      \includegraphics[width=0.8\columnwidth]{figures/dark_matter.jpg}
+      \\
+      \textbf{Cosmology}
+      \includegraphics[width=0.8\columnwidth]{figures/higgs.jpg}      \\
+      \textbf{Nuclear physics}
+    \end{column}
+  \end{columns}
+  \only<2>{
+    \begin{tikzpicture}[remember picture,overlay]
+      \draw[fill=black,opacity=0.75] 
+      (current page.north east) rectangle (current page.south west);
+      \node[align=center] at (current page.center) {
+        {\Huge \alert{Reproducibility, Data Collection}}
+      };
+    \end{tikzpicture}}
+  \pnote{
+    Science is a classic example where we must use data to understand how the world works, essentially creating a belief about which models are true. In some domains, like climatology, these models are complex simulators with many parameters. These and are validated using data from satellites and sea buoys. In others we can also general machine learning models such as Gaussian processes, used to map the distribution of dark matter in the universe, or neural networks, used with a lot of success recently to model protein folding.
+
+However, we always face the problem data collection. Given what we believe right now, what data should we collect, what experiment should we perform, in order to increase our understanding of the world? So e.g. should we use robotic submarines to monitor deep sea temperatures? Should we generate our own news stories in a social network in order to study the interaction between communities and news propagation? 
+   }
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Can machines learn from data?}
+  \begin{center}
+    \only<1>{\includegraphics[width=0.8\textwidth]{figures/Face-Recognition}
+      \\
+      
+      {\large A supervised learning problem: object recognition}
+    }
+    \only<2>{\includegraphics[width=0.8\textwidth]{figures/text-cloud}
+      \\
+      
+      {\large An unsupervised learning problem: topic modelling}
+    }
+
+  \end{center}
+\end{frame}
+\pnote{
+  You can use machine learning just to analyse, or find structure in
+  the data. This is generally called unsupervised learning. One such
+  example is topic modelling, where you let the algorithm find topics
+  from a corpus of text.  These days algorithms  are used to learn 
+  in many applications.  These include speech recognition, facial
+  authentication, weather prediction, etc. In general, in these
+  problems we are given a \emph{labelled} dataset with, say, example
+  images from each class. Unfortunately this does not scale very
+  well, because obtaining labels is expensive.
+
+  This is partially how science works, because what we need to do
+  is to find a general rule of nature from data. Starting from some
+  hypothesis and some data, we reach a conclusion. However, many
+  times we may need to actively experiment to obtain more data,
+  perhaps because we found that our model is wrong.
+}
+
+
+\begin{frame}
+  \frametitle{Can machines plan ahead?}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/619px-FloorGoban}
+  \end{center}
+\end{frame}
+
+\pnote{I suppose the first question for experiment design is whether machines can plan
+ahead. Indeed, even for large problems, such as Go, machines can
+now perform at least as well as top-rated humans. How is this
+ achieved?}
+
+
+\begin{frame}
+  \frametitle{Machines can plan!}
+  \begin{center}
+    \includegraphics[width=0.8\textwidth]{figures/Tic-tac-toe-game-tree}
+  \end{center}
+\end{frame}
+\pnote{The basic construction is the planning tree. This is an enumeration
+of all possible future events. If a complete enumeration is
+impossible, a partial tree is constructed. However this requires
+evaluating non-terminal game positions. In the past, this was
+done with heuristics, but now this is data-driven, both through the
+use of expert databases, and through self-play and reinforcement
+learning.}
+
+
+\begin{frame}
+  \frametitle{Can machines learn from their mistakes?}
+  \begin{center}
+    \movie{\includegraphics[width=0.5\textwidth]{figures/rl_interaction}}{figures/Pancakes.mp4}
+  \end{center}
+  \begin{block}{Reinforcement learning}
+    Take actions $a_1, \ldots, a_t$, so as to maximise utility
+    \[
+    U = \sum_{t=1}^T r_t
+    \]
+  \end{block}
+
+\end{frame}
+\pnote{So, what happens when we make a mistake? Can we somehow recognise
+it? Humans and other animals can actually learn from their
+mistakes. Consider the proverbial rat in the maze. At some
+intervals, the experimenter places some cheese in there, and the
+rat must do a series of actions to obtain it, such as navigating
+the maze and pulling some levers. It doesn't know how to get to
+the cheese easily, but it slowly learns the layout of the maze
+through observation, and in the end, through trial-and-error it
+is able to get to the cheese very efficiently.
+
+We can formalise this as a reinforcement learning problem, where
+the rat takes a series of actions; at each step it also obtains a
+reward, let's say equal to 0 when it has no cheese, and 1 when it
+eats cheese. Then we can declare that the rat's utility is the sum
+of all rewards over time, i.e. the total amount of cheese it can
+eat before it dies.
+
+The rat needs to explore the environment in order to be able to
+get to the cheese. Here is a robotics example. Let us say that we
+are trying to teach a robot to flip pancakes. One easy thing we
+can try is to show the robot how to do it, and then let it just
+copy the demonstrated movement. However, this doesn't work! The
+robot needs to explore variations of the movement, until it
+manages to successfully flip pancakes. Again, we can formulate
+this as a reinforcement learning problem, with a reward that is
+high whenever the pancake's position is flipped, and on the pan;
+and low everywhere else. Then the robot can learn to perform this
+behaviour through trial and error. It's important to note that in
+this example, merely demonstration is not enough. Neither is
+reinforcement learning enough. The same thing is true for the
+recent success of AlphaGo in beating a master human: apart from
+planning, they used both demonstration data and self-play, so that
+it could learn through trial and error.
+}
+
+
+\subsection{Automated science}
+\begin{frame}
+  \centering
+  \Huge{The multi-armed bandit}
+\end{frame}
+\begin{frame}
+  \centering
+  \includegraphics[width=\textwidth]{figures/Las_Vegas_slot_machines}
+\end{frame}
+\pnote{An example that typifies trial and error learning are bandit
+problems. Imagine that you are in a Casino and you wish to
+maximise the amount of money you make during the night. There are
+a lot of machines to play. If you knew which one was the best,
+then you'd just play it all night long. However, you must also
+spend time trying out different machines, in order to get an
+estimate of how much money each one gives out. The trade off
+between trying out different machines and playing the one you
+currently think is best is called the exploration-exploitation
+trade-off and it appears in many problems of experiment design for
+science.}
+
+
+\begin{frame}
+  \frametitle{Adam, the robot scientist}
+  \centering
+  \includegraphics[width=0.8\textwidth]{figures/robot-scientist}
+\end{frame}
+\pnote{Let's say we want to build a robot scientist and tell it to
+discover a cure for cancer. What does the scientist do??}
+
+
+
+\begin{frame}
+  \frametitle{Active learning for drug discovery}
+  \centering
+  \includegraphics[width=0.9\columnwidth]{figures/drug-discovery-000}
+\end{frame}
+\pnote{Simplifying the problem a bit, consider that you have a large
+number of drug candidates for cancer and you wish to discover
+those that are active against it. The ideas is that you select
+some of them, then screen them, to sort them into active and
+inactive. However, there are too many drugs to screen, so the
+process is interactive. At each cycle, we select some drugs to
+screen, classify them, and then use this information to select
+more drugs to screen. This cycle, consequently has two parts:
+1. Selecting some drugs given our current knowledge.
+2. Updating our knowledge given new evidence.}
+
+\begin{frame}
+  \frametitle{Drawing conclusions from results}
+  \centering
+  \begin{tikzpicture}[line width=2pt, >={Stealth[length=5mm]}]
+    \node at (0,0) (bt) {hypothesis};
+    \node[select] at (0,2) (at) {experiment};
+    \node[utility] at (3,-2) (rt) {result};
+    \draw[blue,->] (at) -- (rt);
+    \node at (4,0) (bt2) {conclusion};
+    \draw[red,->] (at) -- (bt2);
+    \draw[red,->] (bt) -- (bt2);
+    \draw[red,->] (rt) -- (bt2);
+  \end{tikzpicture}
+\end{frame}
+\pnote{  In general, we would like to have some method which can draw
+  conclusions from results. This involves starting with a
+  hypothesis, performing an experiment to verify or refute it,
+  obtain some experimental result; and then concluding for or
+  against the hypothesis. Here the arrows show dependencies
+  between these variables. So what do we mean by "hypothesis" in this case?
+  }
+
+\begin{frame}
+  \frametitle{Tycho Brahe's minute eye measurements}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth]{figures/circular-orbits}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth]{figures/tycho-observations}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.1\textwidth}
+      \includegraphics[width=4em]{figures/Tycho-Brahe.jpg}
+    \end{column}
+    \begin{column}{0.9\textwidth}
+      \begin{itemize}
+      \item Hypothesis: \alert{Circular} orbits around the \alert{earth}
+      \item Conclusion: \alert{Specific} circular orbits around the earth
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+\pnote{Let's take the example of planetary orbits. Here Tycho famously
+ spent 20 years experimentally measuring the location of Mars. He
+ had a hypothesis: that planetary orbits were circular, but he
+ didn't know which were the right orbits. When he tried to fit his data to this hypothesis, he concluded a specific circular orbit for Mars... around Earth.}
+
+\begin{frame}
+  \frametitle{Johannes Kepler's alternative hypothesis}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth]{figures/orbits}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth]{figures/tycho-observations}
+    \end{column}
+  \end{columns}
+  \begin{columns}
+    \begin{column}{0.1\textwidth}
+      \includegraphics[width=4em]{figures/Johannes-Kepler.jpg}
+    \end{column}
+    \begin{column}{0.9\textwidth}
+      \begin{itemize}
+      \item Hypothesis: Circular \alert{or} elliptic orbits around the \alert{sun}
+      \item Conclusion: Specific \alert{elliptic} orbits
+      \end{itemize}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\pnote{Kepler had a more general hypothesis: that orbits could be
+circular or elliptic. This led him to the broadly correct model
+of all planets being in elliptical orbits around the
+sun. However, the actual verification that all things do not revolve around earth, requires different experiments.
+}
+\begin{frame}
+  \frametitle{200 years later, Gauss formalised this statistically}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=\columnwidth]{figures/gauss-diagram}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \includegraphics[width=4em]{figures/Gauss.jpg}
+      \includegraphics[width=\columnwidth]{figures/SeptemberTable}
+    \end{column}
+  \end{columns}
+\end{frame}
+%%% Later on, Gauss collected even more experimental data to calculate the orbit of Ceres. He did this using one of the first formal statistical methods; this allowed him to avoid cheating (like Kepler did, to accentuate his finding that orbits were elliptical).
+
+\begin{frame}
+  \frametitle{A warning: The dead salmon mirage}
+  \includegraphics[width=\textwidth]{figures/fmri-salmon}
+\end{frame}
+\pnote{ It is quite easy to draw the wrong conclusions from
+  applying machine learning / statistics to your data. For example, it
+  was fashionable to perform fMRI studies in humans to see whether
+  some neurons have a particular functional role. So some scientists
+  tried to replicate those results. They took a dead salmon, and put
+  it an fMRI scanner. They checked its brain activity when it was
+  shown images of happy or sad people. Perhaps surprisingly, they
+  found an area of the brain that was correlated with the pictures -
+  so it seemed, as though the dead salmon could distinguish photos of
+  happy people from sad ones. However, this was all due to a
+  misapplication of statistics. In this course, we will try and teach
+  you to avoid such mistakes.  }
+
+
+\begin{frame}
+  \frametitle{Planning future experiments}
+  \centering
+  \begin{tikzpicture}[line width=2pt, >={Stealth[length=5mm]}]
+    \node at (0,0) (bt) {hypothesis};
+    \node[select] at (0,2) (at) {experiment};
+    \node[utility] at (3,-2) (rt) {result};
+    \draw[blue,->] (at) -- (rt);
+    \node at (4,0) (bt2) {conclusion};
+    \draw[red,->] (at) -- (bt2);
+    \draw[red,->] (bt) -- (bt2);
+    \draw[red,->] (rt) -- (bt2);
+  \end{tikzpicture}
+\end{frame}
+%%% I mentioned before that we must decide what experiment to do. This is indeed difficult, especially in setting such as drug discovery where the number of experiments is huge. 
+
+
+\begin{frame}
+  \frametitle{Planning experiments is like Tic-Tac-Toe}
+  \begin{center}
+    \includegraphics[width=\textwidth]{figures/Tic-tac-toe-game-tree}
+  \end{center}
+\end{frame}
+%%% The basic idea is to think of experiment design as a game between the scientist and Nature. At every step, the scientist plays an X to  denote an experiment. Then Nature responds with an Observation. The main difference is that Nature is probably not adversarial.
+
+\begin{frame}
+  \frametitle{Eve, another robot scientist}
+  \includegraphics[width=\textwidth]{figures/eve.jpg}
+  Discovered a malaria drug
+\end{frame}
+%%% These kinds of techniques, coming from the multi-armed bandit literature have been successfully used at the university of Manchester to create a robot that recently (re)-discovered a malaria drug.
+
+\section{Societal issues}
+\input{ml_society}
+
+\subsection{Fairness}
+
+
+
+\begin{frame}
+  \begin{center} 
+    {\Huge Fairness}
+  \end{center}
+\end{frame}
+
+
+
+
+\begin{frame}
+  \frametitle{Bail decisions}
+  \centering
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}
+        \node[label={$x,z$}] at (-1,2) (person)
+        {\includegraphics[width=0.2\columnwidth]{figures/zuckerberg}};
+        \node[label=$\pi$] at (0,0) (judge) {\includegraphics[width=0.3\columnwidth]{figures/judge}};
+        \draw[->] (person) -- (judge);
+        \uncover<2->{
+          \node[label=$a_1$] at (-2,-2) (jail) {\includegraphics[width=0.3\columnwidth]{figures/jail}};
+          \draw[->] (judge) -- (jail);
+        }
+        \uncover<3->{
+          \node[label=$a_2$] at (2,-2) (bail) {\includegraphics[width=0.3\columnwidth]{figures/bail}};
+          \draw[->] (judge) -- (bail);
+        }
+        \uncover<4->{
+          \node[label=$y_1$] at (-2,-4) (trial) {\includegraphics[width=0.3\columnwidth]{figures/trial}};
+          \draw[->] (jail) -- (trial);
+        }
+        \uncover<5->{
+          \draw[->] (bail) -- (trial);
+        }
+        \uncover<6->{
+          \node[label=$y_2$] at (2,-4) (arrest) {\includegraphics[width=0.3\columnwidth]{figures/handcuffs}};
+          \draw[->] (bail) -- (arrest);
+        }
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \only<1-7>{
+        \begin{itemize}
+        \item $x$ - features
+        \item $z$ - sensitive features
+        \item $a$ - action
+        \item $y$ - outcome
+        \end{itemize}
+      }
+      \only<8>{\includegraphics[width=0.8\columnwidth]{figures/judge-fairness}}
+
+    \end{column}
+  \end{columns}
+
+  \pnote{Let us begin with a simple example. In the US system of justice, an accused is presented before a judge. The accused has some observable features x, as well as some possibly sensitive features z such as ethnicity or gender.
+ Based on what the judge sees, she uses a policy pi to make a decision. Should the defendant be kept in jail until trial? 
+Or should they be let go? 
+If they are kept in jail, then they almost invariably go to trial.
+They may also go to trial if they are freed...
+But they may also flee or commit another crime.
+Typically, the judge makes the decision by weighing the risk against a utility function that measures the cost of keeping an innocent in prison versus the cost of them committing another crime.}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The USA COMPAS System\footnote{Pro-publica, 2016}}
+  Assigns a \alert{risk score} $a_t$ to defendant $x_t$.
+  \begin{figure}[H]
+    \begin{columns}
+      \begin{column}{0.5\textwidth}
+        \centering
+        \def\svgwidth{.95\columnwidth}
+        \input{figures/risk-scores-black.pdf_tex}
+        Black
+      \end{column}
+      \begin{column}{0.5\textwidth}
+        \centering
+        \def\svgwidth{0.95\columnwidth}
+        \input{figures/risk-scores-white.pdf_tex}      
+        White
+      \end{column}
+    \end{columns}
+    \label{fig:risk-bias}
+    \caption{Apparent bias in risk scores towards black versus white defendants.}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \begin{center}
+    {\Huge Privacy}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Record linkage}
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+      \centering \def\firstcircle{(0,0) circle (7em)}
+      \def\secondcircle{(3,0) circle (7em)}
+      
+      \begin{tikzpicture}
+        \uncover<1,3>{ \draw \firstcircle node[text width=7em]
+          {Ethnicity\newline Date\newline Diagnosis \newline Procedure
+            \newline Medication \newline Charge }; } \uncover<3>{
+          \begin{scope}
+            \clip \firstcircle; \fill[red] \secondcircle;
+          \end{scope}
+        } \uncover<2,3>{\draw \secondcircle node [text width=2em,
+          align=right] {Name \newline Address \newline Registration
+            \newline Party \newline Lastvote}; } \node [text width=4em]
+        (QI) at (1.5, 0) {Postcode \newline Birthdate \newline Sex};
+        \uncover<3>{ \node [text width=16em] (qi-text) at (1.5, -3)
+          {87\% of Americans identifiable}; \path[->]<1-> (qi-text) edge [bend left]
+          (QI); }
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \includegraphics[width=0.5\columnwidth]{figures/Bill_Weld}
+      \\
+      \uncover<2->{
+        \includegraphics[width=0.5\textwidth]{figures/samarati}
+        \hspace{1em}
+        \includegraphics[width=0.5\textwidth]{figures/sweeney}
+      }
+    \end{column}
+  \end{columns}
+  \pnote{As an example, in the 1990s a study published anonymised information about the health records of individuals. They were careful to hide all obviously identifying information such as their name. However, a publically available database of voting records allowed attackers to cross-reference this data, and so obtain the identities of individuals in that database. Clearly, anonymisation is not enough. So, is there a way to formally guarantee privacy?}
+\end{frame}
+
+
+\begin{frame}
+  \centering
+  \frametitle{Differential privacy\footnote{\emph{C. Dwork, F. McSherry, K. Nissim, A. Smith}, TCC 2006}}
+  \includegraphics[width=0.1\textwidth]{figures/dwork} \hspace{1em}
+  \includegraphics[width=0.1\textwidth]{figures/mcsherry} \hspace{1em}
+  \includegraphics[width=0.1\textwidth]{figures/nissim} \hspace{1em}
+  \includegraphics[width=0.1\textwidth]{figures/smith}
+  
+  \uncover<2>{
+  \begin{tikzpicture}
+    \node[label=left:$x$] at (0,0) (data) {\includegraphics[width=0.1\columnwidth]{figures/medical}};
+    \node[label=$x_1$] at (-2,3)(patient1) {\includegraphics[width=0.05\columnwidth]{figures/me-recent}};
+    \node[label=$x_2$] at (0,3) (patient2) {\includegraphics[width=0.07\columnwidth]{figures/zuckerberg}};
+    \node[label=$x_3$] at (2,3) (patient3) {\includegraphics[width=0.1\columnwidth]{figures/judge}};
+    \node[label=right:$x'$] at (6,0) (dataB) {\includegraphics[width=0.1\columnwidth]{figures/medical}};
+    \node[label=$x_2$] at (6,3) (patient2B) {\includegraphics[width=0.07\columnwidth]{figures/zuckerberg}};
+    \node[label=$x_3$] at (8,3) (patient3B) {\includegraphics[width=0.1\columnwidth]{figures/judge}};
+    \node[label=$a$] at (3,0)   (statistics) {\includegraphics[width=0.15\columnwidth]{figures/coronary-disease}};
+    \draw[->] (patient1) -- (data);
+    \draw[->] (patient2) -- (data);
+    \draw[->] (patient3) -- (data);
+    \draw[->] (patient2B) -- (dataB);
+    \draw[->] (patient3B) -- (dataB);
+    \draw[->] (data) -- node[above]{?} (statistics);
+    \draw[->] (dataB) -- node[above]{?} (statistics);
+  \end{tikzpicture}
+  }
+    \pnote{Conversely, this means that an adversary that sees the output of the algorithm cannot distinguish between the dataset $x$ which includes my data and another dataset $x'$, which does not. However, obtaining algorithms that satisfy this definition is not trivial. }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Safety}
+  \centering
+  \includegraphics[width=0.75\columnwidth]{figures/boeing_max_8}
+  \\
+  \includegraphics[width=0.75\columnwidth]{figures/attack}
+\end{frame}
+
+%\section{Privacy}
+%\againframe{privacy:linkage}
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
