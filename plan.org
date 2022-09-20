@@ -1189,7 +1189,7 @@ For convenience, I include necessary mathematical notation
 - $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
 * Graphics types
-1. Histogram
+1. Histogram and 3D extensions
 2. Density curve
 3. Scatterplot
 4. Smooth scatterplot
