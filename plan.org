@@ -1,7 +1,7 @@
 #+TITLE: Digital Skills
 #+AUTHOR: Christos Dimitrakakis
 #+EMAIL:christos.dimitrakakis@unine.ch
-#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand \mathbb{E} {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
 #+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
@@ -707,7 +707,7 @@ P([0,p)) = \Pr(\omega \in [0,p)) = p.
 
 **** Random variables									 :theory:probability:
 
-A real-valued random variable $f : \Omega \to \Reals$ is simply a
+A real-valued random variable $f : \Omega \to \mathbb{R}$ is simply a
 function from the outcomes to the real numbers. Even though it is a
 fixed function, its values are random, because the actual value
 $\omega \in \Omega$ that will be used to calculate its value
@@ -792,7 +792,7 @@ trivial, but prediction is still an important problem.  We focus here
 on a simple linear transformation such as the moving average as a basic solution method.
 
 *Smoothing* For smoothing, a moving average filter is typically
-sufficient whenever $\E(x_t) = y_t$, i.e. $x$ is just a zero-mean
+sufficient whenever $\mathbb{E}(x_t) = y_t$, i.e. $x$ is just a zero-mean
 noisy measurement of $y$. Then we can construct the estimator
 \[
 \hat{y}_t = \frac{1}{2n+1} \sum_{k = t-n}^{t+n} x_k.
@@ -967,10 +967,10 @@ intake.
  6. Testing the protocol on synthetic data. Is it working as expected?
 * Module 3: Inference (2 weeks)
 ** Expectation                                           :theory:probability:
- Recall that a random variable $f$ is a function $f : \Omega \to \Reals$. 
+ Recall that a random variable $f$ is a function $f : \Omega \to \mathbb{R}$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
  \[
- \E_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
+ \mathbb{E}_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
  \]
  There is nothing random about the variable itself, it is only the random input that makes its value random.
 
@@ -1161,8 +1161,8 @@ description.
 For convenience, I include necessary mathematical notation
 
 ** Sets
-- $\Reals$: Real numbers
-- $\Reals^d$: d-dimensional Euclidean space
+- $\mathbb{R}$: Real numbers
+- $\mathbb{R}^d$: d-dimensional Euclidean space
 - $\emptyset$: The empty set
 - $A \subset B$: A is a subset of B.
 - $A \cap B$: The intersection of A and B
@@ -1179,7 +1179,7 @@ For convenience, I include necessary mathematical notation
 - $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
 ** Probability
 - $\Pr$: Probability (generally)
-- $\E$: Probability
+- $\mathbb{E}$: Probability
 - $P$: A probability measure
 - $p$: A probability density
 - $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
