@@ -212,12 +212,14 @@ can be used in the context of some assignments.
  1. All students who are male raise their hand
  2. All students whoare female raise their hand.
  3. We count, and draw a bar graph: the number of male and female students.
- 4. What does the graph tell us about:
+ 4. We count how many are in the BSc of DS of those
+ 5. We also count how many are Swiss
+ 6. What does the graph tell us about:
     1. Computer Science students
     2. Students at Neuchatel
     3. Residents of Neuchatel
     4. Other subsets of the population
- 5. Can we make a similar graph when measuring a continuous variable?
+ 7. Can we make a similar graph when measuring a continuous variable?
 
 
 *** Introduction to histograms							  :theory:statistics:
