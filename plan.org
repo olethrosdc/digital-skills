@@ -210,8 +210,8 @@ can be used in the context of some assignments.
 
 *** Bar graph activity
  1. All students who are male raise their hand
- 2. All students whoare female raise their hand.
- 3. We count, and draw a bar graph: the number of male and female students.
+ 2. All students who are female raise their hand.
+ 3. We count, and draw a bar graph: the number of male, female and other students.
  4. We count how many are in the BSc of DS of those
  5. We also count how many are Swiss
  6. What does the graph tell us about:
