@@ -219,7 +219,7 @@ can be used in the context of some assignments.
     2. Students at Neuchatel
     3. Residents of Neuchatel
     4. Other subsets of the population
- 7. Can we make a similar graph when measuring a continuous variable?
+ 7. Can we make a similar graph when measuring a continuous variable? 
 
 
 *** Introduction to histograms							  :theory:statistics:
