@@ -237,8 +237,14 @@ A bar graph is a visual representation of the following count vector,
 \[
 n_c(D) = \sum_{i \in C} \ind{f(i) = c},
 \]
+where $\mathbb{I}$ is an indicator function:
+\[
+\ind{A} = \begin{cases}
+1, & \textrm{$A$ is true}
+\\
+0, & \textrm{$A$ is false},
+\]
 so that the height of the $c$-th bar is proportional to $n_c$.
-
 
 *** Introduction to histograms							  :theory:statistics:
 	
@@ -309,25 +315,134 @@ Tutorial. Then use the library reference for advanced usage.
 Sometimes it is quicker to just use the *help* command in the python
 console or the *?* command in the jupyter notebook.
 
+Python can be used as a simple calculator
+#+BEGIN_EXAMPLE
+$ python3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 1 + 1
+2
+>>> 2 * 3 + 1
+7
+>>> 2 * (3 + 1)
+8
+>>> exit()
+#+END_EXAMPLE
+
+This interactive console is the most usual way of playing with python
+in the beginning, but it is not useful in general.
+
+*** A simple program
+
+Python programs are executed one statement at a time.  Statements are
+separated by newlines. Anything appearing after a # symbol is not
+executed.
+#+BEGIN_SRC python
+print("Hello world") # first statement, with a comment
+print("Goodbye, world.") # second statement!
+# print("This is not printed") - it is a comment, you see
+#+END_SRC
+
+Python programs can be generate text, write and read from files,
+access the internet, generate and display or save plots to disc, play
+and record music, record images from a camera.....
+
+Before we actually run the program, one of you can play the role of
+the python *interpreter*. The interpreter goes through each line of
+the program, interprets it and executes it. 
+
+When we execute a program in the console, we are assuming the role of
+the intpreter that steps through the program.
+
+Run the above statements in the python interpreter
+#+BEGIN_EXAMPLE
+$ python3
+Python 3.8.10 (default, Jun 22 2022, 20:18:18) 
+[GCC 9.4.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print ("Hello world")
+Hello world
+>>> print ("Goodbye, world")
+Goodbye, world
+>>> exit()
+$
+#+END_EXAMPLE
+
+The statements print() and exit() are called functions. Function names
+must always be used with parenthesis. The contents of the parentheses
+are called *arguments*. Changing the arguments to a function has a
+different effect.
+
+We can now try and save the above commands in a file called "pythontest.py" and execute it via 
+: python3 pythontest.py
+
+*** Consoles, Scripts and Notebooks
+
+*Console* input is used when you want to have a purely interactive
+session to test something
+
+*Script* files are used to save your work and re-run it. They also
+allow you to build complex programs from multiple files, where each
+file has a different functionality.
+
+*Notebooks* are something in between. They are script files with
+interactive output, and are very useful for rapid development and
+testing. They also save their state and output in between runs, so
+they help to document your code.  We will use them a lot in
+class. There are two methods to use notebooks:
+- Locally through e.g. jupyter-lab or jupyter-notebook
+- Online through https://colab.research.google.com/ https://replit.com or https://noto.epfl.ch
+
+Most of the time, you want to be saving the code you write in a script
+file and executing it, instead of using the console. However,
+sometimes the interactivity of the console is helpful. This is when
+notebooks are used. After you are done developing something with the
+notebook, you can then extract what you need in a simple python script.
+
 *** Python variables												   :code:
+
+The python interpreter has a *state*. This includes the contents of a
+memory where variables are stored, and the current location of the
+code pointer, that is which line will be executed next.
+
+*Variables* are alphanumeric references to simple or complex objects. Possible variable names:
+- X
+- NumberOfApples
+- salary
+- scratch_variable
+- y2
+
+A variable can be assigned a value with the = operator.
+: x = 2 # this gives the numeric value of '2' to the variable
+Variables must be defined before they can be used for the first time
+#+BEGIN_EXAMPLE
+>>> x
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'x' is not defined
+>>> x = 2
+>>> x # typing the name of a variable in the console gives you its value
+2
+#+END_EXAMPLE
+
 
  Numerical Python variables are very simple entities. Let us go through
  this is easy program for a warm-up.
  - x=value; assigns a value to a variable named x
  - print(); displays something in the terminal
  #+BEGIN_SRC python :results output
- x = 1 # a variable
- y = 2 # another variable
- print(x+y) # print the value of this variable sum
- x = y # assignment operation: now x has the same value as y
- print(x) #what would this value be?
- y = 3
- print(x) #is x changed?
+   x = 1 # a variable
+   y = 2 # another variable
+   print(x+y) # print the value of this variable sum
+   x = y # assignment operation: now x has the same value as y
+   print(x) #what would this value be?
+   y = 3
+   print(x) #is x changed?
  #+END_SRC
  #+RESULTS:
- : 3
- : 2
- : 2
+
+
 
 *** Python lists													   :code:
 
@@ -497,18 +612,19 @@ you need to use.
 
 *Uncertainty vs randomness: coin-flipping experiment*
 	 1. Everybody flips a coin 10 times.
-	 2. Record how many heads or tails you have.
+	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
 	 3. Then record how you threw the coin and what coin it was.
 	 4. Discuss if the coin is really random.
 	 5. What is the distribution of coin throws for the first throw?
 	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
 	 7. Does it make sense to aggregate all the results? What does that assume?
 
+
+
 In the context of experiment design and data analysis, it is very
 common to have conditions like those in this example.  Even though we
 wish there was such a thing as the 'repeated experiment', in practice
 it never is repeated. There is always some varying factor.
-
 
 *Pseudo-random numbers*
 
