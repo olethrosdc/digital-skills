@@ -1,7 +1,7 @@
 #+TITLE: Digital Skills
 #+AUTHOR: Christos Dimitrakakis
 #+EMAIL:christos.dimitrakakis@unine.ch
-#+LaTeX_HEADER: \newcommand \mathbb{E} {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
 #+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
@@ -170,7 +170,6 @@ can be used in the context of some assignments.
 
 	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
 
-	
 * Module 1: Visualisation as models and data summary (3 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
@@ -213,13 +212,32 @@ can be used in the context of some assignments.
  2. All students who are female raise their hand.
  3. We count, and draw a bar graph: the number of male, female and other students.
  4. We count how many are in the BSc of DS of those
- 5. We also count how many are Swiss
+ 5. We also count how many are taking a programming course
+ 7. We also count how many are taking a maths/stats course
  6. What does the graph tell us about:
     1. Computer Science students
     2. Students at Neuchatel
     3. Residents of Neuchatel
     4. Other subsets of the population
  7. Can we make a similar graph when measuring a continuous variable?
+
+**** Definition of a bar graph                                       :theory:
+
+Consider a set of $k$ categories $C = \{1, \ldots, k\}$. Every
+individual belongs in one category. This can be defined through a
+function $f$ assigning categories to individuals.
+
+In particular, imagine a dataset of individuals $D$. There exists a membership function
+\[
+f : D \to C
+\]
+so that $f(x)$ is the category to which individual $x \in D$ belongs.
+
+A bar graph is a visual representation of the following count vector,
+\[
+n_c(D) = \sum_{i \in C} \ind{f(i) = c},
+\]
+so that the height of the $c$-th bar is proportional to $n_c$.
 
 
 *** Introduction to histograms							  :theory:statistics:
@@ -790,7 +808,7 @@ a certain test like the table below.
 2. Does this show a bias? What information is missing?
 3. Let us combine these two plots into one plot now for this we need
    to use the following code:
-#+BEGIN_SRC: python
+#+BEGIN_SRC python
 w=0.5
 X = np.linspace(1,6*w,6)
 M = ...
