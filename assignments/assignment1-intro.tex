@@ -31,6 +31,7 @@ $A \Leftrightarrow B$ means that A and B are equivalent (if A is true then B is 
   \begin{enumerate}
   \item $\neg A \Rightarrow \neg B$, i.e. if A is not true then B is not true.
   \item $\neg B \Rightarrow \neg A$, i.e. if B is not true then A is not true.
+  \item $B \Rightarrow A$, i.e. if B is true then A is true.
   \end{enumerate}
 \end{exercise}
 \ifdefined \solution
@@ -38,12 +39,11 @@ The answer is B.
 \fi
 
 \begin{exercise}
-  Assume that if $A$ is true, then $B$ must be true, i.e.
-  $A \Rightarrow B$. Which of the following statements is correct?
+  Which of the following is correct for all possible events, A, B?
   \begin{enumerate}
-  \item $\neg A \Rightarrow \neg B$, i.e. if A is not true, then B is not true.
-  \item $\neg B \Rightarrow \neg A$, i.e. if B is not true then A is not true.
-  \item $B \Rightarrow A$, i.e. if B is true, then A is true.
+  \item $A \vee B \Leftrightarrow  (\neg A) \wedge (\neg B)$.
+  \item $\neg (A \vee B) \Leftrightarrow (\neg A) \wedge (\neg B)$.
+  \item $(A \vee B) \Leftrightarrow (\neg A) \wedge (\neg B)$.
   \end{enumerate}
 \end{exercise}
 \ifdefined \solution
