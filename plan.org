@@ -1040,7 +1040,7 @@ This gives us the estimator:
 
 *** Example: The inclination of Mars								:example:
 
-1. Plot Mars data
+1. Plot [[file:data/astronomy/mars.xls][Mars data]]
 2. Show orbits
 3. 3-body system, chaos and randomness
    
