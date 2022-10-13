@@ -172,7 +172,7 @@ can be used in the context of some assignments.
 
 	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
 
-* Module 1: Visualisation as models and data summary (3 weeks)
+* Module 1: Visualisation as models and data summary (4 weeks)
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -1040,7 +1040,7 @@ This gives us the estimator:
 
 *** Example: The inclination of Mars								:example:
 
-1. Plot Mars data
+1. Plot [[file:data/astronomy/mars.xls][Mars data]]
 2. Show orbits
 3. 3-body system, chaos and randomness
    
@@ -1140,10 +1140,13 @@ This has two different data frames.
 #+END_SRC
 	
 * Module 2: Experiment design  (3 weeks)
+** Data collection and cleaning
 ** Random sampling
- 1. Pure random sampling.
- 2. Undercounting.
- 3. Give mode.
+ 1. Uniformly random sampling. How can we perform it?
+ 2. Biased sampling, correcting for effects.
+ 3. Importance sampling.
+
+
 ** A/B testing
  1. Comparing algorithms in the wild. Which is the best algorithm?
 ** The data science pipeline
@@ -1400,67 +1403,69 @@ independently of the other courses. You should expect to cover the
 same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| Week   | Statistics                | Programming  | Coursework               | Homework        |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 1      | Course intro              | Python intro | Histograms               |                 |
-| 23 Sep |                           |              | Randomness               |                 |
-|        |                           |              | Uncertainty              | Math score      |
-|        |                           |              | Discrete Variables       |                 |
-|        |                           |              | Continuous Variables     |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 2      | R Intro                   | Data types   | Time-Series              | Form groups     |
-| 30 Sep | Data manipulation         |              | Linear functions         |                 |
-|        | Histograms                |              | Stock market prices      |                 |
-|        | Scatterplots              |              | Crime statistics         |                 |
-|        | Boxplots                  |              | S&P index                |                 |
-|        | Variable types            |              | World Records            |                 |
-|        | Mosaic plots              |              |                          |                 |
-|        | Functions                 |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 3      | Quantifying Variability   | Control      | Scatterplots             |                 |
-| 7 Oct  | Distribution              |              | Unemployment             | Table2picture   |
-|        | Density function          |              |                          |                 |
-|        | Histograms                |              |                          |                 |
-|        | Skewness                  |              |                          |                 |
-|        | Quantiles                 |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 4      | Qualitative vars in R     | Structures   | Random Sampling          |                 |
-| 14 Oct | Discrete vars in R        |              | Undercounting            | Proposal        |
-|        |                           |              | Representative samples   |                 |
-|        |                           |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 5      | Continous RV              | Functions    | A/B Testing              |                 |
-| 21 Oct |                           |              | Comparing two algorithms | Deconstruction  |
-|        |                           |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 6      | Continuous RV             | Complements  | Pipelines                |                 |
-| 28 Oct |                           |              | Simulation studies       | Newspaper       |
-|        |                           |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 7      | Continuous RV             | Classes      | Expectations             |                 |
-| 4 Nov  |                           |              |                          | Proj. Highlight |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 8      | Dependencies.             | Objects      | Bayesian inference       |                 |
-| 11 Nov | Joint distribution.       |              |                          | Project         |
-|        | Conditional distribution. |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 9      | Moments                   | Errors       | Hypothesis tesing        | Project         |
-| e      |                           |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 10     | Covariance                | Iterators    | The Garden of Many Paths |                 |
-| 25 Nov | Correlation               |              |                          | Simulation      |
-|        | Scatterplots              |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 11     | Prices, returns           | FP           | Visualising fMRI data    |                 |
-| 2 Dec  |                           |              |                          | Project         |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 12     | Conditional expectations  |              | Visualising GWAS data    | Project         |
-| 9 Dec  |                           |              |                          |                 |
-|--------+---------------------------+--------------+--------------------------+-----------------|
-| 13     |                           |              | [Project presentations]  |                 |
-| 16 Dec |                           |              |                          | Project         |
-|--------+---------------------------+--------------+--------------------------+-----------------|
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| Week   | Statistics                | Programming  | Coursework               | Homework              |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 1      | Course intro              | Python intro | Histograms               |                       |
+| 23 Sep |                           |              | Randomness               |                       |
+|        |                           |              |                          | Math score            |
+|        |                           |              |                          |                       |
+|        |                           |              |                          |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 2      | R Intro                   | Data types   |                          | Form groups           |
+| 30 Sep | Data manipulation         |              | Uncertainty              |                       |
+|        | Histograms                |              | Discrete Variables       |                       |
+|        | Scatterplots              |              | Continuous Variables     |                       |
+|        | Boxplots                  |              |                          |                       |
+|        | Variable types            |              |                          |                       |
+|        | Mosaic plots              |              |                          |                       |
+|        | Functions                 |              |                          |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 3      | Quantifying Variability   | Control      | Time-Series              |                       |
+| 7 Oct  | Distribution              |              | Linear functions         | Form groups           |
+|        | Density function          |              | Stock market prices      |                       |
+|        | Histograms                |              | Crime statistics         |                       |
+|        | Skewness                  |              | S&P index                |                       |
+|        | Quantiles                 |              | World Records            |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 4      | Qualitative vars in R     | Structures   |                          |                       |
+| 14 Oct | Discrete vars in R        |              |                          | Proj. Proposal        |
+|        |                           |              | Scatterplots             |                       |
+|        |                           |              | Unemployment             |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 5      | Continous RV              | Functions    |                          |                       |
+| 21 Oct |                           |              | Data Cleaning            | Table2Picture         |
+|        |                           |              |                          |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 6      | Continuous RV             | Complements  | Experiment design        |                       |
+| 28 Oct |                           |              | Random Sampling          | Deconstruction        |
+|        |                           |              | Undercounting            |                       |
+|        |                           |              | Represnetative samples   |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 7      | Continuous RV             | Classes      | Expectations             |                       |
+| 4 Nov  |                           |              |                          | NewsPaper             |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 8      | Dependencies.             | Objects      | Bayesian Inference       |                       |
+| 11 Nov | Joint distribution.       |              |                          | Project Highlight     |
+|        | Conditional distribution. |              |                          |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 9      | Moments                   | Errors       | Pipelines                | Project               |
+| 18 Nov |                           |              | Simulation studies       |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 10     | Covariance                | Iterators    |                          |                       |
+| 25 Nov | Correlation               |              | Hypothesis testing       | Project               |
+|        | Scatterplots              |              | The garden of many paths |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 11     | Prices, returns           | FP           | Examples, project work   |                       |
+| 2 Dec  |                           |              |                          | Project               |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 12     | Conditional expectations  |              |                          | Project               |
+| 9 Dec  |                           |              | Examples, project work   |                       |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+| 13     |                           |              |                          |                       |
+| 16 Dec |                           |              | Project presentations    | Project Presentations |
+|--------+---------------------------+--------------+--------------------------+-----------------------|
+|        |                           |              |                          |                       |
 
 
 

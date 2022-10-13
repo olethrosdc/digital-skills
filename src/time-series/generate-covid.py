@@ -9,8 +9,8 @@ R_reinfect = 1.2 # reinfection rate
 R_cure = 0.1 # cure rate
 R_death = 0.001 # death rate
 P_sym_if_inf = 0.5 #probability of symptoms if infected
-P_test_if_sym = 0.01 # probability of getting tested if symptomatic (daily)
-P_test_if_not_sym = 0.01 # probability of getting tested if non-symptomatic (regardless of being infected)
+P_test_if_sym = 0.1 # probability of getting tested if symptomatic (daily)
+P_test_if_not_sym = 0.00001 # probability of getting tested if non-symptomatic (regardless of being infected)
 P_positive_if_inf = 0.5 # probability of a positive test if infected
 P_positive_if_not_inf = 0.001 # probability of a positive test if not infected
 
