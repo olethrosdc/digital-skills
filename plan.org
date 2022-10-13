@@ -1098,7 +1098,7 @@ V = IR.
 \]
 This relation can be inverted to obtain
 \[
-R = V/I, /qquad I = V / R.
+R = V/I, \qquad I = V / R.
 \]
 Let us say that the resistance $R$ is fixed. By altering the voltage
 (e.g. by adding more batteries to a circuit) we can see that the
@@ -1117,14 +1117,28 @@ intake.
 
 **** Weight and height distribution :example:
 
-Here we can plot the number of people having a certain height and weight combination.
-This can be done with a colourmpa.
+Here we can plot the number of people having a certain height and weight combination. This can be done with a colour-map. This is not much different than a normal histogram.
 
-*** Relationships as conditional distributions
+*** Relationships as conditional distribution.
 
+Here we model the distribution of one variable given a fixed value for the other, e.g. $P(X|Y)$. The simplest thing is to 
+	
     
-*** Example: Stock market, Unemployment, GDP
-    
+*** Example: Unemployment, GDP
+
+Get some data from FRED.
+First, the unemployment rate: https://fred.stlouisfed.org/series/UNRATE
+Then, the GDP: https://fred.stlouisfed.org/series/GDPC1
+This has two different data frames.
+#+BEGIN_SRC python
+  # read the files
+  import pandas as pd
+  ur=pd.read_csv("UNRATE.csv")
+  gdp=pd.read_csv("GDPC1.csv")
+  # the date ranges are different, so we must try to merge them (inner join!)
+  merged = ur.merge(gdp)
+#+END_SRC
+	
 * Module 2: Experiment design  (3 weeks)
 ** Random sampling
  1. Pure random sampling.
