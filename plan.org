@@ -168,6 +168,8 @@ can be used in the context of some assignments.
 - [[https://fred.stlouisfed.org/][FRED]]: Federal Reserve Economic Data
 - [[https://data.oecd.org/][OECD]]: Organisation for Economic Co-operation and Development
 
+*** PET Statistics Hackathon
+https://petlab.officialstatistics.org/
 *** NASA Mars Challenge
 
 	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
