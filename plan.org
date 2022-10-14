@@ -1390,7 +1390,7 @@ same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
 |--------+---------------------------+--------------+--------------------------+-----------------------|
-| Week   | Statistics                | Programming  | Coursework               | Homework              |
+| Week   | Statistics                | Programming  | In-Course                | Homework              |
 |--------+---------------------------+--------------+--------------------------+-----------------------|
 | 1      | Course intro              | Python intro | Histograms               |                       |
 | 23 Sep |                           |              | Randomness               |                       |
@@ -1445,11 +1445,11 @@ either statistical theory or programming.
 | 11     | Prices, returns           | FP           | Examples, project work   |                       |
 | 2 Dec  |                           |              |                          | Project               |
 |--------+---------------------------+--------------+--------------------------+-----------------------|
-| 12     | Conditional expectations  |              |                          | Project               |
+| 12     | Conditional expectations  |              |                          | Project presentations |
 | 9 Dec  |                           |              | Examples, project work   |                       |
 |--------+---------------------------+--------------+--------------------------+-----------------------|
 | 13     |                           |              |                          |                       |
-| 16 Dec |                           |              | Project presentations    | Project Presentations |
+| 16 Dec |                           |              | Project presentations    | Project work          |
 |--------+---------------------------+--------------+--------------------------+-----------------------|
 |        |                           |              |                          |                       |
 
