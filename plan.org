@@ -1058,16 +1058,44 @@ This gives us the estimator:
 
 
 ** Scatterplots: model a relationship
-    1. For the original data: add weight, eye colour, gender, exercise level.
-    2. Make a scatterplot of the height and weight
- #+BEGIN_SRC python
-   X=[1, 2, 3, 4, 10, 6]
-   Y=[5, 2, 5, 3, 1, 2]
-   Z=[0, 1, 0, 1, 0, 1]
-   import matplotlib.pyplot as plt
-   plt.scatter(X,Y)
- #+END_SRC
- #+RESULTS:
+   
+Let us start with an example where we just have three variables.
+We can plot the relationship between any two of them.
+
+#+BEGIN_SRC python
+X=[1, 2, 3, 4, 10, 6]
+Y=[5, 2, 5, 3, 1, 2]
+Z=[0, 1, 0, 1, 0, 1]
+import matplotlib.pyplot as plt
+plt.scatter(X,Y)
+#+END_SRC
+#+RESULTS:
+
+Variables are frequently in some array instead.
+#+BEGIN_SRC python
+import numpy as np
+n_data = 10
+n_features = 3
+data = np.random.uniform(size=[n_data, n_features]) # create some random data
+plt.scatter(data[:,0], data[:,1]) #plot the first against the second column
+# We can always take a 'slice' of the data:
+data[:,[1,2]] # get columns 1 and 2 and all the rows
+data[1:10, [0,2]] # get columns 0 and 2 and all rows 1-10
+## : means everyhing
+## a:b means everything from a to b
+## [a,b,c] means a, b and c.
+#+END_SRC
+In dataframes, it we can deal with multiple variables by name
+
+#+BEGIN_SRC python
+import pandas as pd
+df = pd.DataFrame(data, columns =  ["Alcohol", "Caffeine", "Sugar"])
+plt.scatter(df["Alcohol"], df["Caffeine"]) #plot the first against the second column
+# getting slices is also possible in pandas dataframes, just slightly different:
+df.loc[:,'Alcohol'] # get column Alcohol
+df.loc[:,['Alcohol', 'Caffeine']] # get column Alcohol and Caffeine
+#+END_SRC
+
 
 *** Relationships as functions
 
@@ -1109,7 +1137,7 @@ current increases.
 
 The simplest way to model a stochastic relationship between two
 variables is to model the joint distribution $P(X,Y)$. Consider the
-example of heights versus weights. We can expect that the taller a
+example of heights versus weights: We can expect that the taller a
 person is, the heavier they will be. However, their weight will depend
 on the mass of their muscle and adipose tissue. These in turn depend
 on their age, sex, genetics and lifetime calorie expenditure and
@@ -1117,16 +1145,37 @@ intake.
 
 **** Weight and height distribution :example:
 
-Here we can plot the number of people having a certain height and weight combination. This can be done with a colour-map. This is not much different than a normal histogram.
+Here we can plot the number of people having a certain height and
+weight combination. This can be done with a colour-map. This is not
+much different than a normal histogram - and is called hist2d in pyplot:
+#+BEGIN_SRC
+X = 100 / (1 + np.exp(-np.random.normal(size=100))) + 125
+Y = X *  (1 + 0.1*abs(np.random.normal(size=100))) - 100
+#+END_SRC
 
 *** Relationships as conditional distribution.
 
-Here we model the distribution of one variable given a fixed value for the other, e.g. $P(X|Y)$. The simplest thing is to 
+Here we model the distribution of one variable given a fixed value for
+the other, e.g. $P(X|Y)$. The simplest thing is to only try to model the expected value 
+$E[X|Y]$. How can we do this?
+
+Method 1: polynomial fitting!
+#+BEGIN_SRC python
+  # returns the best fitting line to the data
+  a, b = np.polyfit(data_x, data_y, 1)
+  # Why is this the 'best' line? Because it minimises the total squared
+  # error between the predicted value and the actual ones.
+  # We can plot the line by this simple linear equation
+  ax = np.linspace(0,1)
+  plt.plot(ax, a * ax + b)
+#+END_SRC
 	
-    
 *** Example: Unemployment, GDP
 
-Get some data from FRED.
+Get some data financial data from FRED.  This is time-series data. Can
+we actually make sense out of it in terms of correlations?  Explore.
+
+
 First, the unemployment rate: https://fred.stlouisfed.org/series/UNRATE
 Then, the GDP: https://fred.stlouisfed.org/series/GDPC1
 This has two different data frames.
