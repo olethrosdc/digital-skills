@@ -1257,7 +1257,7 @@ This has two different data frames.
  How likely is it that you have covid if your test is positive or negative, i.e.
  P(covid | positive), vs. P(covid | negative)?
 
- First of all, each one of you should independently generate a uniform random
+ First of allzzzzzzzzzzzzzzzz, each one of you should independently generate a uniform random
  number between 1 and 10. For that, you can each throw a die, and record the outcome.
 
  Then you throw a second die, and record that as well.
