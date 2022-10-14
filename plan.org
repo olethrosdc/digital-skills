@@ -402,7 +402,7 @@ sometimes the interactivity of the console is helpful. This is when
 notebooks are used. After you are done developing something with the
 notebook, you can then extract what you need in a simple python script.
 
-*** Python variables												   :code:
+*** Python variables                                                   :code:
 
 The python interpreter has a *state*. This includes the contents of a
 memory where variables are stored, and the current location of the
@@ -446,7 +446,7 @@ NameError: name 'x' is not defined
 
 
 
-*** Python lists													   :code:
+*** Python lists                                                       :code:
 
  A slightly more compex object are python lists. A list can contain
  anything, and is so very flexible. It can contain numbers, strings,
@@ -512,7 +512,7 @@ The following program assigns arrays-values to variables. Now x, y are both list
  #+RESULTS:
  | -1 | -2 |
 
-*** Numpy arrays											  :advanced:code:
+*** Numpy arrays                                              :advanced:code:
 
  Because lists are very flexible, they are a bit slow. A special type
  of object, an array, is used to handle lists of numbers. This is not
@@ -533,6 +533,35 @@ The following program assigns arrays-values to variables. Now x, y are both list
  #+RESULTS:
  | 1 | -2 |
 
+*** Python control structures
+Sometimes we want to repeat some code. For example, we have two matrices of X, Y values and we wish to plot them:
+#+BEGIN_SRC python
+import matpolotlib.pyplot as plt
+import numpy as np
+X = np.random.uniform([10,128])
+Y = X + np.random.uniform([10,128])
+plt.plot(X[0], Y[0])
+plt.plot(X[1], Y[1])
+
+#.... etc - to avoid repetition we can use this:
+for t in range(10): # this defines the variable t and it cycles it through the values 0, 1, ..., 9.
+    # start of repeated block
+    plt.plot(X[t], Y[t])
+# end of repeated block - blocks are identified by identation
+
+# we can also loop through a specific list of values
+for t in [1, 2, -1]: 
+    print(t)
+# this should output 1, 2, -1
+#+END_SRC
+
+*** Python functions                                                   :code:
+Sometimes we want to repeat a complex bit of code in different places. So a loop won't do.
+The way to do that is to use a function:
+#+BEGIN_SRC python
+def return_values = function_name(first_argument, second_argument): # there can be zero or more arguments to a function
+    return first_argument + second_argument # this function just returns the sum of its arguments
+#+END_SRC
 *** Pandas and Histograms										  :plot:code:
     For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]].
 	
