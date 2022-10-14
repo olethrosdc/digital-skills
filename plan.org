@@ -242,9 +242,9 @@ n_c(D) = \sum_{i \in C} \ind{f(i) = c},
 where $\mathbb{I}$ is an indicator function:
 \[
 \ind{A} = \begin{cases}
-1, & \textrm{$A$ is true}
-\\
+1, & \textrm{$A$ is true}\\
 0, & \textrm{$A$ is false},
+\end{cases}
 \]
 so that the height of the $c$-th bar is proportional to $n_c$.
 
@@ -1194,10 +1194,6 @@ This has two different data frames.
  1. Uniformly random sampling. How can we perform it?
  2. Biased sampling, correcting for effects.
  3. Importance sampling.
-
-
-** A/B testing
- 1. Comparing algorithms in the wild. Which is the best algorithm?
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
  1. Formulating the problem.
