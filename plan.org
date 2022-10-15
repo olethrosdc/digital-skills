@@ -736,7 +736,7 @@ individuals?  Here is an example.
 
 
   
-*** Probability background                                           :theory:
+*** Probability background                                           :theory:probability:
 
 The theory of probability is used to mathematically define processes
 with uncertain outcomes. The set of all possible outcomes depends on
@@ -756,7 +756,7 @@ For some more technical details, see [[*Probability space][Probability space]].
 See also:
 - https://en.wikipedia.org/wiki/Probability
 
-**** Probability space
+**** Probability space :theory:probability:
 
 In probability theory, we typically define the set of all possible
 events that we care about as the algebra $\Sigma$, so that any
@@ -1255,11 +1255,14 @@ Throw a die for your political affiliation
 We now count the number of people having different affiliations. This are your true voting affiliations.
 If you were to vote, then you would vote for these specific parties.
 
+Given the number of people in the course, what is the expected number of votes for each party? 
+
+
 **** Connecting probabilities of outcomes to probabilities :probability:theory:example:
 From a probability perspective, we can think of the die as having random outcomes in $\Omega = [9]$. 
-The random variable is the party affiliation $f : \Omega \to \{R, G, B\}$ with
+The random variable is the party vote $v : \Omega \to \{R, G, B\}$ with
 \[
-f(\omega) = 
+v(\omega) = 
 \begin{cases}
 R, & \omega \in \{0,1\}\\
 G, & \omega \in \{2,3,4,5\}\\
@@ -1272,11 +1275,67 @@ $P(\omega) = 1/10$ for all $\omega \in \Omega$ and $P(S) = |S|/10$ for
 all subsets $S \subset \Omega$.  What is then the probability that
 somebody supports the Red party?
 
-The probability that $f = R$, which we write informally as $\Pr(f = R)$,
+The probability that $v = R$, which we write informally as $\Pr(v = R)$,
  is simply the probability of all $\omega$ that lead to $R$, that is:
 \[
-\Pr(f = R) = P(\{\omega : f(\omega) = R\}) = P(\{0,1\}) = 2.
+\Pr(v = R) = P(\{\omega : v(\omega) = R\}) = P(\{0,1\}) = 2.
 \]
+
+**** Expectations                                       :probability:theory:example:
+
+If we know the probability that a randomly chosen voter will vote for
+the $i$-party, then what is the probability of different numbers of votes?
+What is the expected number of votes for each party?
+
+First, let us consider another random variable:
+
+- $n_i$: the number of votes cast for each party $i$.
+
+This total number of votes depends on the party affiliation of each voter. Let
+- $\omega_t$ be the random die of person $t$.
+- $v_t = v(\omega_t)$ is then the party affiliation of person $t$.
+
+We collect the random die into one big vector
+\[
+\omega = (\omega_1, \ldots, \omega_t, \ldots, \omega_T), \qquad \omega \in \Omega^T, \omega_t \in \Omega
+\]
+Then the total number of votes for party $i$ is simply
+\[
+n_i(\omega) = \sum_{t=1}^T \mathbb{I} \{f_t = i\} = \sum_{t=1}^T \mathbb{I} \{v(\omega_t) = i\}
+\]
+
+Clearly, if there is only one voter, the expected number of votes for
+each party $i$ is simply: $\Pr(v = i)$. If we had $T$ voters then this
+should be $n_i = T \Pr(v = i)$. We can verify this by writing out the
+expectation.
+
+ \[ \E_P[n_i] = \sum_\omega P^T(\omega) n_i(\omega) \]
+
+Here $P^T$ is the combined distribution of all persons dice.
+The main assumption we must make is that each person's die is independent of everybody else's. Then
+\[
+P^T(\omega) = \prod_{t=1}^T P(\omega_t).
+\]
+Consequently, the expectation becomes
+\begin{align*}
+\E_P[n_i]
+&=
+\sum_{\omega \in \Omega^T} P^T(\omega) n_i(\omega)\\
+&=
+\sum_{\omega \in \Omega^T} P^T(\omega) \sum_{j=1}^T \mathbb{I} \{v_j = i\}\\
+&=
+\sum_{\omega \in \Omega^T} \sum_{j=1}^T P^T(\omega)  \mathbb{I} \{v_j = i\}\\
+&=
+\sum_{j=1}^T \sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}]\\
+&=
+\sum_{j=1}^T P^T(\{\omega : v(\omega_j = i)\})\\
+&=
+\sum_{j=1}^T P(\{\omega_j : v(\omega_j = i)\})\\
+&=
+\sum_{j=1}^T P_v(i).
+\end{align*}
+
+
 
 **** The probability measure induced by a random variable f :probability:theory:advanced:example:
 We already define a probability measure $P$ on the outcomes $\Omega$. Since $f$ is a function on $\Omega$, we can also define an appropraite probability measure $P_f$ for the outputs of $f$. In particular, for any subset $S \subset \{R, G, B\}$, we define
@@ -1305,6 +1364,7 @@ Each one of you throws a second die and records the outcome. We now have
 | 6-9 |       | Blue          |
 |-----+-------+---------------|
 
+- Make a histogram / bar-char pie plot on the number of votes
 
 
 ** The data science pipeline
