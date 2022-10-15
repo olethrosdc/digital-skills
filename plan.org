@@ -1220,7 +1220,7 @@ This has two different data frames.
 #+END_SRC
 	
 * Module 2: Experiment design  (3 weeks)
-** Data collection and cleaning
+** Data collection and cleaning :activity:
 ** Random sampling
  1. Uniformly random sampling. How can we perform it?
  2. Biased sampling, correcting for effects.
@@ -1231,7 +1231,11 @@ Red.
 Green.
 Blue.
 
+In this exercise, we will try to measure the support for different political parties.
+
+**** Full coverage sampling                                        :activity:
 Throw a die for your political affiliation
+|-----+-------|
 | Die | Party |
 |-----+-------|
 |   0 | Red   |
@@ -1248,6 +1252,10 @@ Throw a die for your political affiliation
 |   9 |       |
 |-----+-------|
 
+We now count the number of people having different affiliations. This are your true voting affiliations.
+If you were to vote, then you would vote for these specific parties.
+
+**** Connecting probabilities of outcomes to probabilities :probability:theory:example:
 From a probability perspective, we can think of the die as having random outcomes in $\Omega = [9]$. 
 The random variable is the party affiliation $f : \Omega \to \{R, G, B\}$ with
 \[
@@ -1261,7 +1269,7 @@ B, & \omega \in \{6,7,8,9\}
 
 Let us assume that the die has a uniform distribution $P$ so that
 $P(\omega) = 1/10$ for all $\omega \in \Omega$ and $P(S) = |S|/10$ for
-all subsets $S \subsets \Omega$.  What is then the probability that
+all subsets $S \subset \Omega$.  What is then the probability that
 somebody supports the Red party?
 
 The probability that $f = R$, which we write informally as $\Pr(f = R)$,
@@ -1269,6 +1277,35 @@ The probability that $f = R$, which we write informally as $\Pr(f = R)$,
 \[
 \Pr(f = R) = P(\{\omega : f(\omega) = R\}) = P(\{0,1\}) = 2.
 \]
+
+**** The probability measure induced by a random variable f :probability:theory:advanced:example:
+We already define a probability measure $P$ on the outcomes $\Omega$. Since $f$ is a function on $\Omega$, we can also define an appropraite probability measure $P_f$ for the outputs of $f$. In particular, for any subset $S \subset \{R, G, B\}$, we define
+\[
+P_f(B) = P(\{\omega : f(\omega) \in B\}).
+\]
+We can this identify the informal probability $\Pr(f = R)$ with the measure $P_f(R)$.
+Here, even though $R$ is an element, and not a set, we abuse notation. Normally we would write $P_f(\{R\})$ to denote the set consisting only of R$.
+
+
+**** Random sampling :activity:
+
+Each one of you throws a second die and records the outcome. We now have
+|-----+-------+---------------|
+| Die | Party | Response      |
+|-----+-------+---------------|
+|   0 | Red   | Not Reachable |
+| 1-9 |       | Red           |
+|-----+-------+---------------|
+|   0 | Green | Not Reachable |
+| 1-2 |       | Refuse        |
+| 3-9 |       | Green         |
+|-----+-------+---------------|
+| 0-4 | Blue  | Not Reachable |
+|   5 |       | Refuse        |
+| 6-9 |       | Blue          |
+|-----+-------+---------------|
+
+
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
