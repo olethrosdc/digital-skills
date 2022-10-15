@@ -1225,6 +1225,51 @@ This has two different data frames.
  1. Uniformly random sampling. How can we perform it?
  2. Biased sampling, correcting for effects.
  3. Importance sampling.
+*** Survey of political opinions                                   :activity:
+You each support one of the following political groups:
+Red.
+Green.
+Blue.
+
+Throw a die for your political affiliation
+| Die | Party |
+|-----+-------|
+|   0 | Red   |
+|   1 |       |
+|-----+-------|
+|   2 | Green |
+|   3 |       |
+|   4 |       |
+|   5 |       |
+|-----+-------|
+|   6 | Blue  |
+|   7 |       |
+|   8 |       |
+|   9 |       |
+|-----+-------|
+
+From a probability perspective, we can think of the die as having random outcomes in $\Omega = [9]$. 
+The random variable is the party affiliation $f : \Omega \to \{R, G, B\}$ with
+\[
+f(\omega) = 
+\begin{cases}
+R, & \omega \in \{0,1\}\\
+G, & \omega \in \{2,3,4,5\}\\
+B, & \omega \in \{6,7,8,9\}
+\end{cases}
+\]
+
+Let us assume that the die has a uniform distribution $P$ so that
+$P(\omega) = 1/10$ for all $\omega \in \Omega$ and $P(S) = |S|/10$ for
+all subsets $S \subsets \Omega$.  What is then the probability that
+somebody supports the Red party?
+
+The probability that $f = R$, which we write informally as $\Pr(f = R)$,
+ is simply the probability of all $\omega$ that lead to $R$, that is:
+\[
+\Pr(f = R) = P(\{\omega : f(\omega) = R\}) = P(\{0,1\}) = 2.
+\]
+
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
  1. Formulating the problem.
