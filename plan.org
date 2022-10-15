@@ -1222,9 +1222,69 @@ This has two different data frames.
 * Module 2: Experiment design  (3 weeks)
 ** Data collection and cleaning :activity:
 ** Random sampling
+
+In this module, we will perform the following activities:
+   
  1. Uniformly random sampling. How can we perform it?
  2. Biased sampling, correcting for effects.
  3. Importance sampling.
+
+*** Expectation                                          :theory:probability:
+ Recall that a random variable $f$ is a function $f : \Omega \to \mathbb{R}$. 
+ The expectation of a random variable with underlying distribution $P(\omega)$ is simply
+ \[
+ \mathbb{E}_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
+ \]
+ There is nothing random about the variable itself, it is only the random input that makes its value random.
+
+ #+BEGIN_SRC python
+   def random_variable(omega):
+       return omega * omega
+ #+END_SRC
+
+**** What is the expectation of this variable? :exercise:
+
+In our case, $f(\omega) = \omega^2$. Let us first consider a discrete $\Omega$:
+
+Let $\omega \in \{0,1,2\}$ and $P(1) = 0.3$ and $P(2) = 0.2$. THen
+\begin{align*}
+\E_P(f)
+&= \sum_\omega P(\omega) f(\omega)\\
+&= P(0) f(0) + P(1) f(1) + P(2) f(2) \\
+&= 0.5 \times 0^2+ 0.3 \times 1^2 + 0.2 \times 2^2 \\
+&= 0.3 + 0.8 
+= 1.1.
+\end{align}*
+
+Let us now consider a continuous $\Omega$ with probability measure $P(A)$ for all (measurable) subsets $A$ of $\Omega$. This can be defined through the probability density
+$p(\omega)$,
+
+
+\[P(A) = \int_A p(\omega) d\omega.\] 
+
+The corresponding expectation of $f$ is then given by
+\[
+\E_P(f) = \int_\Omega f(\omega) p(\omega) d\omega
+\]
+For our specific example, let us choose $p$ to be the uniform distribution on $[0,2]$.  Then $p(\omega) = 1/2$ and
+\[
+\E_P(f) = \int_0^2 \omega^2 /2 d\omega = [x^3/6]_0^2 = 2^3/6 = 8/6=4/3.
+\]
+
+
+**** Centime exercise                                     :activity:advanced:
+
+ A jar with coins is passed around the class. 
+ 1. The students are asked to guess how many coins it contains.
+ 2. The students agree on a 50% confidence interval.
+ 3. The students fit a [[https://en.wikipedia.org/wiki/Normal_distribution][normal distribution]] on this interval $[\mu - \frac{2}{3}\sigma, \mu + \frac{2}{3}\sigma]$.
+ 4. Is this normal distribution a good choice? Are you 90\% sure the number of coins is less than $x$?
+ 5. Is a normal distribution generally appropriate?
+ 6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
+ (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
+
+
+
 *** Survey of political opinions                                   :activity:
 You each support one of the following political groups:
 Red.
@@ -1371,7 +1431,7 @@ Each one of you throws a second die and records the outcome. We now have
 |-----+-------+---------------|
 
 - Make a histogram / bar-char pie plot on the number of votes
-
+  
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
@@ -1382,30 +1442,6 @@ Each one of you throws a second die and records the outcome. We now have
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
 * Module 3: Inference (2 weeks)
-** Expectation                                           :theory:probability:
- Recall that a random variable $f$ is a function $f : \Omega \to \mathbb{R}$. 
- The expectation of a random variable with underlying distribution $P(\omega)$ is simply
- \[
- \mathbb{E}_P[f] \defn \sum_{\omega \in \Omega} f(\omega) P(\omega).
- \]
- There is nothing random about the variable itself, it is only the random input that makes its value random.
-
- #+BEGIN_SRC python
-   def random_variable(omega):
-       return omega * omega
- #+END_SRC
-
-*** Centime exercise
-
- A jar with coins is passed around the class. 
- 1. The students are asked to guess how many coins it contains.
- 2. The students agree on a 50% confidence interval.
- 3. The students fit a [[https://en.wikipedia.org/wiki/Normal_distribution][normal distribution]] on this interval $[\mu - \frac{2}{3}\sigma, \mu + \frac{2}{3}\sigma]$.
- 4. Is this normal distribution a good choice? Are you 90\% sure the number of coins is less than $x$?
- 5. Is a normal distribution generally appropriate?
- 6. Puzzle: Guess how many coins there are. If correct, then the class will share the money. If not, they will get nothing. What is the correct guess?
- (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
-
 ** Bayesian analysis                                     :theory:probability:
  Recall the definition of Conditional probability:
 
@@ -1620,36 +1656,36 @@ The completed project should include a report written by both students
 in the team. This should should address the points in the [[*Assessment][Assessment]]
 description.
 
-* Notation
-For convenience, I include necessary mathematical notation
-
-** Sets
-- $\mathbb{R}$: Real numbers
-- $\mathbb{R}^d$: d-dimensional Euclidean space
-- $\emptyset$: The empty set
-- $A \subset B$: A is a subset of B.
-- $A \cap B$: The intersection of A and B
-- $A \cup B$: The union of A and B
-- $A \setminus B$: Removing B from A
-- $\Omega$: The "universe"
-- $A^c = \Omega \setminus A$: The complement of a set.
-- $\{x | f(x) = 0\}$: The set of x so that $f(x) = 0$.
-** Analysis
-- $\mathbb{I}\{x \in A\}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
-- $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
-- $d/dx f(x)$: derivative of $f$
-- $\partial/\partial x f(x,y)$: partial derivative of $f$
-- $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
-** Probability
-- $\Pr$: Probability (generally)
-- $\mathbb{E}$: Probability
-- $P$: A probability measure
-- $p$: A probability density
-- $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
-- $\param$: Parameter
-- $\Param$: Parameter set
-- $\{P_\param | \param \in \Param\}$: A family of parametrised models
-- $\Pr(x | y)$ conditional probability for random variables x, y (generally)
+* Reference material
+** Notation
+ For convenience, I include necessary mathematical notation
+*** Sets
+ - $\mathbb{R}$: Real numbers
+ - $\mathbb{R}^d$: d-dimensional Euclidean space
+ - $\emptyset$: The empty set
+ - $A \subset B$: A is a subset of B.
+ - $A \cap B$: The intersection of A and B
+ - $A \cup B$: The union of A and B
+ - $A \setminus B$: Removing B from A
+ - $\Omega$: The "universe"
+ - $A^c = \Omega \setminus A$: The complement of a set.
+ - $\{x | f(x) = 0\}$: The set of x so that $f(x) = 0$.
+*** Analysis
+ - $\mathbb{I}\{x \in A\}$: indicator function (takes the value $1$ if $x \in A$, $0$ oterwise)
+ - $\sum_{x \in X} f(x) = f(x_1) + \cdots + f(x_n)$, with $X = \{x_1, \ldots, x_n\}$
+ - $d/dx f(x)$: derivative of $f$
+ - $\partial/\partial x f(x,y)$: partial derivative of $f$
+ - $\nabla_x = (\partial/\partial x_1, \ldots, \partial/\partial x_n)$, vector of partial derivatives.
+*** Probability
+ - $\Pr$: Probability (informally generally)
+ - $\mathbb{E}$: Probability
+ - $P$: A probability measure
+ - $p$: A probability density
+ - $P(A | B) = P(A \cup B) / P(B)$. Conditional probability, $A, B \subset \Omega$.
+ - $\param$: Parameter
+ - $\Param$: Parameter set
+ - $\{P_\param | \param \in \Param\}$: A family of parametrised models
+ - $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
 * Graphics types
 1. Histogram and 3D extensions
@@ -1674,69 +1710,69 @@ independently of the other courses. You should expect to cover the
 same topic more than once. However, this course will not focus on
 either statistical theory or programming.
 
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| Week   | Statistics                | Programming  | In-Course                | Homework              |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 1      | Course intro              | Python intro | Histograms               |                       |
-| 23 Sep |                           |              | Randomness               |                       |
-|        |                           |              |                          | Math score            |
-|        |                           |              |                          |                       |
-|        |                           |              |                          |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 2      | R Intro                   | Data types   |                          | Form groups           |
-| 30 Sep | Data manipulation         |              | Uncertainty              |                       |
-|        | Histograms                |              | Discrete Variables       |                       |
-|        | Scatterplots              |              | Continuous Variables     |                       |
-|        | Boxplots                  |              |                          |                       |
-|        | Variable types            |              |                          |                       |
-|        | Mosaic plots              |              |                          |                       |
-|        | Functions                 |              |                          |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 3      | Quantifying Variability   | Control      | Time-Series              |                       |
-| 7 Oct  | Distribution              |              | Linear functions         | Form groups           |
-|        | Density function          |              | Stock market prices      |                       |
-|        | Histograms                |              | Crime statistics         |                       |
-|        | Skewness                  |              | S&P index                |                       |
-|        | Quantiles                 |              | World Records            |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 4      | Qualitative vars in R     | Structures   |                          |                       |
-| 14 Oct | Discrete vars in R        |              |                          | Proj. Proposal        |
-|        |                           |              | Scatterplots             |                       |
-|        |                           |              | Unemployment             |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 5      | Continous RV              | Functions    |                          |                       |
-| 21 Oct |                           |              | Data Cleaning            | Table2Picture         |
-|        |                           |              |                          |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 6      | Continuous RV             | Complements  | Experiment design        |                       |
-| 28 Oct |                           |              | Random Sampling          | Deconstruction        |
-|        |                           |              | Undercounting            |                       |
-|        |                           |              | Represnetative samples   |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 7      | Continuous RV             | Classes      | Expectations             |                       |
-| 4 Nov  |                           |              |                          | NewsPaper             |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 8      | Dependencies.             | Objects      | Bayesian Inference       |                       |
-| 11 Nov | Joint distribution.       |              |                          | Project Highlight     |
-|        | Conditional distribution. |              |                          |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 9      | Moments                   | Errors       | Pipelines                | Project               |
-| 18 Nov |                           |              | Simulation studies       |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 10     | Covariance                | Iterators    |                          |                       |
-| 25 Nov | Correlation               |              | Hypothesis testing       | Project               |
-|        | Scatterplots              |              | The garden of many paths |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 11     | Prices, returns           | FP           | Examples, project work   |                       |
-| 2 Dec  |                           |              |                          | Project               |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 12     | Conditional expectations  |              |                          | Project presentations |
-| 9 Dec  |                           |              | Examples, project work   |                       |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-| 13     |                           |              |                          |                       |
-| 16 Dec |                           |              | Project presentations    | Project work          |
-|--------+---------------------------+--------------+--------------------------+-----------------------|
-|        |                           |              |                          |                       |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| Week   | Statistics                | Programming  | In-Course                | Homework             |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 1      | Course intro              | Python intro | Histograms               |                      |
+| 23 Sep |                           |              | Randomness               |                      |
+|        |                           |              |                          | Math score           |
+|        |                           |              |                          |                      |
+|        |                           |              |                          |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 2      | R Intro                   | Data types   |                          | Form groups          |
+| 30 Sep | Data manipulation         |              | Uncertainty              |                      |
+|        | Histograms                |              | Discrete Variables       |                      |
+|        | Scatterplots              |              | Continuous Variables     |                      |
+|        | Boxplots                  |              |                          |                      |
+|        | Variable types            |              |                          |                      |
+|        | Mosaic plots              |              |                          |                      |
+|        | Functions                 |              |                          |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 3      | Quantifying Variability   | Control      | Time-Series              |                      |
+| 7 Oct  | Distribution              |              | Linear functions         | Form groups          |
+|        | Density function          |              | Stock market prices      |                      |
+|        | Histograms                |              | Crime statistics         |                      |
+|        | Skewness                  |              | S&P index                |                      |
+|        | Quantiles                 |              | World Records            |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 4      | Qualitative vars in R     | Structures   |                          |                      |
+| 14 Oct | Discrete vars in R        |              |                          | Proj. Proposal       |
+|        |                           |              | Scatterplots             |                      |
+|        |                           |              | Unemployment             |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 5      | Continous RV              | Functions    |                          |                      |
+| 21 Oct |                           |              | Data Cleaning            | Table2Picture        |
+|        |                           |              |                          |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 6      | Continuous RV             | Complements  | Experiment design        |                      |
+| 28 Oct |                           |              | Random Sampling          | Deconstruction       |
+|        |                           |              | Undercounting            |                      |
+|        |                           |              | Represnetative samples   |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 7      | Continuous RV             | Classes      | Expectations             |                      |
+| 4 Nov  |                           |              |                          | NewsPaper            |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 8      | Dependencies.             | Objects      | Bayesian Inference       |                      |
+| 11 Nov | Joint distribution.       |              |                          | Project Highlight    |
+|        | Conditional distribution. |              |                          |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 9      | Moments                   | Errors       | Pipelines                | Project              |
+| 18 Nov |                           |              | Simulation studies       |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 10     | Covariance                | Iterators    |                          |                      |
+| 25 Nov | Correlation               |              | Hypothesis testing       | Project              |
+|        | Scatterplots              |              | The garden of many paths |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 11     | Prices, returns           | FP           | Examples, project work   |                      |
+| 2 Dec  |                           |              |                          | Project presentation |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 12     | Conditional expectations  |              |                          | Project report       |
+| 9 Dec  |                           |              | Examples, project work   |                      |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+| 13     |                           |              |                          |                      |
+| 16 Dec |                           |              | Project presentations    | Project report       |
+|--------+---------------------------+--------------+--------------------------+----------------------|
+|        |                           |              |                          |                      |
 
 
 
