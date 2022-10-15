@@ -1332,9 +1332,15 @@ Consequently, the expectation becomes
 &=
 \sum_{j=1}^T P(\{\omega_j : v(\omega_j = i)\})\\
 &=
-\sum_{j=1}^T P_v(i).
+\sum_{j=1}^T P_v(i)\\
+&=
+T P_v(i).
 \end{align*}
-
+The independence assumption is used to show that
+$P^T(\{\omega : v(\omega_j = i)\}
+ = 
+P(\{\omega_j : v(\omega_j = i)\})$
+The other steps do not require any assumptions.
 
 
 **** The probability measure induced by a random variable f :probability:theory:advanced:example:
