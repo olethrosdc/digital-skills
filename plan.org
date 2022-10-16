@@ -1287,14 +1287,16 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 
 *** Survey of political opinions                                   :activity:
 You each support one of the following political groups:
-Red.
-Green.
-Blue.
+- R: Red.
+- G: Green.
+- B: Blue.
 
 In this exercise, we will try to measure the support for different political parties.
 
 **** Full coverage sampling                                        :activity:
-Throw a die for your political affiliation
+
+Here we assign a random affiliation to each one of you.
+Throw a die for your political affiliation:
 |-----+-------|
 | Die | Party |
 |-----+-------|
@@ -1312,10 +1314,16 @@ Throw a die for your political affiliation
 |   9 |       |
 |-----+-------|
 
-We now count the number of people having different affiliations. This are your true voting affiliations.
-If you were to vote, then you would vote for these specific parties.
+We now count the number of people having different affiliations. This
+are your true voting affiliations.  If you were to vote, then you
+would vote for these specific parties.
 
-Given the number of people in the course, what is the expected number of votes for each party? 
+Here, the underlying random space is the combined dice throws of all
+the class, and the random variable of interest is the number of votes
+for each candidate.
+
+Given the number of people in the course, what is the expected number
+of votes for each party?
 
 
 **** Connecting probabilities of outcomes to probabilities :probability:theory:example:
@@ -1701,7 +1709,6 @@ description.
 
 See also: [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
 
-
 * Schedule and links to other courses
 
 The schedule of this and the other courses is in flux, but I do not
@@ -1776,10 +1783,10 @@ either statistical theory or programming.
 
 
 
-
 * Glossary
 
 - Expectation: Espérance
+- Experiment: événement
 - Histogram: Histogramme?
 - Pie plot: ?
 - Bar plot: ?
@@ -1789,12 +1796,14 @@ either statistical theory or programming.
 - Probability: Probabilité
 - Stochastic: stochastique
 - Random Variable: Variable aléatoire
+- Sample Space: see Universe
 - Sample: Échantillon
 - Sampling: Échantillonnage
 - Set: Ensemble
 - Subset: Sous-ensemble
 - Superset: Sur-ensemble
 - Survey: Sondage
+- Universe: Univers
 - $\sigma$-algebra: tribu, $\sigma$-algèbre
 
 * References
