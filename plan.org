@@ -250,6 +250,7 @@ where $\mathbb{I}$ is an indicator function:
 \]
 so that the height of the $c$-th bar is proportional to $n_c$.
 
+
 *** Introduction to histograms							  :theory:statistics:
 	
  Assume data is in $\mathbb{R}$. Then split the real line into intervals
@@ -1450,6 +1451,25 @@ Each one of you throws a second die and records the outcome. We now have
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
 * Module 3: Inference (2 weeks)
+** Logic and bar graphs                                              :theory:
+
+How many people are taking
+CS? How many are in other courses? Let us consider the following statements. 
+Each statement is either true or false. If a statement is true, it has the value 1. 
+It consequently has the value 0 if it is false.
+
+For each student $i$, we define:
+- $m_i$: the student is male
+- $f_i$: the student is female
+- $s_i$: the student is in the faculty of science
+- $l_i$: the student is in the faculty of law
+- $e_i$: the student is in the faculty of economics
+
+Clearly, if $s_i$ is true then $l_i, e_i$ are false.
+
+
+
+
 ** Bayesian analysis                                     :theory:probability:
  Recall the definition of Conditional probability:
 
