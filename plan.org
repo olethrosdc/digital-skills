@@ -1467,6 +1467,21 @@ For each student $i$, we define:
 
 Clearly, if $s_i$ is true then $l_i, e_i$ are false.
 
+** Logic and sets :theory:
+
+We can associate events with sets in a universe. The following laws apply:
+
+1. There is a universe $\Omega$ of possible outcomes
+2. Consider an individual outcome $\omega \in \Omega$:
+(a) If $\omega \in A$ ,then we say that *$A$ is true*.
+(b) If $\omega \notin A$ ,then we say that *$A$ is false*.
+3. Let $\neg A$, read 'not A', be the complement $\Omega \setminus A$:
+   If $A$ is true, then $\neg A$ is false and vice-versa.
+4. $B$ is a subset of A (i.e. $B \subset A$) iff $B$ *implies* $A$.
+5. If $A$ and $B$ are disjoint, i.e. $A \cap B = \emptyset$ (they have
+   an empty inersection) then $A, B$ are *mutually exclusive*. That
+   means that it is impossible for $A, B$ to both be true.
+
 
 
 
