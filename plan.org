@@ -374,7 +374,7 @@ Goodbye, world
 $
 #+END_EXAMPLE
 
-The statements print() and exit() are called functions. Function names
+The statements print() and exit() are called *functions*. Function names
 must always be used with parenthesis. The contents of the parentheses
 are called *arguments*. Changing the arguments to a function has a
 different effect.
@@ -562,9 +562,49 @@ for t in [1, 2, -1]:
 Sometimes we want to repeat a complex bit of code in different places. So a loop won't do.
 The way to do that is to use a function:
 #+BEGIN_SRC python
-def return_values = function_name(first_argument, second_argument): # there can be zero or more arguments to a function
+def function_name(first_argument, second_argument): # there can be zero or more arguments to a function
     return first_argument + second_argument # this function just returns the sum of its arguments
 #+END_SRC
+
+**** Function scope                                           :advanced:code:
+Whenever code is executed inside a function, the variables created there
+are only valid within the function. The function arguments are also effectively new variables.
+To see this, consider the following example.
+#+BEGIN_SRC python :results output
+  def example_function(argument):
+      # The following does not necessarily modify the original variable
+      # passed.  It depends on the effect of 'argument =
+      # original_variable'.  If it copies the value, then the original
+      # variable remains the same.  If it merely acts as a refernce (as
+      # is the case with lists and arrays) then a modification happens.
+      argument += 1
+      # this variable should not be visible outside the function
+      hidden_variable = 2
+      # similarly, this does not affect the variables outside the
+      # function. Otherwise there would be a mess
+      outside_variable = 0
+      return argument
+
+  outside_variable = 100
+  test = 100
+  foo = example_function(test) # line to unpack
+  print("test:", test)
+  print("foo:", foo)
+  print("outside_variable:", outside_variable)
+  #print("hidden_variable:", hidden_variable) # it complains of 'hidden_variable' not being defined
+#+END_SRC
+
+#+RESULTS:
+: test: 100
+: foo: 101
+: outside_variable: 100
+
+Let us unpack what happens. When we write foo = example_function(test), what happens is as follows.
+: argument = test # create a new variable: all other variables are now hidden from scope
+: argument += 1 # execute the function's code block
+: foo = argument # apply the return operator to 'foo = example_function()'
+
+
 *** Pandas and Histograms										  :plot:code:
     For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]].
 	
@@ -1243,6 +1283,7 @@ In this module, we will perform the following activities:
        return omega * omega
  #+END_SRC
 
+ 
 **** What is the expectation of this variable? :exercise:
 
 In our case, $f(\omega) = \omega^2$. Let us first consider a discrete $\Omega$:
