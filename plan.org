@@ -1229,6 +1229,7 @@ In this module, we will perform the following activities:
  2. Biased sampling, correcting for effects.
  3. Importance sampling.
 
+	
 *** Expectation                                          :theory:probability:
  Recall that a random variable $f$ is a function $f : \Omega \to \mathbb{R}$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
@@ -1285,13 +1286,43 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 
 
 
+*** Survey of heights :activity:
+
+1. First, randomly select a student. How? Everybody gets a different number. Then I throw a die until I get a single student matching this number. The student is my sample $\omega$.
+
+2. The student comes to the board and measures his height. This height is a random variable $h(\omega)$. Each student has their own fixed height, but which student I select is random. Thus, the height that I measure is random.
+
+3. Repeat the experiment once more.
+   
+4. Now we randomly select multiple students. How? Each student throws a die. If the die is >4, then they are selected. All the students come to the board. They are our sample $\omega$.
+
+5. We now write the student heights, and average. The average height of the sample is our random variable.
+	
 *** Survey of political opinions                                   :activity:
 You each support one of the following political groups:
-Red.
-Green.
-Blue.
+- Red.
+- Blue.
 
 In this exercise, we will try to measure the support for different political parties.
+
+**** Fixed affiliations :activity:
+
+1. Deal cards so that 40% of the students are red, and 60% are blue.
+
+2. Now sample the population in the following manner:
+   
+   Everybody throws a die. Those with a value 5 or greater are part of our sample,
+   The sample $\omega$ comes to the board.
+   
+   The set of all possible samples is called the universe $\Omega$. It is possible that we sample everybody, or nobody, or only the boys, or only the girls, or any combination.
+   
+   Mathematically, we can say that $\Omega = \{0,1\}^n$, where $n$ is the number of students, and $\omega_i = 1$ if a student has been selected.
+
+3. Write a tick mark in the box saying "Red" or "Blue".
+4. We then measure the proportion of red and blue votes. This proportion is the random variable!
+
+   
+    
 
 **** Full coverage sampling                                        :activity:
 Throw a die for your political affiliation
@@ -1300,12 +1331,11 @@ Throw a die for your political affiliation
 |-----+-------|
 |   0 | Red   |
 |   1 |       |
-|-----+-------|
-|   2 | Green |
+|   2 |       |
 |   3 |       |
+|-----+-------|
 |   4 |       |
 |   5 |       |
-|-----+-------|
 |   6 | Blue  |
 |   7 |       |
 |   8 |       |
