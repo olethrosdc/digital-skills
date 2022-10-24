@@ -250,6 +250,7 @@ where $\mathbb{I}$ is an indicator function:
 \]
 so that the height of the $c$-th bar is proportional to $n_c$.
 
+
 *** Introduction to histograms							  :theory:statistics:
 	
  Assume data is in $\mathbb{R}$. Then split the real line into intervals
@@ -373,7 +374,7 @@ Goodbye, world
 $
 #+END_EXAMPLE
 
-The statements print() and exit() are called functions. Function names
+The statements print() and exit() are called *functions*. Function names
 must always be used with parenthesis. The contents of the parentheses
 are called *arguments*. Changing the arguments to a function has a
 different effect.
@@ -561,9 +562,53 @@ for t in [1, 2, -1]:
 Sometimes we want to repeat a complex bit of code in different places. So a loop won't do.
 The way to do that is to use a function:
 #+BEGIN_SRC python
-def return_values = function_name(first_argument, second_argument): # there can be zero or more arguments to a function
+def function_name(first_argument, second_argument): # there can be zero or more arguments to a function
     return first_argument + second_argument # this function just returns the sum of its arguments
 #+END_SRC
+
+**** Function scope                                           :advanced:code:
+Whenever code is executed inside a function, the variables created there
+are only valid within the function. The function arguments are also effectively new variables.
+To see this, consider the following example.
+#+BEGIN_SRC python :results output
+  def example_function(argument):
+	# The following does not necessarily modify the original variable
+	# passed.  It depends on the effect of 'argument =
+	# original_variable'.  If it copies the value, then the original
+	# variable remains the same.  If it merely acts as a refernce (as
+	# is the case with lists and arrays) then a modification happens.
+	argument += 1
+	# this variable should not be visible outside the function
+	hidden_variable = 2
+	# variables defined outside the function are still readable!
+	print(outside_variable)
+	# but, we cannot affect the variables outside the
+	# function. Otherwise there would be a mess.
+	another_variable = 0
+	# for that reason, functions should only use the arguments passed
+	return argument
+  test = 100
+  outside_variable = "I am defined outside the function"
+  another_variable = -1 # so am I
+  foo = example_function(test) # line to unpack
+  print("test:", test)
+  print("foo:", foo)
+  print("outside_variable:", outside_variable)
+  #print("hidden_variable:", hidden_variable) # it complains of 'hidden_variable' not being defined
+#+END_SRC
+
+#+RESULTS:
+: I am defined outside the function
+: test: 100
+: foo: 101
+: outside_variable: I am defined outside the function
+
+Let us unpack what happens. When we write foo = example_function(test), what happens is as follows.
+: argument = test # create a new variable: all other variables are now hidden from scope
+: argument += 1 # execute the function's code block
+: foo = argument # apply the return operator to 'foo = example_function()'
+
+
 *** Pandas and Histograms										  :plot:code:
     For this, we work on the [[file:src/histograms/histogram.ipynb][Histogram example]].
 	
@@ -1229,7 +1274,58 @@ In this module, we will perform the following activities:
  2. Biased sampling, correcting for effects.
  3. Importance sampling.
 
-	
+
+*** Uniform sampling                                                   :code:
+In uniform sampling, the probability of all outcomes is the same.
+
+*Sampling with replacement*
+In sampling with replacement, each outcome can appear more than once.
+#+BEGIN_SRC python
+  import numpy as np
+  population_size = 10 # say we have 10 people we want to sample from
+  n_samples = 5 # say we want to take 5 samples from the population the
+  # following will give us a sample drawn with replacement: It doesn't
+  # matter who we selected before, the next one will be randomly
+  # selected independently of the previous selection
+  sample = np.random.choice(population_size, size = n_samples)
+  return sample
+#+END_SRC
+
+#+RESULTS:
+| 4 | 5 | 4 | 5 | 4 |
+
+The following code has the same effect
+#+BEGIN_SRC python
+  import numpy as np
+  population_size = 10 # say we have 10 people we want to sample from
+  n_samples = 5 # say we want to take 5 samples from the populatoin
+  sample = np.zeros(n_samples)
+  for i in range(n_samples):
+      sample[i] = np.random.choice(population_size)
+  return sample
+#+END_SRC
+
+#+RESULTS:
+| 8 | 8 | 8 | 4 | 6 |
+
+*Sampling without replacement*
+In sampling without replacement, each outcome can appear at most once.
+#+BEGIN_SRC python
+  import numpy as np
+  population_size = 10 # say we have 10 people we want to sample from
+  n_samples = 5 # say we want to take 5 samples from the population the
+  # following will give us a sample drawn with replacement: It doesn't
+  # matter who we selected before, the next one will be randomly
+  # selected independently of the previous selection
+  sample = np.random.choice(population_size, size = n_samples, replace='False')
+  return sample
+#+END_SRC
+
+#+RESULTS:
+| 8 | 4 | 6 | 2 | 7 |
+
+
+
 *** Expectation                                          :theory:probability:
  Recall that a random variable $f$ is a function $f : \Omega \to \mathbb{R}$. 
  The expectation of a random variable with underlying distribution $P(\omega)$ is simply
@@ -1238,11 +1334,40 @@ In this module, we will perform the following activities:
  \]
  There is nothing random about the variable itself, it is only the random input that makes its value random.
 
- #+BEGIN_SRC python
-   def random_variable(omega):
+ In the following example, $\omega \in \{0, 1, 2, 3\}$, with
+ $P(\omega)$, specified by the vector =P[]=
+
+ z1
+ #+BEGIN_SRC python :results output
+   import numpy as np
+   # Let us define the space Omega
+   Omega  = np.array([0, 1, 2, 3])
+
+   # Let us define a vector P so that P[omega] is the probability of omega
+   # e.g the probability that omega = 0 is 0.1, and that omega = 3 is 0.5.
+   P = np.array([0.1, 0.2, 0.3, 0.4])
+
+   # Here is our random variable f(). It is just a function of omega. There
+   # is nothing random about it, only omega is random!
+   def f(omega):
        return omega * omega
+
+   # Let us generate a random omega:
+   random_outcome = np.random.choice(Omega, p = P)
+   random_variable_value = f(random_outcome)
+   print("omega:", random_outcome, 
+	 "f:", random_variable_value)
+
+   # We can also easily calculate the expectation of the random variable
+   # through the dot product.
+   print ("Expected value:", np.dot(P, f(Omega)))
  #+END_SRC
 
+ #+RESULTS:
+ : omega: 2 f: 4
+ : 5.0
+
+ 
 **** What is the expectation of this variable? :exercise:
 
 In our case, $f(\omega) = \omega^2$. Let us first consider a discrete $\Omega$:
@@ -1300,9 +1425,10 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 	
 *** Survey of political opinions                                   :activity:
 You each support one of the following political groups:
-- Red.
-- Blue.
 
+- R: Red.
+- B: Blue.
+  
 In this exercise, we will try to measure the support for different political parties.
 
 **** Fixed affiliations :activity:
@@ -1325,7 +1451,9 @@ In this exercise, we will try to measure the support for different political par
     
 
 **** Full coverage sampling                                        :activity:
-Throw a die for your political affiliation
+
+Here we assign a random affiliation to each one of you.
+Throw a die for your political affiliation:
 |-----+-------|
 | Die | Party |
 |-----+-------|
@@ -1342,10 +1470,16 @@ Throw a die for your political affiliation
 |   9 |       |
 |-----+-------|
 
-We now count the number of people having different affiliations. This are your true voting affiliations.
-If you were to vote, then you would vote for these specific parties.
+We now count the number of people having different affiliations. This
+are your true voting affiliations.  If you were to vote, then you
+would vote for these specific parties.
 
-Given the number of people in the course, what is the expected number of votes for each party? 
+Here, the underlying random space is the combined dice throws of all
+the class, and the random variable of interest is the number of votes
+for each candidate.
+
+Given the number of people in the course, what is the expected number
+of votes for each party?
 
 
 **** Connecting probabilities of outcomes to probabilities :probability:theory:example:
@@ -1449,9 +1583,6 @@ Each one of you throws a second die and records the outcome. We now have
 | Die | Party | Response      |
 |-----+-------+---------------|
 |   0 | Red   | Not Reachable |
-| 1-9 |       | Red           |
-|-----+-------+---------------|
-|   0 | Green | Not Reachable |
 | 1-2 |       | Refuse        |
 | 3-9 |       | Green         |
 |-----+-------+---------------|
@@ -1462,7 +1593,6 @@ Each one of you throws a second die and records the outcome. We now have
 
 - Make a histogram / bar-char pie plot on the number of votes
   
-
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
  1. Formulating the problem.
@@ -1472,6 +1602,40 @@ Each one of you throws a second die and records the outcome. We now have
  5. Generating data confirming to our assumptions.
  6. Testing the protocol on synthetic data. Is it working as expected?
 * Module 3: Inference (2 weeks)
+** Logic and bar graphs                                              :theory:
+
+How many people are taking
+CS? How many are in other courses? Let us consider the following statements. 
+Each statement is either true or false. If a statement is true, it has the value 1. 
+It consequently has the value 0 if it is false.
+
+For each student $i$, we define:
+- $m_i$: the student is male
+- $f_i$: the student is female
+- $s_i$: the student is in the faculty of science
+- $l_i$: the student is in the faculty of law
+- $e_i$: the student is in the faculty of economics
+
+Clearly, if $s_i$ is true then $l_i, e_i$ are false.
+
+** Logic and sets :theory:
+
+We can associate events with sets in a universe. The following laws apply:
+
+1. There is a universe $\Omega$ of possible outcomes
+2. Consider an individual outcome $\omega \in \Omega$:
+(a) If $\omega \in A$ ,then we say that *$A$ is true*.
+(b) If $\omega \notin A$ ,then we say that *$A$ is false*.
+3. Let $\neg A$, read 'not A', be the complement $\Omega \setminus A$:
+   If $A$ is true, then $\neg A$ is false and vice-versa.
+4. $B$ is a subset of A (i.e. $B \subset A$) iff $B$ *implies* $A$.
+5. If $A$ and $B$ are disjoint, i.e. $A \cap B = \emptyset$ (they have
+   an empty inersection) then $A, B$ are *mutually exclusive*. That
+   means that it is impossible for $A, B$ to both be true.
+
+
+
+
 ** Bayesian analysis                                     :theory:probability:
  Recall the definition of Conditional probability:
 
@@ -1731,7 +1895,6 @@ description.
 
 See also: [[https://datavizcatalogue.com/][Catalogue]] of data visualisation
 
-
 * Schedule and links to other courses
 
 The schedule of this and the other courses is in flux, but I do not
@@ -1806,10 +1969,10 @@ either statistical theory or programming.
 
 
 
-
 * Glossary
 
 - Expectation: Espérance
+- Experiment: événement
 - Histogram: Histogramme?
 - Pie plot: ?
 - Bar plot: ?
@@ -1819,12 +1982,14 @@ either statistical theory or programming.
 - Probability: Probabilité
 - Stochastic: stochastique
 - Random Variable: Variable aléatoire
+- Sample Space: see Universe
 - Sample: Échantillon
 - Sampling: Échantillonnage
 - Set: Ensemble
 - Subset: Sous-ensemble
 - Superset: Sur-ensemble
 - Survey: Sondage
+- Universe: Univers
 - $\sigma$-algebra: tribu, $\sigma$-algèbre
 
 * References
