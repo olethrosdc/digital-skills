@@ -385,11 +385,14 @@ We can now try and save the above commands in a file called "pythontest.py" and 
 *** Consoles, Scripts and Notebooks
 
 *Console* input is used when you want to have a purely interactive
-session to test something
+session to test something. In console mode, the interpreter executes
+each line as you enter it.
 
 *Script* files are used to save your work and re-run it. They also
 allow you to build complex programs from multiple files, where each
-file has a different functionality.
+file has a different functionality. In script mode, python acts as
+though you were entering each line one-by-one. It reads each line and
+executes in turn. 
 
 *Notebooks* are something in between. They are script files with
 interactive output, and are very useful for rapid development and
@@ -468,7 +471,7 @@ In the following program, the value of =y= will remain =-1= after the program en
 #+BEGIN_SRC python
 y = -1 # y = -1, x is not defined
 x = y + 1 # now y = -1, x = 0
-x = 5 # now y = -5, x = 5
+x = 5 # now y = -1, x = 5
 #+END_SRC 
 
 In fact, writing the above as a system of equations makes no sense, as
