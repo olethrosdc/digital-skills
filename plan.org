@@ -447,6 +447,37 @@ NameError: name 'x' is not defined
  #+END_SRC
  #+RESULTS:
 
+**** Possible confusion point: assignment operator and math equations
+
+The asignment operator ~=~ is *not* a mathematical equation.
+For example, in mathematics I may write
+\begin{align}
+x &= y + 1\\
+x &= 5
+\end{align}
+This is a system of equations, which can be solved to obtain $5 = y +
+1$ and so $y = 4$.  This is *not* what the assignment operator means.
+
+Consequently, the following program will fail with an error, as ~y~ is not defined
+#+BEGIN_SRC python
+x = y + 1
+x = 5
+#+END_SRC 
+
+In the following program, the value of =y= will remain =-1= after the program ends
+#+BEGIN_SRC python
+y = -1 # y = -1, x is not defined
+x = y + 1 # now y = -1, x = 0
+x = 5 # now y = -5, x = 5
+#+END_SRC 
+
+In fact, writing the above as a system of equations makes no sense, as
+$x = y+1$ cannot be true if $x = 5, y = -1$. Replacing, we obtain $5 =
+0$, which is false.
+
+So, while math-like notation is used in programming, its meaning is
+not really the same as in mathematics, most of the time.
+
 
 
 *** Python lists                                                       :code:
