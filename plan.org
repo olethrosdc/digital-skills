@@ -1386,12 +1386,10 @@ of votes for each party?
 From a probability perspective, we can think of the die as having
 random outcomes in $\Omega = [9]$.  The random variable is the party
 vote $v : \Omega \to \{R, G, B\}$ with
-\[
-v(\omega) = 
-\begin{cases}
-R, & \omega \in \{0,1,2,3\}\\
-B, & \omega \in \{4,5,6,7,8,9\}
-\end{cases}
+\[ v(\omega) =  \begin{cases}
+ R, & \omega \in \{0,1,2,3\}\\
+ B, & \omega \in \{4,5,6,7,8,9\}
+ \end{cases}
 \]
 
 Let us assume that the die has a uniform distribution $P$ so that
@@ -1605,7 +1603,7 @@ Let $\omega \in \{0,1,2\}$ and $P(1) = 0.3$ and $P(2) = 0.2$. THen
 &= 0.5 \times 0^2+ 0.3 \times 1^2 + 0.2 \times 2^2 \\
 &= 0.3 + 0.8 
 = 1.1.
-\end{align}*
+\end{align*}
 
 Let us now consider a continuous $\Omega$ with probability measure $P(A)$ for all (measurable) subsets $A$ of $\Omega$. This can be defined through the probability density
 $p(\omega)$,
@@ -1655,7 +1653,17 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 
 5. We now write the student heights, and average. The average height
    of the sample is our random variable.
-	
+
+*** Comparing two populations :activity:	
+
+Here we want to compare the distribution of two populations. Are men
+taller than women? Let us start by looking at the class data.
+
+How can we be sure that our conclusion that the two populations are
+different in general is correct? How can we generalise from the class data?
+
+
+
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components. 
