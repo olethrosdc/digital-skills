@@ -711,480 +711,6 @@ you need to use.
  plt.pie(counts) # plot counts
  #+END_SRC
 
-*** Randomness												  :code:activity:
-*Random algorithms using coins*.
- #+BEGIN_SRC python
-   y = 0 # y is a variable, with the value zero currently
-   import numpy as np # this library has many useful functions
-   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
-   return x # let's see what value it takes
- #+END_SRC
- #+RESULTS:
- : 31
-
-*Uncertainty vs randomness: coin-flipping experiment*
-	 1. Everybody flips a coin 10 times.
-	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
-	 3. Then record how you threw the coin and what coin it was.
-	 4. Discuss if the coin is really random.
-	 5. What is the distribution of coin throws for the first throw?
-	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
-	 7. Does it make sense to aggregate all the results? What does that assume?
-
-
-
-In the context of experiment design and data analysis, it is very
-common to have conditions like those in this example.  Even though we
-wish there was such a thing as the 'repeated experiment', in practice
-it never is repeated. There is always some varying factor.
-
-*Pseudo-random numbers*
-
- Let us now repeat the experiment with data generated via a computer.
- #+BEGIN_SRC python
- # here is a default way to generate 'random' numbers
- import random
- X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
- plt.hist(X) # everytime we run these commands, we get a different proportion
- #+END_SRC
-
- #+RESULTS:
-
- This python code is completely deterministic. A complicated
- calculation is used to generate the next 'random' number from the
- previous one. Consider this example:
- #+BEGIN_SRC python
- import random
- seed(5) #this sets the 'state' of the random number generating machine
- print(random.uniform(0,1)) # the random number is a function of the state
- print(random.uniform(0,1)) # the state changes after we generate a new number
- print(random.uniform(0,1))
- seed(5) # when we reset the state, we get the same sequence of numbers
- print(random.uniform(0,1)) #
- print(random.uniform(0,1))
- print(random.uniform(0,1))
- #+END_SRC python
-
- For cryptographically strong random numbers you need to use the secrets module:
- #+BEGIN_SRC python
- import secrets
- secrets.choice(range(100))
- #+END_SRC
-
-*Physical sources of randomness*
-
- Let's go back to throwing coins now. Coins are completely
- deterministic.  Whenever we have a specific coin to throw in the air,
- there are two things we do not know. The first is which side the coin
- will land on. Why is that? The second is uncertainty about the coin
- bias: is the probability of landing heads exactly 50%? How can we
- quantify this? What does it depend on? Discuss in class.
-
- What physical source of randomness can we use instead of coins?
-
-*** Uncertainty													   :activity:
-
-Probability is not only used to model random events. In fact, almost
-nothing can be said to be really random, unless we go into quantum
-physics. Even a die thrown in the air follows precise mechanical
-laws. Given enough information, it is possible to accurately predict
-the outcome of a throw.
-
-For that reason, probability is best thought of as a way to model any
-residual uncertainty we have about an event. Then the probability of
-an event is simply a subjective measure of the likelihood. 
-
-While probability offers a nice mathematical formulation of
-uncertainty, when this uncertainty is subjective, the question arises:
-how can we elicit precise probabilities about uncertain events from
-individuals?  Here is an example.
-
-**** The number of immigrants                                      :activity:
- Consider the following question: how many immigrants live in
- Switzerland?  
-
- 1. In-class discussion: what do we mean by that?
-
- 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
-
- What does this distribution mean? Can we use it as an estimate of uncertainty?
-
- 3. Now let us create some confidence intervals. The procedure is as
- follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
- (a) Are you willing to take an even bet that the true number is between [5-10%]?
-
-
-  
-*** Probability background                                           :theory:probability:
-
-The theory of probability is used to mathematically define processes
-with uncertain outcomes. The set of all possible outcomes depends on
-the process.  For example, if we throw a die, this is the set of all
-possible ways, locations etc that the die can fall and land.  However,
-we may only be interested in two events: whether the die lands showing
-a '6' or not.  Formally, an event $A$ is a subset of all the possible
-outcomes $\Omega$. In our example, $A$ can be the set of all ways in
-which the die can land so that its top shows "6". A probability
-measure $P$ simply assigns a number between 0 and 1 to every subset
-$A$ we might be interested in. This can be thought of as the area of
-$A$. Different probability measures $P$ assign different areas to
-different sets.
-
-For some more technical details, see [[*Probability space][Probability space]].
-
-See also:
-- https://en.wikipedia.org/wiki/Probability
-
-**** Probability space :theory:probability:
-
-In probability theory, we typically define the set of all possible
-events that we care about as the algebra $\Sigma$, so that any
-possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
-algebra has the property that it is closed under union and complement,
-that is:
-
-1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
-2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
-
-Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
-not containing $A$.
-
-Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
-P)$ defines a probability space. Simply put, $P(A)$ is the probability
-that event $A$ happens.
-
-**** Probability measures								 :theory:probability:
-A probability measure $P$ is a function from sets to the interval
-$[0,1]$. Measuring the probability of a set is technically the same as
-measuring the area of a region, or the number of items in a given
-region. Formally, for a probability measure is defined on:
-
-- A *universe* $\Omega$ of outcomes
-- The *algebra* $\Sigma$ of subsets of $\Omega$ (which we can think of
-  as all the 'events' of interest) so that:
-(a) If $A \in \Sigma$, then $A \subset \Omega$
-(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
-(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
-
-*The axioms of probability* A probability measure $P: \Sigma \to
- [0,1]$ on $\Omega$ satisfies the following axioms:
-1. $P(\Omega) = 1$.
-2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
-
-From these, it also follows that $P(\emptyset) = 0$.
-
-See also: https://en.wikipedia.org/wiki/Probability_measure
-
-**** Marginalisation
-
-If $B_1, \ldots, B_n$ is a partition of $\Omega$, i.e. a collection of sets so that $B_i \cap B_j = \emptyset$ are disjoint and $\bigcup_{i} B_i = \Omega$ cover all of $\Omega$,
-then we have that
-\[
-P(A \cap B) = \sum_i P(A \cap B_i),
-\]
-because $(A \cap B_i)$ are disjoint and $\bigcup_i (A \cap B_i) = A$.
-
-
-**** Conditional probability :definition:probability:
-For any events $A, B \subset \Omega$ and any probability on $\Omega$,
-we define the conditional probabiity that $A$ is true if $B$ is true
-as follows:
-\[
-P(A | B) = \frac{P(A \cap B) }{P(B)}
-\]
-In other words, this is the probability that proportion of times that
-A is true when B is true. It is akin to restrict the universe of
-outcomes to B. We then count: how many times is A true?
-**** Bayes theorem :theory:probability:
-We can use the conditional probability definition to relate $P(A|B)$
-to $P(B|A)$. 
-\[
-P(A | B) = \frac{P(A \cap B) }{P(B)} = \frac{P(B | A) P(A) }{P(B)},
-\]
-since $P(B | A) =  P(A \cap B) / P(A)$.
-
-This is most useful for statistical inference, where we think of
-$P(A)$ the prior, $P(A |B)$ as the posterior, and $P(B | A)$ as the
-evidence likelihood.
-
-It is also useful to write this rule when $A_1, \ldots, A_n$ is a partition of $\Omega$.
-Then $P(B) = \sum_i P(B \cap A_i) = \sum_i P(B | A_i) P(A_i)$ and so:
-\[
-P(A | B) = \frac{P(B | A) P(A) }{\sum_i P(B | A_i) P(A_i)},
-\]
-
-
-**** Mutually exclusive events                       :definition:probability:
-
-Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
-
-This means that there is no random outcome $\omega$ that is in both of
-them, so they can never be true at the same time.
-
-**** Independence :definition:probability:
-
-Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
-
-Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
-\[
-P(A | B) = P(A),
-\]
-and 
-\[
-P(B | A) = P(B).
-\]
-
-**** Conditional independence :definition:probability:
-
-Two events $A, B$ are said to be independent given another event $C$ iff 
-\[
-P(A \cap B | C) = P(A | C) P(B | C)
-\]
-
-This can also be written as
-\[
-P(A | C, B) = P(A | C)
-\]
-
-
-
-*** Example Distributions
-
-We focus on distributions where there is a finite number of possible
-outcomes, and hence a finite number of possible events that we might
-care about. All such distributions are characterised by one or more
-/parameters/. The simplest such distribution is a distribution on only
-two outcomes, the family of Bernoulli distributions.
-
-**** The Bernoulli distribution.                     :definition:probability:
-Let us start with a simple example, the Bernoulli distribution with
-parameter $\theta \in [0,1]$. This is the distribution over two outcomes
-$\{0,1\}$, so that if $x$ is a Bernoulli random variable, then:
-\[
-\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
-\]
-It is typical to think the distribution of heads and tails of a coin
-as being Bernoulli, with parameter $\theta = 1/2$.
-
-*Probability space* Formally, if the underlying probability space is
-$(\Omega, \Sigma, P)$, with random outcomes $\omega \in \Omega$ and random variable $x : \Omega \to \{0,1\}$ then
- \[ \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).  \]
-
-See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
-
-**** Binomial distribution                           :definition:probability:
-If we repeat a Bernouli trial, we can also count the number of times
-the coin comes heads. The distribution of the counts is
-called the Binomial distribution. If $y$ is a binomial random variable for $n$ throws with parameter $\theta$,
-then we can write it as the sum of $n$ Bernoulli random variables $x_1, \ldots, x_n$, i.e.:
-\[
-y = \sum_{t=1}^n x_t.
-\]
-The probability of $k$ heads after $n$ throws is given by the formula:
-\[
-\Pr(y = k) = \binom{n}{k} \theta^{k} (1 - \theta)^{n - k}
-\],
-where $\binom{n}{k}$ is the bimomial coefficient.
-
-See also: https://en.wikipedia.org/wiki/Binomial_distribution
-
-**** The Categorical/Multinomial distribution
-
-A multinomial distribution is an extension of the Bernoulli and
-binomial distributions to $m \geq 2$ outcomes. 
-
-*Categorial distributions* Let us start with
-one trial, e.g. a single throw of a die. We can model this dice throw
-as the distribution where the probability
-that the die lands with its $k$-th face on top is $\theta_k$,
-\[ \Pr(x = k) = \theta_k.\]
-Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_m)$.
-A random variable $x : \Omega \to \{1,\ldots, m\}$ obeying this distribution is called
-multinomial. 
-
-If the underlying probability space is $(\Omega, \Sigma,
-P)$, then
-\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
-
-See also: https://en.wikipedia.org/wiki/Multinomial_distribution
-
-**** Uniform distributions
-
-A special case of binomial and multinomial distributions is the
-uniform distribution. This is defined as follows.
-
-Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
-\[
-P(A) = \frac{|A|}{|\Omega|}.
-\]
-
-This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
-the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
-\[
-P([0,p)) = \Pr(\omega \in [0,p)) = p.
-\]
-
-
-
-*** Random variables									 :theory:probability:
-
-A real-valued random variable $f : \Omega \to \mathbb{R}$ is simply a
-function from the outcomes to the real numbers. Even though it is a
-fixed function, its values are random, because the actual value
-$\omega \in \Omega$ that will be used to calculate its value
-$f(\omega)$ is random.
-
-Random variables can be easily generalised to other domains than the real numbers.
-
-See also: https://en.wikipedia.org/wiki/Random_variable
-En francais: https://fr.wikipedia.org/wiki/Variable_al%C3%A9atoire
-***** Example random variable                                       :example:
-
-Take a 10-sided die. The outcomes of the die represent the space
-$\Omega$. We can now create a Bernoulli variable from the die. For
-example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
-= 0$ when $\omega \in \{6, 10\}$.
-
-What is the distribution of $x$? Have you seen it before?
-
-
-***** Generating a Bernoulli random variable.                 :activity:code:
-
-In python, there are procedures for generating data from many types of
-random variables. However, all such methods for generating random
-numbers are not truly random. They rely on something called a
-pseudorandom number generator. The values output by this generator are
-then /transformed/ so as to become similar to the random variable we
-want.
-
-1. Let us start by throwing a 10-sided die. How do you generate a
-   Bernoulli random variable with $\theta = 0.6$ from the outcomes of
-   the dice throw?
-
-2. Now let us consider the following python code, which generates
-   values from a Bernoulli random variable.
-#+BEGIN_SRC python
-import numpy as np
-return np.random.choice(2,p=[0.6, 0.4])
-#+END_SRC
-
-#+RESULTS:
-: 0
-
-   Let us replicate it through a distribution of uniform randomv variables in $[0,1]$.
-#+BEGIN_SRC python
-import numpy as np
-x = np.random.uniform() # returns a uniformly generated number in [0,1). 
-if x < 0.6:
-  return 1
-else:
-  return 0
-#+END_SRC
-
-#+RESULTS:
-: 1
-
-**** Expectation                                     :definition:probability:
-The expectation of a random variable $f : \Omega \to \mathbb{R}$ wiht
-respect to a probability $P$ on $\Omega$ is defined as follows, for finite $\Omega$.
-\[
-\E_P(f) = \sum_{\omega \in \Omega} f(\omega) P(\omega).
-\]
-When $P$ is clear from the context, we can just write $\E(f)$.
-
-***** Expectation of general random variables :advanced:probability:theory:
-For the general case, we define it in terms of integrals:
-\[
-\E_P(f) = \int_{\Omega} f(\omega) d P(\omega).
-\]
-
-***** Averages and expected values
-
-If we have obtained a sequence of samples $\omega_1, \ldots, \omega_n$
-from $P(\omega)$, and calculated the average
-\[
-M_n(\omega_1, \ldots, \omega_n) = \frac{1}{n} \sum_{i=1}^n f(\omega_i).
-\]
-then the average is approximately equal to the
-expectation:
-\[
-\E_P(f) \approx \frac{1}{n} \sum_{i=1}^n f(\omega_i).
-\]
-
-To see this, first note that $\E_P(f(\omega_i)) = \E_P(f)$, so the
-expected value of the average is equal to the expected value of $f$.
-\[
-\E[\frac{1}{n} \sum_{i=1}^n f(\omega_i)]
-= 
-\frac{1}{n} \E [\sum_{i=1}^n f(\omega_i)]
-=
-\frac{1}{n}\sum_{i=1}^n \E[f(\omega_i)]
-=
-\frac{1}{n}\sum_{i=1}^n \E(f)
-=
-\E(f).
-\]
-
-In fact, the average $M_n$ is another random variable, defined on
-$\Omega^n$. We say that $M_n$ *concentrates* around the expected
-value, with the propertity that
-\[
-M_n = \E(f) \mp O(1/\sqrt{n}).
-\]
-Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
-
-
-
-**** Conditional expectation :definition:probability:
-
-We can define the conditional expectation of a random variable through
-conditional probabilities.
-
-In particular, let some variable $f: \Omega \to \Reals$ and some event
-$B \subset \Omega$. Then we define
-\[
-\E(f | B) = \sum_{\omega \in \Omega} f(\omega) P(\omega | B).
-\]
-
-We can even re-write this in a more intuitive way. Note that if
-$\omega \notin B$ then $P(\omega | B) = 0$. So, we have
-\[
-\E(f | B) = \sum_{\omega \in B} f(\omega) P(\omega | B) =  \sum_{\omega \in B} f(\omega) P(\omega) / P(B).
-\]
-*** Group comparison                                               :activity:
-
-Let us say we wish to compare the distribution among multiple
-groups. Perhaps we wish to compare the number of students who achieve
-a certain test like the table below.
-
-|---------+---------+---------|
-|         | Success | Success |
-|---------+---------+---------|
-| School  |    Male |  Female |
-|---------+---------+---------|
-| A       |     62% |     82% |
-| B       |     63% |     68% |
-| C       |     37% |     34% |
-| D       |     33% |     35% |
-| E       |     28% |     24% |
-| F       |      6% |      7% |
-|---------+---------+---------|
-| Average |     45% |     38% |
-|---------+---------+---------|
-
-1. Let us plot the success rate for females and males over different schools.
-2. Does this show a bias? What information is missing?
-3. Let us combine these two plots into one plot now for this we need
-   to use the following code:
-#+BEGIN_SRC python
-w=0.5
-X = np.linspace(1,6*w,6)
-M = ...
-F = ...
-plt.bar(X, M, align=edge, width=w/2)
-plt.bar(X + w, F, align=edge, width=w/2)
-#+END_SRC
-
 
 ** Time-Series: model the evolution of a system
 
@@ -2220,6 +1746,482 @@ description.
  - $\Param$: Parameter set
  - $\{P_\param | \param \in \Param\}$: A family of parametrised models
  - $\Pr(x | y)$ conditional probability for random variables x, y (generally)
+
+** Probability background
+*** Randomness												  :code:activity:
+*Random algorithms using coins*.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 31
+
+*Uncertainty vs randomness: coin-flipping experiment*
+	 1. Everybody flips a coin 10 times.
+	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
+	 3. Then record how you threw the coin and what coin it was.
+	 4. Discuss if the coin is really random.
+	 5. What is the distribution of coin throws for the first throw?
+	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
+	 7. Does it make sense to aggregate all the results? What does that assume?
+
+
+
+In the context of experiment design and data analysis, it is very
+common to have conditions like those in this example.  Even though we
+wish there was such a thing as the 'repeated experiment', in practice
+it never is repeated. There is always some varying factor.
+
+*Pseudo-random numbers*
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC python
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+*Physical sources of randomness*
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is uncertainty about the coin
+ bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+ What physical source of randomness can we use instead of coins?
+
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants                                      :activity:
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+
+
+  
+*** Probability background                                           :theory:probability:
+
+The theory of probability is used to mathematically define processes
+with uncertain outcomes. The set of all possible outcomes depends on
+the process.  For example, if we throw a die, this is the set of all
+possible ways, locations etc that the die can fall and land.  However,
+we may only be interested in two events: whether the die lands showing
+a '6' or not.  Formally, an event $A$ is a subset of all the possible
+outcomes $\Omega$. In our example, $A$ can be the set of all ways in
+which the die can land so that its top shows "6". A probability
+measure $P$ simply assigns a number between 0 and 1 to every subset
+$A$ we might be interested in. This can be thought of as the area of
+$A$. Different probability measures $P$ assign different areas to
+different sets.
+
+For some more technical details, see [[*Probability space][Probability space]].
+
+See also:
+- https://en.wikipedia.org/wiki/Probability
+
+**** Probability space :theory:probability:
+
+In probability theory, we typically define the set of all possible
+events that we care about as the algebra $\Sigma$, so that any
+possible event $A \in \Sigma$ and so that $A \subset \Omega$.  The
+algebra has the property that it is closed under union and complement,
+that is:
+
+1. If $A, B \in \Sigma$ then $A \cup B \in \Sigma$
+2. If $A \in \Sigma$ then $\neg A \in \Sigma$.
+
+Here, $\neg A \defn \Omega \setminus A$, i.e. the subset of $\Omega$
+not containing $A$.
+
+Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
+P)$ defines a probability space. Simply put, $P(A)$ is the probability
+that event $A$ happens.
+
+**** Probability measures								 :theory:probability:
+A probability measure $P$ is a function from sets to the interval
+$[0,1]$. Measuring the probability of a set is technically the same as
+measuring the area of a region, or the number of items in a given
+region. Formally, for a probability measure is defined on:
+
+- A *universe* $\Omega$ of outcomes
+- The *algebra* $\Sigma$ of subsets of $\Omega$ (which we can think of
+  as all the 'events' of interest) so that:
+(a) If $A \in \Sigma$, then $A \subset \Omega$
+(b) If $A, B \in \Sigma$ then $A \cup B \in \Sigma$.
+(b) If $A \in \Sigma$ then $\Omega \setminus A \in \Sigma$.
+
+*The axioms of probability* A probability measure $P: \Sigma \to
+ [0,1]$ on $\Omega$ satisfies the following axioms:
+1. $P(\Omega) = 1$.
+2. If $A \cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+
+From these, it also follows that $P(\emptyset) = 0$.
+
+See also: https://en.wikipedia.org/wiki/Probability_measure
+
+**** Marginalisation
+
+If $B_1, \ldots, B_n$ is a partition of $\Omega$, i.e. a collection of sets so that $B_i \cap B_j = \emptyset$ are disjoint and $\bigcup_{i} B_i = \Omega$ cover all of $\Omega$,
+then we have that
+\[
+P(A \cap B) = \sum_i P(A \cap B_i),
+\]
+because $(A \cap B_i)$ are disjoint and $\bigcup_i (A \cap B_i) = A$.
+
+
+**** Conditional probability :definition:probability:
+For any events $A, B \subset \Omega$ and any probability on $\Omega$,
+we define the conditional probabiity that $A$ is true if $B$ is true
+as follows:
+\[
+P(A | B) = \frac{P(A \cap B) }{P(B)}
+\]
+In other words, this is the probability that proportion of times that
+A is true when B is true. It is akin to restrict the universe of
+outcomes to B. We then count: how many times is A true?
+**** Bayes theorem :theory:probability:
+We can use the conditional probability definition to relate $P(A|B)$
+to $P(B|A)$. 
+\[
+P(A | B) = \frac{P(A \cap B) }{P(B)} = \frac{P(B | A) P(A) }{P(B)},
+\]
+since $P(B | A) =  P(A \cap B) / P(A)$.
+
+This is most useful for statistical inference, where we think of
+$P(A)$ the prior, $P(A |B)$ as the posterior, and $P(B | A)$ as the
+evidence likelihood.
+
+It is also useful to write this rule when $A_1, \ldots, A_n$ is a partition of $\Omega$.
+Then $P(B) = \sum_i P(B \cap A_i) = \sum_i P(B | A_i) P(A_i)$ and so:
+\[
+P(A | B) = \frac{P(B | A) P(A) }{\sum_i P(B | A_i) P(A_i)},
+\]
+
+
+**** Mutually exclusive events                       :definition:probability:
+
+Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
+
+This means that there is no random outcome $\omega$ that is in both of
+them, so they can never be true at the same time.
+
+**** Independence :definition:probability:
+
+Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
+
+Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
+\[
+P(A | B) = P(A),
+\]
+and 
+\[
+P(B | A) = P(B).
+\]
+
+**** Conditional independence :definition:probability:
+
+Two events $A, B$ are said to be independent given another event $C$ iff 
+\[
+P(A \cap B | C) = P(A | C) P(B | C)
+\]
+
+This can also be written as
+\[
+P(A | C, B) = P(A | C)
+\]
+
+
+*** Example Distributions
+
+We focus on distributions where there is a finite number of possible
+outcomes, and hence a finite number of possible events that we might
+care about. All such distributions are characterised by one or more
+/parameters/. The simplest such distribution is a distribution on only
+two outcomes, the family of Bernoulli distributions.
+
+**** The Bernoulli distribution.                     :definition:probability:
+Let us start with a simple example, the Bernoulli distribution with
+parameter $\theta \in [0,1]$. This is the distribution over two outcomes
+$\{0,1\}$, so that if $x$ is a Bernoulli random variable, then:
+\[
+\Pr(x = 1) = \theta, \qquad \Pr(x = 0) = 1 - \theta.
+\]
+It is typical to think the distribution of heads and tails of a coin
+as being Bernoulli, with parameter $\theta = 1/2$.
+
+*Probability space* Formally, if the underlying probability space is
+$(\Omega, \Sigma, P)$, with random outcomes $\omega \in \Omega$ and random variable $x : \Omega \to \{0,1\}$ then
+ \[ \Pr(x = 1) = P(\{\omega : x(\omega) = 1\}).  \]
+
+See also: https://en.wikipedia.org/wiki/Bernoulli_distribution
+
+**** Binomial distribution                           :definition:probability:
+If we repeat a Bernouli trial, we can also count the number of times
+the coin comes heads. The distribution of the counts is
+called the Binomial distribution. If $y$ is a binomial random variable for $n$ throws with parameter $\theta$,
+then we can write it as the sum of $n$ Bernoulli random variables $x_1, \ldots, x_n$, i.e.:
+\[
+y = \sum_{t=1}^n x_t.
+\]
+The probability of $k$ heads after $n$ throws is given by the formula:
+\[
+\Pr(y = k) = \binom{n}{k} \theta^{k} (1 - \theta)^{n - k}
+\],
+where $\binom{n}{k}$ is the bimomial coefficient.
+
+See also: https://en.wikipedia.org/wiki/Binomial_distribution
+
+**** The Categorical/Multinomial distribution
+
+A multinomial distribution is an extension of the Bernoulli and
+binomial distributions to $m \geq 2$ outcomes. 
+
+*Categorial distributions* Let us start with
+one trial, e.g. a single throw of a die. We can model this dice throw
+as the distribution where the probability
+that the die lands with its $k$-th face on top is $\theta_k$,
+\[ \Pr(x = k) = \theta_k.\]
+Thus, this distribution is parametrised by the vector $\theta = (\theta_1, \ldots, \theta_m)$.
+A random variable $x : \Omega \to \{1,\ldots, m\}$ obeying this distribution is called
+multinomial. 
+
+If the underlying probability space is $(\Omega, \Sigma,
+P)$, then
+\[ \Pr(x = k) = P(\{\omega : x(\omega) = k\}) \]
+
+See also: https://en.wikipedia.org/wiki/Multinomial_distribution
+
+**** Uniform distributions
+
+A special case of binomial and multinomial distributions is the
+uniform distribution. This is defined as follows.
+
+Let $|A|$ be the size of a set $A$. Then a distribution $P$ is uniform if it obeys
+\[
+P(A) = \frac{|A|}{|\Omega|}.
+\]
+
+This definition applies to continuous distributions as well. A standard example is the uniform distribution on the interval $[0,1)$. Then
+the probability that we obtain an outcome in the set $[0,p)$ is always equal to $p$, i.e.
+\[
+P([0,p)) = \Pr(\omega \in [0,p)) = p.
+\]
+
+
+
+*** Random variables									 :theory:probability:
+
+A real-valued random variable $f : \Omega \to \mathbb{R}$ is simply a
+function from the outcomes to the real numbers. Even though it is a
+fixed function, its values are random, because the actual value
+$\omega \in \Omega$ that will be used to calculate its value
+$f(\omega)$ is random.
+
+Random variables can be easily generalised to other domains than the real numbers.
+
+See also: https://en.wikipedia.org/wiki/Random_variable
+En francais: https://fr.wikipedia.org/wiki/Variable_al%C3%A9atoire
+***** Example random variable                                       :example:
+
+Take a 10-sided die. The outcomes of the die represent the space
+$\Omega$. We can now create a Bernoulli variable from the die. For
+example, set $x(\omega) = 1$ when $\omega \in \{1, 5\}$ and $x(\omega)
+= 0$ when $\omega \in \{6, 10\}$.
+
+What is the distribution of $x$? Have you seen it before?
+
+
+***** Generating a Bernoulli random variable.                 :activity:code:
+
+In python, there are procedures for generating data from many types of
+random variables. However, all such methods for generating random
+numbers are not truly random. They rely on something called a
+pseudorandom number generator. The values output by this generator are
+then /transformed/ so as to become similar to the random variable we
+want.
+
+1. Let us start by throwing a 10-sided die. How do you generate a
+   Bernoulli random variable with $\theta = 0.6$ from the outcomes of
+   the dice throw?
+
+2. Now let us consider the following python code, which generates
+   values from a Bernoulli random variable.
+#+BEGIN_SRC python
+import numpy as np
+return np.random.choice(2,p=[0.6, 0.4])
+#+END_SRC
+
+#+RESULTS:
+: 0
+
+   Let us replicate it through a distribution of uniform randomv variables in $[0,1]$.
+#+BEGIN_SRC python
+import numpy as np
+x = np.random.uniform() # returns a uniformly generated number in [0,1). 
+if x < 0.6:
+  return 1
+else:
+  return 0
+#+END_SRC
+
+#+RESULTS:
+: 1
+
+
+*** Expectation                                     :definition:probability:
+The expectation of a random variable $f : \Omega \to \mathbb{R}$ wiht
+respect to a probability $P$ on $\Omega$ is defined as follows, for finite $\Omega$.
+\[
+\E_P(f) = \sum_{\omega \in \Omega} f(\omega) P(\omega).
+\]
+When $P$ is clear from the context, we can just write $\E(f)$.
+
+**** Expectation of general random variables :advanced:probability:theory:
+For the general case, we define it in terms of integrals:
+\[
+\E_P(f) = \int_{\Omega} f(\omega) d P(\omega).
+\]
+
+**** Averages and expected values
+
+If we have obtained a sequence of samples $\omega_1, \ldots, \omega_n$
+from $P(\omega)$, and calculated the average
+\[
+M_n(\omega_1, \ldots, \omega_n) = \frac{1}{n} \sum_{i=1}^n f(\omega_i).
+\]
+then the average is approximately equal to the
+expectation:
+\[
+\E_P(f) \approx \frac{1}{n} \sum_{i=1}^n f(\omega_i).
+\]
+
+To see this, first note that $\E_P(f(\omega_i)) = \E_P(f)$, so the
+expected value of the average is equal to the expected value of $f$.
+\[
+\E[\frac{1}{n} \sum_{i=1}^n f(\omega_i)]
+= 
+\frac{1}{n} \E [\sum_{i=1}^n f(\omega_i)]
+=
+\frac{1}{n}\sum_{i=1}^n \E[f(\omega_i)]
+=
+\frac{1}{n}\sum_{i=1}^n \E(f)
+=
+\E(f).
+\]
+
+In fact, the average $M_n$ is another random variable, defined on
+$\Omega^n$. We say that $M_n$ *concentrates* around the expected
+value, with the propertity that
+\[
+M_n = \E(f) \mp O(1/\sqrt{n}).
+\]
+Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
+
+
+
+*** Conditional expectation :definition:probability:
+
+We can define the conditional expectation of a random variable through
+conditional probabilities.
+
+In particular, let some variable $f: \Omega \to \Reals$ and some event
+$B \subset \Omega$. Then we define
+\[
+\E(f | B) = \sum_{\omega \in \Omega} f(\omega) P(\omega | B).
+\]
+
+We can even re-write this in a more intuitive way. Note that if
+$\omega \notin B$ then $P(\omega | B) = 0$. So, we have
+\[
+\E(f | B) = \sum_{\omega \in B} f(\omega) P(\omega | B) =  \sum_{\omega \in B} f(\omega) P(\omega) / P(B).
+\]
+**** Group comparison                                              :activity:
+
+Let us say we wish to compare the distribution among multiple
+groups. Perhaps we wish to compare the number of students who achieve
+a certain test like the table below.
+
+|---------+---------+---------|
+|         | Success | Success |
+|---------+---------+---------|
+| School  |    Male |  Female |
+|---------+---------+---------|
+| A       |     62% |     82% |
+| B       |     63% |     68% |
+| C       |     37% |     34% |
+| D       |     33% |     35% |
+| E       |     28% |     24% |
+| F       |      6% |      7% |
+|---------+---------+---------|
+| Average |     45% |     38% |
+|---------+---------+---------|
+
+1. Let us plot the success rate for females and males over different schools.
+2. Does this show a bias? What information is missing?
+3. Let us combine these two plots into one plot now for this we need
+   to use the following code:
+#+BEGIN_SRC python
+w=0.5
+X = np.linspace(1,6*w,6)
+M = ...
+F = ...
+plt.bar(X, M, align=edge, width=w/2)
+plt.bar(X + w, F, align=edge, width=w/2)
+#+END_SRC
+
 
 * Graphics types
 1. Histogram and 3D extensions
