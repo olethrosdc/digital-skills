@@ -1056,7 +1056,7 @@ In fact, the average $M_n$ is another random variable, defined on
 $\Omega^n$. We say that $M_n$ *concentrates* around the expected
 value, with the propertity that
 \[
-M_n = \E(f) \plusminus O(1/\sqrt{n}).
+M_n = \E(f) \mp O(1/\sqrt{n}).
 \]
 Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
 
@@ -1073,6 +1073,7 @@ A is true when B is true. It is akin to restrict the universe of
 outcomes to B. We then count: how many times is A true?
 
 **** Conditional expectation :definition:probability:
+
 We can define the conditional expectation of a random variable through
 conditional probabilities.
 
@@ -1787,7 +1788,7 @@ Let us define three variables, gender $g$, age $a$ and salary $s$.
 Our possible hypotheses can be expressed mathematically as follows:
 
 For background, check out 
-Hypotheses about the expected salary relate to [[*Conditional expectationmhe:][conditional expectation]]
+Hypotheses about the expected salary relate to [[*Conditional expectation][conditional expectation]]
 
 - $E(s | g = m) = E(s | g = f)$. Men and women have the same salary in expectation
 - $E(s | g = m) > E(s | g = f)$. Women have a lower salary in expectation. But how much lower?
