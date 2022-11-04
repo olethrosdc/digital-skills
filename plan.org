@@ -1011,6 +1011,114 @@ else:
 #+RESULTS:
 : 1
 
+**** Expectation                                     :definition:probability:
+The expectation of a random variable $f : \Omega \to \mathbb{R}$ wiht
+respect to a probability $P$ on $\Omega$ is defined as follows, for finite $\Omega$.
+\[
+\E_P(f) = \sum_{\omega \in \Omega} f(\omega) P(\omega).
+\]
+When $P$ is clear from the context, we can just write $\E(f)$.
+
+***** Expectation of general random variables :advanced:probability:theory:
+For the general case, we define it in terms of integrals:
+\[
+\E_P(f) = \int_{\Omega} f(\omega) d P(\omega).
+\]
+
+***** Averages and expected values
+
+If we have obtained a sequence of samples $\omega_1, \ldots, \omega_n$
+from $P(\omega)$, and calculated the average
+\[
+M_n(\omega_1, \ldots, \omega_n) = \frac{1}{n} \sum_{i=1}^n f(\omega_i).
+\]
+then the average is approximately equal to the
+expectation:
+\[
+\E_P(f) \approx \frac{1}{n} \sum_{i=1}^n f(\omega_i).
+\]
+
+To see this, first note that $\E_P(f(\omega_i)) = \E_P(f)$, so the
+expected value of the average is equal to the expected value of $f$.
+\[
+\E[\frac{1}{n} \sum_{i=1}^n f(\omega_i)]
+= 
+\frac{1}{n} \E [\sum_{i=1}^n f(\omega_i)]
+=
+\frac{1}{n}\sum_{i=1}^n \E[f(\omega_i)]
+=
+\frac{1}{n}\sum_{i=1}^n \E(f)
+=
+\E(f).
+\]
+
+In fact, the average $M_n$ is another random variable, defined on
+$\Omega^n$. We say that $M_n$ *concentrates* around the expected
+value, with the propertity that
+\[
+M_n = \E(f) \plusminus O(1/\sqrt{n}).
+\]
+Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
+
+
+**** Conditional probability :definition:probability:
+For any events $A, B \subset \Omega$ and any probability on $\Omega$,
+we define the conditional probabiity that $A$ is true if $B$ is true
+as follows:
+\[
+P(A | B) = \frac{P(A \cap B) }{P(B)}
+\]
+In other words, this is the probability that proportion of times that
+A is true when B is true. It is akin to restrict the universe of
+outcomes to B. We then count: how many times is A true?
+
+**** Conditional expectation :definition:probability:
+We can define the conditional expectation of a random variable through
+conditional probabilities.
+
+In particular, let some variable $f: \Omega \to \Reals$ and some event
+$B \subset \Omega$. Then we define
+\[
+\E(f | B) = \sum_{\omega \in \Omega} f(\omega) P(\omega | B).
+\]
+
+We can even re-write this in a more intuitive way. Note that if
+$\omega \notin B$ then $P(\omega | B) = 0$. So, we have
+\[
+\E(f | B) = \sum_{\omega \in B} f(\omega) P(\omega | B) =  \sum_{\omega \in B} f(\omega) P(\omega) / P(B).
+\]
+**** Mutually exclusive events                       :definition:probability:
+
+Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
+
+This means that there is no random outcome $\omega$ that is in both of
+them, so they can never be true at the same time.
+
+**** Independence :definition:probability:
+
+Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
+
+Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
+\[
+P(A | B) = P(A),
+\]
+and 
+\[
+P(B | A) = P(B).
+\]
+
+**** Conditional independence :definition:probability:
+
+Two events $A, B$ are said to be independent given another event $C$ iff 
+\[
+P(A \cap B | C) = P(A | C) P(B | C)
+\]
+
+This can also be written as
+\[
+P(A | C, B) = P(A | C)
+\]
+
 *** Group comparison                                               :activity:
 
 Let us say we wish to compare the distribution among multiple
@@ -1654,16 +1762,6 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 5. We now write the student heights, and average. The average height
    of the sample is our random variable.
 
-*** Comparing two populations :activity:	
-
-Here we want to compare the distribution of two populations. Are men
-taller than women? Let us start by looking at the class data.
-
-How can we be sure that our conclusion that the two populations are
-different in general is correct? How can we generalise from the class data?
-
-
-
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components.
@@ -1676,13 +1774,104 @@ different in general is correct? How can we generalise from the class data?
  6. Testing the protocol on synthetic data. Is it working as expected?
  7. Putting the protocl through on real data.
 
+*** Salaries of men and women                                       :example:
+
+You want to measure if men and women have different salaries, as well
+as the reasons why. In particular, you want to check if men are paid
+more than women on average, and if this can be explained purely by
+age.
+
+**** Formulate the problem
+
+Let us define three variables, gender $g$, age $a$ and salary $s$. 
+Our possible hypotheses can be expressed mathematically as follows:
+
+For background, check out 
+Hypotheses about the expected salary relate to [[*Conditional expectationmhe:][conditional expectation]]
+
+- $E(s | g = m) = E(s | g = f)$. Men and women have the same salary in expectation
+- $E(s | g = m) > E(s | g = f)$. Women have a lower salary in expectation. But how much lower?
+
+(Note that a stronger hypothesis would involve the [[*Conditional probability][conditional probabilities]]
+rather than the expectation)
+
+If we find a difference, then we may want to *explain* it. If the age is a *sufficient explanation* for the 
+salary, then the salary is [[*Conditional independence][conditionally independent]] of the gender given the age:
+
+- $E(s | a, g ) = E(s | a)$. The salary is independent of the gender, given the age.
+
+**** What type of data do we want?
+
+We neet salaries, age and gender. 
+
+**** Model and visualisation
+
+Since we are looking at means, then it is maybe enough to look at
+averages. Averages are single numbers, so maybe a bar plot is enough.
+
+**** Experimental protocol
+
+1. Collect data.
+2. Plot average for men and women. Use the simulation to find the
+   right type of plot.
+3. If average salary is very different (how different?) then say women
+   are paid less than men. Use the simulation to get an idea.
+
+**** Generate data according to our assumptions
+
+We can have three different tests:
+
+1. Generate everything independently
+
+#+BEGIN_SRC python
+import numpy as np
+# Generate data
+def identical_populations(n_samples):
+    gender = np.random.choice(samples = n_samples)
+    age = 18 + 60*np.random.beta(3,4, size = n_samples)
+    salary = 100* np.random.exponential(100, size = n_samples)
+    return age, gender, salary
+#+END_SRC
+
+2. Make the salary depend on the gender
+
+#+BEGIN_SRC python
+def different_populations(n_samples):
+    gender = np.random.choice(samples = n_samples)
+    age = 18 + 60*np.random.beta(3,4, size = n_samples)
+    salary = (100 + gender*10)* np.random.exponential(100, size = n_samples)
+    return age, gender, salary
+#+END_SRC
+
+
+3. Make the salary depend on the age, but have fewer women working after some age.
+
+#+BEGIN_SRC python
+def age_effect_populations(n_samples):
+    age = 18 + 60*np.random.beta(3,4, size = n_samples)
+    q = (age - 18) / 60
+    p = q * 1 + (1 - q)*0.5
+    gender = np.random.choice(2, p = [p, 1-p], samples = n_samples)
+    salary = (100 + age)* np.random.exponential(100, size = n_samples)
+    return age, gender, salary
+#+END_SRC
+
+See [[file:src/sampling/Salaries.ipynb][Salary example]] notebook.
+
+If we estimate the means, we see there is a lot of variability. How
+can we fix that? One idea is to perform a lot of simulations and note
+how much variability we do have. Another is to use a bootstrap sample.
+
+
+
+
 *** A question of voting                                            :example:
 
 An election is coming in 100 days. A political party supporting one of
-the options [assume it's just a yes/no vote] in the election gives you 10,000 CHF to spend over these
-100 days so as to measure the mood of the population. They can use
-that information to better increase their chances of success. How
-should you do the study?
+the options [assume it's just a yes/no vote] in the election gives you
+10,000 CHF to spend over these 100 days so as to measure the mood of
+the population. They can use that information to increase their
+chances of success. How should you do the study?
 
 **** Formulate the problem                                         :activity:
 	 Who is going to use our visualisation? How are they going to use
@@ -1711,7 +1900,6 @@ should you do the study?
 	 (d) Ask 100 people every day?
 	 (e) Ask 1,000 people every 10 days.
 
-	 
 **** Generate data according to our assumptions
 	 
 	 We can assume a simple model of the electorate here... what
