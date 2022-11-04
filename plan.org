@@ -1748,6 +1748,24 @@ description.
  - $\Pr(x | y)$ conditional probability for random variables x, y (generally)
 
 ** Probability background
+The theory of probability is used to mathematically define processes
+with uncertain outcomes. The set of all possible outcomes depends on
+the process.  For example, if we throw a die, this is the set of all
+possible ways, locations etc that the die can fall and land.  However,
+we may only be interested in two events: whether the die lands showing
+a '6' or not.  Formally, an event $A$ is a subset of all the possible
+outcomes $\Omega$. In our example, $A$ can be the set of all ways in
+which the die can land so that its top shows "6". A probability
+measure $P$ simply assigns a number between 0 and 1 to every subset
+$A$ we might be interested in. This can be thought of as the area of
+$A$. Different probability measures $P$ assign different areas to
+different sets.
+
+For some more technical details, see [[*Probability space][Probability space]].
+
+See also:
+- https://en.wikipedia.org/wiki/Probability
+
 *** Randomness												  :code:activity:
 *Random algorithms using coins*.
  #+BEGIN_SRC python
@@ -1852,27 +1870,9 @@ individuals?  Here is an example.
 
 
   
-*** Probability background                                           :theory:probability:
 
-The theory of probability is used to mathematically define processes
-with uncertain outcomes. The set of all possible outcomes depends on
-the process.  For example, if we throw a die, this is the set of all
-possible ways, locations etc that the die can fall and land.  However,
-we may only be interested in two events: whether the die lands showing
-a '6' or not.  Formally, an event $A$ is a subset of all the possible
-outcomes $\Omega$. In our example, $A$ can be the set of all ways in
-which the die can land so that its top shows "6". A probability
-measure $P$ simply assigns a number between 0 and 1 to every subset
-$A$ we might be interested in. This can be thought of as the area of
-$A$. Different probability measures $P$ assign different areas to
-different sets.
 
-For some more technical details, see [[*Probability space][Probability space]].
-
-See also:
-- https://en.wikipedia.org/wiki/Probability
-
-**** Probability space :theory:probability:
+*** Probability space :theory:probability:
 
 In probability theory, we typically define the set of all possible
 events that we care about as the algebra $\Sigma$, so that any
@@ -1890,7 +1890,7 @@ Together with a probability measure $P$, the tuple $(\Omega, \Sigma,
 P)$ defines a probability space. Simply put, $P(A)$ is the probability
 that event $A$ happens.
 
-**** Probability measures								 :theory:probability:
+*** Probability measures								 :theory:probability:
 A probability measure $P$ is a function from sets to the interval
 $[0,1]$. Measuring the probability of a set is technically the same as
 measuring the area of a region, or the number of items in a given
@@ -1912,7 +1912,7 @@ From these, it also follows that $P(\emptyset) = 0$.
 
 See also: https://en.wikipedia.org/wiki/Probability_measure
 
-**** Marginalisation
+*** Marginalisation
 
 If $B_1, \ldots, B_n$ is a partition of $\Omega$, i.e. a collection of sets so that $B_i \cap B_j = \emptyset$ are disjoint and $\bigcup_{i} B_i = \Omega$ cover all of $\Omega$,
 then we have that
@@ -1921,8 +1921,22 @@ P(A \cap B) = \sum_i P(A \cap B_i),
 \]
 because $(A \cap B_i)$ are disjoint and $\bigcup_i (A \cap B_i) = A$.
 
+*** Mutually exclusive events                       :definition:probability:
 
-**** Conditional probability :definition:probability:
+Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
+
+This means that there is no random outcome $\omega$ that is in both of
+them, so they can never be true at the same time.
+
+*** Independence :definition:probability:
+
+Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
+
+Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. 
+
+
+
+*** Conditional probability :definition:probability:
 For any events $A, B \subset \Omega$ and any probability on $\Omega$,
 we define the conditional probabiity that $A$ is true if $B$ is true
 as follows:
@@ -1932,7 +1946,17 @@ P(A | B) = \frac{P(A \cap B) }{P(B)}
 In other words, this is the probability that proportion of times that
 A is true when B is true. It is akin to restrict the universe of
 outcomes to B. We then count: how many times is A true?
-**** Bayes theorem :theory:probability:
+
+We can also express independence in terms of conditional probability. A and B are independent if:
+\[
+P(A | B) = P(A),
+\]
+or, if $P(A) = 0$: 
+\[
+P(B | A) = P(B).
+\]
+
+*** Bayes theorem :theory:probability:
 We can use the conditional probability definition to relate $P(A|B)$
 to $P(B|A)$. 
 \[
@@ -1951,27 +1975,7 @@ P(A | B) = \frac{P(B | A) P(A) }{\sum_i P(B | A_i) P(A_i)},
 \]
 
 
-**** Mutually exclusive events                       :definition:probability:
-
-Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
-
-This means that there is no random outcome $\omega$ that is in both of
-them, so they can never be true at the same time.
-
-**** Independence :definition:probability:
-
-Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
-
-Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
-\[
-P(A | B) = P(A),
-\]
-and 
-\[
-P(B | A) = P(B).
-\]
-
-**** Conditional independence :definition:probability:
+*** Conditional independence :definition:probability:
 
 Two events $A, B$ are said to be independent given another event $C$ iff 
 \[
