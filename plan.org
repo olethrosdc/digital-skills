@@ -875,6 +875,79 @@ From these, it also follows that $P(\emptyset) = 0$.
 
 See also: https://en.wikipedia.org/wiki/Probability_measure
 
+**** Marginalisation
+
+If $B_1, \ldots, B_n$ is a partition of $\Omega$, i.e. a collection of sets so that $B_i \cap B_j = \emptyset$ are disjoint and $\bigcup_{i} B_i = \Omega$ cover all of $\Omega$,
+then we have that
+\[
+P(A \cap B) = \sum_i P(A \cap B_i),
+\]
+because $(A \cap B_i)$ are disjoint and $\bigcup_i (A \cap B_i) = A$.
+
+
+**** Conditional probability :definition:probability:
+For any events $A, B \subset \Omega$ and any probability on $\Omega$,
+we define the conditional probabiity that $A$ is true if $B$ is true
+as follows:
+\[
+P(A | B) = \frac{P(A \cap B) }{P(B)}
+\]
+In other words, this is the probability that proportion of times that
+A is true when B is true. It is akin to restrict the universe of
+outcomes to B. We then count: how many times is A true?
+**** Bayes theorem :theory:probability:
+We can use the conditional probability definition to relate $P(A|B)$
+to $P(B|A)$. 
+\[
+P(A | B) = \frac{P(A \cap B) }{P(B)} = \frac{P(B | A) P(A) }{P(B)},
+\]
+since $P(B | A) =  P(A \cap B) / P(A)$.
+
+This is most useful for statistical inference, where we think of
+$P(A)$ the prior, $P(A |B)$ as the posterior, and $P(B | A)$ as the
+evidence likelihood.
+
+It is also useful to write this rule when $A_1, \ldots, A_n$ is a partition of $\Omega$.
+Then $P(B) = \sum_i P(B \cap A_i) = \sum_i P(B | A_i) P(A_i)$ and so:
+\[
+P(A | B) = \frac{P(B | A) P(A) }{\sum_i P(B | A_i) P(A_i)},
+\]
+
+
+**** Mutually exclusive events                       :definition:probability:
+
+Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
+
+This means that there is no random outcome $\omega$ that is in both of
+them, so they can never be true at the same time.
+
+**** Independence :definition:probability:
+
+Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
+
+Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
+\[
+P(A | B) = P(A),
+\]
+and 
+\[
+P(B | A) = P(B).
+\]
+
+**** Conditional independence :definition:probability:
+
+Two events $A, B$ are said to be independent given another event $C$ iff 
+\[
+P(A \cap B | C) = P(A | C) P(B | C)
+\]
+
+This can also be written as
+\[
+P(A | C, B) = P(A | C)
+\]
+
+
+
 *** Example Distributions
 
 We focus on distributions where there is a finite number of possible
@@ -953,7 +1026,7 @@ P([0,p)) = \Pr(\omega \in [0,p)) = p.
 
 
 
-**** Random variables									 :theory:probability:
+*** Random variables									 :theory:probability:
 
 A real-valued random variable $f : \Omega \to \mathbb{R}$ is simply a
 function from the outcomes to the real numbers. Even though it is a
@@ -1061,16 +1134,6 @@ M_n = \E(f) \mp O(1/\sqrt{n}).
 Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
 
 
-**** Conditional probability :definition:probability:
-For any events $A, B \subset \Omega$ and any probability on $\Omega$,
-we define the conditional probabiity that $A$ is true if $B$ is true
-as follows:
-\[
-P(A | B) = \frac{P(A \cap B) }{P(B)}
-\]
-In other words, this is the probability that proportion of times that
-A is true when B is true. It is akin to restrict the universe of
-outcomes to B. We then count: how many times is A true?
 
 **** Conditional expectation :definition:probability:
 
@@ -1088,38 +1151,6 @@ $\omega \notin B$ then $P(\omega | B) = 0$. So, we have
 \[
 \E(f | B) = \sum_{\omega \in B} f(\omega) P(\omega | B) =  \sum_{\omega \in B} f(\omega) P(\omega) / P(B).
 \]
-**** Mutually exclusive events                       :definition:probability:
-
-Two events $A, B$ are mutually exclussive if $A \cap B = \emptyset$.
-
-This means that there is no random outcome $\omega$ that is in both of
-them, so they can never be true at the same time.
-
-**** Independence :definition:probability:
-
-Two events $A, B$ are said to be independent iff $P(A \cap B) = P(A) P(B)$.
-
-Intuitively, this means that knowing if $A$ happened tells us nothing about whether $B$ happened. This can also be written as
-\[
-P(A | B) = P(A),
-\]
-and 
-\[
-P(B | A) = P(B).
-\]
-
-**** Conditional independence :definition:probability:
-
-Two events $A, B$ are said to be independent given another event $C$ iff 
-\[
-P(A \cap B | C) = P(A | C) P(B | C)
-\]
-
-This can also be written as
-\[
-P(A | C, B) = P(A | C)
-\]
-
 *** Group comparison                                               :activity:
 
 Let us say we wish to compare the distribution among multiple
