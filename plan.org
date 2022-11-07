@@ -1655,6 +1655,7 @@ In sampling without replacement, each outcome can appear at most once.
 #+RESULTS:
 | 8 | 4 | 6 | 2 | 7 |
 
+Bootstrap sampling can be implemented by sampling with replacement.
 
 
 *** Expectation                                          :theory:probability:
@@ -1741,7 +1742,7 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
  (If students have trouble with this, try with small numbers of coins and finite number of possibilities - demonstrate by playing the guessing game repeatedly)
 
 
-
+ 
 *** Survey of heights :activity:
 
 1. First, randomly select a student. How? Everybody gets a different
