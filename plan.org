@@ -1557,14 +1557,59 @@ Deal $n$ cards, one for each student.
    description and he was found in the neighbourghood. There is no
    other evidence.
 
-   What is your belief that they have committed the crime?
+   There are two possibilities:
+   - $H_0$: They are innocent.
+   - $H_1$: They are guilty.
 
-Perform a DNA test on the suspect:
+   What is your belief that they have committed the crime? 
 
-(a) Each person throws a die and they record its value.
-(b) 
+   Let's elicit the belief by voting: How many think they are guilty,
+   divided by the number of people in class.
+
+   Let us call this $P(H_1)$. This is a purely subjective measure!
+
+3. Perform a DNA test on the suspect, revealing only the result.
+   (a) If it's 0 then the test is positive.
+   (b) If they are the killer, then the test is positive.
+   (c) Otherwise, it is negative.
+
+4. Tell the students that the probability that the DNA test is
+   positive if the person is innocent is 10%. Ask them what is their
+   belief *now* that the suspect is guilty?
+
+   Take a vote again to do so.
+
+5. Now consider the case where everybody is a suspect. How many are false positives?
 
 
+6. Explanation
+
+   We can describe this in terms of the conditional probability.
+   Let $D$ denote a positive test and $\neg D$ a negative one. Then
+   \[
+   P(D | H_0) = 0.1 \tag{false positive rate}
+   \]
+   
+   The converse probability is 
+   \[
+   P(H_0 | D) = P(D \cap H_0) / P(D) = P(D | H_0) P(H_0) / P(D)
+   \]
+
+   To calculate $P(D)$ we need to use marginalisation:
+   \[
+   P(D) = P(D | H_0) P(H_0) + P(D | H_1) P(H_1)
+   \]
+   
+   This results in 
+   \[
+   P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}
+   \]
+
+   Assuming $P(D | H_1) = 1$, and setting $P(H_0) = q$, this gives
+   \[
+   P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
+   \]
+   
 
 
 *** The k-Meteorologists problem
