@@ -1471,10 +1471,10 @@ chances of success. How should you do the study?
 * Module 3: Inference (2 weeks)
 ** Logic and bar graphs                                              :theory:
 
-How many people are taking
-CS? How many are in other courses? Let us consider the following statements. 
-Each statement is either true or false. If a statement is true, it has the value 1. 
-It consequently has the value 0 if it is false.
+How many people are taking CS? How many are in other courses? Let us
+consider the following statements.  Each statement is either true or
+false. If a statement is true, it has the value 1.  It consequently
+has the value 0 if it is false.
 
 For each student $i$, we define:
 - $m_i$: the student is male
@@ -1485,7 +1485,7 @@ For each student $i$, we define:
 
 Clearly, if $s_i$ is true then $l_i, e_i$ are false.
 
-** Logic and sets :theory:
+** Logic and sets                                                    :theory:
 
 We can associate events with sets in a universe. The following laws apply:
 
@@ -1500,23 +1500,87 @@ We can associate events with sets in a universe. The following laws apply:
    an empty inersection) then $A, B$ are *mutually exclusive*. That
    means that it is impossible for $A, B$ to both be true.
 
+** Bayesian analysis                                    :theory:probability:
+ #+ATTR_BEAMER: :overlay <+->
+ - Recall the definition of Conditional probability:
+  \[
+  P(A | B) = P(A \cap B) / P(B)
+  \]
+  i.e. the probability of A happening if B happens.
+ - It is also true that:
+  \[
+  P(B | A) = P(A \cap B) / P(A)
+  \]
+ - Combining the two equations, reverse the conditioning:
+  \[
+  P(A | B) = P(B | A) P (A) / P(B)
+  \]
 
-** Bayesian analysis                                     :theory:probability:
- Recall the definition of Conditional probability:
+ - So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
- $P(A | B) = P(A \cap B) / P(B)$,
 
- i.e. the probability of A given B is the probability of A and B happening divided by the probability of B.
+*** The murder problem
+ #+ATTR_BEAMER: :overlay <+->
+ - Somebody saw somebody matching their description and he was found
+	in the neighbourghood. There is no other evidence.
 
- From this it follows that
+ - There are two possibilities:
+	- $H_0$: They are innocent.
+	- $H_1$: They are guilty.
 
- $P(B | A) = P(A \cap B) / P(A)$.
+	What is your belief that they have committed the crime? 
+	
+**** Prior elicitation
 
- Combining the two equations, we obtain:
+	 - Let's elicit the belief by voting: How many think they are guilty,
+	 divided by the number of people in class.
+	 
+	 L- et us call this $P(H_1)$. This is a purely subjective measure!
 
- $P(A | B) = P(B | A) P (A) / P(B)$.
+*** DNA test
 
- So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
+ - Let us now do a DNA test on the suspect
+**** DNA test properties
+ #+ATTR_BEAMER: :overlay <+->
+ - $D$: Test is positive
+ - $P(D | H_0) = 1\%$: False positive rate
+ - $P(D | H_1) = 100\%$: True positive rate
+
+**** Run the test
+ #+ATTR_BEAMER: :overlay <+->
+ - The result is either positive or negative ($\neg D)$.
+ - What is your belief *now* that the suspect is guilty?
+
+*** Everybody is a suspect
+	#+ATTR_BEAMER: :overlay <+->
+ - Run a DNA test on everybody.
+ - What is different from before?
+ - Who has a positive test?
+ - What is your belief that the people with the positive test are guilty?
+
+*** Explanation
+	#+ATTR_BEAMER: :overlay <+->
+ - Let $D$ denote a positive test and $\neg D$ a negative one. 
+ - False positive rate: $P(D | H_0) = 0.1$
+ - Probability of innocence: $P(H_0 | D) = P(D \cap H_0) / P(D) = P(D | H_0) P(H_0) / P(D)$
+ - Marginal probability: $P(D) = P(D | H_0) P(H_0) + P(D | H_1) P(H_1)$
+ - Bayes's theorem: P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}
+ - Assuming $P(D | H_1) = 1$, and setting $P(H_0) = q$, this gives
+	\[
+	P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
+	\]
+*** Python example
+	Let us assume $P(D | H_0) = 10^{-6}$.
+#+BEGIN_SRC python
+	import numpy as np
+	base_rate = 0.000001
+	population_size = 10000000
+	n_positive_tests = np.random.binomial(population_size, base_rate)
+	return n_positive_tests
+#+END_SRC
+
+#+RESULTS:
+: 6
 
 *** The covid test problem                                         :activity:
  10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
@@ -1524,11 +1588,12 @@ We can associate events with sets in a universe. The following laws apply:
  covid) = 0.8. Conversely, if you do not have covid, there is still a
  10% chance of a positive test, with P(positive | not-covid) = 0.1
 
- How likely is it that you have covid if your test is positive or negative, i.e.
- P(covid | positive), vs. P(covid | negative)?
+ How likely is it that you have covid if your test is positive or
+ negative, i.e.  P(covid | positive), vs. P(covid | negative)?
 
- First of allzzzzzzzzzzzzzzzz, each one of you should independently generate a uniform random
- number between 1 and 10. For that, you can each throw a die, and record the outcome.
+ First of all, each one of you should independently generate a uniform
+ random number between 1 and 10. For that, you can each throw a die,
+ and record the outcome.
 
  Then you throw a second die, and record that as well.
 
@@ -1546,65 +1611,19 @@ We can associate events with sets in a universe. The following laws apply:
     3. Of those, count the number of people with A on the other side.
     4. It should be clear that 1/3 of people have [A|A] and of those 
 
-*** The prosecutor's fallacy
-
-\[
-P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_1) P(H_1) + P(D| H_0) P(H_0)}.
-\]
-Say $P(D | H_1) = 1$ and $P(D | H_0) = 10^{-6}$.
-Then
-\[
-P(H_0 | D) = \frac{10{^-6}}{0.5 + 10^{-6}}
-\]
-
-
-
-*** The k-Meteorologists problem
-
- Bayesian reasoning is most useful in the following setting:
-
- - We have models of the world, $\{P_\theta | \theta \in \Theta\}$.
- - We have a prior distribution $P(\theta)$ over the models.
- - We obtain data $D$ for whiche very model assigns a probabiltiy $P_\theta(D)$.
- - We calculate the posterior distribution
- $P(\theta | D) = P_\theta(D) P(\theta) / P(D)$.
- - This tells us how likely each model is given the data.
-
- In this example, we have $k$ meteorological stations, each one of
- which gives us the probability that it will rain. 
-
- The table below gives the probability of rain according to each
- station.
-
-
- #+CAPTION: Rain probabilities and events
- | Station       | Day 1 | Day 2 | Day 3 |
- |---------------+-------+-------+-------|
- | MeteoSuisse   |   70% |       |       |
- | Chris's Model |   50% |       |       |
- |---------------+-------+-------+-------|
- | Actual rain   |       |       |       |
- |---------------+-------+-------+-------|
-
- The table below is our belief at the beginning of each day, about
- which station is overall best in predicting rain. What should our
- initial belief be?
-
- #+CAPTION: Belief at start of day
- | Belief        | Day 1 | Day 2 | Day 3 | Day 4 |
- |---------------+-------+-------+-------+-------|
- | MeteoSuisse   |   90% |       |       |       |
- | Chris's Model |   10% |       |       |       |
- |---------------+-------+-------+-------+-------|
-
- Write a program that updates the beliefs sequentially given
- observations and station predictions.
 
 ** Hypothesis testing
 
-*** Homework assignment: Define a data collection and analysis problem
+** Simulation study :activity:
+
+For a simple visualisation problem, vary parameter values and simulate
+thousands of times under each set of conditions. Summarise your
+findings graphically.
+   
 ** The garden of many paths
+** Confidence intervals
 * Module 4: Advanced visualisation (2 weeks)
+
 ** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
 
@@ -1660,7 +1679,7 @@ In this exercise, you must create a plot from an existing dataset and write a sh
 
 ** Plot deconstruction
 
- TLDR: Take an existing plot from the web, re-create it, and try to improve it.
+ 
 
 *** Instructions
  Find an inteesting plot from a web page on e.g. wikipedia. Try to
@@ -1692,16 +1711,8 @@ your own article and add it to the list.
 
 https://docs.google.com/spreadsheets/d/1QKj_L9f0UIH80qgs2kcjc8AU1eKZzsTOcYFSU06HJBY/edit#gid=0
 
-** Simulation study
 
-For a simple visualisation problem, vary parameter values and simulate
-thousands of times under each set of conditions. Summarise your
-findings graphically.
 
-** Copy the master
-
-You are given a visualisation constructed from a given dataset. You
-must create a similar visualisation from another (or the same)x dataset.
 
 ** Open project
 *** Project proposal
