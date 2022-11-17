@@ -1475,6 +1475,7 @@ How many people are taking CS? How many are in other courses? Let us
 consider the following statements.  Each statement is either true or
 false. If a statement is true, it has the value 1.  It consequently
 has the value 0 if it is false.
+#+BEAMER: \pause
 
 For each student $i$, we define:
 - $m_i$: the student is male
@@ -1488,6 +1489,7 @@ Clearly, if $s_i$ is true then $l_i, e_i$ are false.
 ** Logic and sets                                                    :theory:
 
 We can associate events with sets in a universe. The following laws apply:
+#+BEAMER: \pause
 
 1. There is a universe $\Omega$ of possible outcomes
 2. Consider an individual outcome $\omega \in \Omega$:
@@ -1500,7 +1502,7 @@ We can associate events with sets in a universe. The following laws apply:
    an empty inersection) then $A, B$ are *mutually exclusive*. That
    means that it is impossible for $A, B$ to both be true.
 
-** Bayesian analysis                                    :theory:probability:
+*** Bayesian analysis                                    :theory:probability:
  #+ATTR_BEAMER: :overlay <+->
  - Recall the definition of Conditional probability:
   \[
@@ -1518,7 +1520,23 @@ We can associate events with sets in a universe. The following laws apply:
 
  - So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
+*** The cards problem
+ 1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+ 2. If you have an A, what is the probability of an A on the other side?
+ 3. Have the students perform the experiment with:
+    1. Draw a random card.
+    2. Count the number of people with A.
+    3. What is the probability that somebody with an A on one side will have an A on the other?
+    4. Half of the people should have an A?
+#+BEAMER: \pause
 
+**** The prior and posterior probabilities
+	 | A | A | 2/6 | A observed | 2/3
+	 | A | B | 1/6 | A observed | 1/3
+	 | B | A | 1/6 |            |
+	 | B | B | 2/6 |            |
+
+ 
 *** The murder problem
  #+ATTR_BEAMER: :overlay <+->
  - Somebody saw somebody matching their description and he was found
@@ -1532,19 +1550,23 @@ We can associate events with sets in a universe. The following laws apply:
 	
 **** Prior elicitation
 
-	 - Let's elicit the belief by voting: How many think they are guilty,
-	 divided by the number of people in class.
-	 
-	 L- et us call this $P(H_1)$. This is a purely subjective measure!
+- All those that think the accused is guilty, raise their hand.
+- Divide by the number of people in class
+- Let us call this $P(H_1)$.
+- This is a purely subjective measure!
 
 *** DNA test
 
  - Let us now do a DNA test on the suspect
+#+BEAMER: \pause
+
 **** DNA test properties
  #+ATTR_BEAMER: :overlay <+->
  - $D$: Test is positive
  - $P(D | H_0) = 1\%$: False positive rate
  - $P(D | H_1) = 100\%$: True positive rate
+
+#+BEAMER: \pause
 
 **** Run the test
  #+ATTR_BEAMER: :overlay <+->
@@ -1560,11 +1582,9 @@ We can associate events with sets in a universe. The following laws apply:
 
 *** Explanation
 	#+ATTR_BEAMER: :overlay <+->
- - Let $D$ denote a positive test and $\neg D$ a negative one. 
- - False positive rate: $P(D | H_0) = 0.1$
  - Probability of innocence: $P(H_0 | D) = P(D \cap H_0) / P(D) = P(D | H_0) P(H_0) / P(D)$
  - Marginal probability: $P(D) = P(D | H_0) P(H_0) + P(D | H_1) P(H_1)$
- - Bayes's theorem: P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}
+ - Bayes's theorem: $P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}$
  - Assuming $P(D | H_1) = 1$, and setting $P(H_0) = q$, this gives
 	\[
 	P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
@@ -1582,7 +1602,17 @@ We can associate events with sets in a universe. The following laws apply:
 #+RESULTS:
 : 6
 
+*** The $k$-meteorologists problem
+
+This is an instance of a multiple-hypothesis test.
+	
+*** Confidence intervals for binary variables
+
+This is an instance of a credible interval test.
+
+
 *** The covid test problem                                         :activity:
+	
  10% of the class has covid, i.e. P(covid) = 0.1. Each one of you performs a covid test. If
  you have covid, the test is correct 80% of the time, i.e. P(positive |
  covid) = 0.8. Conversely, if you do not have covid, there is still a
@@ -1602,26 +1632,36 @@ We can associate events with sets in a universe. The following laws apply:
  Now, everybody with a positive test raises their hand. I expect it to
  be slightly more than 10% (but it depends).
 
-*** The cards problem
- 1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
- 2. Get a card (say with face A), and ask what is the probability the other side is the same.
- 3. Have the students perform the experiment with:
-    1. Draw a random card.
-    2. Count the number of people with A.
-    3. Of those, count the number of people with A on the other side.
-    4. It should be clear that 1/3 of people have [A|A] and of those 
 
 
 ** Hypothesis testing
 
+Hypothesis testing, or model selection, is a general problem in
+machine learning and statistics. 
+   
+*** Types of hypothesis testing
+	There are many types of hypotheses we can do
+#+BEAMER \pause
+**** Null hypothesis testing: no specific alternatives
+	 - $H_0$: Are men paid the same as women?
+**** Simple hypothesis testing: mutually exclusive alternatives
+	 - Is the defendant innocent ($H_0$) or guilty ($H_1$)?
+**** Confidence intervals: a range of alternatives
+	 - What is a likely vote percentage range for political party $A$?
+   
+*** The garden of many paths
+**** Expanding the hypothesis space
+- Open the Class Data
+	
+*** Confidence intervals
+   
 ** Simulation study :activity:
 
 For a simple visualisation problem, vary parameter values and simulate
 thousands of times under each set of conditions. Summarise your
 findings graphically.
    
-** The garden of many paths
-** Confidence intervals
+
 * Module 4: Advanced visualisation (2 weeks)
 
 ** Geographical data
