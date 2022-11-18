@@ -1486,7 +1486,7 @@ For each student $i$, we define:
 
 Clearly, if $s_i$ is true then $l_i, e_i$ are false.
 
-** Logic and sets                                                    :theory:
+*** Logic and sets                                                   :theory:
 
 We can associate events with sets in a universe. The following laws apply:
 #+BEAMER: \pause
@@ -1501,8 +1501,8 @@ We can associate events with sets in a universe. The following laws apply:
 5. If $A$ and $B$ are disjoint, i.e. $A \cap B = \emptyset$ (they have
    an empty inersection) then $A, B$ are *mutually exclusive*. That
    means that it is impossible for $A, B$ to both be true.
-
-*** Bayesian analysis                                    :theory:probability:
+** Bayesian analysis
+*** Bayes theorem                                        :theory:probability:
  #+ATTR_BEAMER: :overlay <+->
  - Recall the definition of Conditional probability:
   \[
@@ -1582,29 +1582,55 @@ We can associate events with sets in a universe. The following laws apply:
 
 *** Explanation
 	#+ATTR_BEAMER: :overlay <+->
- - Probability of innocence: $P(H_0 | D) = P(D \cap H_0) / P(D) = P(D | H_0) P(H_0) / P(D)$
+ - Prior: $P(H_i)$.
+ - Likelihood $P(D | H_i)$.
+ - Posterior: $P(H_i | D) = P(D \cap H_i) / P(D) = P(D | H_i) P(H_i) / P(D)$
  - Marginal probability: $P(D) = P(D | H_0) P(H_0) + P(D | H_1) P(H_1)$
- - Bayes's theorem: $P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}$
+ - Posterior: $P(H_0 | D) = \frac{P(D | H_0) P(H_0)}{P(D | H_0) P(H_0) + P(D | H_1) P(H_1)}$
  - Assuming $P(D | H_1) = 1$, and setting $P(H_0) = q$, this gives
 	\[
 	P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
 	\]
 *** Python example
-	Let us assume $P(D | H_0) = 10^{-6}$.
+
 #+BEGIN_SRC python
-	import numpy as np
-	base_rate = 0.000001
-	population_size = 10000000
-	n_positive_tests = np.random.binomial(population_size, base_rate)
-	return n_positive_tests
+# the input to the function is the prior, the likelihood function, and posteriors
+# Input:
+# - prior for hypothesis 0 (scalar)
+# - data (single data point)
+# - likelihood[data][hypothesis] array unction
+# Returns:
+# - posterior for the data point (if multiple points are given, the calculation is repeated)
+def get_posterior(prior, data, likelihood):
+    marginal = prior * likelihood[data][0] + (1 - prior) * likelihood[data][1]
+    posterior = prior * likelihood[data][0] / marginal
+    return posterior
+
+import numpy as np
+prior = 0.1
+likelihood = np.zeros([2, 2])
+# pr of negative test if not a match
+likelihood[0][0] = 0.9
+# pr of positive test if not a match
+likelihood[1][0] = 0.1
+# pr of negative test if a match
+likelihood[0][1] = 0
+# pr of positive test if a match
+likelihood[1][1] = 1
+data = 0
+return get_posterior(prior, data, likelihood)
 #+END_SRC
 
 #+RESULTS:
-: 6
+: 1.0
 
 *** The $k$-meteorologists problem
 
 This is an instance of a multiple-hypothesis test.
+We have $k$ meteorological stations. Every day, each station gives us a probability for rain
+\[
+k
+\]
 	
 *** Confidence intervals for binary variables
 
