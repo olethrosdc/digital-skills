@@ -10,13 +10,14 @@
 
 * Joint and Conditional Probabilities
 ** Setting
+#+ATTR_BEAMER: :overlay <+->
 *** Outline
+#+ATTR_BEAMER: :overlay <+->
 - Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
 - We write $\Pr(x,y)$ to informally mean their joint distribution.
 
-#+BEAMER: \pause
-
 *** Formal definition
+#+ATTR_BEAMER: :overlay <+->
 - Underlying probability space $P, \Omega, \Sigma$ with
 - Outcome space $\Omega$
 - Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
@@ -24,9 +25,8 @@
 - RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
 - Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
 
-*** Conditional probabilities
-
-
+** Conditional probabilities
+#+ATTR_BEAMER: :overlay <+->
 **** Definition
 The conditional distribution of $x$ given $y$ is:
 \[
@@ -40,18 +40,43 @@ This has the same form.
 P(A | B) = P(A \cap B) / P(B).
 \]
 
+** Discrete $x, y$
+
+*** Bernoulli-distributed $x, y \in \{0,1\}$
+- $\Pr(x = 1) = \theta$
+- $\Pr(y = 1 | x = 0) = v_0$
+- $\Pr(y = 1 | x = 1) = v_1$
+- $\Pr(x = 1) = ?$
+
+*** Python example
+#+BEGIN_SRC python
+import numpy as np
+n = 10000
+theta = 0.8
+v[0] = 0.2
+v[1]= 0.8
+x = np.random.choice(2, p = [1 - theta, theta], size = n)
+y = np.random.choice(2, 
+#+END_SRC
+
 * Correlation and independence
 ** Correlation versus dependence
+#+ATTR_BEAMER: :overlay <+->
 *** Dependent random variables
+#+ATTR_BEAMER: :overlay <+->
 - $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
+- equivalently, if $\Pr(x | y) = \Pr(x)$
 - $x, y$ are dependent if they are not independent.
 
-#+BEAMER: \pause
-
 *** Correlated random variables
+#+ATTR_BEAMER: :overlay <+->
 - $x, y$ are uncorrelated if $\E(x,y) = \E(x)\E(y)$
+- Equivalently, if $\E(x | y) = \E(x)$
 - $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
 
+*** Theorem
+- If $x, y$ are correlated then they are dependent.
+- If $x, y$ are independent the they are uncorrelated.
 
 
 
