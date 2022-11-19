@@ -1,0 +1,57 @@
+#+TITLE:     Correlation and Causation
+#+OPTIONS:   H:2
+#+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
+#+LaTeX_HEADER: \renewcommand \Pr {\mathop{\mbox{\ensuremath{\mathbb{P}}}}\nolimits}
+#+LaTeX_HEADER: \newcommand \defn {\mathrel{\triangleq}}
+#+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
+#+LaTeX_HEADER: \newcommand \Param {\Theta}
+#+LaTeX_HEADER: \newcommand \param {\theta}
+
+* Joint and Conditional Probabilities
+** Setting
+*** Outline
+- Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
+- We write $\Pr(x,y)$ to informally mean their joint distribution.
+
+#+BEAMER: \pause
+
+*** Formal definition
+- Underlying probability space $P, \Omega, \Sigma$ with
+- Outcome space $\Omega$
+- Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
+- Probability measure $P : \Sigma \to \Omega$.
+- RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
+- Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
+
+*** Conditional probabilities
+
+
+**** Definition
+The conditional distribution of $x$ given $y$ is:
+\[
+\Pr(x | y) = \Pr(x, y) / \Pr(y)
+\]
+Thus, for every value of $y$ we get a different distribution for $x$.
+
+**** Recall definition for events
+This has the same form.
+\[
+P(A | B) = P(A \cap B) / P(B).
+\]
+
+* Correlation and independence
+** Correlation versus dependence
+*** Dependent random variables
+- $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
+- $x, y$ are dependent if they are not independent.
+
+#+BEAMER: \pause
+
+*** Correlated random variables
+- $x, y$ are uncorrelated if $\E(x,y) = \E(x)\E(y)$
+- $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
+
+
+
+
