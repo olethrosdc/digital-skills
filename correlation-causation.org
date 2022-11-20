@@ -8,6 +8,56 @@
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
 
+* Introduction
+
+#+CAPTION: Pirates cool the earth
+#+NAME:   fig:pirates-global-warming
+[[./figures/pirates-global-warming.jpg]]
+
+
+* Estimation, Prediction and Decision Making
+
+** The three main problems in statistics
+*** Estimation
+	- How many covid patients are there now?
+	- Which is the best meteorological station?
+	- What is the right model for planetary motion?
+*** Prediction
+	- How many covid patients will there be next week?
+	- Will it rain tomorrow?
+	- When is the next lunar eclipse?
+*** Decision making
+	- What covid measures should I take?
+	- Should I take the umbrella?
+	- What's the best way to each the next eclipse?
+
+** Types of variables
+
+*** Observed variables
+- Telescope images
+- Survey data from a health authority
+- Radar measurements in an AV
+
+*** Latent variables
+- The mass, position and velocity of Mars
+- Actual number of covid patients
+- The location and speed of nearby vehicles
+
+*** Decision variables
+- Can be observed or latent
+- Selected arbitrarily by humans or machines
+
+** Correlation versus Causality
+
+*** Correlation and dependence
+- Does *knowing* the value of one variable give us *information* about
+  another variables?
+
+*** Causality
+- Does *changing* the value of one variable *affect* other variables?
+
+
+
 * Joint and Conditional Probabilities
 ** Setting
 #+ATTR_BEAMER: :overlay <+->
@@ -40,6 +90,7 @@ This has the same form.
 P(A | B) = P(A \cap B) / P(B).
 \]
 
+
 ** Discrete $x, y$
 
 *** Bernoulli-distributed $x, y \in \{0,1\}$
@@ -48,6 +99,7 @@ P(A | B) = P(A \cap B) / P(B).
 - $\Pr(y = 1 | x = 1) = v_1$
 - $\Pr(x = 1) = ?$
 
+#+BEAMER: \pause
 *** One draw from x, y
 #+BEGIN_SRC python
   import numpy as  np
@@ -114,7 +166,6 @@ P(A | B) = P(A \cap B) / P(B).
 |  800 | 3221 |
 | 1192 | 4787 |
 
-
 ** Empirical joint probability of x, y
 	
 #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
@@ -127,10 +178,54 @@ P(A | B) = P(A \cap B) / P(B).
 #+NAME:   fig:dependent
 [[./independent-binary.png]]
 
+  
+** Continuous $x, y$
 
-* Correlation and independence
+This is the typical structure of regression problems
+
+*** Normal-distributed $x, y$
+- $x \sim Normal(0, 1)$.
+- $y | x \sim Normal(x, 1)$.
+
+#+BEAMER: \pause
+*** One draw from x, y
+#+BEGIN_SRC python
+  import numpy as  np
+  theta = 0.8
+  x = np.random.normal(0, 1)
+  y = np.random.normal(x, 1)
+  return x,y
+#+END_SRC
+
+#+RESULTS:
+| 1.7628464385264946 | 0.6543891549311422 |
+
+
+  
+** Continuous $x$, Discretre $y$
+
+This is the typical structure of classification problems
+   
+*** Normal-distributed $x$, Bernoulli-distributed $y$
+- $y \sim Bernoulli(0.6)$
+- $x | y \sim 160 + Normal(10*y, 1)$.
+
+
+#+BEAMER: \pause
+*** One draw from x, y
+#+BEGIN_SRC python
+  import numpy as  np
+  y = np.random.choice(2, p = [0.4, 0.6])
+  x = np.random.normal(x, 1)
+  return x,y
+#+END_SRC
+
+#+RESULTS:
+| 1.7628464385264946 | 0.6543891549311422 |
+
+
 ** Correlation versus dependence
-#+ATTR_BEAMER: :overlay <+->
+   #+ATTR_BEAMER: :overlay <+->
 *** Dependent random variables
 #+ATTR_BEAMER: :overlay <+->
 - $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
@@ -144,8 +239,33 @@ P(A | B) = P(A \cap B) / P(B).
 - $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
 
 *** Theorem
+#+ATTR_BEAMER: :overlay <+->
 - If $x, y$ are correlated then they are dependent.
 - If $x, y$ are independent the they are uncorrelated.
 
+* Models of Causation
 
+** Causal inference vs the actual cause
+   
+*** Causal inference
+#+ATTR_BEAMER: :overlay <+->
+- Can aspirine cure headaches? 
+- Does smoking cause lung cancer?
+- Or do cancer patients become smokers?
 
+*** The actual cause
+#+ATTR_BEAMER: :overlay <+->
+- Did aspirin cure *my* headache?
+- Did smoking cause *my* cancer?
+
+#+BEAMER: \pause
+*** Applications
+- Causal inference useful in a scientific setting.
+- Reliable methods for causal inference exist.
+- Actual causes useful in a legal setting.
+- No reliable method or definition exists for determining actual causes.
+
+** Confounding variables
+
+** Instrumental variables
+   
