@@ -170,13 +170,13 @@ P(A | B) = P(A \cap B) / P(B).
 	
 #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
 #+NAME:   fig:dependent
-[[./correlated-binary.png]]
+[[./figures/correlated-binary.png]]
 
 ** Empirical joint probability of x, y
 	
 #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.1)$.
 #+NAME:   fig:dependent
-[[./independent-binary.png]]
+[[./figures/independent-binary.png]]
 
   
 ** Continuous $x, y$
@@ -261,6 +261,7 @@ This is the typical structure of classification problems
 #+BEAMER: \pause
 *** Applications
 - Causal inference useful in a scientific setting.
+  
 - Reliable methods for causal inference exist.
 - Actual causes useful in a legal setting.
 - No reliable method or definition exists for determining actual causes.
