@@ -277,6 +277,8 @@ This is the typical structure of classification problems
 #+ATTR_BEAMER: :overlay <+->
 - Treatment A is effective 90% of the time
 - Treatment B is effective 50% of the time.
+- Why is that?
   
 ** Instrumental variables
+   
    
