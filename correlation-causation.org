@@ -90,6 +90,24 @@ This has the same form.
 P(A | B) = P(A \cap B) / P(B).
 \]
 
+** Python example: independent RVs
+*** Bernoulli-distributed $x, y \in \{0,1\}$
+- $\Pr(x = 1) = \theta$
+- $\Pr(y = 1) = v$
+
+*** One draw of $x,y$
+#+BEGIN_SRC python
+  import numpy as np
+  theta = 0.6
+  v = 0.8
+  x = np.random.choice(2, p = [1 - theta, theta])
+  y = np.random.choice(2, p = [1 - v, v])
+#+END_SRC
+
+#+RESULTS:
+|  800 | 3221 |
+| 1192 | 4787 |
+
 
 ** Discrete $x, y$
 
@@ -100,13 +118,13 @@ P(A | B) = P(A \cap B) / P(B).
 - $\Pr(x = 1) = ?$
 
 #+BEAMER: \pause
-*** One draw from x, y
+*** One draw of x, y
 #+BEGIN_SRC python
   import numpy as  np
-  theta = 0.8
+  theta = 0.6
   v = np.zeros(2)
-  v[0] = 0.1
-  v[1]= 0.9
+  v[0] = 0.4
+  v[1]= 0.8
   x = np.random.choice(2, p = [1 - theta, theta])
   y = np.random.choice(2, p = [1 - v[x], v[x]])
   return x,y
@@ -116,55 +134,33 @@ P(A | B) = P(A \cap B) / P(B).
   
 ** Python example: multiple draws
 #+BEGIN_SRC python
-  import numpy as np
-  n = 10000
-  theta = 0.6
-  v = np.zeros(2)
-  v[0] = 0.4
-  v[1] = 0.8
-  x = np.random.choice(2, p = [1 - theta, theta], size = n)
-  y = np.array([np.random.choice(2, p = [1 - v[x_t], v[x_t]]) for x_t in x])
-  import matplotlib.pyplot as plt
-  A = np.zeros([2,2])
+import numpy as np
+n = 10000
+theta = 0.6
+v = np.zeros(2)
+v[0] = 0.4
+v[1] = 0.8
+x = np.random.choice(2, p = [1 - theta, theta], size = n)
+y = np.array([np.random.choice(2, p = [1 - v[x_t], v[x_t]]) for x_t in x])
+import matplotlib.pyplot as plt
+A = np.zeros([2,2])
 
-  for i in range(2):
+for i in range(2):
 	for j in range(2):
 	  A[i,j] = sum((x==i) & (y==j))
 
-  plt.imshow(A)
-  plt.savefig("correlated-binary.png")
-  plt.show()
-  return A
+plt.imshow(A)
+plt.savefig("correlated-binary.png")
+plt.show()
+return A
 #+END_SRC
 
 #+RESULTS:
 | 1775 |  208 |
 |  804 | 7213 |
 
-** Python example: independent RVs
-#+BEGIN_SRC python
-  import numpy as np
-  n = 10000
-  theta = 0.6
-  v = 0.8
-  x = np.random.choice(2, p = [1 - theta, theta], size = n)
-  y = np.random.choice(2, p = [1 - v, v], size = n)
-  import matplotlib.pyplot as plt
-  A = np.zeros([2,2])
-
-  for i in range(2):
-	for j in range(2):
-	  A[i,j] = sum((x==i) & (y==j))
-
-  plt.imshow(A)
-  plt.savefig("independent-binary.png")
-  plt.show()
-  return A
-#+END_SRC
-
-#+RESULTS:
-|  800 | 3221 |
-| 1192 | 4787 |
+** Covariance matrix
+For any RVs you can calculate 
 
 ** Empirical joint probability of x, y
 	

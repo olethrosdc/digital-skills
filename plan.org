@@ -1690,7 +1690,7 @@ machine learning and statistics.
    
 *** Types of hypothesis testing
 	There are many types of hypotheses we can do
-#+BEAMER \pause
+#+BEAMER: \pause
 **** Null hypothesis testing: no specific alternatives
 	 - $H_0$: Are men paid the same as women?
 **** Simple hypothesis testing: mutually exclusive alternatives
@@ -1710,7 +1710,6 @@ For a simple visualisation problem, vary parameter values and simulate
 thousands of times under each set of conditions. Summarise your
 findings graphically.
    
-
 * Module 4: Advanced visualisation (2 weeks)
 
 ** Geographical data
@@ -1927,7 +1926,7 @@ it never is repeated. There is always some varying factor.
  print(random.uniform(0,1)) #
  print(random.uniform(0,1))
  print(random.uniform(0,1))
- #+END_SRC python
+ #+END_SRC
 
  For cryptographically strong random numbers you need to use the secrets module:
  #+BEGIN_SRC python
@@ -2106,6 +2105,7 @@ care about. All such distributions are characterised by one or more
 two outcomes, the family of Bernoulli distributions.
 
 **** The Bernoulli distribution.                     :definition:probability:
+
 Let us start with a simple example, the Bernoulli distribution with
 parameter $\theta \in [0,1]$. This is the distribution over two outcomes
 $\{0,1\}$, so that if $x$ is a Bernoulli random variable, then:
@@ -2334,7 +2334,6 @@ F = ...
 plt.bar(X, M, align=edge, width=w/2)
 plt.bar(X + w, F, align=edge, width=w/2)
 #+END_SRC
-
 
 * Graphics types
 1. Histogram and 3D extensions
