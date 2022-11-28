@@ -47,6 +47,19 @@
 - Can be observed or latent
 - Selected arbitrarily by humans or machines
 
+** From correlation to causation.
+
+*** Statistical relation.
+	- Is smoking related to lung cancer?
+	
+*** Statistical causation.
+	- Does smoking cause lung cancer?
+	- Will I get lung cancer if I smoke?
+	
+*** Actual causes.
+	- Did I get lung cancer because I smoked?
+	
+
 ** Correlation versus Causality
 
 *** Correlation and dependence
