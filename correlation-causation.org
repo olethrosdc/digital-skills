@@ -317,4 +317,4 @@ d(p) = \alpha_0 - \alpha_1 p, \qquad s(p) = \beta_0 + \beta_1 p.
 - $s$: suppply
 - $p$: price
 - $\alpha, \beta \geq 0$: parameters.
-**** Correlaton 
+**** Correlation
