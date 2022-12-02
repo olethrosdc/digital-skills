@@ -1501,7 +1501,7 @@ We can associate events with sets in a universe. The following laws apply:
 5. If $A$ and $B$ are disjoint, i.e. $A \cap B = \emptyset$ (they have
    an empty inersection) then $A, B$ are *mutually exclusive*. That
    means that it is impossible for $A, B$ to both be true.
-** Bayesian analysis
+** Conditional Probability and the Theorem of Bayes
 *** Bayes theorem                                        :theory:probability:
  #+ATTR_BEAMER: :overlay <+->
  - Recall the definition of Conditional probability:
@@ -1521,14 +1521,14 @@ We can associate events with sets in a universe. The following laws apply:
  - So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
 *** The cards problem
- 1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
- 2. If you have an A, what is the probability of an A on the other side?
- 3. Have the students perform the experiment with:
-    1. Draw a random card.
-    2. Count the number of people with A.
-    3. What is the probability that somebody with an A on one side will have an A on the other?
-    4. Half of the people should have an A?
-#+BEAMER: \pause
+  1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+  2. If you have an A, what is the probability of an A on the other side?
+  3. Have the students perform the experiment with:
+     1. Draw a random card.
+     2. Count the number of people with A.
+     3. What is the probability that somebody with an A on one side will have an A on the other?
+     4. Half of the people should have an A?
+ #+BEAMER: \pause
 
 **** The prior and posterior probabilities
 	 | A | A | 2/6 | A observed | 2/3
@@ -1536,7 +1536,7 @@ We can associate events with sets in a universe. The following laws apply:
 	 | B | A | 1/6 |            |
 	 | B | B | 2/6 |            |
 
- 
+** Bayesian analysis example
 *** The murder problem
  #+ATTR_BEAMER: :overlay <+->
  - Somebody saw somebody matching their description and he was found
@@ -1549,24 +1549,23 @@ We can associate events with sets in a universe. The following laws apply:
 	What is your belief that they have committed the crime? 
 	
 **** Prior elicitation
-
-- All those that think the accused is guilty, raise their hand.
-- Divide by the number of people in class
-- Let us call this $P(H_1)$.
-- This is a purely subjective measure!
+ #+ATTR_BEAMER: :overlay <+->
+ - All those that think the accused is guilty, raise their hand.
+ - Divide by the number of people in class
+ - Let us call this $P(H_1)$.
+ - This is a purely subjective measure!
 
 *** DNA test
-
- - Let us now do a DNA test on the suspect
-#+BEAMER: \pause
+  - Let us now do a DNA test on the suspect
+ #+BEAMER: \pause
 
 **** DNA test properties
- #+ATTR_BEAMER: :overlay <+->
- - $D$: Test is positive
- - $P(D | H_0) = 1\%$: False positive rate
- - $P(D | H_1) = 100\%$: True positive rate
+  #+ATTR_BEAMER: :overlay <+->
+  - $D$: Test is positive
+  - $P(D | H_0) = 1\%$: False positive rate
+  - $P(D | H_1) = 100\%$: True positive rate
 
-#+BEAMER: \pause
+ #+BEAMER: \pause
 
 **** Run the test
  #+ATTR_BEAMER: :overlay <+->
@@ -1591,74 +1590,93 @@ We can associate events with sets in a universe. The following laws apply:
 	\[
 	P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
 	\]
+ - The posterior can always be updated with more data!
 *** Python example
 
-#+BEGIN_SRC python
-# the input to the function is the prior, the likelihood function, and posteriors
-# Input:
-# - prior for hypothesis 0 (scalar)
-# - data (single data point)
-# - likelihood[data][hypothesis] array unction
-# Returns:
-# - posterior for the data point (if multiple points are given, the calculation is repeated)
-def get_posterior(prior, data, likelihood):
-    marginal = prior * likelihood[data][0] + (1 - prior) * likelihood[data][1]
-    posterior = prior * likelihood[data][0] / marginal
-    return posterior
+ #+BEGIN_SRC python
+ # the input to the function is the prior, the likelihood function, and posteriors
+ # Input:
+ # - prior for hypothesis 0 (scalar)
+ # - data (single data point)
+ # - likelihood[data][hypothesis] array unction
+ # Returns:
+ # - posterior for the data point (if multiple points are given, the calculation is repeated)
+ def get_posterior(prior, data, likelihood):
+     marginal = prior * likelihood[data][0] + (1 - prior) * likelihood[data][1]
+     posterior = prior * likelihood[data][0] / marginal
+     return posterior
 
-import numpy as np
-prior = 0.9
-likelihood = np.zeros([2, 2])
-# pr of negative test if not a match
-likelihood[0][0] = 0.9
-# pr of positive test if not a match
-likelihood[1][0] = 0.1
-# pr of negative test if a match
-likelihood[0][1] = 0
-# pr of positive test if a match
-likelihood[1][1] = 1
-data = 1
-return get_posterior(prior, data, likelihood)
-#+END_SRC
+ import numpy as np
+ prior = 0.9
+ likelihood = np.zeros([2, 2])
+ # pr of negative test if not a match
+ likelihood[0][0] = 0.9
+ # pr of positive test if not a match
+ likelihood[1][0] = 0.1
+ # pr of negative test if a match
+ likelihood[0][1] = 0
+ # pr of positive test if a match
+ likelihood[1][1] = 1
+ data = 1
+ return get_posterior(prior, data, likelihood)
+ #+END_SRC
 
-#+RESULTS:
-: 0.4736842105263158
+ #+RESULTS:
+ : 0.4736842105263158
 
+** More general problems
 *** The $k$-meteorologists problem
 
 
-We have $k$ meteorological stations. 
+ We have $k$ meteorological stations. 
 **** Predictions and outcomes
-| Station      |   M |   T |   W |   T |
-|--------------+-----+-----+-----+-----|
-| MeteoSuisse  | 25% | 20% | 10% |  5% |
-| Wunderground | 30% | 50% | 20% | 10% |
-| AccuWeather  | 90% | 70% | 10% |  0% |
-|--------------+-----+-----+-----+-----|
-| Rain         |   Y |   N |   N |   Y |
+ | Station      |   M |   T |   W |   T |
+ |--------------+-----+-----+-----+-----|
+ | MeteoSuisse  | 25% | 20% | 10% |  5% |
+ | Wunderground | 30% | 50% | 20% | 10% |
+ | AccuWeather  | 90% | 70% | 10% |  0% |
+ |--------------+-----+-----+-----+-----|
+ | Rain         |   Y |   N |   N |   Y |
 
 **** $H_i$: The $i$-th station's model is correct
-- $P(H_i)$: prior
-- $P(D | H_i)$: likelihood according to station $i$
-- $P(H_i | D)$: posterior
+ - $P(H_i)$: prior
+ - $P(D | H_i)$: likelihood according to station $i$
+ - $P(H_i | D)$: posterior
 
 *** Types of hypothesis testing problems
-**** Simple Hypothesis Test
-Example: DNA evidence, Covid tests
-- Two hypothesese $H_0, H_1$
-- $P(D | H_i)$ is defined for all $i$
+ #+ATTR_BEAMER: :overlay <+->
 
-**** Multiple Hypothesis Test
-Example: Model selection
-- $H_i$: One of many mutually exclusive models
-- $P(D | H_i)$ is defined for all $i$
+**** Simple Hypothesis Test
+ #+ATTR_BEAMER: :overlay <+->
+ Example: DNA evidence, Covid tests
+ - Two hypothesese $H_0, H_1$
+ - $P(D | H_i)$ is defined for all $i$
+
+**** Multiple Hypotheses Test
+ #+ATTR_BEAMER: :overlay <+->
+ Example: Model selection
+ - $H_i$: One of many mutually exclusive models
+ - $P(D | H_i)$ is defined for all $i$
 
 **** Null Hypothesis Test
-Example: Are men's and women's heights the same?
-- $H_0$: The 'null' hypothesis
-- $P(D | H_0)$ is defined
-- The alternative is *undefined*
+ #+ATTR_BEAMER: :overlay <+->
+ Example: Are men's and women's heights the same?
+ - $H_0$: The 'null' hypothesis
+ - $P(D | H_0)$ is defined
+ - The alternative is *undefined*
 
+*** Pitfalls
+ #+ATTR_BEAMER: :overlay <+->
+
+**** Problem definition
+ #+ATTR_BEAMER: :overlay <+->
+ - Defining the models $P(D | H_i)$ incorrectly.
+ - Using an "unreasonable" prior $P(H_i)$
+
+**** The garden of many paths
+ #+ATTR_BEAMER: :overlay <+->
+ - Having a huge hypothesis space
+ - Selecting the relevant hypothesis after seeing the data
 
 *** The covid test problem                                         :activity:
 	
@@ -1680,29 +1698,47 @@ Example: Are men's and women's heights the same?
 
  Now, everybody with a positive test raises their hand. I expect it to
  be slightly more than 10% (but it depends).
-
-
-
+ 
 ** Hypothesis testing
 
 Hypothesis testing, or model selection, is a general problem in
 machine learning and statistics. 
    
-*** Types of hypothesis testing
-	There are many types of hypotheses we can do
-#+BEAMER: \pause
-**** Null hypothesis testing: no specific alternatives
-	 - $H_0$: Are men paid the same as women?
-**** Simple hypothesis testing: mutually exclusive alternatives
-	 - Is the defendant innocent ($H_0$) or guilty ($H_1$)?
-**** Confidence intervals: a range of alternatives
-	 - What is a likely vote percentage range for political party $A$?
-   
-*** The garden of many paths
-**** Expanding the hypothesis space
-- Open the Class Data
-	
-*** Confidence intervals
+*** Estimation intervals
+
+Intervals are a generalisation of hypothesis tests. We want to know if
+a given unknown parameter is within some range. Let us give an
+example.
+
+**** Estimating an expectation
+We might have data $x_1, \ldots, x_T$, with $x_t \sim Ber(\theta)$
+from a Bernoulli distribution with parameter $\theta$. While we can
+calculate the mean from the samples, what can we actually say about
+the unknown expectation $\E[x_i] = \theta$?
+
+**** Bayesian credible interval
+The Bayesian idea is intuitive. Through the posterior, we can
+calculate the probability that the true parameter is in any interval $S \subset [0,1]$:
+\[ P(\theta \in S | x_1, \ldots, x_T) \]
+This idea works for any kind of estimation.
+
+**** Confidence interval
+Confidence intervals work the other way round.  First we construct an
+algorithm for obtaining an estimate of the unknown parameter, e.g. the
+empirical mean estimate $\mu(x_1, \dots x_T)$. The confidence interval
+tells us the probability that our estimate is further away than
+$\epsilon$ from the expectation, as an analytic function of $\epsilon$ and the amount of data $n$
+\[
+P(|\mu - \theta| > \epsilon  \mid \theta) \leq \delta(\epsilon, n)
+\]
+
+**** Difference between confidence intervals and credible intervals.
+
+In confidence intervals, we condition on the unknown parameter
+$\theta$, but the function $\delta$ is constructed so that it is
+independent of $\theta$, since that is unknown.
+
+
    
 ** Simulation study :activity:
 
@@ -1710,6 +1746,400 @@ For a simple visualisation problem, vary parameter values and simulate
 thousands of times under each set of conditions. Summarise your
 findings graphically.
    
+
+** Introduction: Estimation, Prediction and Decision Making
+
+*** Correlation example
+ #+CAPTION: Pirates cool the earth?
+ #+NAME:   fig:pirates-global-warming
+ [[./figures/pirates-global-warming.jpg]]
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+
+*** The three main problems in statistics
+**** Estimation
+	 - How many covid patients are there now?
+	 - Which is the best meteorological station?
+	 - What is the right model for planetary motion?
+**** Prediction
+	 - How many covid patients will there be next week?
+	 - Will it rain tomorrow?
+	 - When is the next lunar eclipse?
+**** Decision making
+	 - What covid measures should I take?
+	 - Should I take the umbrella?
+	 - What's the best way to each the next eclipse?
+
+*** Types of variables
+
+**** Observed variables
+ - Telescope images
+ - Survey data from a health authority
+ - Radar measurements in an AV
+
+**** Latent variables
+ - The mass, position and velocity of Mars
+ - Actual number of covid patients
+ - The location and speed of nearby vehicles
+
+**** Decision variables
+ - Can be observed or latent
+ - Selected arbitrarily by humans or machines
+
+*** From correlation to causation.
+
+**** Statistical relation.
+	 - Is smoking related to lung cancer?
+	
+**** Statistical causation.
+	 - Does smoking cause lung cancer?
+	 - Will I get lung cancer if I smoke?
+	
+**** Actual causes.
+	 - Did I get lung cancer because I smoked?
+	
+
+*** Correlation versus Causality
+
+**** Correlation and dependence
+ - Does *knowing* the value of one variable give us *information* about
+   another variables?
+
+**** Causality
+ - Does *changing* the value of one variable *affect* other variables?
+
+
+** Joint and Conditional Probabilities
+*** Correlation: Setting
+    #+ATTR_BEAMER: :overlay <+->
+**** Outline
+ #+ATTR_BEAMER: :overlay <+->
+ - Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
+ - We write $\Pr(x,y)$ to informally mean their joint distribution.
+
+**** Formal definition
+ #+ATTR_BEAMER: :overlay <+->
+ - Underlying probability space $P, \Omega, \Sigma$ with
+ - Outcome space $\Omega$
+ - Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
+ - Probability measure $P : \Sigma \to \Omega$.
+ - RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
+ - Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
+
+*** Conditional probabilities
+ #+ATTR_BEAMER: :overlay <+->
+***** Definition
+ The conditional distribution of $x$ given $y$ is:
+ \[
+ \Pr(x | y) = \Pr(x, y) / \Pr(y)
+ \]
+ Thus, for every value of $y$ we get a different distribution for $x$.
+
+***** Recall definition for events
+ This has the same form.
+ \[
+ P(A | B) = P(A \cap B) / P(B).
+ \]
+
+*** Python example: independent RVs
+
+Let us begin with a simple example of two variables which are independent Bernoulli.
+
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1) = v$
+
+The independence can also be seen in the structure of the program: x and y are generated by two separate calls to ~random.choice()~
+**** One draw of $x,y$
+ #+BEGIN_SRC python
+   import numpy as np
+   theta = 0.6
+   v = 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v, v])
+ #+END_SRC
+
+ #+RESULTS:
+ |  800 | 3221 |
+ | 1192 | 4787 |
+
+
+*** Dependent, Discrete $x, y$
+
+Now let us look at dependent variables. Here $x$ is generated
+first. Then $y$ has a value which depends on what value of $x$ has
+been generated.
+
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1 | x = 0) = v_0$
+ - $\Pr(y = 1 | x = 1) = v_1$
+
+We can also calculate $\Pr(y = 1)$ by using the marginalisation rule:
+\[
+\Pr(y = 1) = \Pr(y = 1 | x=0) \Pr(x = 0) + \Pr(y = 1 | x=1) \Pr(x = 1) = v_0 (1 - \theta) + v_1 \theta.
+\]
+Now let us how to do this programmatically. Here, x is an explicit input to the function that generates y:
+
+ #+BEAMER: \pause
+**** One draw of x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.6
+   v = np.zeros(2)
+   v[0] = 0.4
+   v[1]= 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v[x], v[x]])
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+  
+*** Python example: multiple draws
+Doing this for multiple draws isa bit more complicated, but it can be done. We just need to use the set-builder notation to generate one $y$ for each $x$ generated.
+ #+BEGIN_SRC python
+ import numpy as np
+ n = 10000
+ theta = 0.6
+ v = np.zeros(2)
+ v[0] = 0.4
+ v[1] = 0.8
+ x = np.random.choice(2, p = [1 - theta, theta], size = n)
+ y = np.array([np.random.choice(2, p = [1 - v[x_t], v[x_t]]) for x_t in x])
+ import matplotlib.pyplot as plt
+ A = np.zeros([2,2])
+
+ for i in range(2):
+	 for j in range(2):
+	   A[i,j] = sum((x==i) & (y==j))
+
+ plt.imshow(A)
+ plt.savefig("correlated-binary.png")
+ plt.show()
+ return A
+ #+END_SRC
+
+ #+RESULTS:
+ | 1775 |  208 |
+ |  804 | 7213 |
+
+
+*** Empirical joint probability of x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
+ #+NAME:   fig:dependent
+ [[./figures/correlated-binary.png]]
+
+*** Empirical joint probability of x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.1)$.
+ #+NAME:   fig:dependent
+ [[./figures/independent-binary.png]]
+
+  
+*** Continuous $x, y$
+
+This is the typical structure of regression problems.
+Let us start with a simple normal distribution for both x, y:
+**** Normal-distributed $x, y$
+ - $x \sim Normal(0, 1)$.
+ - $y | x \sim Normal(x, 1)$.
+
+The above notation means that:
+- $x$ has a normal distribution with mean 0 and variance 1.
+- Given the value of $x$, $y$ has a normal distribution with mean $x$ and variance 1.
+
+ #+BEAMER: \pause
+**** One draw from x, y
+This dependence is made explicit in the following code.
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.8
+   x = np.random.normal(0, 1)
+   y = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+  
+*** Continuous $x$, Discretre $y$
+
+This is the typical structure of classification problems.
+   
+**** Normal-distributed $x$, Bernoulli-distributed $y$
+ - $y \sim Bernoulli(0.6)$
+ - $x | y \sim 160 + Normal(10*y, 1)$.
+The above notation means that:
+- $y$ has a Bernoulli distribution with mean 0.6.
+- Given the value of $y$, $x$ has a normal distribution with mean $160 + 10x$ and variance 1.
+
+
+ #+BEAMER: \pause
+**** One draw from x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   y = np.random.choice(2, p = [0.4, 0.6])
+   x = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+*** Covariance matrix
+- Consider a collection of RVs $x_1, \ldots, x_n$.
+- The joint distribution is a complicated object.
+- Visualised with scatterplots $(x_i, x_j)$, e.g.  ~sns.pairplot()~
+
+**** Covariance matrix $C$
+Instead, we can calculate the covariance matrix
+\[
+C_{ij}
+= 
+\frac{\E\{[x_i - \E(x_i)][x_j - \E(x_j)]\}}
+{\sqrt{\E\{[x_i - \E(x_i)]^2\}\E\{[x_i - \E(x_i)]^2\}}}
+\]
+
+**** Approximating the covariance matrix
+- Assuming data $x(t)$ with components $x_i(t)$:
+- $C_{ij} \approx \frac{1}{T} \sum_{t=1}^T [x_i(t) - \mu_i] [x_j(t) - \mu_j] / \sigma_i \sigma_j$.
+- $\mu_i$: (empirical) mean of $x_i$
+- $\sigma_i$: (empirical) standard deviation of $x_i$
+
+*** Correlation versus dependence
+    #+ATTR_BEAMER: :overlay <+->
+**** Dependent random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
+ - equivalently, if $\Pr(x | y) = \Pr(x)$
+ - $x, y$ are dependent if they are not independent.
+
+**** Correlated random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are uncorrelated if $\E(x,y) = \E(x)\E(y)$
+ - Equivalently, if $\E(x | y) = \E(x)$
+ - $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
+
+**** Theorem
+ #+ATTR_BEAMER: :overlay <+->
+ - If $x, y$ are correlated then they are dependent.
+ - If $x, y$ are independent the they are uncorrelated.
+
+** Models of Causation
+
+*** Causal inference vs the actual cause
+   
+**** Causal inference
+ #+ATTR_BEAMER: :overlay <+->
+ - Can aspirine cure headaches? 
+ - Does smoking cause lung cancer?
+ - Or do cancer patients become smokers?
+ - Or is there a third factor causing both?
+**** The actual cause
+ #+ATTR_BEAMER: :overlay <+->
+ - Did aspirin cure *my* headache?
+ - Did smoking cause *my* cancer?
+
+ #+BEAMER: \pause
+**** Applications
+ - Causal inference useful in a scientific setting.
+  
+ - Reliable methods for causal inference exist.
+ - Actual causes useful in a legal setting.
+ - No reliable method or definition exists for determining actual causes.
+
+*** Confounding variables
+**** Arrival at work
+ #+ATTR_BEAMER: :overlay <+->
+ - Tom and Fatima both work in Lausanne.
+ - Whenever Tom is late to work, so is Fatima.
+ - When this happens, there is also a traffic jam.
+
+**** Kidney stone treatment
+ #+ATTR_BEAMER: :overlay <+->
+ - Treatment A is effective 90% of the time
+ - Treatment B is effective 50% of the time.
+ - Why is that? (see src/causality/confounders)x
+
+#+NAME: Treatment efficacy
+|-----------+--------------+--------------|
+| Treatment | Small Stones | Large Stones |
+|-----------+--------------+--------------|
+| A         |          80% |          30% |
+| B         |          90% |          60% |
+|-----------+--------------+--------------|
+
+We see here that treatment B is always better, but Large Stones are
+harder to treat. Let us now consider the treatment policy:
+
+#+NAME: Treatment policy
+|-----------+--------------+--------------|
+| Treatment | Small Stones | Large Stones |
+|-----------+--------------+--------------|
+| A         |          80% |          20% |
+| B         |          20% |          80% |
+|-----------+--------------+--------------|
+
+The treatment policy mostly assigns treatment A when patients have
+small stones, and B for large stones. Hence, as treatment B is applied
+to harder cases, it might look worse on average. In particular, if we calculate the average treatment effect, by marginalising over stones, we have
+
+#+NAME: Average treatment effect
+|-----------+----------------|
+| Treatment | Average Effect |
+|-----------+----------------|
+| A         |            0.7 |
+| B         |           0.66 |
+|-----------+----------------|
+#+TBLFM: @2$2=remote(Treatment efficacy, @2$2)*remote(Treatment policy, @2$2)+remote(Treatment efficacy, @2$3)*remote(Treatment policy, @2$3)
+#+TBLFM: @3$2=remote(Treatment efficacy, @3$2)*remote(Treatment policy, @3$2)+remote(Treatment efficacy, @3$3)*remote(Treatment policy, @3$3)
+
+So, even though the second treatment better both for large and small
+stones, if we ignore the stone size, it looks worse. 
+
+Ignoring the stone size makes it a *confounder*, because it was used
+in the policy, but we ignore it. It wouldn't matter if stone size was
+not used to select the treatment, which is why we typically use
+randomised trials to study the effect of treatments.
+
+*** Instrumental variables
+**** Setting
+- $a$: Treatment
+- $x$: Patient characteristics
+- $y$: Outcome
+
+**** Confounding
+- $x$ is ignored
+- $a$ depends on $x$.
+- $y$ depends on $a, x$.
+
+**** Using $x$ as an instrument
+- $x$ is taken into account
+- We model $\Pr(y | x, a)$, $\Pr(a | x)$
+
+*** Avoiding confounding
+
+**** Randomised studies
+- Treatment is random
+- Hence dependence to $x$ is cut.
+
+**** Selecting an instrument
+- Must be an informed choice
+- A complex instrument can lead to spurious correlations
+
+**** Explicitly model policies $\pi$
+- Treatment policy $\pi$ with $\pi(a | x, \pi)$.
+- Outcomes depend on policy $\pi$
+
+
+
 * Module 4: Advanced visualisation (2 weeks)
 
 ** Geographical data
