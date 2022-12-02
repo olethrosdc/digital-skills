@@ -1824,7 +1824,7 @@ The completed project should include a report written by both students
 in the team. This should should address the points in the [[*Assessment][Assessment]]
 description.
 
-* Reference material
+* Background
 ** Notation
  For convenience, I include necessary mathematical notation
 *** Sets
@@ -2284,6 +2284,20 @@ M_n = \E(f) \mp O(1/\sqrt{n}).
 Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
 
 
+*** Variance                                         :definition:probability:
+The variance of a random variable $f$ is defined as
+\[
+\sigma_f^2 \defn \E\{[f - \E(f)]^2\}.
+\]
+We can rewrite the variance as follows:
+\[
+\sigma_f^2 = \E\{[f - \E(f)]^2\}
+= \E[f^2 - 2f \E(f) + \E(f)^2]
+= \E[f^2] - 2\E(f) \E(f) + \E(f)^2
+= \E[f^2] -\E(f)^2.
+\]
+The variance is another example of a moment of a random variable. More
+complicated moments, such as skew and kurtosis exist.
 
 *** Conditional expectation :definition:probability:
 
