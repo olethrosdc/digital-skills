@@ -280,7 +280,7 @@ C_{ij}
  - Can aspirine cure headaches? 
  - Does smoking cause lung cancer?
  - Or do cancer patients become smokers?
-
+ - Or is there a third factor causing both?
 **** The actual cause
  #+ATTR_BEAMER: :overlay <+->
  - Did aspirin cure *my* headache?
@@ -330,48 +330,10 @@ C_{ij}
 
 **** Selecting an instrument
 - Must be an informed choice
-- A complex instrument can lead
+- A complex instrument can lead to spurious correlations
 
 **** Explicitly model policies $\pi$
-- Treatment policy $\pi$ with $\Pr(a | x, \pi)$.
+- Treatment policy $\pi$ with $\pi(a | x, \pi)$.
 - Outcomes depend on policy $\pi$
 
-*** Graphical explanation
-#+name: example-node-table
-| *node*   | *label* | *shape* | *fillcolor* |
-|----------+---------+---------+-------------|
-| policy   | $\pi$   | square  | blue        |
-| action   | $a$     | circle  |             |
-| features | $x$     | circle  |             |
-| outcome  | $y$     | circle  |             |
 
-#+name: example-graph
-| from     | to      | label      |
-|----------+---------+------------|
-| policy   | action  |            |
-| features | action  | instrument |
-| features | outcome |            |
-| action   | outcome |            |
-
-+name: graph-from-tables
-#+HEADER: :var nodes=example-node-table graph=example-graph
-#+BEGIN_SRC emacs-lisp :file ~/example-diagram.png :colnames yes :exports results
-    (org-babel-execute:dot
-     (concat
-          "digraph {\n"
-          "//rankdir=LR;\n" ;; remove comment characters '//' for horizontal layout; add for vertical layout
-          (mapconcat
-           (lambda (x)
-             (format "%s [label=\"%s\" shape=%s style=\"filled\" fillcolor=\"%s\"]"
-                             (car x)
-                             (nth 1 x)
-                             (if (string= "" (nth 2 x)) "box" (nth 2 x))
-                             (if (string= "" (nth 3 x)) "none" (nth 3 x))
-                             )) nodes "\n")
-          "\n"
-          (mapconcat
-           (lambda (x)
-             (format "%s -> %s [taillabel=\"%s\"]"
-                             (car x) (nth 1 x) (nth 2 x))) graph "\n")
-          "}\n") params)
-#+END_SRC
