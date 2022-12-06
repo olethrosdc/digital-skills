@@ -174,7 +174,7 @@ https://petlab.officialstatistics.org/
 
 	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
 
-* Module 1: Visualisation as models and data summary (4 weeks)
+* Module 1: Visualisation as models and data summary
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -964,7 +964,7 @@ This has two different data frames.
   merged = ur.merge(gdp)
 #+END_SRC
 	
-* Module 2: Experiment design  (3 weeks)
+* Module 2: Experiment design
 ** Data collection and cleaning :activity:
 ** Random sampling
 
@@ -983,7 +983,7 @@ You each support one of the following political groups:
   
 In this exercise, we will try to measure the support for different political parties.
 
-**** Fixed affiliations :activity:
+*** Fixed affiliations                                             :activity:
 
 1. Deal cards so that 40% of the students are red, and 60% are blue.
 
@@ -1015,7 +1015,7 @@ We can repeat the same procedure with a different sampling method:
 
    
 
-**** Simulated sampling from the larger population                 :activity:
+*** Simulated sampling from the larger population                  :activity:
 
 Here we assign a random affiliation to each one of you.
 Throw a die for your political affiliation:
@@ -1048,7 +1048,7 @@ of votes for each party?
 
 
 
-**** Connecting probabilities of outcomes to probabilities :probability:theory:example:
+*** From random dice to random votes                    :probability:example:
 From a probability perspective, we can think of the die as having
 random outcomes in $\Omega = [9]$.  The random variable is the party
 vote $v : \Omega \to \{R, G, B\}$ with
@@ -1069,13 +1069,12 @@ The probability that $v = R$, which we write informally as $\Pr(v = R)$,
 \Pr(v = R) = P(\{\omega : v(\omega) = R\}) = P(\{0,1\}) = 2.
 \]
 
-**** Expectations                                       :probability:theory:example:
+*** Expectations                                 :probability:theory:example:
 
 If we know the probability that a randomly chosen voter will vote for
-the $i$-party, then what is the probability of different numbers of votes?
+the i-th party, then what is the probability of different numbers of votes?
 What is the expected number of votes for each party?
-
-First, let us consider another random variable:
+To solv this problm, we need to define another random variable:
 
 - $n_i$: the number of votes cast for each party $i$.
 
@@ -1083,7 +1082,7 @@ This total number of votes depends on the party affiliation of each voter. Let
 - $\omega_t$ be the random die of person $t$.
 - $v_t = v(\omega_t)$ is then the party affiliation of person $t$.
 
-We collect the random die into one big vector
+We collect the random dice of all individuals into one big vector
 \[
 \omega = (\omega_1, \ldots, \omega_t, \ldots, \omega_T), \qquad \omega \in \Omega^T, \omega_t \in \Omega
 \]
@@ -1099,8 +1098,10 @@ expectation.
 
  \[ \E_P[n_i] = \sum_\omega P^T(\omega) n_i(\omega) \]
 
-Here $P^T$ is the combined distribution of all persons dice.
-The main assumption we must make is that each person's die is independent of everybody else's. Then
+Here $P^T$ is the joint distribution of all persons dice.  The main
+assumption we must make is that each person's die is independent of
+everybody else's. Then this joint distribution can be written as the
+following product:
 \[
 P^T(\omega) = \prod_{t=1}^T P(\omega_t).
 \]
@@ -1108,30 +1109,38 @@ Consequently, the expectation becomes
 \begin{align*}
 \E_P[n_i]
 &=
-\sum_{\omega \in \Omega^T} P^T(\omega) n_i(\omega)\\
+\sum_{\omega \in \Omega^T} P^T(\omega) n_i(\omega) \tag{by definition}\\
 &=
-\sum_{\omega \in \Omega^T} P^T(\omega) \sum_{j=1}^T \mathbb{I} \{v_j = i\}\\
+\sum_{\omega \in \Omega^T} P^T(\omega) \sum_{j=1}^T \mathbb{I} \{v_j = i\} \tag{by the definitionm of $n_i$}\\
 &=
-\sum_{\omega \in \Omega^T} \sum_{j=1}^T P^T(\omega)  \mathbb{I} \{v_j = i\}\\
+\sum_{\omega \in \Omega^T} \sum_{j=1}^T P^T(\omega)  \mathbb{I} \{v_j = i\} \tag{moving $P^T$ inside}\\
 &=
-\sum_{j=1}^T \sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}]\\
+\sum_{j=1}^T \sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}] \tag{changing the order of summation}\\
 &=
-\sum_{j=1}^T P^T(\{\omega : v(\omega_j = i)\})\\
+\sum_{j=1}^T P^T(\{\omega : v(\omega_j) = i\}) \tag{rewriting the event}\\
 &=
-\sum_{j=1}^T P(\{\omega_j : v(\omega_j = i)\})\\
+\sum_{j=1}^T P(\{\omega_j : v(\omega_j) = i\}) \tag{by independence}\\
 &=
-\sum_{j=1}^T P_v(i)\\
+\sum_{j=1}^T P_v(i) \tag{by definition}\\
 &=
 T P_v(i).
 \end{align*}
+The conceptually tricky part is that
+\[
+\sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}]
+=
+P^T(\{\omega : v(\omega_j) = i\}).
+\]
+This does not follow from a complex probabilistic reasoning. The right hand side is simply the set of all $\omega \in \Omega^T$ with $v(\omega_j) = i$.
+The left hand side is summing over /all/ possible $\omega$, but multiplying with zero all those for which their corresponding value is not $i$. Thus, the two terms are equal.
 The independence assumption is used to show that
-$P^T(\{\omega : v(\omega_j = i)\}
+$P^T(\{\omega : v(\omega_j) = i\}
  = 
-P(\{\omega_j : v(\omega_j = i)\})$
+P(\{\omega_j : v(\omega_j) = i\})$
 The other steps do not require any assumptions.
 
 
-**** The probability measure induced by a random variable f :probability:theory:advanced:example:
+*** The probability measure induced by a random variable f :probability:theory:advanced:example:
 
 We already define a probability measure $P$ on the outcomes
 $\Omega$. Since $f$ is a function on $\Omega$, we can also define an
@@ -1146,7 +1155,7 @@ we abuse notation. Normally we would write $P_f(\{R\})$ to denote the
 set consisting only of R$.
 
 
-**** Random sampling :activity:
+*** Random sampling                                                :activity:
 
 Each one of you throws a second die and records the outcome. We now have
 |-----+-------+---------------|
@@ -1226,7 +1235,6 @@ In sampling without replacement, each outcome can appear at most once.
  In the following example, $\omega \in \{0, 1, 2, 3\}$, with
  $P(\omega)$, specified by the vector =P[]=
 
- z1
  #+BEGIN_SRC python :results output
    import numpy as np
    # Let us define the space Omega
@@ -1257,7 +1265,7 @@ In sampling without replacement, each outcome can appear at most once.
  : 5.0
 
  
-**** What is the expectation of this variable? :exercise:
+*** What is the expectation of this variable?                      :exercise:
 
 In our case, $f(\omega) = \omega^2$. Let us first consider a discrete $\Omega$:
 
@@ -1287,7 +1295,7 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 \]
 
 
-**** Centime exercise                                     :activity:advanced:
+*** Centime exercise                                      :activity:advanced:
 
  A jar with coins is passed around the class. 
  1. The students are asked to guess how many coins it contains.
@@ -1319,7 +1327,6 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 
 5. We now write the student heights, and average. The average height
    of the sample is our random variable.
-
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components.
@@ -1468,7 +1475,7 @@ chances of success. How should you do the study?
 
 	 After testing the whole pipeline, we can see if it actually works as intended.
 
-* Module 3: Inference (2 weeks)
+* Module 3: Inference
 ** Logic and bar graphs                                              :theory:
 
 How many people are taking CS? How many are in other courses? Let us
@@ -1703,7 +1710,7 @@ We can associate events with sets in a universe. The following laws apply:
 
 Hypothesis testing, or model selection, is a general problem in
 machine learning and statistics. 
-   
+
 *** Estimation intervals
 
 Intervals are a generalisation of hypothesis tests. We want to know if
@@ -1723,14 +1730,14 @@ calculate the probability that the true parameter is in any interval $S \subset 
 This idea works for any kind of estimation.
 
 **** Confidence interval
+
 Confidence intervals work the other way round.  First we construct an
 algorithm for obtaining an estimate of the unknown parameter, e.g. the
 empirical mean estimate $\mu(x_1, \dots x_T)$. The confidence interval
 tells us the probability that our estimate is further away than
-$\epsilon$ from the expectation, as an analytic function of $\epsilon$ and the amount of data $n$
-\[
-P(|\mu - \theta| > \epsilon  \mid \theta) \leq \delta(\epsilon, n)
-\]
+$\epsilon$ from the expectation, as an analytic function of $\epsilon$
+and the amount of data $n$ \[ P(|\mu - \theta| > \epsilon \mid \theta)
+\leq \delta(\epsilon, n) \]
 
 **** Difference between confidence intervals and credible intervals.
 
@@ -2139,8 +2146,7 @@ randomised trials to study the effect of treatments.
 - Outcomes depend on policy $\pi$
 
 
-
-* Module 4: Advanced visualisation (2 weeks)
+* Module 4: Advanced visualisation
 
 ** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
@@ -2154,10 +2160,6 @@ randomised trials to study the effect of treatments.
 2. Density plots
    	 
 ** Text data
-* Module 5: Data analysis in practice (2 weeks)
-** Visualising fMRI data
-** Visualising GWAS data
-* Module 6: Project work and presentations (2 weeks)
 
 * Assignments
 
