@@ -2290,13 +2290,23 @@ and the manufacturers about power consumption of each vehicle. These
 can be synthesized into a range of consumption numbers [Detail how
 exactly you do the synthesis]. For the construction of a vehicle it is
 hard to get exact numbers but we used estimates from these articles
-[cite the articles]. 
-
+[cite the articles]. Because there might be a manufacturer bias (some
+might generally use more intensive processes than others), we will
+focus on comparing equivalent models within a manufacturer with
+different engine and drive-trains.
+ 
 4. Results
 
 Here give a number of plots to answer your question. Section 3 should
 say how the plots were arrived at. In this section, you should explain
 the meaning of these plots and what they show.
+
+Example: Stacked bar plots of CO2 emissions for different types of
+vehicles, grouped by manufacturer. Differences in CO2 emissoins
+between catagories for each manufacturer. The plots might show that
+e.g. Renault overall has lowre emissions than Ford, but that in either
+case the EV vehicles have lower lifetime emissions than their Diesel
+counterparts.
 
 5. Conclusion
 
@@ -2304,7 +2314,11 @@ Are you able to arrive at a firm conclusion or not? If so, what is it?
 If not, would more data help you to obtain a clearer conclusion?  Are
 you happy with your methodology, or could it be improved?
 
-
+Example: You have firmly concluded that in-use emissions are lower for
+EVs than internal combustion vehicles. However, you were unable to
+obtain data regarding disposal and so have left that out of the
+analysis. More-over, the uncertainty about construction emissions are too great
+to be able to see a significant difference. 
 
 
 
