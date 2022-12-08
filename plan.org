@@ -2247,14 +2247,67 @@ After you have started your project, each one of the project members
 presents a preliminary plot and explains it (5 minutes). 
 
 *** Project presentation
-DEADLINE: <2022-12-02 Fr>
+DEADLINE: <2022-12-16 Fr>
 
 *** Project report
-DEADLINE: <2022-12-16 Fr>
+DEADLINE: <2022-12-21 Mi>
 
 The completed project should include a report written by both students
 in the team. This should should address the points in the [[*Assessment][Assessment]]
 description.
+
+Suggested structure for the report:
+
+1. Hypotheses and scientific question.
+
+What is the main scientific question you want to answer? After a
+general introduction to the question, be more precise and list all
+alternative hypotheses that you would like to examine. 
+
+Example: We wanted to see if electric, diesel or gasoline vehicles are
+more environmentally friendly.  More specifically, we will compare the
+lifetime carbon emissions of vehicles of all types, including material
+sourcing, construction, driving and fuel sources, maintainance and disposal.
+
+2. Data collection and experiment design
+
+What data did you use to answer your question? How has the data been
+collected? What are the main chracteristics of the data? 
+
+Example: We will collect data from a few representative manufacturers
+which produce both EV and internal combustion vehicles. This will be
+combined with measurements from national environmental agencies and
+NGOs. [Then detail the list of sources and what data you obtain from each]
+
+3. Methodology
+
+How will you use the data to answer the question? Explain in as
+precise terms as possible. 
+
+Example: The easiest part to measure is the CO2 emissions during car
+use. We can obtain measurements from government agencies, magazines
+and the manufacturers about power consumption of each vehicle. These
+can be synthesized into a range of consumption numbers [Detail how
+exactly you do the synthesis]. For the construction of a vehicle it is
+hard to get exact numbers but we used estimates from these articles
+[cite the articles]. 
+
+4. Results
+
+Here give a number of plots to answer your question. Section 3 should
+say how the plots were arrived at. In this section, you should explain
+the meaning of these plots and what they show.
+
+5. Conclusion
+
+Are you able to arrive at a firm conclusion or not? If so, what is it?
+If not, would more data help you to obtain a clearer conclusion?  Are
+you happy with your methodology, or could it be improved?
+
+
+
+
+
 
 * Background
 ** Notation
