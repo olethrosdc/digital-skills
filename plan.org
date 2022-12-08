@@ -712,6 +712,113 @@ you need to use.
  #+END_SRC
 
 
+*** Randomness												  :code:activity:
+*Random algorithms using coins*.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 31
+
+*Uncertainty vs randomness: coin-flipping experiment*
+	 1. Everybody flips a coin 10 times.
+	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
+	 3. Then record how you threw the coin and what coin it was.
+	 4. Discuss if the coin is really random.
+	 5. What is the distribution of coin throws for the first throw?
+	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
+	 7. Does it make sense to aggregate all the results? What does that assume?
+
+
+
+In the context of experiment design and data analysis, it is very
+common to have conditions like those in this example.  Even though we
+wish there was such a thing as the 'repeated experiment', in practice
+it never is repeated. There is always some varying factor.
+
+*Pseudo-random numbers*
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+*Physical sources of randomness*
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is uncertainty about the coin
+ bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+ What physical source of randomness can we use instead of coins?
+
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants                                      :activity:
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+
+
+  
+
+
+
 ** Time-Series: model the evolution of a system
 
  A time series $x_1, \ldots, x_t$ is simply a sequence of variables. We
@@ -1819,12 +1926,22 @@ findings graphically.
 
 
 ** Joint and Conditional Probabilities
+
+Here we go into some more detail about joint and conditoinal probabilities.
+
 *** Correlation: Setting
     #+ATTR_BEAMER: :overlay <+->
+
+Let us start with the general setting. 
+
 **** Outline
  #+ATTR_BEAMER: :overlay <+->
  - Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
  - We write $\Pr(x,y)$ to informally mean their joint distribution.
+
+For a formal definition, we must define an appropriate probability
+measure on $\Omega$, which will then result in a new measure on the
+space defined by the two variables of interest, as follows:
 
 **** Formal definition
  #+ATTR_BEAMER: :overlay <+->
@@ -1835,6 +1952,8 @@ findings graphically.
  - RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
  - Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
 
+However, this is not, strictly speaking, necessary for an intuitive understanding.
+
 *** Conditional probabilities
  #+ATTR_BEAMER: :overlay <+->
 ***** Definition
@@ -1842,7 +1961,7 @@ findings graphically.
  \[
  \Pr(x | y) = \Pr(x, y) / \Pr(y)
  \]
- Thus, for every value of $y$ we get a different distribution for $x$.
+ Thus, for every value of $y$ we get a different distribution for $x$, called $\Pr(x | y)$.
 
 ***** Recall definition for events
  This has the same form.
@@ -1934,16 +2053,16 @@ Doing this for multiple draws isa bit more complicated, but it can be done. We j
  |  804 | 7213 |
 
 
-*** Empirical joint probability of x, y
+*** Empirical joint probability of correlated x, y
 	
  #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
  #+NAME:   fig:dependent
  [[./figures/correlated-binary.png]]
 
-*** Empirical joint probability of x, y
+*** Empirical joint probability of independent x, y
 	
  #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.1)$.
- #+NAME:   fig:dependent
+ #+NAME:   fig:independent
  [[./figures/independent-binary.png]]
 
   
@@ -2145,7 +2264,6 @@ randomised trials to study the effect of treatments.
 - Treatment policy $\pi$ with $\pi(a | x, \pi)$.
 - Outcomes depend on policy $\pi$
 
-
 * Module 4: Advanced visualisation
 
 ** Geographical data
@@ -2323,7 +2441,7 @@ to be able to see a significant difference.
 
 
 
-* Background
+* Theoretical Background
 ** Notation
  For convenience, I include necessary mathematical notation
 *** Sets
@@ -2372,111 +2490,6 @@ For some more technical details, see [[*Probability space][Probability space]].
 
 See also:
 - https://en.wikipedia.org/wiki/Probability
-
-*** Randomness												  :code:activity:
-*Random algorithms using coins*.
- #+BEGIN_SRC python
-   y = 0 # y is a variable, with the value zero currently
-   import numpy as np # this library has many useful functions
-   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
-   return x # let's see what value it takes
- #+END_SRC
- #+RESULTS:
- : 31
-
-*Uncertainty vs randomness: coin-flipping experiment*
-	 1. Everybody flips a coin 10 times.
-	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
-	 3. Then record how you threw the coin and what coin it was.
-	 4. Discuss if the coin is really random.
-	 5. What is the distribution of coin throws for the first throw?
-	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
-	 7. Does it make sense to aggregate all the results? What does that assume?
-
-
-
-In the context of experiment design and data analysis, it is very
-common to have conditions like those in this example.  Even though we
-wish there was such a thing as the 'repeated experiment', in practice
-it never is repeated. There is always some varying factor.
-
-*Pseudo-random numbers*
-
- Let us now repeat the experiment with data generated via a computer.
- #+BEGIN_SRC python
- # here is a default way to generate 'random' numbers
- import random
- X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
- plt.hist(X) # everytime we run these commands, we get a different proportion
- #+END_SRC
-
- #+RESULTS:
-
- This python code is completely deterministic. A complicated
- calculation is used to generate the next 'random' number from the
- previous one. Consider this example:
- #+BEGIN_SRC python
- import random
- seed(5) #this sets the 'state' of the random number generating machine
- print(random.uniform(0,1)) # the random number is a function of the state
- print(random.uniform(0,1)) # the state changes after we generate a new number
- print(random.uniform(0,1))
- seed(5) # when we reset the state, we get the same sequence of numbers
- print(random.uniform(0,1)) #
- print(random.uniform(0,1))
- print(random.uniform(0,1))
- #+END_SRC
-
- For cryptographically strong random numbers you need to use the secrets module:
- #+BEGIN_SRC python
- import secrets
- secrets.choice(range(100))
- #+END_SRC
-
-*Physical sources of randomness*
-
- Let's go back to throwing coins now. Coins are completely
- deterministic.  Whenever we have a specific coin to throw in the air,
- there are two things we do not know. The first is which side the coin
- will land on. Why is that? The second is uncertainty about the coin
- bias: is the probability of landing heads exactly 50%? How can we
- quantify this? What does it depend on? Discuss in class.
-
- What physical source of randomness can we use instead of coins?
-
-*** Uncertainty													   :activity:
-
-Probability is not only used to model random events. In fact, almost
-nothing can be said to be really random, unless we go into quantum
-physics. Even a die thrown in the air follows precise mechanical
-laws. Given enough information, it is possible to accurately predict
-the outcome of a throw.
-
-For that reason, probability is best thought of as a way to model any
-residual uncertainty we have about an event. Then the probability of
-an event is simply a subjective measure of the likelihood. 
-
-While probability offers a nice mathematical formulation of
-uncertainty, when this uncertainty is subjective, the question arises:
-how can we elicit precise probabilities about uncertain events from
-individuals?  Here is an example.
-
-**** The number of immigrants                                      :activity:
- Consider the following question: how many immigrants live in
- Switzerland?  
-
- 1. In-class discussion: what do we mean by that?
-
- 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
-
- What does this distribution mean? Can we use it as an estimate of uncertainty?
-
- 3. Now let us create some confidence intervals. The procedure is as
- follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
- (a) Are you willing to take an even bet that the true number is between [5-10%]?
-
-
-  
 
 
 *** Probability space :theory:probability:
