@@ -549,6 +549,14 @@ The following program assigns arrays-values to variables. Now x, y are both list
  #+RESULTS:
  | -1 | -2 |
 
+*** Python lists and tests :code:math:
+A python list is similar, but not identical to, a mathematical set.
+**** A finite set $S$
+\[
+S = \{x_1, x_2, \ldots, x_n\}.
+\]
+
+
 *** Numpy arrays                                              :advanced:code:
 
  Because lists are very flexible, they are a bit slow. A special type
@@ -2983,12 +2991,8 @@ Python help: Use python's !help! function whenever you can.
 help(print)
 #+END_SRC
 
-** Some workshops
-- https://vishub.net/bach
-- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
-- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
-
 ** Books
+- [BT] Introduction to Probability, Bertsekas and Tsitsiklis preprint at: https://vfu.bg/en/e-Learning/Math--Bertsekas_Tsitsiklis_Introduction_to_probability.pdf >
 - [CA] The Truthful Art. Cairo, Alberto :book:
 - [GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel 
  (Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)
