@@ -174,7 +174,7 @@ https://petlab.officialstatistics.org/
 
 	https://www.drivendata.org/competitions/97/nasa-mars-gcms/
 
-* Module 1: Visualisation as models and data summary (4 weeks)
+* Module 1: Visualisation as models and data summary
 
  What is visualisation? It is a way to /summarise data/. It is also a way
  to view relationships between variables. Visualisation helps us to
@@ -549,6 +549,14 @@ The following program assigns arrays-values to variables. Now x, y are both list
  #+RESULTS:
  | -1 | -2 |
 
+*** Python lists and tests :code:math:
+A python list is similar, but not identical to, a mathematical set.
+**** A finite set $S$
+\[
+S = \{x_1, x_2, \ldots, x_n\}.
+\]
+
+
 *** Numpy arrays                                              :advanced:code:
 
  Because lists are very flexible, they are a bit slow. A special type
@@ -710,6 +718,113 @@ you need to use.
  #+BEGIN_SRC: python
  plt.pie(counts) # plot counts
  #+END_SRC
+
+
+*** Randomness												  :code:activity:
+*Random algorithms using coins*.
+ #+BEGIN_SRC python
+   y = 0 # y is a variable, with the value zero currently
+   import numpy as np # this library has many useful functions
+   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
+   return x # let's see what value it takes
+ #+END_SRC
+ #+RESULTS:
+ : 31
+
+*Uncertainty vs randomness: coin-flipping experiment*
+	 1. Everybody flips a coin 10 times.
+	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
+	 3. Then record how you threw the coin and what coin it was.
+	 4. Discuss if the coin is really random.
+	 5. What is the distribution of coin throws for the first throw?
+	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
+	 7. Does it make sense to aggregate all the results? What does that assume?
+
+
+
+In the context of experiment design and data analysis, it is very
+common to have conditions like those in this example.  Even though we
+wish there was such a thing as the 'repeated experiment', in practice
+it never is repeated. There is always some varying factor.
+
+*Pseudo-random numbers*
+
+ Let us now repeat the experiment with data generated via a computer.
+ #+BEGIN_SRC python
+ # here is a default way to generate 'random' numbers
+ import random
+ X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
+ plt.hist(X) # everytime we run these commands, we get a different proportion
+ #+END_SRC
+
+ #+RESULTS:
+
+ This python code is completely deterministic. A complicated
+ calculation is used to generate the next 'random' number from the
+ previous one. Consider this example:
+ #+BEGIN_SRC python
+ import random
+ seed(5) #this sets the 'state' of the random number generating machine
+ print(random.uniform(0,1)) # the random number is a function of the state
+ print(random.uniform(0,1)) # the state changes after we generate a new number
+ print(random.uniform(0,1))
+ seed(5) # when we reset the state, we get the same sequence of numbers
+ print(random.uniform(0,1)) #
+ print(random.uniform(0,1))
+ print(random.uniform(0,1))
+ #+END_SRC
+
+ For cryptographically strong random numbers you need to use the secrets module:
+ #+BEGIN_SRC python
+ import secrets
+ secrets.choice(range(100))
+ #+END_SRC
+
+*Physical sources of randomness*
+
+ Let's go back to throwing coins now. Coins are completely
+ deterministic.  Whenever we have a specific coin to throw in the air,
+ there are two things we do not know. The first is which side the coin
+ will land on. Why is that? The second is uncertainty about the coin
+ bias: is the probability of landing heads exactly 50%? How can we
+ quantify this? What does it depend on? Discuss in class.
+
+ What physical source of randomness can we use instead of coins?
+
+*** Uncertainty													   :activity:
+
+Probability is not only used to model random events. In fact, almost
+nothing can be said to be really random, unless we go into quantum
+physics. Even a die thrown in the air follows precise mechanical
+laws. Given enough information, it is possible to accurately predict
+the outcome of a throw.
+
+For that reason, probability is best thought of as a way to model any
+residual uncertainty we have about an event. Then the probability of
+an event is simply a subjective measure of the likelihood. 
+
+While probability offers a nice mathematical formulation of
+uncertainty, when this uncertainty is subjective, the question arises:
+how can we elicit precise probabilities about uncertain events from
+individuals?  Here is an example.
+
+**** The number of immigrants                                      :activity:
+ Consider the following question: how many immigrants live in
+ Switzerland?  
+
+ 1. In-class discussion: what do we mean by that?
+
+ 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
+
+ What does this distribution mean? Can we use it as an estimate of uncertainty?
+
+ 3. Now let us create some confidence intervals. The procedure is as
+ follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
+ (a) Are you willing to take an even bet that the true number is between [5-10%]?
+
+
+  
+
 
 
 ** Time-Series: model the evolution of a system
@@ -964,7 +1079,7 @@ This has two different data frames.
   merged = ur.merge(gdp)
 #+END_SRC
 	
-* Module 2: Experiment design  (3 weeks)
+* Module 2: Experiment design
 ** Data collection and cleaning :activity:
 ** Random sampling
 
@@ -983,7 +1098,7 @@ You each support one of the following political groups:
   
 In this exercise, we will try to measure the support for different political parties.
 
-**** Fixed affiliations :activity:
+*** Fixed affiliations                                             :activity:
 
 1. Deal cards so that 40% of the students are red, and 60% are blue.
 
@@ -1015,7 +1130,7 @@ We can repeat the same procedure with a different sampling method:
 
    
 
-**** Simulated sampling from the larger population                 :activity:
+*** Simulated sampling from the larger population                  :activity:
 
 Here we assign a random affiliation to each one of you.
 Throw a die for your political affiliation:
@@ -1048,7 +1163,7 @@ of votes for each party?
 
 
 
-**** Connecting probabilities of outcomes to probabilities :probability:theory:example:
+*** From random dice to random votes                    :probability:example:
 From a probability perspective, we can think of the die as having
 random outcomes in $\Omega = [9]$.  The random variable is the party
 vote $v : \Omega \to \{R, G, B\}$ with
@@ -1069,13 +1184,12 @@ The probability that $v = R$, which we write informally as $\Pr(v = R)$,
 \Pr(v = R) = P(\{\omega : v(\omega) = R\}) = P(\{0,1\}) = 2.
 \]
 
-**** Expectations                                       :probability:theory:example:
+*** Expectations                                 :probability:theory:example:
 
 If we know the probability that a randomly chosen voter will vote for
-the $i$-party, then what is the probability of different numbers of votes?
+the i-th party, then what is the probability of different numbers of votes?
 What is the expected number of votes for each party?
-
-First, let us consider another random variable:
+To solv this problm, we need to define another random variable:
 
 - $n_i$: the number of votes cast for each party $i$.
 
@@ -1083,7 +1197,7 @@ This total number of votes depends on the party affiliation of each voter. Let
 - $\omega_t$ be the random die of person $t$.
 - $v_t = v(\omega_t)$ is then the party affiliation of person $t$.
 
-We collect the random die into one big vector
+We collect the random dice of all individuals into one big vector
 \[
 \omega = (\omega_1, \ldots, \omega_t, \ldots, \omega_T), \qquad \omega \in \Omega^T, \omega_t \in \Omega
 \]
@@ -1099,8 +1213,10 @@ expectation.
 
  \[ \E_P[n_i] = \sum_\omega P^T(\omega) n_i(\omega) \]
 
-Here $P^T$ is the combined distribution of all persons dice.
-The main assumption we must make is that each person's die is independent of everybody else's. Then
+Here $P^T$ is the joint distribution of all persons dice.  The main
+assumption we must make is that each person's die is independent of
+everybody else's. Then this joint distribution can be written as the
+following product:
 \[
 P^T(\omega) = \prod_{t=1}^T P(\omega_t).
 \]
@@ -1108,30 +1224,38 @@ Consequently, the expectation becomes
 \begin{align*}
 \E_P[n_i]
 &=
-\sum_{\omega \in \Omega^T} P^T(\omega) n_i(\omega)\\
+\sum_{\omega \in \Omega^T} P^T(\omega) n_i(\omega) \tag{by definition}\\
 &=
-\sum_{\omega \in \Omega^T} P^T(\omega) \sum_{j=1}^T \mathbb{I} \{v_j = i\}\\
+\sum_{\omega \in \Omega^T} P^T(\omega) \sum_{j=1}^T \mathbb{I} \{v_j = i\} \tag{by the definitionm of $n_i$}\\
 &=
-\sum_{\omega \in \Omega^T} \sum_{j=1}^T P^T(\omega)  \mathbb{I} \{v_j = i\}\\
+\sum_{\omega \in \Omega^T} \sum_{j=1}^T P^T(\omega)  \mathbb{I} \{v_j = i\} \tag{moving $P^T$ inside}\\
 &=
-\sum_{j=1}^T \sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}]\\
+\sum_{j=1}^T \sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}] \tag{changing the order of summation}\\
 &=
-\sum_{j=1}^T P^T(\{\omega : v(\omega_j = i)\})\\
+\sum_{j=1}^T P^T(\{\omega : v(\omega_j) = i\}) \tag{rewriting the event}\\
 &=
-\sum_{j=1}^T P(\{\omega_j : v(\omega_j = i)\})\\
+\sum_{j=1}^T P(\{\omega_j : v(\omega_j) = i\}) \tag{by independence}\\
 &=
-\sum_{j=1}^T P_v(i)\\
+\sum_{j=1}^T P_v(i) \tag{by definition}\\
 &=
 T P_v(i).
 \end{align*}
+The conceptually tricky part is that
+\[
+\sum_{\omega \in \Omega^T} [P^T(\omega)  \mathbb{I} \{v_j = i\}]
+=
+P^T(\{\omega : v(\omega_j) = i\}).
+\]
+This does not follow from a complex probabilistic reasoning. The right hand side is simply the set of all $\omega \in \Omega^T$ with $v(\omega_j) = i$.
+The left hand side is summing over /all/ possible $\omega$, but multiplying with zero all those for which their corresponding value is not $i$. Thus, the two terms are equal.
 The independence assumption is used to show that
-$P^T(\{\omega : v(\omega_j = i)\}
+$P^T(\{\omega : v(\omega_j) = i\}
  = 
-P(\{\omega_j : v(\omega_j = i)\})$
+P(\{\omega_j : v(\omega_j) = i\})$
 The other steps do not require any assumptions.
 
 
-**** The probability measure induced by a random variable f :probability:theory:advanced:example:
+*** The probability measure induced by a random variable f :probability:theory:advanced:example:
 
 We already define a probability measure $P$ on the outcomes
 $\Omega$. Since $f$ is a function on $\Omega$, we can also define an
@@ -1146,7 +1270,7 @@ we abuse notation. Normally we would write $P_f(\{R\})$ to denote the
 set consisting only of R$.
 
 
-**** Random sampling :activity:
+*** Random sampling                                                :activity:
 
 Each one of you throws a second die and records the outcome. We now have
 |-----+-------+---------------|
@@ -1226,7 +1350,6 @@ In sampling without replacement, each outcome can appear at most once.
  In the following example, $\omega \in \{0, 1, 2, 3\}$, with
  $P(\omega)$, specified by the vector =P[]=
 
- z1
  #+BEGIN_SRC python :results output
    import numpy as np
    # Let us define the space Omega
@@ -1257,7 +1380,7 @@ In sampling without replacement, each outcome can appear at most once.
  : 5.0
 
  
-**** What is the expectation of this variable? :exercise:
+*** What is the expectation of this variable?                      :exercise:
 
 In our case, $f(\omega) = \omega^2$. Let us first consider a discrete $\Omega$:
 
@@ -1287,7 +1410,7 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 \]
 
 
-**** Centime exercise                                     :activity:advanced:
+*** Centime exercise                                      :activity:advanced:
 
  A jar with coins is passed around the class. 
  1. The students are asked to guess how many coins it contains.
@@ -1319,7 +1442,6 @@ For our specific example, let us choose $p$ to be the uniform distribution on $[
 
 5. We now write the student heights, and average. The average height
    of the sample is our random variable.
-
 
 ** The data science pipeline
  The experimental pipipeline has a number of different components.
@@ -1468,7 +1590,7 @@ chances of success. How should you do the study?
 
 	 After testing the whole pipeline, we can see if it actually works as intended.
 
-* Module 3: Inference (2 weeks)
+* Module 3: Inference
 ** Logic and bar graphs                                              :theory:
 
 How many people are taking CS? How many are in other courses? Let us
@@ -1501,7 +1623,7 @@ We can associate events with sets in a universe. The following laws apply:
 5. If $A$ and $B$ are disjoint, i.e. $A \cap B = \emptyset$ (they have
    an empty inersection) then $A, B$ are *mutually exclusive*. That
    means that it is impossible for $A, B$ to both be true.
-** Bayesian analysis
+** Conditional Probability and the Theorem of Bayes
 *** Bayes theorem                                        :theory:probability:
  #+ATTR_BEAMER: :overlay <+->
  - Recall the definition of Conditional probability:
@@ -1521,14 +1643,14 @@ We can associate events with sets in a universe. The following laws apply:
  - So we can reverse the order of conditioning, i.e. relate to the probability of A given B to that of B given A.
 
 *** The cards problem
- 1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
- 2. If you have an A, what is the probability of an A on the other side?
- 3. Have the students perform the experiment with:
-    1. Draw a random card.
-    2. Count the number of people with A.
-    3. What is the probability that somebody with an A on one side will have an A on the other?
-    4. Half of the people should have an A?
-#+BEAMER: \pause
+  1. Print out a number of cards, with either [A|A], [A|B] or [B|B] on their sides.
+  2. If you have an A, what is the probability of an A on the other side?
+  3. Have the students perform the experiment with:
+     1. Draw a random card.
+     2. Count the number of people with A.
+     3. What is the probability that somebody with an A on one side will have an A on the other?
+     4. Half of the people should have an A?
+ #+BEAMER: \pause
 
 **** The prior and posterior probabilities
 	 | A | A | 2/6 | A observed | 2/3
@@ -1536,7 +1658,7 @@ We can associate events with sets in a universe. The following laws apply:
 	 | B | A | 1/6 |            |
 	 | B | B | 2/6 |            |
 
- 
+** Bayesian analysis example
 *** The murder problem
  #+ATTR_BEAMER: :overlay <+->
  - Somebody saw somebody matching their description and he was found
@@ -1549,24 +1671,23 @@ We can associate events with sets in a universe. The following laws apply:
 	What is your belief that they have committed the crime? 
 	
 **** Prior elicitation
-
-- All those that think the accused is guilty, raise their hand.
-- Divide by the number of people in class
-- Let us call this $P(H_1)$.
-- This is a purely subjective measure!
+ #+ATTR_BEAMER: :overlay <+->
+ - All those that think the accused is guilty, raise their hand.
+ - Divide by the number of people in class
+ - Let us call this $P(H_1)$.
+ - This is a purely subjective measure!
 
 *** DNA test
-
- - Let us now do a DNA test on the suspect
-#+BEAMER: \pause
+  - Let us now do a DNA test on the suspect
+ #+BEAMER: \pause
 
 **** DNA test properties
- #+ATTR_BEAMER: :overlay <+->
- - $D$: Test is positive
- - $P(D | H_0) = 1\%$: False positive rate
- - $P(D | H_1) = 100\%$: True positive rate
+  #+ATTR_BEAMER: :overlay <+->
+  - $D$: Test is positive
+  - $P(D | H_0) = 1\%$: False positive rate
+  - $P(D | H_1) = 100\%$: True positive rate
 
-#+BEAMER: \pause
+ #+BEAMER: \pause
 
 **** Run the test
  #+ATTR_BEAMER: :overlay <+->
@@ -1591,74 +1712,93 @@ We can associate events with sets in a universe. The following laws apply:
 	\[
 	P(H_0 | D) = \frac{0.1 q}{0.1 q + 1 - q} =  \frac{q}{10 - 9q}
 	\]
+ - The posterior can always be updated with more data!
 *** Python example
 
-#+BEGIN_SRC python
-# the input to the function is the prior, the likelihood function, and posteriors
-# Input:
-# - prior for hypothesis 0 (scalar)
-# - data (single data point)
-# - likelihood[data][hypothesis] array unction
-# Returns:
-# - posterior for the data point (if multiple points are given, the calculation is repeated)
-def get_posterior(prior, data, likelihood):
-    marginal = prior * likelihood[data][0] + (1 - prior) * likelihood[data][1]
-    posterior = prior * likelihood[data][0] / marginal
-    return posterior
+ #+BEGIN_SRC python
+ # the input to the function is the prior, the likelihood function, and posteriors
+ # Input:
+ # - prior for hypothesis 0 (scalar)
+ # - data (single data point)
+ # - likelihood[data][hypothesis] array unction
+ # Returns:
+ # - posterior for the data point (if multiple points are given, the calculation is repeated)
+ def get_posterior(prior, data, likelihood):
+     marginal = prior * likelihood[data][0] + (1 - prior) * likelihood[data][1]
+     posterior = prior * likelihood[data][0] / marginal
+     return posterior
 
-import numpy as np
-prior = 0.9
-likelihood = np.zeros([2, 2])
-# pr of negative test if not a match
-likelihood[0][0] = 0.9
-# pr of positive test if not a match
-likelihood[1][0] = 0.1
-# pr of negative test if a match
-likelihood[0][1] = 0
-# pr of positive test if a match
-likelihood[1][1] = 1
-data = 1
-return get_posterior(prior, data, likelihood)
-#+END_SRC
+ import numpy as np
+ prior = 0.9
+ likelihood = np.zeros([2, 2])
+ # pr of negative test if not a match
+ likelihood[0][0] = 0.9
+ # pr of positive test if not a match
+ likelihood[1][0] = 0.1
+ # pr of negative test if a match
+ likelihood[0][1] = 0
+ # pr of positive test if a match
+ likelihood[1][1] = 1
+ data = 1
+ return get_posterior(prior, data, likelihood)
+ #+END_SRC
 
-#+RESULTS:
-: 0.4736842105263158
+ #+RESULTS:
+ : 0.4736842105263158
 
+** More general problems
 *** The $k$-meteorologists problem
 
 
-We have $k$ meteorological stations. 
+ We have $k$ meteorological stations. 
 **** Predictions and outcomes
-| Station      |   M |   T |   W |   T |
-|--------------+-----+-----+-----+-----|
-| MeteoSuisse  | 25% | 20% | 10% |  5% |
-| Wunderground | 30% | 50% | 20% | 10% |
-| AccuWeather  | 90% | 70% | 10% |  0% |
-|--------------+-----+-----+-----+-----|
-| Rain         |   Y |   N |   N |   Y |
+ | Station      |   M |   T |   W |   T |
+ |--------------+-----+-----+-----+-----|
+ | MeteoSuisse  | 25% | 20% | 10% |  5% |
+ | Wunderground | 30% | 50% | 20% | 10% |
+ | AccuWeather  | 90% | 70% | 10% |  0% |
+ |--------------+-----+-----+-----+-----|
+ | Rain         |   Y |   N |   N |   Y |
 
 **** $H_i$: The $i$-th station's model is correct
-- $P(H_i)$: prior
-- $P(D | H_i)$: likelihood according to station $i$
-- $P(H_i | D)$: posterior
+ - $P(H_i)$: prior
+ - $P(D | H_i)$: likelihood according to station $i$
+ - $P(H_i | D)$: posterior
 
 *** Types of hypothesis testing problems
-**** Simple Hypothesis Test
-Example: DNA evidence, Covid tests
-- Two hypothesese $H_0, H_1$
-- $P(D | H_i)$ is defined for all $i$
+ #+ATTR_BEAMER: :overlay <+->
 
-**** Multiple Hypothesis Test
-Example: Model selection
-- $H_i$: One of many mutually exclusive models
-- $P(D | H_i)$ is defined for all $i$
+**** Simple Hypothesis Test
+ #+ATTR_BEAMER: :overlay <+->
+ Example: DNA evidence, Covid tests
+ - Two hypothesese $H_0, H_1$
+ - $P(D | H_i)$ is defined for all $i$
+
+**** Multiple Hypotheses Test
+ #+ATTR_BEAMER: :overlay <+->
+ Example: Model selection
+ - $H_i$: One of many mutually exclusive models
+ - $P(D | H_i)$ is defined for all $i$
 
 **** Null Hypothesis Test
-Example: Are men's and women's heights the same?
-- $H_0$: The 'null' hypothesis
-- $P(D | H_0)$ is defined
-- The alternative is *undefined*
+ #+ATTR_BEAMER: :overlay <+->
+ Example: Are men's and women's heights the same?
+ - $H_0$: The 'null' hypothesis
+ - $P(D | H_0)$ is defined
+ - The alternative is *undefined*
 
+*** Pitfalls
+ #+ATTR_BEAMER: :overlay <+->
+
+**** Problem definition
+ #+ATTR_BEAMER: :overlay <+->
+ - Defining the models $P(D | H_i)$ incorrectly.
+ - Using an "unreasonable" prior $P(H_i)$
+
+**** The garden of many paths
+ #+ATTR_BEAMER: :overlay <+->
+ - Having a huge hypothesis space
+ - Selecting the relevant hypothesis after seeing the data
 
 *** The covid test problem                                         :activity:
 	
@@ -1680,29 +1820,47 @@ Example: Are men's and women's heights the same?
 
  Now, everybody with a positive test raises their hand. I expect it to
  be slightly more than 10% (but it depends).
-
-
-
+ 
 ** Hypothesis testing
 
 Hypothesis testing, or model selection, is a general problem in
 machine learning and statistics. 
-   
-*** Types of hypothesis testing
-	There are many types of hypotheses we can do
-#+BEAMER: \pause
-**** Null hypothesis testing: no specific alternatives
-	 - $H_0$: Are men paid the same as women?
-**** Simple hypothesis testing: mutually exclusive alternatives
-	 - Is the defendant innocent ($H_0$) or guilty ($H_1$)?
-**** Confidence intervals: a range of alternatives
-	 - What is a likely vote percentage range for political party $A$?
-   
-*** The garden of many paths
-**** Expanding the hypothesis space
-- Open the Class Data
-	
-*** Confidence intervals
+
+*** Estimation intervals
+
+Intervals are a generalisation of hypothesis tests. We want to know if
+a given unknown parameter is within some range. Let us give an
+example.
+
+**** Estimating an expectation
+We might have data $x_1, \ldots, x_T$, with $x_t \sim Ber(\theta)$
+from a Bernoulli distribution with parameter $\theta$. While we can
+calculate the mean from the samples, what can we actually say about
+the unknown expectation $\E[x_i] = \theta$?
+
+**** Bayesian credible interval
+The Bayesian idea is intuitive. Through the posterior, we can
+calculate the probability that the true parameter is in any interval $S \subset [0,1]$:
+\[ P(\theta \in S | x_1, \ldots, x_T) \]
+This idea works for any kind of estimation.
+
+**** Confidence interval
+
+Confidence intervals work the other way round.  First we construct an
+algorithm for obtaining an estimate of the unknown parameter, e.g. the
+empirical mean estimate $\mu(x_1, \dots x_T)$. The confidence interval
+tells us the probability that our estimate is further away than
+$\epsilon$ from the expectation, as an analytic function of $\epsilon$
+and the amount of data $n$ \[ P(|\mu - \theta| > \epsilon \mid \theta)
+\leq \delta(\epsilon, n) \]
+
+**** Difference between confidence intervals and credible intervals.
+
+In confidence intervals, we condition on the unknown parameter
+$\theta$, but the function $\delta$ is constructed so that it is
+independent of $\theta$, since that is unknown.
+
+
    
 ** Simulation study :activity:
 
@@ -1710,7 +1868,411 @@ For a simple visualisation problem, vary parameter values and simulate
 thousands of times under each set of conditions. Summarise your
 findings graphically.
    
-* Module 4: Advanced visualisation (2 weeks)
+
+** Introduction: Estimation, Prediction and Decision Making
+
+*** Correlation example
+ #+CAPTION: Pirates cool the earth?
+ #+NAME:   fig:pirates-global-warming
+ [[./figures/pirates-global-warming.jpg]]
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
+
+
+*** The three main problems in statistics
+**** Estimation
+	 - How many covid patients are there now?
+	 - Which is the best meteorological station?
+	 - What is the right model for planetary motion?
+**** Prediction
+	 - How many covid patients will there be next week?
+	 - Will it rain tomorrow?
+	 - When is the next lunar eclipse?
+**** Decision making
+	 - What covid measures should I take?
+	 - Should I take the umbrella?
+	 - What's the best way to each the next eclipse?
+
+*** Types of variables
+
+**** Observed variables
+ - Telescope images
+ - Survey data from a health authority
+ - Radar measurements in an AV
+
+**** Latent variables
+ - The mass, position and velocity of Mars
+ - Actual number of covid patients
+ - The location and speed of nearby vehicles
+
+**** Decision variables
+ - Can be observed or latent
+ - Selected arbitrarily by humans or machines
+
+*** From correlation to causation.
+
+**** Statistical relation.
+	 - Is smoking related to lung cancer?
+	
+**** Statistical causation.
+	 - Does smoking cause lung cancer?
+	 - Will I get lung cancer if I smoke?
+	
+**** Actual causes.
+	 - Did I get lung cancer because I smoked?
+	
+
+*** Correlation versus Causality
+
+**** Correlation and dependence
+ - Does *knowing* the value of one variable give us *information* about
+   another variables?
+
+**** Causality
+ - Does *changing* the value of one variable *affect* other variables?
+
+
+** Joint and Conditional Probabilities
+
+Here we go into some more detail about joint and conditoinal probabilities.
+
+*** Correlation: Setting
+    #+ATTR_BEAMER: :overlay <+->
+
+Let us start with the general setting. 
+
+**** Outline
+ #+ATTR_BEAMER: :overlay <+->
+ - Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
+ - We write $\Pr(x,y)$ to informally mean their joint distribution.
+
+For a formal definition, we must define an appropriate probability
+measure on $\Omega$, which will then result in a new measure on the
+space defined by the two variables of interest, as follows:
+
+**** Formal definition
+ #+ATTR_BEAMER: :overlay <+->
+ - Underlying probability space $P, \Omega, \Sigma$ with
+ - Outcome space $\Omega$
+ - Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
+ - Probability measure $P : \Sigma \to \Omega$.
+ - RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
+ - Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
+
+However, this is not, strictly speaking, necessary for an intuitive understanding.
+
+*** Conditional probabilities
+ #+ATTR_BEAMER: :overlay <+->
+***** Definition
+ The conditional distribution of $x$ given $y$ is:
+ \[
+ \Pr(x | y) = \Pr(x, y) / \Pr(y)
+ \]
+ Thus, for every value of $y$ we get a different distribution for $x$, called $\Pr(x | y)$.
+
+***** Recall definition for events
+ This has the same form.
+ \[
+ P(A | B) = P(A \cap B) / P(B).
+ \]
+
+*** Python example: independent RVs
+
+Let us begin with a simple example of two variables which are independent Bernoulli.
+
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1) = v$
+
+The independence can also be seen in the structure of the program: x and y are generated by two separate calls to ~random.choice()~
+**** One draw of $x,y$
+ #+BEGIN_SRC python
+   import numpy as np
+   theta = 0.6
+   v = 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v, v])
+ #+END_SRC
+
+ #+RESULTS:
+ |  800 | 3221 |
+ | 1192 | 4787 |
+
+
+*** Dependent, Discrete $x, y$
+
+Now let us look at dependent variables. Here $x$ is generated
+first. Then $y$ has a value which depends on what value of $x$ has
+been generated.
+
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1 | x = 0) = v_0$
+ - $\Pr(y = 1 | x = 1) = v_1$
+
+We can also calculate $\Pr(y = 1)$ by using the marginalisation rule:
+\[
+\Pr(y = 1) = \Pr(y = 1 | x=0) \Pr(x = 0) + \Pr(y = 1 | x=1) \Pr(x = 1) = v_0 (1 - \theta) + v_1 \theta.
+\]
+Now let us how to do this programmatically. Here, x is an explicit input to the function that generates y:
+
+ #+BEAMER: \pause
+**** One draw of x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.6
+   v = np.zeros(2)
+   v[0] = 0.4
+   v[1]= 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v[x], v[x]])
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+  
+*** Python example: multiple draws
+Doing this for multiple draws isa bit more complicated, but it can be done. We just need to use the set-builder notation to generate one $y$ for each $x$ generated.
+ #+BEGIN_SRC python
+ import numpy as np
+ n = 10000
+ theta = 0.6
+ v = np.zeros(2)
+ v[0] = 0.4
+ v[1] = 0.8
+ x = np.random.choice(2, p = [1 - theta, theta], size = n)
+ y = np.array([np.random.choice(2, p = [1 - v[x_t], v[x_t]]) for x_t in x])
+ import matplotlib.pyplot as plt
+ A = np.zeros([2,2])
+
+ for i in range(2):
+	 for j in range(2):
+	   A[i,j] = sum((x==i) & (y==j))
+
+ plt.imshow(A)
+ plt.savefig("correlated-binary.png")
+ plt.show()
+ return A
+ #+END_SRC
+
+ #+RESULTS:
+ | 1775 |  208 |
+ |  804 | 7213 |
+
+
+*** Empirical joint probability of correlated x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
+ #+NAME:   fig:dependent
+ [[./figures/correlated-binary.png]]
+
+*** Empirical joint probability of independent x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.1)$.
+ #+NAME:   fig:independent
+ [[./figures/independent-binary.png]]
+
+  
+*** Continuous $x, y$
+
+This is the typical structure of regression problems.
+Let us start with a simple normal distribution for both x, y:
+**** Normal-distributed $x, y$
+ - $x \sim Normal(0, 1)$.
+ - $y | x \sim Normal(x, 1)$.
+
+The above notation means that:
+- $x$ has a normal distribution with mean 0 and variance 1.
+- Given the value of $x$, $y$ has a normal distribution with mean $x$ and variance 1.
+
+ #+BEAMER: \pause
+**** One draw from x, y
+This dependence is made explicit in the following code.
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.8
+   x = np.random.normal(0, 1)
+   y = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+  
+*** Continuous $x$, Discretre $y$
+
+This is the typical structure of classification problems.
+   
+**** Normal-distributed $x$, Bernoulli-distributed $y$
+ - $y \sim Bernoulli(0.6)$
+ - $x | y \sim 160 + Normal(10*y, 1)$.
+The above notation means that:
+- $y$ has a Bernoulli distribution with mean 0.6.
+- Given the value of $y$, $x$ has a normal distribution with mean $160 + 10x$ and variance 1.
+
+
+ #+BEAMER: \pause
+**** One draw from x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   y = np.random.choice(2, p = [0.4, 0.6])
+   x = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+*** Covariance matrix
+- Consider a collection of RVs $x_1, \ldots, x_n$.
+- The joint distribution is a complicated object.
+- Visualised with scatterplots $(x_i, x_j)$, e.g.  ~sns.pairplot()~
+
+**** Covariance matrix $C$
+Instead, we can calculate the covariance matrix
+\[
+C_{ij}
+= 
+\frac{\E\{[x_i - \E(x_i)][x_j - \E(x_j)]\}}
+{\sqrt{\E\{[x_i - \E(x_i)]^2\}\E\{[x_i - \E(x_i)]^2\}}}
+\]
+
+**** Approximating the covariance matrix
+- Assuming data $x(t)$ with components $x_i(t)$:
+- $C_{ij} \approx \frac{1}{T} \sum_{t=1}^T [x_i(t) - \mu_i] [x_j(t) - \mu_j] / \sigma_i \sigma_j$.
+- $\mu_i$: (empirical) mean of $x_i$
+- $\sigma_i$: (empirical) standard deviation of $x_i$
+
+*** Correlation versus dependence
+    #+ATTR_BEAMER: :overlay <+->
+**** Dependent random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
+ - equivalently, if $\Pr(x | y) = \Pr(x)$
+ - $x, y$ are dependent if they are not independent.
+
+**** Correlated random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are uncorrelated if $\E(x,y) = \E(x)\E(y)$
+ - Equivalently, if $\E(x | y) = \E(x)$
+ - $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
+
+**** Theorem
+ #+ATTR_BEAMER: :overlay <+->
+ - If $x, y$ are correlated then they are dependent.
+ - If $x, y$ are independent the they are uncorrelated.
+
+** Models of Causation
+
+*** Causal inference vs the actual cause
+   
+**** Causal inference
+ #+ATTR_BEAMER: :overlay <+->
+ - Can aspirine cure headaches? 
+ - Does smoking cause lung cancer?
+ - Or do cancer patients become smokers?
+ - Or is there a third factor causing both?
+**** The actual cause
+ #+ATTR_BEAMER: :overlay <+->
+ - Did aspirin cure *my* headache?
+ - Did smoking cause *my* cancer?
+
+ #+BEAMER: \pause
+**** Applications
+ - Causal inference useful in a scientific setting.
+  
+ - Reliable methods for causal inference exist.
+ - Actual causes useful in a legal setting.
+ - No reliable method or definition exists for determining actual causes.
+
+*** Confounding variables
+**** Arrival at work
+ #+ATTR_BEAMER: :overlay <+->
+ - Tom and Fatima both work in Lausanne.
+ - Whenever Tom is late to work, so is Fatima.
+ - When this happens, there is also a traffic jam.
+
+**** Kidney stone treatment
+ #+ATTR_BEAMER: :overlay <+->
+ - Treatment A is effective 90% of the time
+ - Treatment B is effective 50% of the time.
+ - Why is that? (see src/causality/confounders)x
+
+#+NAME: Treatment efficacy
+|-----------+--------------+--------------|
+| Treatment | Small Stones | Large Stones |
+|-----------+--------------+--------------|
+| A         |          80% |          30% |
+| B         |          90% |          60% |
+|-----------+--------------+--------------|
+
+We see here that treatment B is always better, but Large Stones are
+harder to treat. Let us now consider the treatment policy:
+
+#+NAME: Treatment policy
+|-----------+--------------+--------------|
+| Treatment | Small Stones | Large Stones |
+|-----------+--------------+--------------|
+| A         |          80% |          20% |
+| B         |          20% |          80% |
+|-----------+--------------+--------------|
+
+The treatment policy mostly assigns treatment A when patients have
+small stones, and B for large stones. Hence, as treatment B is applied
+to harder cases, it might look worse on average. In particular, if we calculate the average treatment effect, by marginalising over stones, we have
+
+#+NAME: Average treatment effect
+|-----------+----------------|
+| Treatment | Average Effect |
+|-----------+----------------|
+| A         |            0.7 |
+| B         |           0.66 |
+|-----------+----------------|
+#+TBLFM: @2$2=remote(Treatment efficacy, @2$2)*remote(Treatment policy, @2$2)+remote(Treatment efficacy, @2$3)*remote(Treatment policy, @2$3)
+#+TBLFM: @3$2=remote(Treatment efficacy, @3$2)*remote(Treatment policy, @3$2)+remote(Treatment efficacy, @3$3)*remote(Treatment policy, @3$3)
+
+So, even though the second treatment better both for large and small
+stones, if we ignore the stone size, it looks worse. 
+
+Ignoring the stone size makes it a *confounder*, because it was used
+in the policy, but we ignore it. It wouldn't matter if stone size was
+not used to select the treatment, which is why we typically use
+randomised trials to study the effect of treatments.
+
+*** Instrumental variables
+**** Setting
+- $a$: Treatment
+- $x$: Patient characteristics
+- $y$: Outcome
+
+**** Confounding
+- $x$ is ignored
+- $a$ depends on $x$.
+- $y$ depends on $a, x$.
+
+**** Using $x$ as an instrument
+- $x$ is taken into account
+- We model $\Pr(y | x, a)$, $\Pr(a | x)$
+
+*** Avoiding confounding
+
+**** Randomised studies
+- Treatment is random
+- Hence dependence to $x$ is cut.
+
+**** Selecting an instrument
+- Must be an informed choice
+- A complex instrument can lead to spurious correlations
+
+**** Explicitly model policies $\pi$
+- Treatment policy $\pi$ with $\pi(a | x, \pi)$.
+- Outcomes depend on policy $\pi$
+
+* Module 4: Advanced visualisation
 
 ** Geographical data
  https://scikit-learn.org/stable/auto_examples/neighbors/plot_species_kde.html
@@ -1724,10 +2286,6 @@ findings graphically.
 2. Density plots
    	 
 ** Text data
-* Module 5: Data analysis in practice (2 weeks)
-** Visualising fMRI data
-** Visualising GWAS data
-* Module 6: Project work and presentations (2 weeks)
 
 * Assignments
 
@@ -1815,16 +2373,83 @@ After you have started your project, each one of the project members
 presents a preliminary plot and explains it (5 minutes). 
 
 *** Project presentation
-DEADLINE: <2022-12-02 Fr>
+DEADLINE: <2022-12-16 Fr>
 
 *** Project report
-DEADLINE: <2022-12-16 Fr>
+DEADLINE: <2022-12-21 Mi>
 
 The completed project should include a report written by both students
 in the team. This should should address the points in the [[*Assessment][Assessment]]
 description.
 
-* Reference material
+Suggested structure for the report:
+
+1. Hypotheses and scientific question.
+
+What is the main scientific question you want to answer? After a
+general introduction to the question, be more precise and list all
+alternative hypotheses that you would like to examine. 
+
+Example: We wanted to see if electric, diesel or gasoline vehicles are
+more environmentally friendly.  More specifically, we will compare the
+lifetime carbon emissions of vehicles of all types, including material
+sourcing, construction, driving and fuel sources, maintainance and disposal.
+
+2. Data collection and experiment design
+
+What data did you use to answer your question? How has the data been
+collected? What are the main chracteristics of the data? 
+
+Example: We will collect data from a few representative manufacturers
+which produce both EV and internal combustion vehicles. This will be
+combined with measurements from national environmental agencies and
+NGOs. [Then detail the list of sources and what data you obtain from each]
+
+3. Methodology
+
+How will you use the data to answer the question? Explain in as
+precise terms as possible. 
+
+Example: The easiest part to measure is the CO2 emissions during car
+use. We can obtain measurements from government agencies, magazines
+and the manufacturers about power consumption of each vehicle. These
+can be synthesized into a range of consumption numbers [Detail how
+exactly you do the synthesis]. For the construction of a vehicle it is
+hard to get exact numbers but we used estimates from these articles
+[cite the articles]. Because there might be a manufacturer bias (some
+might generally use more intensive processes than others), we will
+focus on comparing equivalent models within a manufacturer with
+different engine and drive-trains.
+ 
+4. Results
+
+Here give a number of plots to answer your question. Section 3 should
+say how the plots were arrived at. In this section, you should explain
+the meaning of these plots and what they show.
+
+Example: Stacked bar plots of CO2 emissions for different types of
+vehicles, grouped by manufacturer. Differences in CO2 emissoins
+between catagories for each manufacturer. The plots might show that
+e.g. Renault overall has lowre emissions than Ford, but that in either
+case the EV vehicles have lower lifetime emissions than their Diesel
+counterparts.
+
+5. Conclusion
+
+Are you able to arrive at a firm conclusion or not? If so, what is it?
+If not, would more data help you to obtain a clearer conclusion?  Are
+you happy with your methodology, or could it be improved?
+
+Example: You have firmly concluded that in-use emissions are lower for
+EVs than internal combustion vehicles. However, you were unable to
+obtain data regarding disposal and so have left that out of the
+analysis. More-over, the uncertainty about construction emissions are too great
+to be able to see a significant difference. 
+
+
+
+
+* Theoretical Background
 ** Notation
  For convenience, I include necessary mathematical notation
 *** Sets
@@ -1873,111 +2498,6 @@ For some more technical details, see [[*Probability space][Probability space]].
 
 See also:
 - https://en.wikipedia.org/wiki/Probability
-
-*** Randomness												  :code:activity:
-*Random algorithms using coins*.
- #+BEGIN_SRC python
-   y = 0 # y is a variable, with the value zero currently
-   import numpy as np # this library has many useful functions
-   x = np.random.choice(100) # x takes values 'randomly'. It is a 'random variable'.
-   return x # let's see what value it takes
- #+END_SRC
- #+RESULTS:
- : 31
-
-*Uncertainty vs randomness: coin-flipping experiment*
-	 1. Everybody flips a coin 10 times.
-	 2. Record each throw with 0, 1 in this spreadsheet: https://docs.google.com/spreadsheets/d/1E4bs05HnKXf1GZe4g3v6RLnHsj-YcaWg3Qe_RQyfhHU/edit?usp=sharing
-	 3. Then record how you threw the coin and what coin it was.
-	 4. Discuss if the coin is really random.
-	 5. What is the distribution of coin throws for the first throw?
-	 6. What is the distribution of recorded coin biases? Why do some coins appear more biased than others?
-	 7. Does it make sense to aggregate all the results? What does that assume?
-
-
-
-In the context of experiment design and data analysis, it is very
-common to have conditions like those in this example.  Even though we
-wish there was such a thing as the 'repeated experiment', in practice
-it never is repeated. There is always some varying factor.
-
-*Pseudo-random numbers*
-
- Let us now repeat the experiment with data generated via a computer.
- #+BEGIN_SRC python
- # here is a default way to generate 'random' numbers
- import random
- X = random.choices([0, 1], k=10) # uniformly choose 10 times between 0 and 1.
- plt.hist(X) # everytime we run these commands, we get a different proportion
- #+END_SRC
-
- #+RESULTS:
-
- This python code is completely deterministic. A complicated
- calculation is used to generate the next 'random' number from the
- previous one. Consider this example:
- #+BEGIN_SRC python
- import random
- seed(5) #this sets the 'state' of the random number generating machine
- print(random.uniform(0,1)) # the random number is a function of the state
- print(random.uniform(0,1)) # the state changes after we generate a new number
- print(random.uniform(0,1))
- seed(5) # when we reset the state, we get the same sequence of numbers
- print(random.uniform(0,1)) #
- print(random.uniform(0,1))
- print(random.uniform(0,1))
- #+END_SRC
-
- For cryptographically strong random numbers you need to use the secrets module:
- #+BEGIN_SRC python
- import secrets
- secrets.choice(range(100))
- #+END_SRC
-
-*Physical sources of randomness*
-
- Let's go back to throwing coins now. Coins are completely
- deterministic.  Whenever we have a specific coin to throw in the air,
- there are two things we do not know. The first is which side the coin
- will land on. Why is that? The second is uncertainty about the coin
- bias: is the probability of landing heads exactly 50%? How can we
- quantify this? What does it depend on? Discuss in class.
-
- What physical source of randomness can we use instead of coins?
-
-*** Uncertainty													   :activity:
-
-Probability is not only used to model random events. In fact, almost
-nothing can be said to be really random, unless we go into quantum
-physics. Even a die thrown in the air follows precise mechanical
-laws. Given enough information, it is possible to accurately predict
-the outcome of a throw.
-
-For that reason, probability is best thought of as a way to model any
-residual uncertainty we have about an event. Then the probability of
-an event is simply a subjective measure of the likelihood. 
-
-While probability offers a nice mathematical formulation of
-uncertainty, when this uncertainty is subjective, the question arises:
-how can we elicit precise probabilities about uncertain events from
-individuals?  Here is an example.
-
-**** The number of immigrants                                      :activity:
- Consider the following question: how many immigrants live in
- Switzerland?  
-
- 1. In-class discussion: what do we mean by that?
-
- 2. Now everybody can make a guess and record it on this form: https://moodle.unine.ch/mod/evoting/view.php?id=295622
-
- What does this distribution mean? Can we use it as an estimate of uncertainty?
-
- 3. Now let us create some confidence intervals. The procedure is as
- follows. Let us take a first guess at an inteval, (say 5-10%) and ask:
- (a) Are you willing to take an even bet that the true number is between [5-10%]?
-
-
-  
 
 
 *** Probability space :theory:probability:
@@ -2284,6 +2804,20 @@ M_n = \E(f) \mp O(1/\sqrt{n}).
 Informally, we should expect our error to reduce proportionally to $1/sqrt{n}$ the number of samples we have.
 
 
+*** Variance                                         :definition:probability:
+The variance of a random variable $f$ is defined as
+\[
+\sigma_f^2 \defn \E\{[f - \E(f)]^2\}.
+\]
+We can rewrite the variance as follows:
+\[
+\sigma_f^2 = \E\{[f - \E(f)]^2\}
+= \E[f^2 - 2f \E(f) + \E(f)^2]
+= \E[f^2] - 2\E(f) \E(f) + \E(f)^2
+= \E[f^2] -\E(f)^2.
+\]
+The variance is another example of a moment of a random variable. More
+complicated moments, such as skew and kurtosis exist.
 
 *** Conditional expectation :definition:probability:
 
@@ -2457,12 +2991,8 @@ Python help: Use python's !help! function whenever you can.
 help(print)
 #+END_SRC
 
-** Some workshops
-- https://vishub.net/bach
-- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22331
-- https://www.dagstuhl.de/en/program/calendar/semhp/?semnr=22351
-
 ** Books
+- [BT] Introduction to Probability, Bertsekas and Tsitsiklis preprint at: https://vfu.bg/en/e-Learning/Math--Bertsekas_Tsitsiklis_Introduction_to_probability.pdf >
 - [CA] The Truthful Art. Cairo, Alberto :book:
 - [GJ] Data Science Par La Pratique (Data Science from Scratch). Grus, Joel 
  (Ch3: Visualisation, Ch6: Probability, Ch7: Inference, Ch9: Data collection, Ch10: Exploration, Ch14: Regression, Ch15: Regression+Bootstrap)

@@ -11,123 +11,274 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
+* Correlation and Causation
+** Introduction: Estimation, Prediction and Decision Making
+
 
 
 * Introduction
 
-#+CAPTION: Pirates cool the earth
-#+NAME:   fig:pirates-global-warming
-[[./figures/pirates-global-warming.jpg]]
+*** Correlation example
+ #+CAPTION: Pirates cool the earth?
+ #+NAME:   fig:pirates-global-warming
+ [[./figures/pirates-global-warming.jpg]]
+    :PROPERTIES:
+    :BEAMER_env: ignoreheading
+    :END:
 
+*** The three main problems in statistics
+**** Estimation
+	 - How many covid patients are there now?
+	 - Which is the best meteorological station?
+	 - What is the right model for planetary motion?
+**** Prediction
+	 - How many covid patients will there be next week?
+	 - Will it rain tomorrow?
+	 - When is the next lunar eclipse?
+**** Decision making
+	 - What covid measures should I take?
+	 - Should I take the umbrella?
+	 - What's the best way to each the next eclipse?
 
-* Estimation, Prediction and Decision Making
+*** Types of variables
 
-** The three main problems in statistics
-*** Estimation
-	- How many covid patients are there now?
-	- Which is the best meteorological station?
-	- What is the right model for planetary motion?
-*** Prediction
-	- How many covid patients will there be next week?
-	- Will it rain tomorrow?
-	- When is the next lunar eclipse?
-*** Decision making
-	- What covid measures should I take?
-	- Should I take the umbrella?
-	- What's the best way to each the next eclipse?
+**** Observed variables
+ - Telescope images
+ - Survey data from a health authority
+ - Radar measurements in an AV
 
-** Types of variables
+**** Latent variables
+ - The mass, position and velocity of Mars
+ - Actual number of covid patients
+ - The location and speed of nearby vehicles
 
-*** Observed variables
-- Telescope images
-- Survey data from a health authority
-- Radar measurements in an AV
+**** Decision variables
+ - Can be observed or latent
+ - Selected arbitrarily by humans or machines
 
-*** Latent variables
-- The mass, position and velocity of Mars
-- Actual number of covid patients
-- The location and speed of nearby vehicles
+*** From correlation to causation.
 
-*** Decision variables
-- Can be observed or latent
-- Selected arbitrarily by humans or machines
-
-** From correlation to causation.
-
-*** Statistical relation.
-	- Is smoking related to lung cancer?
+**** Statistical relation.
+	 - Is smoking related to lung cancer?
 	
-*** Statistical causation.
-	- Does smoking cause lung cancer?
-	- Will I get lung cancer if I smoke?
+**** Statistical causation.
+	 - Does smoking cause lung cancer?
+	 - Will I get lung cancer if I smoke?
 	
-*** Actual causes.
-	- Did I get lung cancer because I smoked?
+**** Actual causes.
+	 - Did I get lung cancer because I smoked?
 	
 
-** Correlation versus Causality
+*** Correlation versus Causality
 
-*** Correlation and dependence
-- Does *knowing* the value of one variable give us *information* about
-  another variables?
+**** Correlation and dependence
+ - Does *knowing* the value of one variable give us *information* about
+   another variables?
 
-*** Causality
-- Does *changing* the value of one variable *affect* other variables?
+**** Causality
+ - Does *changing* the value of one variable *affect* other variables?
 
 
+** Joint and Conditional Probabilities
+*** Correlation: Setting
+ #+ATTR_BEAMER: :overlay <+->
+**** Outline
+ #+ATTR_BEAMER: :overlay <+->
+ - Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
+ - We write $\Pr(x,y)$ to informally mean their joint distribution.
 
-* Joint and Conditional Probabilities
-** Setting
-#+ATTR_BEAMER: :overlay <+->
-*** Outline
-#+ATTR_BEAMER: :overlay <+->
-- Random variables $x, y$ taking values in $\mathcal{X}, {Y}$.
-- We write $\Pr(x,y)$ to informally mean their joint distribution.
+**** Formal definition
+ #+ATTR_BEAMER: :overlay <+->
+ - Underlying probability space $P, \Omega, \Sigma$ with
+ - Outcome space $\Omega$
+ - Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
+ - Probability measure $P : \Sigma \to \Omega$.
+ - RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
+ - Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
 
-*** Formal definition
-#+ATTR_BEAMER: :overlay <+->
-- Underlying probability space $P, \Omega, \Sigma$ with
-- Outcome space $\Omega$
-- Event space $\Sigma$, so that $A \in \Sigma$ are subsets of $\Omega$.
-- Probability measure $P : \Sigma \to \Omega$.
-- RVs $x : \Omega \to \mathcal{X}$, $y : \Omega \to \mathcal{Y}$
-- Joint measure $P_{x,y}(S_x, S_y) \defn P(\{\omega : x(\omega) \in S_x, y(\omega) \in S_y\})$
+*** Conditional probabilities
+ #+ATTR_BEAMER: :overlay <+->
+***** Definition
+ The conditional distribution of $x$ given $y$ is:
+ \[
+ \Pr(x | y) = \Pr(x, y) / \Pr(y)
+ \]
+ Thus, for every value of $y$ we get a different distribution for $x$.
 
-** Conditional probabilities
-#+ATTR_BEAMER: :overlay <+->
-**** Definition
-The conditional distribution of $x$ given $y$ is:
+***** Recall definition for events
+ This has the same form.
+ \[
+ P(A | B) = P(A \cap B) / P(B).
+ \]
+
+*** Python example: independent RVs
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1) = v$
+
+**** One draw of $x,y$
+ #+BEGIN_SRC python
+   import numpy as np
+   theta = 0.6
+   v = 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v, v])
+ #+END_SRC
+
+ #+RESULTS:
+ |  800 | 3221 |
+ | 1192 | 4787 |
+
+
+*** Discrete $x, y$
+
+**** Bernoulli-distributed $x, y \in \{0,1\}$
+ - $\Pr(x = 1) = \theta$
+ - $\Pr(y = 1 | x = 0) = v_0$
+ - $\Pr(y = 1 | x = 1) = v_1$
+ - $\Pr(x = 1) = ?$
+
+ #+BEAMER: \pause
+**** One draw of x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.6
+   v = np.zeros(2)
+   v[0] = 0.4
+   v[1]= 0.8
+   x = np.random.choice(2, p = [1 - theta, theta])
+   y = np.random.choice(2, p = [1 - v[x], v[x]])
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+  
+*** Python example: multiple draws
+ #+BEGIN_SRC python
+ import numpy as np
+ n = 10000
+ theta = 0.6
+ v = np.zeros(2)
+ v[0] = 0.4
+ v[1] = 0.8
+ x = np.random.choice(2, p = [1 - theta, theta], size = n)
+ y = np.array([np.random.choice(2, p = [1 - v[x_t], v[x_t]]) for x_t in x])
+ import matplotlib.pyplot as plt
+ A = np.zeros([2,2])
+
+ for i in range(2):
+	 for j in range(2):
+	   A[i,j] = sum((x==i) & (y==j))
+
+ plt.imshow(A)
+ plt.savefig("correlated-binary.png")
+ plt.show()
+ return A
+ #+END_SRC
+
+ #+RESULTS:
+ | 1775 |  208 |
+ |  804 | 7213 |
+
+
+*** Empirical joint probability of x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.9 x)$.
+ #+NAME:   fig:dependent
+ [[./figures/correlated-binary.png]]
+
+*** Empirical joint probability of x, y
+	
+ #+CAPTION: Here $x \sim Bern(0.8)$ and $y \sim Bern(0.1)$.
+ #+NAME:   fig:dependent
+ [[./figures/independent-binary.png]]
+
+  
+*** Continuous $x, y$
+
+ This is the typical structure of regression problems
+
+**** Normal-distributed $x, y$
+ - $x \sim Normal(0, 1)$.
+ - $y | x \sim Normal(x, 1)$.
+
+ #+BEAMER: \pause
+**** One draw from x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   theta = 0.8
+   x = np.random.normal(0, 1)
+   y = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+  
+*** Continuous $x$, Discretre $y$
+
+ This is the typical structure of classification problems
+   
+**** Normal-distributed $x$, Bernoulli-distributed $y$
+ - $y \sim Bernoulli(0.6)$
+ - $x | y \sim 160 + Normal(10*y, 1)$.
+
+
+ #+BEAMER: \pause
+**** One draw from x, y
+ #+BEGIN_SRC python
+   import numpy as  np
+   y = np.random.choice(2, p = [0.4, 0.6])
+   x = np.random.normal(x, 1)
+   return x,y
+ #+END_SRC
+
+ #+RESULTS:
+ | 1.7628464385264946 | 0.6543891549311422 |
+
+
+*** Covariance matrix
+- Consider a collection of RVs $x_1, \ldots, x_n$.
+- The joint distribution is a complicated object.
+- Visualised with scatterplots $(x_i, x_j)$, e.g.  ~sns.pairplot()~
+
+**** Covariance matrix $C$
 \[
-\Pr(x | y) = \Pr(x, y) / \Pr(y)
-\]
-Thus, for every value of $y$ we get a different distribution for $x$.
-
-**** Recall definition for events
-This has the same form.
-\[
-P(A | B) = P(A \cap B) / P(B).
+C_{ij}
+= 
+\frac{\E\{[x_i - \E(x_i)][x_j - \E(x_j)]\}}
+{\sqrt{\E\{[x_i - \E(x_i)]^2\}\E\{[x_i - \E(x_i)]^2\}}}
 \]
 
-** Python example: independent RVs
-*** Bernoulli-distributed $x, y \in \{0,1\}$
-- $\Pr(x = 1) = \theta$
-- $\Pr(y = 1) = v$
+**** Approximating the covariance matrix
+- Assuming data $x(t)$ with components $x_i(t)$:
+- $C_{ij} \approx \frac{1}{T} \sum_{t=1}^T [x_i(t) - \mu_i] [x_j(t) - \mu_j] / \sigma_i \sigma_j$.
+- $\mu_i$: (empirical) mean of $x_i$
+- $\sigma_i$: (empirical) standard deviation of $x_i$
 
-*** One draw of $x,y$
-#+BEGIN_SRC python
-  import numpy as np
-  theta = 0.6
-  v = 0.8
-  x = np.random.choice(2, p = [1 - theta, theta])
-  y = np.random.choice(2, p = [1 - v, v])
-#+END_SRC
+*** Correlation versus dependence
+    #+ATTR_BEAMER: :overlay <+->
+**** Dependent random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are independent if $\Pr(x,y) = \Pr(x)\Pr(y)$
+ - equivalently, if $\Pr(x | y) = \Pr(x)$
+ - $x, y$ are dependent if they are not independent.
 
-#+RESULTS:
-|  800 | 3221 |
-| 1192 | 4787 |
+**** Correlated random variables
+ #+ATTR_BEAMER: :overlay <+->
+ - $x, y$ are uncorrelated if $\E(x,y) = \E(x)\E(y)$
+ - Equivalently, if $\E(x | y) = \E(x)$
+ - $x, y$ are correlated if $\E(x,y) \neq \E(x)\E(y)$
 
+**** Theorem
+ #+ATTR_BEAMER: :overlay <+->
+ - If $x, y$ are correlated then they are dependent.
+ - If $x, y$ are independent the they are uncorrelated.
+*** Measuring correlation
 
-** Discrete $x, y$
+** Models of Causation
 
 *** Bernoulli-distributed $x, y \in \{0,1\}$
 - $\Pr(x = 1) = \theta$
@@ -217,11 +368,19 @@ This is the typical structure of regression problems
 ** Continuous $x$, Discretre $y$
 
 This is the typical structure of classification problems
-   
-*** Normal-distributed $x$, Bernoulli-distributed $y$
-- $y \sim Bernoulli(0.6)$
-- $x | y \sim 160 + Normal(10*y, 1)$.
 
+*** Causal inference vs the actual cause
+   
+**** Causal inference
+ #+ATTR_BEAMER: :overlay <+->
+ - Can aspirine cure headaches? 
+ - Does smoking cause lung cancer?
+ - Or do cancer patients become smokers?
+ - Or is there a third factor causing both?
+**** The actual cause
+ #+ATTR_BEAMER: :overlay <+->
+ - Did aspirin cure *my* headache?
+ - Did smoking cause *my* cancer?
 
 #+BEAMER: \pause
 *** One draw from x, y
@@ -274,24 +433,54 @@ This is the typical structure of classification problems
 #+BEAMER: \pause
 *** Applications
 - Causal inference useful in a scientific setting.
-  
-- Reliable methods for causal inference exist.
-- Actual causes useful in a legal setting.
-- No reliable method or definition exists for determining actual causes.
+=======
+ #+BEAMER: \pause
+**** Applications
+ - Causal inference useful in a scientific setting.
+ - Reliable methods for causal inference exist.
+ - Actual causes useful in a legal setting.
+ - No reliable method or definition exists for determining actual causes.
 
-** Confounding variables
-*** Arrival at work
-#+ATTR_BEAMER: :overlay <+->
-- Tom and Fatima both work in Lausanne.
-- Whenever Tom is late to work, so is Fatima.
-- When this happens, there is also a traffic jam.
+*** Confounding variables
+**** Arrival at work
+ #+ATTR_BEAMER: :overlay <+->
+ - Tom and Fatima both work in Lausanne.
+ - Whenever Tom is late to work, so is Fatima.
+ - When this happens, there is also a traffic jam.
 
-*** Kidney stone treatment
-#+ATTR_BEAMER: :overlay <+->
-- Treatment A is effective 90% of the time
-- Treatment B is effective 50% of the time.
-- Why is that?
+**** Kidney stone treatment
+ #+ATTR_BEAMER: :overlay <+->
+ - Treatment A is effective 90% of the time
+ - Treatment B is effective 50% of the time.
+ - Why is that?
   
-** Instrumental variables
-   
-   
+*** Instrumental variables
+**** Setting
+- $a$: Treatment
+- $x$: Patient characteristics
+- $y$: Outcome
+
+**** Confounding
+- $x$ is ignored
+- $a$ depends on $x$.
+- $y$ depends on $a, x$.
+
+**** Using $x$ as an instrument
+- $x$ is taken into account
+- We model $\Pr(y | x, a)$, $\Pr(a | x)$
+
+*** Avoiding confounding
+
+**** Randomised studies
+- Treatment is random
+- Hence dependence to $x$ is cut.
+
+**** Selecting an instrument
+- Must be an informed choice
+- A complex instrument can lead to spurious correlations
+
+**** Explicitly model policies $\pi$
+- Treatment policy $\pi$ with $\pi(a | x, \pi)$.
+- Outcomes depend on policy $\pi$
+
+
