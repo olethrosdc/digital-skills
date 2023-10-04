@@ -1,4 +1,8 @@
 #+TITLE:     Correlation and Causation
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [ignorenonframetext,presentation]
+#+BEAMER_THEME: default
 #+OPTIONS:   H:2
 #+LaTeX_HEADER: \newcommand \E {\mathop{\mbox{\ensuremath{\mathbb{E}}}}\nolimits}
 #+LaTeX_HEADER: \newcommand\ind[1]{\mathop{\mbox{\ensuremath{\mathbb{I}}}}\left\{#1\right\}}
@@ -7,6 +11,7 @@
 #+LaTeX_HEADER: \newcommand \Reals {\mathbb{R}}
 #+LaTeX_HEADER: \newcommand \Param {\Theta}
 #+LaTeX_HEADER: \newcommand \param {\theta}
+
 
 * Introduction
 
@@ -208,8 +213,6 @@ This is the typical structure of regression problems
 
 #+RESULTS:
 | 1.7628464385264946 | 0.6543891549311422 |
-
-
   
 ** Continuous $x$, Discretre $y$
 
@@ -232,7 +235,8 @@ This is the typical structure of classification problems
 #+RESULTS:
 | 1.7628464385264946 | 0.6543891549311422 |
 
-
+** Spurious correlations
+   
 ** Correlation versus dependence
    #+ATTR_BEAMER: :overlay <+->
 *** Dependent random variables
