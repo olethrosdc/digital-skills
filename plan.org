@@ -2362,21 +2362,17 @@ https://docs.google.com/spreadsheets/d/1QKj_L9f0UIH80qgs2kcjc8AU1eKZzsTOcYFSU06H
 
 ** Open project
 *** Project proposal
-DEADLINE: <2022-10-21 Fr>
 Propose a problem to solve, including:
 - Hypotheses to test
 - How to collect data
 - How to analyse the collected data
 *** Project Highlight
-DEADLINE: <2022-11-04 Fr>
 After you have started your project, each one of the project members
 presents a preliminary plot and explains it (5 minutes). 
 
 *** Project presentation
-DEADLINE: <2022-12-16 Fr>
 
 *** Project report
-DEADLINE: <2022-12-21 Mi>
 
 The completed project should include a report written by both students
 in the team. This should should address the points in the [[*Assessment][Assessment]]
